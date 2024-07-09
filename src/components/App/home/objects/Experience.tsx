@@ -3,7 +3,7 @@ import blutCutLogo from "/public/blue_cut.svg";
 
 export default function Experience() {
   return (
-    <section className="h-[80vh] max-md:mt-[15rem] mt-10 gap-10  flex justify-center flex-col items-center bg-[#f9fdff]">
+    <section className="h-[80vh]  mt-10 gap-10  flex justify-center flex-col items-center bg-[#f9fdff]">
       <img src={blutCutLogo} className="w-[30rem] max-md:w-[20rem]"/>
       <h5 className="text-3xl max-md:text-center font-bold">Evaluation with the ‘Experienced’</h5>
       <p className="text-center w-[50%] max-md:w-[90%]">

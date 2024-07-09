@@ -11,7 +11,7 @@ import { Button } from "../../../ui/button";import { AiOutlineExclamationCircle 
 
 export default function Services() {
   return (
-    <section className="h-[70vh] max-md:mt-[17rem] gap-10 flex font-bold flex-col justify-center items-center">
+    <section className=" my-10 gap-10 flex font-bold flex-col justify-center items-center">
       <h2 className="text-4xl ">Services and Fees</h2>
       <div className="flex  max-md:items-center max-md:flex-col gap-5">
         <div className="flex max-md:w-[95%] flex-col border gap-10 p-10  max-md:p-8 pr-32 rounded-2xl">

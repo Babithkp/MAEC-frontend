@@ -2,7 +2,7 @@ import { Button } from "../../../ui/button";import processImg from "/process.png
 
 export default function Application() {
   return (
-    <section className="h-[50%] bg-[#f9fdff] ">
+    <section className=" bg-[#f9fdff] ">
       <div className="flex p-20 max-md:p-10 gap-10 justify-center items-center max-md:flex-col">
         <div className="w-1/2 max-md:w-full flex flex-col gap-5 max-md:items-center">
           <h5 className="text-3xl font-bold  max-md:text-2xl">Application Process</h5>

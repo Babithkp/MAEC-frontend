@@ -1,12 +1,11 @@
-import { Button } from "../../../ui/button";
-import { IoDocumentTextOutline } from "react-icons/io5";
+import { Button } from "../../../ui/button";import { IoDocumentTextOutline } from "react-icons/io5";
 import { FaSortDown } from "react-icons/fa";
 import siginGif from "/Login.gif";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { GoGlobe } from "react-icons/go";
 export default function Guide() {
   return (
-    <section className="h-[70vh]  flex justify-center flex-col items-center max-md:mt-[25rem]">
+    <section className="  flex justify-center flex-col items-center mt-10">
       <div className="flex w-[70%] max-md:w-[90%] max-md:flex-col">
         <div className="w-1/2 max-md:w-full flex flex-col gap-5 max-md:items-center">
           <h3 className="text-4xl max-md:text-2xl font-medium">
@@ -108,7 +107,7 @@ export default function Guide() {
           </Button>
         </div>
         <figure className="w-[50%] h-full max-md:w-full">
-          <img src={siginGif} className="w-full h-full object-contain" />
+          <img src={siginGif} className="w-full h-full object-cover" />
         </figure>
       </div>
     </section>

@@ -8,7 +8,7 @@ import Services from "./objects/Services"
 import Tools from "./objects/Tools"
 export default function Home() {
   return (
-    <main>
+    <main className="flex flex-col justify-center items-center min-h-[80vh] ">
         <Hero/>
         <Services/>
         <Guide/>
