@@ -1,16 +1,21 @@
-import { Button } from "../ui/button";
-import webLogo from "/IEElogo.png";
+import { Button } from "../ui/button";import webLogo from "/IEElogo.png";
 import { TiSocialFacebook } from "react-icons/ti";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTrigger,
-} from "../../components/ui/dialog";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
+
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTrigger,
+} from "../../components/ui/alert-dialog";
+import { useRef } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -19,9 +24,14 @@ import {
 } from "../../components/ui/accordion";
 
 export default function Navbar() {
+  const ref = useRef<HTMLButtonElement>(null);
+
+  const trigger = () => {
+    ref.current?.click();
+  };
   return (
     <nav className="flex p-8 w-full justify-between">
-      <figure>
+      <figure onClick={trigger}>
         <img
           src={webLogo}
           alt="LOGO"
@@ -81,23 +91,80 @@ export default function Navbar() {
         </div>
       </div>
 
-      <Dialog>
-        <DialogTrigger className="md:hidden">
-          <RxHamburgerMenu size={30} />
-        </DialogTrigger>
-        <DialogContent className="h-[105vh] absolute top-[21rem] left-[6rem]">
-          <DialogHeader>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+      <AlertDialog>
+        <AlertDialogTrigger>
+          <RxHamburgerMenu className="md:hidden" size={25}/>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogCancel
+              ref={ref}
+              className="w-full border-none relative "
+            >
+              <RxCross2 className="absolute right-5" size={25} />
+            </AlertDialogCancel>
+            <AlertDialogDescription>
+              <div className="w-[50vh] text-black flex justify-end">
+                <Accordion type="single" collapsible className="w-[46vh]">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>Tools</AccordionTrigger>
+                    <AccordionContent className="text-start px-5 flex flex-col gap-3">
+                      <div>
+                        <a href="/" className="font-bold">
+                          Document Requirement
+                        </a>
+                        <p>
+                          Requirement vary by country and repoter type. Use this
+                          easy tool to find out what documents to submit.
+                        </p>
+                      </div>
+                      <div>
+                        <a href="/" className="font-bold">
+                          Evalution Guldelines
+                        </a>
+                        <p>Evalution Guldelines</p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger>Support</AccordionTrigger>
+                    <AccordionContent className="text-start px-5 flex flex-col gap-3">
+                      <div>
+                        <a href="/" className="font-bold">
+                          Pricing
+                        </a>
+                        <p>Check out IEE's low pricing.</p>
+                      </div>
+                      <div>
+                        <a href="/" className="font-bold">
+                          FAQ
+                        </a>
+                        <p>
+                          Still have question? Check out our Frequently Asked
+                          Question page to find the help you need.
+                        </p>
+                      </div>
+                      <div>
+                        <a href="/" className="font-bold">
+                          Cantact us
+                        </a>
+                        <p>We are here to help.</p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+            </AlertDialogDescription>
+            <div className="flex justify-center gap-5 pt-5">
+            <Button onClick={() =>window.location.href = "get-started"} className="bg-[#2aaae0] font-bold rounded-full">Get started</Button>
+            <Button variant={"outline"} className="font-bold rounded-full">Login</Button>
+            </div>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </nav>
   );
 }
