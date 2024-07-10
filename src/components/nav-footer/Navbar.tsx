@@ -1,4 +1,5 @@
-import { Button } from "../ui/button";import webLogo from "/IEElogo.png";
+import { Button } from "../ui/button";
+import webLogo from "/IEElogo.png";
 import { TiSocialFacebook } from "react-icons/ti";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -15,7 +16,7 @@ import {
   AlertDialogHeader,
   AlertDialogTrigger,
 } from "../../components/ui/alert-dialog";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -24,13 +25,25 @@ import {
 } from "../../components/ui/accordion";
 
 export default function Navbar() {
+  const [isOnSignup, setIsOnSignup] = useState(false);
   const ref = useRef<HTMLButtonElement>(null);
 
   const trigger = () => {
     ref.current?.click();
   };
+  useEffect(() => {
+    if (window.location.href == "get-started") {
+      setIsOnSignup(true);
+    } else {
+      setIsOnSignup(true);
+    }
+  }, []);
   return (
-    <nav className="flex p-8 w-full justify-between">
+    <nav
+      className={`flex p-8 w-full justify-between ${
+        isOnSignup ? "hidden" : ""
+      }`}
+    >
       <figure onClick={trigger}>
         <img
           src={webLogo}
@@ -55,7 +68,12 @@ export default function Navbar() {
           </li>
         </ul>
         <div className="flex gap-3">
-          <Button className="rounded-full bg-[#2aaae0]">Get Started</Button>
+          <Button
+            className="rounded-full bg-[#2aaae0]"
+            onClick={() => (window.location.href = "get-started")}
+          >
+            Get Started
+          </Button>
           <Button
             variant={"outline"}
             className="rounded-full border-[1px] border-black"
@@ -93,7 +111,7 @@ export default function Navbar() {
 
       <AlertDialog>
         <AlertDialogTrigger>
-          <RxHamburgerMenu className="md:hidden" size={25}/>
+          <RxHamburgerMenu className="md:hidden" size={25} />
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -156,13 +174,18 @@ export default function Navbar() {
               </div>
             </AlertDialogDescription>
             <div className="flex justify-center gap-5 pt-5">
-            <Button onClick={() =>window.location.href = "get-started"} className="bg-[#2aaae0] font-bold rounded-full">Get started</Button>
-            <Button variant={"outline"} className="font-bold rounded-full">Login</Button>
+              <Button
+                onClick={() => (window.location.href = "get-started")}
+                className="bg-[#2aaae0] font-bold rounded-full"
+              >
+                Get started
+              </Button>
+              <Button variant={"outline"} className="font-bold rounded-full">
+                Login
+              </Button>
             </div>
           </AlertDialogHeader>
-          <AlertDialogFooter>
-            
-          </AlertDialogFooter>
+          <AlertDialogFooter></AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
     </nav>

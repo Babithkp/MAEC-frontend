@@ -19,7 +19,7 @@ export default function Home() {
           Flat Rate Guarantee!
         </h1>
         <div className="flex gap-3">
-          <Button className="bg-[#2aaae0] font-bold rounded-full p-6">
+          <Button className="bg-[#2aaae0] font-bold rounded-full p-6" onClick={()=>window.location.href = "get-started"}>
             Start Evaluation
           </Button>
           <Button
