@@ -14,7 +14,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTrigger,
-} from "../../components/ui/alert-dialog";
+} from "../ui/mobile-dialog";
 import { useEffect, useRef, useState } from "react";
 import {
   Accordion,
@@ -79,7 +79,7 @@ export default function Navbar() {
           <Button
             variant={"outline"}
             className="rounded-full border-[1px] border-black"
-            onClick={()=>window.location.href = "loggingIn"}
+            onClick={() => (window.location.href = "loggingIn")}
           >
             Login
           </Button>
@@ -127,54 +127,8 @@ export default function Navbar() {
             <AlertDialogDescription>
               <div className="p-2 w-screen text-black flex justify-end">
                 <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="item-1">
-                    <AccordionTrigger>Tools</AccordionTrigger>
-                    <AccordionContent className="text-start px-5 flex flex-col gap-3">
-                      <div>
-                        <a href="/" className="font-bold">
-                          Document Requirement
-                        </a>
-                        <p>
-                          Requirement vary by country and repoter type. Use this
-                          easy tool to find out what documents to submit.
-                        </p>
-                      </div>
-                      <div>
-                        <a href="/" className="font-bold">
-                          Evalution Guldelines
-                        </a>
-                        <p>Evalution Guldelines</p>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-2">
-                    <AccordionTrigger>Support</AccordionTrigger>
-                    <AccordionContent className="text-start px-5 flex flex-col gap-3">
-                      <div>
-                        <a href="/" className="font-bold">
-                          Pricing
-                        </a>
-                        <p>Check out IEE's low pricing.</p>
-                      </div>
-                      <div>
-                        <a href="/" className="font-bold">
-                          FAQ
-                        </a>
-                        <p>
-                          Still have question? Check out our Frequently Asked
-                          Question page to find the help you need.
-                        </p>
-                      </div>
-                      <div>
-                        <a href="/" className="font-bold">
-                          Cantact us
-                        </a>
-                        <p>We are here to help.</p>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-3">
-                    <AccordionTrigger>By Service</AccordionTrigger>
+                <AccordionItem value="item-3">
+                    <AccordionTrigger className="font-bold">By Service</AccordionTrigger>
                     <AccordionContent className="text-start px-5 flex flex-col gap-3">
                       <div>
                         <a href="/" className="font-bold">
@@ -210,14 +164,56 @@ export default function Navbar() {
                       </div>
                     </AccordionContent>
                   </AccordionItem>
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>Tools</AccordionTrigger>
+                    <AccordionContent className="text-start px-5 flex flex-col gap-3">
+                      <div>
+                        <a href="/document-requirement" className="font-bold">
+                          Document Requirement
+                        </a>
+                        <p>
+                          Requirement vary by country and repoter type. Use this
+                          easy tool to find out what documents to submit.
+                        </p>
+                      </div>
+                      <div>
+                        <a href="/guidelines" className="font-bold">
+                          Evalution Guldelines
+                        </a>
+                        <p>Evalution Guldelines</p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger>Support</AccordionTrigger>
+                    <AccordionContent className="text-start px-5 flex flex-col gap-3">
+                      <div>
+                        <a href="/pricing" className="font-bold">
+                          Pricing
+                        </a>
+                        <p>Check out IEE's low pricing.</p>
+                      </div>
+                      <div>
+                        <a href="/" className="font-bold">
+                          FAQ
+                        </a>
+                        <p>
+                          Still have question? Check out our Frequently Asked
+                          Question page to find the help you need.
+                        </p>
+                      </div>
+                      <div>
+                        <a href="/" className="font-bold">
+                          Cantact us
+                        </a>
+                        <p>We are here to help.</p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                  
                 </Accordion>
               </div>
             </AlertDialogDescription>
-            <div className="text-start px-3 pb-3 flex flex-col gap-3 border-b">
-              <a href="/" className="font-bold">
-                Reviews
-              </a>
-            </div>
             <div className="flex justify-center gap-5 pt-5">
               <Button
                 onClick={() => (window.location.href = "get-started")}
@@ -225,7 +221,11 @@ export default function Navbar() {
               >
                 Get started
               </Button>
-              <Button variant={"outline"} className="font-bold rounded-full" onClick={()=>window.location.href = "loggingIn"}>
+              <Button
+                variant={"outline"}
+                className="font-bold rounded-full"
+                onClick={() => (window.location.href = "loggingIn")}
+              >
                 Login
               </Button>
             </div>

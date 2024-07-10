@@ -17,9 +17,9 @@ export default function Aboutus() {
           <span className="text-[#2aaae0]">translation</span> services
         </h1>
         <p>
-          Established in 1981, International Education Evaluations, LLC provides
+          Established in 1981, Maryland Academic Evaluation Center, LLC provides
           evaluation and translation services of foreign diplomas, certificates,
-          and transcripts. International Education Evaluations, LLC is also a
+          and transcripts. Maryland Academic Evaluation Center, LLC is also a
           member of the National Association of Credential Evaluation Services
           [NACES]. We also offer services to the immigration industry. With over
           35 years of experience under our belt, our reports are used for
@@ -39,7 +39,7 @@ export default function Aboutus() {
           <img src={ieelogo} alt="iee logo" className="w-[6rem]" />
           <h3 className="font-bold text-4xl">Our mission</h3>
           <p>
-            MyMAEC advances the global mobility and integration of people into
+            MAEC advances the global mobility and integration of people into
             academic and professional settings by evaluating and advocating for
             the recognition of international educational qualifications and
             enabling individuals to fully utilize their education.
@@ -52,7 +52,7 @@ export default function Aboutus() {
           Evaluation with the ‘Experienced’
         </h5>
         <p className="text-center w-[50%] max-md:w-[90%] ">
-          International Education Evaluations, LLC has provided quality
+        Maryland Academic Evaluation Center has provided quality
           evaluation services for over 35 years. During this time we have
           prepared thousands of education reports on education performed outside
           the United States. Such reports have been used for immigration,
@@ -125,7 +125,7 @@ export default function Aboutus() {
             </div>
             <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
               <p className="text-slate-600 ">
-                TIEE EVALUATION IS simply Super. I like mainly customer support
+              MAEC EVALUATION IS simply Super. I like mainly customer support
                 24/7 always they respond any time and evaluation time also very
                 less and low price. Tnq Iee..
               </p>
@@ -173,7 +173,7 @@ export default function Aboutus() {
             <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
               <p className="text-slate-600">
                 Excellent and fast services. Very efficient chat service as
-                well. I recommend IEE and I'll use their services in the future
+                well. I recommend MAEC and I'll use their services in the future
                 again!
               </p>
               <p className="text-2xl font-bold">Alice</p>

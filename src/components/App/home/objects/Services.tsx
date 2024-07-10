@@ -1,13 +1,5 @@
-import { Button } from "../../../ui/button";import { AiOutlineExclamationCircle } from "react-icons/ai";
-
-// const reportHover = () => {
-//   return (
-//     <div className="absolute w-[15rem] left-[16rem] top-2 bg-white border p-4 text-xs rounded-lg">
-//       This report identifies the institution(s) attended, dates of attendance,
-//       credential(s) earned, and the United States educational equivalent
-//     </div>
-//   );
-// };
+import { Button } from "../../../ui/button";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 export default function Services() {
   return (
@@ -34,14 +26,13 @@ export default function Services() {
             courses and grades obtained at colleges and universities outside of
             the United States.
           </p>
-          <span className="text-[#2aaae0] text-3xl ">$95</span>
           <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]">
             Get Started
           </Button>
         </div>
         <div className="flex flex-col border gap-10 p-10 pr-32 rounded-2xl max-md:p-8 max-md:w-[95%]">
           <p className="text-xl flex items-center max-md:text-lg gap-2">
-          Document Verification
+            Document Verification
             <div
               className="tooltip  primary-content bg-white"
               data-tip="This report proves that your academic documents are genuine."
@@ -55,9 +46,9 @@ export default function Services() {
             </div>
           </p>
           <p className="text-sm font-medium">
-          This a process that verifies the authenticity of your academic certificate and transcript.
+            This a process that verifies the authenticity of your academic
+            certificate and transcript.
           </p>
-          <span className="text-[#2aaae0] text-3xl ">$185</span>
           <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]">
             Get Started
           </Button>
@@ -78,9 +69,10 @@ export default function Services() {
             </div>
           </p>
           <p className="text-sm font-medium">
-          The official certified translation of academic credentials from another language to English.
+            The official certified translation of academic credentials from
+            another language to English.
           </p>
-          
+
           <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]">
             Get Started
           </Button>
