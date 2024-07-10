@@ -63,7 +63,7 @@ export default function Navbar() {
             <a href="/">Extra Copies</a>
           </li>
           <li>
-            <a href="/">Verification</a>
+            <a href="/verification">Verification</a>
           </li>
           <li>
             <a href="/document-requirement">Document Requirement</a>
@@ -153,7 +153,7 @@ export default function Navbar() {
                         </p>
                       </div>
                       <div>
-                        <a href="/" className="font-bold">
+                        <a href="/verification" className="font-bold">
                           Verification
                         </a>
                         <p>Service for authenticating documents.</p>

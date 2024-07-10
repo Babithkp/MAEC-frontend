@@ -11,6 +11,7 @@ import Guidelines from "./components/App/Guidelines";
 import Pricing from "./components/App/Pricing";
 import EvalutionService from "./components/App/EvalutionService";
 import Transaction from "./components/App/Transaction";
+import Verification from "./components/App/Verification";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/evalutionService" element={<EvalutionService />} />
         <Route path="/transaction" element={<Transaction />} />
+        <Route path="/verification" element={<Verification />} />
       </Routes>
       <Footer/>
     </>
