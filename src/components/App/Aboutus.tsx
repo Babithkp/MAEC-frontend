@@ -1,9 +1,8 @@
 import naces from "/naces.png";import map from "/half_globe.webp";
-import ieelogo from "../../../../public/iee-img.svg";
-import blutCutLogo from "/public/blue_cut.svg";
+import blutCutLogo from "/blue_cut.svg";
 import { FaSortDown } from "react-icons/fa";
-import ieeLogo from "/iee-img.svg";
-import { Button } from "../../ui/button";
+import ieeLogo from "/maec_small_logo.jpg";
+import { Button } from "../ui/button";
 
 export default function Aboutus() {
   return (
@@ -36,7 +35,7 @@ export default function Aboutus() {
       </section>
       <section className="bg-[#f9fdff] flex w-full py-10 justify-center">
         <div className="w-[55%] max-md:w-[80%] text-center flex flex-col justify-center items-center gap-10">
-          <img src={ieelogo} alt="iee logo" className="w-[6rem]" />
+          <img src={ieeLogo} alt="iee logo" className="w-[6rem]" />
           <h3 className="font-bold text-4xl">Our mission</h3>
           <p>
             MAEC advances the global mobility and integration of people into
@@ -182,7 +181,7 @@ export default function Aboutus() {
         </div>
       </section>
       <section className="flex flex-col gap-5 justify-center items-center my-10">
-      <img src={ieelogo} alt="iee logo" className="w-[6rem]" />
+      <img src={ieeLogo} alt="iee logo" className="w-[6rem]" />
       <h3 className="font-bold text-4xl">Connect with us</h3>
       <p className="w-[60%] text-center">Our customer support team members are available to answer your questions
       24 hours a day via chat, phone and email!</p>

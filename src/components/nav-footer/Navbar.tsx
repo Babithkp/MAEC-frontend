@@ -1,4 +1,4 @@
-import { Button } from "../ui/button";import webLogo from "/IEElogo.png";
+import { Button } from "../ui/button";import webLogo from "/maec_full_logo.jpg";
 import { TiSocialFacebook } from "react-icons/ti";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -15,7 +15,7 @@ import {
   AlertDialogHeader,
   AlertDialogTrigger,
 } from "../ui/mobile-dialog";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -25,11 +25,8 @@ import {
 
 export default function Navbar() {
   const [isOnSignup, setIsOnSignup] = useState(false);
-  const ref = useRef<HTMLButtonElement>(null);
 
-  const trigger = () => {
-    ref.current?.click();
-  };
+
   useEffect(() => {
     if (
       window.location.pathname === "/get-started" ||
@@ -46,7 +43,7 @@ export default function Navbar() {
         isOnSignup ? "hidden" : ""
       }`}
     >
-      <figure onClick={trigger}>
+      <figure onClick={()=>window.location.href = "/"}>
         <img
           src={webLogo}
           alt="LOGO"
@@ -57,16 +54,25 @@ export default function Navbar() {
       <div className="justify-evenly items-center flex w-full max-md:hidden">
         <ul className="font-medium  flex gap-6 text-sm">
           <li>
-            <a href="/">Evalution</a>
+            <a href="/evalutionService">Evalution</a>
           </li>
           <li>
-            <a href="/">Translation</a>
+            <a href="/transaction">Translation</a>
           </li>
           <li>
             <a href="/">Extra Copies</a>
           </li>
           <li>
             <a href="/">Verification</a>
+          </li>
+          <li>
+            <a href="/document-requirement">Document Requirement</a>
+          </li>
+          <li>
+            <a href="/guidelines">Evalution Guldelines</a>
+          </li>
+          <li>
+            <a href="/pricing">Pricing</a>
           </li>
         </ul>
         <div className="flex gap-3">
@@ -119,7 +125,6 @@ export default function Navbar() {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogCancel
-              ref={ref}
               className="w-full border-none relative "
             >
               <RxCross2 className="absolute right-5" size={25} />
@@ -131,36 +136,27 @@ export default function Navbar() {
                     <AccordionTrigger className="font-bold">By Service</AccordionTrigger>
                     <AccordionContent className="text-start px-5 flex flex-col gap-3">
                       <div>
-                        <a href="/" className="font-bold">
+                        <a href="/evalutionService" className="font-bold">
                           Evaluation
                         </a>
                         <p>
                           Determines your academic standing according to US
-                          standards
+                          standards.
                         </p>
                       </div>
                       <div>
-                        <a href="/" className="font-bold">
+                        <a href="/transaction" className="font-bold">
                           Translation
                         </a>
                         <p>
-                          Word-for-word translation from one language to another
-                        </p>
-                      </div>
-                      <div>
-                        <a href="/" className="font-bold">
-                          Extra Copies
-                        </a>
-                        <p>
-                          Additional copies of your evaluation can be ordered
-                          through your client portal.
+                          Word-for-word translation from one language to another.
                         </p>
                       </div>
                       <div>
                         <a href="/" className="font-bold">
                           Verification
                         </a>
-                        <p>Service for authenticating documents</p>
+                        <p>Service for authenticating documents.</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -180,7 +176,7 @@ export default function Navbar() {
                         <a href="/guidelines" className="font-bold">
                           Evalution Guldelines
                         </a>
-                        <p>Evalution Guldelines</p>
+                        <p>Evalution Guldelines.</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -191,22 +187,13 @@ export default function Navbar() {
                         <a href="/pricing" className="font-bold">
                           Pricing
                         </a>
-                        <p>Check out IEE's low pricing.</p>
-                      </div>
-                      <div>
-                        <a href="/faq" className="font-bold">
-                          FAQ
-                        </a>
-                        <p>
-                          Still have question? Check out our Frequently Asked
-                          Question page to find the help you need.
-                        </p>
+                        <p>Check out MAEC's low pricing.</p>
                       </div>
                       <div>
                         <a href="/" className="font-bold">
-                          Cantact us
+                        Contact us
                         </a>
-                        <p>We are here to help.</p>
+                        <p>Still have a question? We are here to help!</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>

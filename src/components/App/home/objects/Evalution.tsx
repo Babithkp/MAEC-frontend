@@ -1,5 +1,5 @@
 import { Button } from "../../../ui/button";
-import ieeLogo from "/iee-img.svg";
+import ieeLogo from "/maec_small_logo.jpg";
 
 export default function Evalution() {
   return (

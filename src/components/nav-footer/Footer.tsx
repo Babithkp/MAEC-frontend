@@ -1,5 +1,5 @@
-import { TiSocialFacebook } from "react-icons/ti";import ieeLogo from "../../../public/IEElogo.png";
-import rating from "../../../public/rating.png";
+import { TiSocialFacebook } from "react-icons/ti";import ieeLogo from "/maec_full_logo.jpg";
+import rating from "/rating.png";
 import { Button } from "../ui/button";
 import { FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { useEffect, useState } from "react";
@@ -33,18 +33,8 @@ export default function Footer() {
           <a href="/">My account</a>
         </div>
         <div className="flex flex-col gap-3">
-          <p className="font-bold">Individual Applicants</p>
-          <a href="/">Further Education</a>
-          <a href="/">Employment</a>
-          <a href="/">Order Extra Copy</a>
-          <a href="/">Professinal Licnsure</a>
-          <a href="/">Military</a>
-          <a href="/">Immigration</a>
-        </div>
-        <div className="flex flex-col gap-3">
           <p className="font-bold">Help Center</p>
-          <a href="/">How it workds</a>
-          <a href="/">FAQs</a>
+          <a href="/">How it works</a>
           <a href="/">Contact Us</a>
         </div>
         <div className="flex flex-col gap-3">

@@ -1,4 +1,4 @@
-import MAEClogo from "../../../public/iee-img.svg";import { Button } from "../ui/button";
+import NeedAssistance from "./com/NeedAssistance";
 export default function Pricing() {
   return (
     <main className="flex flex-col justify-center items-center">
@@ -170,29 +170,7 @@ export default function Pricing() {
               </div>
             </div>
           </article>
-          <article className=" flex flex-col justify-center items-center  py-10 bg-[#f9fdff]">
-            <div className="w-[60%] max-md:w-[90%] justify-center items-center gap-7 flex flex-col text-center">
-              <img src={MAEClogo} alt="MAEC logo" className="w-[6rem]" />
-              <h4 className="text-4xl font-bold text-black max-md:text-2xl">
-                Need assistance?
-              </h4>
-              <p>
-                Our customer support team members are available to answer your
-                questions 24 hours a day via chat, phone and email!
-              </p>
-              <div className="flex gap-3">
-                <Button
-                  variant={"outline"}
-                  className="font-bold rounded-full border-[#2aaae0]"
-                >
-                  Start Evalution
-                </Button>
-                <Button className="font-bold rounded-full bg-[#2aaae0]">
-                  Start Evalution
-                </Button>
-              </div>
-            </div>
-          </article>
+          <NeedAssistance/>
         </div>
       </section>
     </main>

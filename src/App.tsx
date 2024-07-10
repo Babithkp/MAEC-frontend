@@ -5,11 +5,12 @@ import Footer from "./components/nav-footer/Footer";
 import CreateAccount from "./components/App/logging/CreateAccount";
 import Login from "./components/App/logging/Login";
 import Dashboard from "./components/App/Dashboard";
-import Aboutus from "./components/App/aboutus/Aboutus";
+import Aboutus from "./components/App/Aboutus";
 import DocumentionReq from "./components/App/DocumentionReq";
 import Guidelines from "./components/App/Guidelines";
 import Pricing from "./components/App/Pricing";
-import Faq from "./components/App/Faq";
+import EvalutionService from "./components/App/EvalutionService";
+import Transaction from "./components/App/Transaction";
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
         <Route path="/document-requirement" element={<DocumentionReq />} />
         <Route path="/guidelines" element={<Guidelines />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/faq" element={<Faq />} />
+        <Route path="/evalutionService" element={<EvalutionService />} />
+        <Route path="/transaction" element={<Transaction />} />
       </Routes>
       <Footer/>
     </>

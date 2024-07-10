@@ -1,7 +1,7 @@
-import MAEClogo from "../../../public/iee-img.svg";import { Button } from "../ui/button";
+import MAEClogo from "/maec_small_logo.jpg";import { Button } from "../ui/button";
 export default function Guidelines() {
   return (
-    <main className="flex justify-center flex-col items-center w-full text-lg text-slate-600 font-medium">
+    <main className="flex justify-center flex-col items-center w-full text-lg max-md:text-base text-slate-600 font-medium">
       <article className="w-[85%] max-md:w-[95%] max-md:text-center">
         <h1 className="text-4xl font-bold my-10 text-center">
           Evaluation Guidelines
@@ -17,7 +17,7 @@ export default function Guidelines() {
           within the international and comparative education industry as of the
           date of this evaluation.
         </p>
-        <p className="text-2xl font-bold my-5 text-black">
+        <p className="text-2xl font-bold my-5 text-black mt-5">
           Non-binding Nature of Evaluations
         </p>
         <p>
@@ -27,7 +27,7 @@ export default function Guidelines() {
           credentials, grades, and credits described in MAEC’s evaluation
           reports.
         </p>
-        <p className="text-2xl font-bold my-5 text-black">
+        <p className="text-2xl font-bold my-5 text-black mt-5">
           Evaluation Approach
         </p>
         <p>
@@ -74,7 +74,7 @@ export default function Guidelines() {
             level in the United States.
           </li>
         </ul>
-        <p className="text-2xl font-bold my-5 text-black">
+        <p className="text-2xl font-bold my-5 text-black mt-5">
           Types of Evaluations
         </p>
         <ul className="ml-8 list-disc mt-5 max-md:text-start">
@@ -163,7 +163,7 @@ export default function Guidelines() {
             </p>
           </li>
         </ul>
-        <p className="text-2xl font-bold my-5 text-black">Credits</p>
+        <p className="text-2xl font-bold my-5 text-black mt-5">Credits</p>
         <p>
           On MAEC’s Course Reports, high school credits are reported in Carnegie
           Units, with 6-8 units generally representing one year of full-time
@@ -173,7 +173,7 @@ export default function Guidelines() {
           the credits shown in our reports according to their own institutional
           policies.
         </p>
-        <p className="text-2xl font-bold my-5 text-black">Grades</p>
+        <p className="text-2xl font-bold my-5 text-black mt-5">Grades</p>
         <p>
           Foreign grades are converted to the US four-point letter scale (A, B,
           C, D, F). In some cases, plus (+) and minus (-) grades are used in the
@@ -236,7 +236,7 @@ export default function Guidelines() {
             </tbody>
           </table>
         </div>
-        <p className="text-2xl font-bold my-5 text-black">
+        <p className="text-2xl font-bold my-5 text-black mt-5">
           Grade Point Average (GPA)
         </p>
         <p>
@@ -247,7 +247,7 @@ export default function Guidelines() {
           (Audit), TR (Transfer), W (Withdrawn), EX (Exempted), IP (In
           Progress), and IC (Incomplete) are not included in a GPA calculation.
         </p>
-        <p className="text-2xl font-bold my-5 text-black">Example</p>
+        <p className="text-2xl font-bold my-5 text-black mt-5">Example</p>
         <ul className="ml-8 list-disc mt-5 max-md:text-start">
           <li>3 credits with a grade of A (4.0) = 3 x 4 = 12 grade points</li>
           <li>6 credits with a grade of B (3.0) = 6 x 3 = 18 grade points</li>
@@ -260,7 +260,7 @@ export default function Guidelines() {
             credits attempted: 37 / 14 = 2.64
           </li>
         </ul>
-        <p className="text-2xl font-bold my-5 text-black">Extra Copies</p>
+        <p className="text-2xl font-bold my-5 text-black mt-5">Extra Copies</p>
         <p>
           You may order an extra copy of your report at{" "}
           <a href="http://www.MAEC.org" className="text-blue-500">
@@ -270,7 +270,7 @@ export default function Guidelines() {
           your evaluation is older than 5 years, you must reapply for
           evaluation.
         </p>
-        <p className="text-2xl font-bold my-5 text-black">
+        <p className="text-2xl font-bold my-5 text-black mt-5">
           Documentation Requirements
         </p>
         <p>
@@ -287,7 +287,7 @@ export default function Guidelines() {
           necessary. MAEC reserves the right to refuse service if appropriate
           documentation is not provided.
         </p>
-        <p className="text-2xl font-bold my-5 text-black">
+        <p className="text-2xl font-bold my-5 text-black mt-5">
           MAEC Institution Portal
         </p>
         <p>
@@ -301,7 +301,7 @@ export default function Guidelines() {
           </a>
           .
         </p>
-        <p className="text-2xl font-bold my-5 text-black">
+        <p className="text-2xl font-bold my-5 text-black mt-5">
           New Standard Evaluation Policy:{" "}
           <a href="/ " className="text-blue-500">
             White Paper - Benchmarking and Year-Counting Defined

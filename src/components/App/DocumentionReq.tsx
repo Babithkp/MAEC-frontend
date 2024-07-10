@@ -17,7 +17,7 @@ export default function DocumentionReq() {
       <section className="w-full flex justify-center items-center flex-col">
         <div className="w-[65%] flex flex-col items-center gap-10">
           <h1 className="text-4xl font-bold max-md:text-center">
-            Documentation Requirements by Country
+            Documentation Requirements
           </h1>
           <p className="text-center">
             Credential evaluation report documentation requirements vary from

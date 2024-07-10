@@ -1,5 +1,5 @@
 import { FaSortDown } from "react-icons/fa";
-import ieeLogo from "/iee-img.svg";
+import ieeLogo from "/maec_small_logo.jpg";
 export default function Reviews() {
   return (
     <section className="flex my-10 max-md:gap-5 justify-around max-md:flex-col max-md:items-center">

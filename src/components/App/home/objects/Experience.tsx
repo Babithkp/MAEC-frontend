@@ -1,5 +1,5 @@
 import { Button } from "../../../ui/button";
-import blutCutLogo from "/public/blue_cut.svg";
+import blutCutLogo from "/blue_cut.svg";
 
 export default function Experience() {
   return (
