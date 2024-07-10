@@ -27,7 +27,7 @@ export default function Login() {
           </div>
         </div>
         <div className="flex flex-col gap-5">
-          <h1 className="text-4xl font-bold">Login to MyIEE Portal</h1>
+          <h1 className="text-4xl font-bold max-md:text-3xl">Login to MyIEE Portal</h1>
           <div className="md:w-[60%]">
             <div className="border-b flex flex-col mb-5 gap-5">
               <label>
@@ -44,7 +44,7 @@ export default function Login() {
             <div className="flex my-5 w-full justify-end">
                 <a href="/" className="text-[#2aaae0] ">Forgot Password?</a>
             </div>
-            <Button className="bg-[#2aaae0] w-full rounded-full py-6">Login</Button>
+            <Button className="bg-[#2aaae0] w-full rounded-full py-6" onClick={()=>window.location.href = "/customer-dashboard"}>Login</Button>
           </div>
         </div>
       </section>

@@ -24,8 +24,7 @@ export default function Footer() {
           <a href="/">
             <img src={ieeLogo} alt="iee logo" className="w-[10rem]" />
           </a>
-          <a href="/">About us</a>
-          <a href="/">Blog</a>
+          <a href="/aboutus">About us</a>
         </div>
         <div className="flex flex-col gap-3">
           <p className="font-bold">Credentail evaluation</p>

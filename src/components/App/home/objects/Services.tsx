@@ -13,15 +13,13 @@ export default function Services() {
   return (
     <section className=" my-10  gap-10 flex font-bold flex-col justify-center items-center">
       <h2 className="text-4xl ">Services and Fees</h2>
-      <div className="flex  max-md:items-center max-md:flex-col gap-5">
-        <div className="flex max-md:w-[95%] flex-col border gap-10 p-10  max-md:p-8 pr-32 rounded-2xl">
+      <div className="flex w-[95%] justify-center items-center max-md:flex-col gap-5">
+        <div className="flex max-md:w-[95%]  flex-col border gap-10 p-10  max-md:p-8 pr-32 rounded-2xl">
           <p className="text-xl flex items-center max-md:text-lg gap-2">
-            Document Report{" "}
+            Transcript Evaluation.
             <div
               className="tooltip  primary-content bg-white"
-              data-tip="This report identifies the institution(s) attended, dates of
-                attendance, credential(s) earned, and the United States
-                educational equivalent"
+              data-tip="Determines your academic standing according to US standards"
             >
               <Button className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none ">
                 <AiOutlineExclamationCircle
@@ -31,19 +29,22 @@ export default function Services() {
               </Button>
             </div>
           </p>
-          <span className="text-[#2aaae0] text-3xl ">$95.00</span>
+          <p className="text-sm font-medium">
+            A course-by-course evaluation determines the U.S. equivalency for
+            courses and grades obtained at colleges and universities outside of
+            the United States.
+          </p>
+          <span className="text-[#2aaae0] text-3xl ">$95</span>
           <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]">
             Get Started
           </Button>
         </div>
         <div className="flex flex-col border gap-10 p-10 pr-32 rounded-2xl max-md:p-8 max-md:w-[95%]">
           <p className="text-xl flex items-center max-md:text-lg gap-2">
-            Education Course
+          Document Verification
             <div
               className="tooltip  primary-content bg-white"
-              data-tip="This report identifies the institution(s) attended, dates of
-                attendance, credential(s) earned, and the United States
-                educational equivalent"
+              data-tip="This report proves that your academic documents are genuine."
             >
               <Button className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none">
                 <AiOutlineExclamationCircle
@@ -53,7 +54,10 @@ export default function Services() {
               </Button>{" "}
             </div>
           </p>
-          <span className="text-[#2aaae0] text-3xl ">$185.00</span>
+          <p className="text-sm font-medium">
+          This a process that verifies the authenticity of your academic certificate and transcript.
+          </p>
+          <span className="text-[#2aaae0] text-3xl ">$185</span>
           <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]">
             Get Started
           </Button>
@@ -63,9 +67,7 @@ export default function Services() {
             Translations
             <div
               className="tooltip  primary-content bg-white"
-              data-tip="This report identifies the institution(s) attended, dates of
-                attendance, credential(s) earned, and the United States
-                educational equivalent"
+              data-tip="Word-for-word translation from one language to another"
             >
               <Button className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none">
                 <AiOutlineExclamationCircle
@@ -75,13 +77,10 @@ export default function Services() {
               </Button>
             </div>
           </p>
-
-          <p className="text-[#2aaae0] text-3xl ">
-            $60.00
-            <span className="text-black text-lg ml-2 font-extralight">
-              /page
-            </span>
+          <p className="text-sm font-medium">
+          The official certified translation of academic credentials from another language to English.
           </p>
+          
           <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]">
             Get Started
           </Button>

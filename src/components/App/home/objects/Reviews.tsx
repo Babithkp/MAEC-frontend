@@ -9,7 +9,7 @@ export default function Reviews() {
           We have helped thousands of people just like you accomplish their
           dreams through education, licensing, military and employment. But
           don't just take our word for it. Take the word of these individuals
-          who have trusted IEE with their evaluation experience and want to
+          who have trusted MAEC with their evaluation experience and want to
           share it with you.
         </p>
         <a href="/" className="text-[#2aaae0] font-bold flex items-center ">
@@ -106,7 +106,7 @@ export default function Reviews() {
           </div>
           <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
             <p className="text-slate-600">
-              Thanks a lot IEE. I had a great experience with your company. I
+              Thanks a lot MAEC. I had a great experience with your company. I
               expected to get my documents in 3- 5 business days but recievd
               those just in one day.
             </p>

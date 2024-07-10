@@ -1,5 +1,4 @@
-import { Button } from "../ui/button";
-import webLogo from "/IEElogo.png";
+import { Button } from "../ui/button";import webLogo from "/IEElogo.png";
 import { TiSocialFacebook } from "react-icons/ti";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -32,7 +31,10 @@ export default function Navbar() {
     ref.current?.click();
   };
   useEffect(() => {
-    if (window.location.pathname === "/get-started" || window.location.pathname === "/loggingIn") {
+    if (
+      window.location.pathname === "/get-started" ||
+      window.location.pathname === "/loggingIn"
+    ) {
       setIsOnSignup(true);
     } else {
       setIsOnSignup(false);
@@ -77,6 +79,7 @@ export default function Navbar() {
           <Button
             variant={"outline"}
             className="rounded-full border-[1px] border-black"
+            onClick={()=>window.location.href = "loggingIn"}
           >
             Login
           </Button>
@@ -122,8 +125,8 @@ export default function Navbar() {
               <RxCross2 className="absolute right-5" size={25} />
             </AlertDialogCancel>
             <AlertDialogDescription>
-              <div className="w-[50vh] text-black flex justify-end">
-                <Accordion type="single" collapsible className="w-[46vh]">
+              <div className="p-2 w-screen text-black flex justify-end">
+                <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value="item-1">
                     <AccordionTrigger>Tools</AccordionTrigger>
                     <AccordionContent className="text-start px-5 flex flex-col gap-3">
@@ -170,9 +173,51 @@ export default function Navbar() {
                       </div>
                     </AccordionContent>
                   </AccordionItem>
+                  <AccordionItem value="item-3">
+                    <AccordionTrigger>By Service</AccordionTrigger>
+                    <AccordionContent className="text-start px-5 flex flex-col gap-3">
+                      <div>
+                        <a href="/" className="font-bold">
+                          Evaluation
+                        </a>
+                        <p>
+                          Determines your academic standing according to US
+                          standards
+                        </p>
+                      </div>
+                      <div>
+                        <a href="/" className="font-bold">
+                          Translation
+                        </a>
+                        <p>
+                          Word-for-word translation from one language to another
+                        </p>
+                      </div>
+                      <div>
+                        <a href="/" className="font-bold">
+                          Extra Copies
+                        </a>
+                        <p>
+                          Additional copies of your evaluation can be ordered
+                          through your client portal.
+                        </p>
+                      </div>
+                      <div>
+                        <a href="/" className="font-bold">
+                          Verification
+                        </a>
+                        <p>Service for authenticating documents</p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
                 </Accordion>
               </div>
             </AlertDialogDescription>
+            <div className="text-start px-3 pb-3 flex flex-col gap-3 border-b">
+              <a href="/" className="font-bold">
+                Reviews
+              </a>
+            </div>
             <div className="flex justify-center gap-5 pt-5">
               <Button
                 onClick={() => (window.location.href = "get-started")}
@@ -180,7 +225,7 @@ export default function Navbar() {
               >
                 Get started
               </Button>
-              <Button variant={"outline"} className="font-bold rounded-full">
+              <Button variant={"outline"} className="font-bold rounded-full" onClick={()=>window.location.href = "loggingIn"}>
                 Login
               </Button>
             </div>

@@ -9,7 +9,7 @@ export default function Guide() {
       <div className="flex w-[70%] max-md:w-[90%] max-md:flex-col">
         <div className="w-1/2 max-md:w-full flex flex-col gap-5 max-md:items-center">
           <h3 className="text-4xl max-md:text-2xl font-medium">
-            IEE makes it easy
+          MAEC makes it easy
           </h3>
           <Button
             className="flex gap-7 py-10  max-md:w-full w-[80%] hover:bg-transparent hover:border hover:border-[#2aaae0] hover:scale-110 duration-100 transition-transform"
