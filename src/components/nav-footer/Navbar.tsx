@@ -194,7 +194,7 @@ export default function Navbar() {
                         <p>Check out IEE's low pricing.</p>
                       </div>
                       <div>
-                        <a href="/" className="font-bold">
+                        <a href="/faq" className="font-bold">
                           FAQ
                         </a>
                         <p>

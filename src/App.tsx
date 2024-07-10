@@ -9,6 +9,7 @@ import Aboutus from "./components/App/aboutus/Aboutus";
 import DocumentionReq from "./components/App/DocumentionReq";
 import Guidelines from "./components/App/Guidelines";
 import Pricing from "./components/App/Pricing";
+import Faq from "./components/App/Faq";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/document-requirement" element={<DocumentionReq />} />
         <Route path="/guidelines" element={<Guidelines />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/faq" element={<Faq />} />
       </Routes>
       <Footer/>
     </>

@@ -1,5 +1,4 @@
-import MAEClogo from "../../../public/iee-img.svg";
-import { Button } from "../ui/button";
+import MAEClogo from "../../../public/iee-img.svg";import { Button } from "../ui/button";
 export default function Guidelines() {
   return (
     <main className="flex justify-center flex-col items-center w-full text-lg text-slate-600 font-medium">
@@ -7,7 +6,7 @@ export default function Guidelines() {
         <h1 className="text-4xl font-bold my-10 text-center">
           Evaluation Guidelines
         </h1>
-        <p >
+        <p>
           Founded in 1981, International Education Evaluations, Inc. (MAEC)
           provides quality evaluation and assessment services for foreign
           academic and vocational credentials. MAEC evaluations are based on the
@@ -21,7 +20,7 @@ export default function Guidelines() {
         <p className="text-2xl font-bold my-5 text-black">
           Non-binding Nature of Evaluations
         </p>
-        <p >
+        <p>
           MAEC evaluations and assessments are advisory in nature and are in no
           way binding on any institution, agency, or organization, each of which
           has the authority to make its own decision regarding the educational
@@ -311,14 +310,18 @@ export default function Guidelines() {
       </article>
       <article className=" flex flex-col justify-center items-center  py-10 bg-[#f9fdff]">
         <div className="w-[60%] max-md:w-[90%] justify-center items-center gap-7 flex flex-col text-center">
-        <img src={MAEClogo} alt="MAEC logo" className="w-[6rem]" />
-        <h4 className="text-4xl font-bold text-black max-md:text-2xl">Get an evaluation today</h4>
-        <p>
-          Join the thousands of people just like you who have made MAEC their
-          trusted evaluation service! We are here to answer your questions on
-          chat, email and phone 24/7!
-        </p>
-        <Button className="font-bold rounded-full bg-[#2aaae0]">Start Evalution</Button>
+          <img src={MAEClogo} alt="MAEC logo" className="w-[6rem]" />
+          <h4 className="text-4xl font-bold text-black max-md:text-2xl">
+            Get an evaluation today
+          </h4>
+          <p>
+            Join the thousands of people just like you who have made MAEC their
+            trusted evaluation service! We are here to answer your questions on
+            chat, email and phone 24/7!
+          </p>
+          <Button className="font-bold rounded-full bg-[#2aaae0]">
+            Start Evalution
+          </Button>
         </div>
       </article>
     </main>
