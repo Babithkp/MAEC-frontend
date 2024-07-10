@@ -1,23 +1,11 @@
-import blueMap from "../../../../public/mapwithbluebackgroung.jpg";
-import ieeLogo from "../../../../public/IEElogo-White.png";
+
 import { Button } from "../../ui/button";
 import { FaSortDown } from "react-icons/fa";
+import Map from "./objeects/Map";
 export default function CreateAccount() {
   return (
     <main className="md:flex min-h-screen">
-      <section className="md:w-[40%] relative text-white ">
-        <img
-          src={blueMap}
-          alt="map"
-          className="w-full h-full object-cover blur-[2px]"
-        />
-        <div className="absolute max-md:top-[2rem] max-md:left-[-4rem] top-[7rem] px-24 flex flex-col gap-5">
-          <img src={ieeLogo} alt="iee logo" className="w-[10rem] max-md:w-[8rem]" />
-          <h4 className="text-3xl max-md:text-xl font-bold">
-            Get your evaluation in 5 days or less!
-          </h4>
-        </div>
-      </section>
+      <Map/>
       <section className="md:w-[60%] h-screen max-md:p-3 max-md:px-5 p-14 px-16 md:overflow-y-scroll">
         <div className="flex w-full justify-between mb-10">
           <div>
@@ -30,7 +18,7 @@ export default function CreateAccount() {
             </Button>
           </div>
           <div>
-            <Button variant={"outline"} className="font-bold rounded-full">
+            <Button variant={"outline"} className="font-bold rounded-full" onClick={()=>window.location.href = "loggingIn"}>
               Login
             </Button>
           </div>

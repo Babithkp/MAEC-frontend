@@ -32,7 +32,7 @@ export default function Navbar() {
     ref.current?.click();
   };
   useEffect(() => {
-    if (window.location.pathname === "/get-started") {
+    if (window.location.pathname === "/get-started" || window.location.pathname === "/loggingIn") {
       setIsOnSignup(true);
     } else {
       setIsOnSignup(false);

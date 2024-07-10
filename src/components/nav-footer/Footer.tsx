@@ -11,7 +11,7 @@ export default function Footer() {
   useEffect(() => {
     console.log(window.location.pathname);
     
-    if (window.location.pathname === "/get-started") {
+    if (window.location.pathname === "/get-started" || window.location.pathname === "/loggingIn") {
       setIsOnSignup(true);
     } else {
       setIsOnSignup(false);
