@@ -32,10 +32,10 @@ export default function Navbar() {
     ref.current?.click();
   };
   useEffect(() => {
-    if (window.location.href == "get-started") {
+    if (window.location.pathname === "/get-started") {
       setIsOnSignup(true);
     } else {
-      setIsOnSignup(true);
+      setIsOnSignup(false);
     }
   }, []);
   return (

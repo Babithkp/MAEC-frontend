@@ -3,14 +3,18 @@ import rating from "../../../public/rating.png";
 import { Button } from "../ui/button";
 import { FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { useEffect, useState } from "react";
+
+
 export default function Footer() {
   const [isOnSignup, setIsOnSignup] = useState(false);
 
   useEffect(() => {
-    if (window.location.href == "get-started") {
+    console.log(window.location.pathname);
+    
+    if (window.location.pathname === "/get-started") {
       setIsOnSignup(true);
     } else {
-      setIsOnSignup(true);
+      setIsOnSignup(false);
     }
   }, []);
   return (
