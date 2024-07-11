@@ -4,7 +4,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 export default function Services() {
   return (
     <section className=" my-10  gap-10 flex font-bold flex-col justify-center items-center">
-      <h2 className="text-4xl ">Services and Fees</h2>
+      <h2 className="text-4xl ">Services</h2>
       <div className="flex w-[95%] justify-center items-center max-md:flex-col gap-5">
         <div className="flex max-md:w-[95%]  flex-col border gap-10 p-10  max-md:p-8 pr-32 rounded-2xl">
           <p className="text-xl flex items-center max-md:text-lg gap-2">
@@ -53,7 +53,7 @@ export default function Services() {
             Get Started
           </Button>
         </div>
-        <div className="flex flex-col border gap-10 p-10 pr-32 rounded-2xl relative  max-md:w-[95%]">
+        <div className="flex flex-col border gap-10 p-10 pr-32 rounded-2xl relative max-md:p-8  max-md:w-[95%]">
           <p className="text-xl flex items-center max-md:text-lg gap-2">
             Translations
             <div
@@ -73,7 +73,7 @@ export default function Services() {
             another language to English.
           </p>
 
-          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]">
+          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]" onClick={()=>window.location.href = "loggingIn"}>
             Get Started
           </Button>
         </div>

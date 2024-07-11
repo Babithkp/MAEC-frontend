@@ -1,5 +1,7 @@
 import { FaSortDown } from "react-icons/fa";
-import ieeLogo from "/maec_small_logo.jpg";
+import srudent1img from "/reviews/student1.jpg"
+import srudent2img from "/reviews/student2.jpg"
+
 export default function Reviews() {
   return (
     <section className="flex my-10 max-md:gap-5 justify-around max-md:flex-col max-md:items-center">
@@ -21,7 +23,7 @@ export default function Reviews() {
         <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
           <div className="flex justify-start items-center flex-col gap-3">
             <figure>
-              <img src={ieeLogo} className="rounded-full w-[5rem]" />
+              <img src={srudent1img} className="rounded-full w-[5rem]" />
             </figure>
             <div className="rating rating-xs">
               <input
@@ -69,7 +71,7 @@ export default function Reviews() {
         <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
           <div className="flex justify-start items-center flex-col gap-3">
             <figure>
-              <img src={ieeLogo} className="rounded-full w-[5rem]" />
+              <img src={srudent2img} className="rounded-full w-[5rem]" />
             </figure>
             <div className="rating rating-xs">
               <input

@@ -60,9 +60,6 @@ export default function Navbar() {
             <a href="/transaction">Translation</a>
           </li>
           <li>
-            <a href="/">Extra Copies</a>
-          </li>
-          <li>
             <a href="/verification">Verification</a>
           </li>
           <li>

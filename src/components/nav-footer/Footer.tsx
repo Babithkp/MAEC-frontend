@@ -34,7 +34,6 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-3">
           <p className="font-bold">Help Center</p>
-          <a href="/">How it works</a>
           <a href="/">Contact Us</a>
         </div>
         <div className="flex flex-col gap-3">

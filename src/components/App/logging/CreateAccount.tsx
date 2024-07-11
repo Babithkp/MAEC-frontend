@@ -1,7 +1,7 @@
 
 import { Button } from "../../ui/button";
 import { FaSortDown } from "react-icons/fa";
-import Map from "./objeects/Map";
+import Map from "./objects/Map";
 export default function CreateAccount() {
   return (
     <main className="md:flex min-h-screen">
@@ -30,27 +30,27 @@ export default function CreateAccount() {
               <label>
                 Email Address <span className="text-red-500">*</span>
               </label>
-              <input type="email" required className="outline-none mb-5"/>
+              <input type="email" required className="outline-none mb-5 active:bg-none"/>
             </div>
             <div className="border-b flex flex-col mb-5 gap-5">
               <label>
                 Confirm Email Address <span className="text-red-500">*</span>
               </label>
-              <input type="email" required className="outline-none mb-5"/>
+              <input type="email" required className="outline-none mb-5 active:bg-none"/>
             </div>
             <div className="border-b flex flex-col mb-5 gap-5">
               <label>
                 Password <span className="text-red-500">*</span>
               </label>
-              <input type="email" required className="outline-none mb-5"/>
+              <input type="email" required className="outline-none mb-5 active:bg-none"/>
             </div>
             <div className="border-b flex flex-col mb-5 gap-5">
               <label>
               Confirm Password <span className="text-red-500">*</span>
               </label>
-              <input type="email" required className="outline-none mb-5"/>
+              <input type="email" required className="outline-none mb-5 active:bg-none"/>
             </div>
-            <Button className="bg-[#2aaae0] w-full rounded-full py-6">Create account</Button>
+            <Button className="bg-[#2aaae0] w-full rounded-full py-6" onClick={()=>window.location.href = "loggingIn"}>Create account</Button>
           </div>
         </div>
       </section>

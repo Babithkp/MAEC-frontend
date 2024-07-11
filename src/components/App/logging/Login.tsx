@@ -1,5 +1,5 @@
 import { FaSortDown } from "react-icons/fa";import { Button } from "../../ui/button";
-import Map from "./objeects/Map";
+import Map from "./objects/Map";
 
 export default function Login() {
   return (
@@ -33,18 +33,18 @@ export default function Login() {
               <label>
                 Email Address <span className="text-red-500">*</span>
               </label>
-              <input type="email" required className="outline-none mb-5" />
+              <input type="email" required className="outline-none mb-5 active:bg-none" />
             </div>
             <div className="border-b flex flex-col mb-5 gap-5">
               <label>
                 Password <span className="text-red-500">*</span>
               </label>
-              <input type="email" required className="outline-none mb-5" />
+              <input type="email" required className="outline-none mb-5 active:bg-none" />
             </div>
             <div className="flex my-5 w-full justify-end">
                 <a href="/" className="text-[#2aaae0] ">Forgot Password?</a>
             </div>
-            <Button className="bg-[#2aaae0] w-full rounded-full py-6" onClick={()=>window.location.href = "/customer-dashboard"}>Login</Button>
+            <Button className="bg-[#2aaae0] w-full rounded-full py-6" onClick={()=>window.location.href = "/get-started/Intro"}>Login</Button>
           </div>
         </div>
       </section>

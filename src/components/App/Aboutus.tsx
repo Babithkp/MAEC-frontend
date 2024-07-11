@@ -1,6 +1,6 @@
-import naces from "/naces.png";import map from "/half_globe.webp";
+import naces from "/naces.png";
+import map from "/half_globe.webp";
 import blutCutLogo from "/blue_cut.svg";
-import { FaSortDown } from "react-icons/fa";
 import ieeLogo from "/maec_small_logo.jpg";
 import { Button } from "../ui/button";
 
@@ -51,15 +51,15 @@ export default function Aboutus() {
           Evaluation with the ‘Experienced’
         </h5>
         <p className="text-center w-[50%] max-md:w-[90%] ">
-        Maryland Academic Evaluation Center has provided quality
-          evaluation services for over 35 years. During this time we have
-          prepared thousands of education reports on education performed outside
-          the United States. Such reports have been used for immigration,
-          education, employment, and professional licensing and certification.
-          Our reports are accepted by hundreds of colleges and universities, the
-          Agency for International Development of the U.S. Office of Education,
-          the U.S. Department of Labor, and the U.S. Immigration and
-          Naturalization Service.
+          Maryland Academic Evaluation Center has provided quality evaluation
+          services for over 35 years. During this time we have prepared
+          thousands of education reports on education performed outside the
+          United States. Such reports have been used for immigration, education,
+          employment, and professional licensing and certification. Our reports
+          are accepted by hundreds of colleges and universities, the Agency for
+          International Development of the U.S. Office of Education, the U.S.
+          Department of Labor, and the U.S. Immigration and Naturalization
+          Service.
         </p>
         <p className="text-center w-[50%] max-md:w-[90%] ">
           Our evaluations are accepted at hundreds of U.S. colleges and
@@ -78,10 +78,6 @@ export default function Aboutus() {
             who have trusted MAEC with their evaluation experience and want to
             share it with you.
           </p>
-          <a href="/" className="text-[#2aaae0] font-bold flex items-center ">
-            View more reviews{" "}
-            <FaSortDown className="text-[#2aaae0] rotate-[-90deg]" size={20} />
-          </a>
         </div>
         <div className="w-[50%] max-md:w-[90%] flex flex-col gap-5">
           <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
@@ -124,7 +120,7 @@ export default function Aboutus() {
             </div>
             <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
               <p className="text-slate-600 ">
-              MAEC EVALUATION IS simply Super. I like mainly customer support
+                MAEC EVALUATION IS simply Super. I like mainly customer support
                 24/7 always they respond any time and evaluation time also very
                 less and low price. Tnq Iee..
               </p>
@@ -181,14 +177,20 @@ export default function Aboutus() {
         </div>
       </section>
       <section className="flex flex-col gap-5 justify-center items-center my-10">
-      <img src={ieeLogo} alt="iee logo" className="w-[6rem]" />
-      <h3 className="font-bold text-4xl">Connect with us</h3>
-      <p className="w-[60%] text-center">Our customer support team members are available to answer your questions
-      24 hours a day via chat, phone and email!</p>
-      <div className="flex gap-3">
-        <Button variant={"outline"} className="border-[#2aaae0] font-bold">Contact Us</Button>
-        <Button  className="bg-[#2aaae0] font-bold">Start Translation</Button>
-      </div>
+        <img src={ieeLogo} alt="iee logo" className="w-[6rem]" />
+        <h3 className="font-bold text-4xl">Connect with us</h3>
+        <p className="w-[60%] text-center">
+          Our customer support team members are available to answer your
+          questions 24 hours a day via chat, phone and email!
+        </p>
+
+        <Button
+          variant={"outline"}
+          className="border-[#2aaae0] font-bold rounded-full"
+          onClick={() => (window.location.href = "/contactus")}
+        >
+          Contact Us
+        </Button>
       </section>
     </main>
   );
