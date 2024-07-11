@@ -11,7 +11,7 @@ export default function Services() {
             Transcript Evaluation.
             <div
               className="tooltip  primary-content bg-white"
-              data-tip="Determines your academic standing according to US standards"
+              data-tip="Determines your academic standing according to US standards"
             >
               <Button className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none ">
                 <AiOutlineExclamationCircle
