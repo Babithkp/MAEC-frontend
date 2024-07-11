@@ -26,7 +26,7 @@ export default function IntroForm() {
               page.evaluations.timeline ? "step-info font-bold" : ""
             } `}
           >
-            your Evaluation
+            Your Evaluation
           </li>
           <li
             className={`step  ${page.education.timeline ? "step-info font-bold" : ""} `}

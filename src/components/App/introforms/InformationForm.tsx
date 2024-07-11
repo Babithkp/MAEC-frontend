@@ -4,11 +4,11 @@ import { useSetRecoilState } from "recoil";
 import { evalutonForm } from "../../../store/context";
 const daysInMonth: ReactNode[] = [];
 for (let i = 1; i <= 31; i++) {
-  daysInMonth.push(<option value={i}>{i}</option>);
+  daysInMonth.push(<option value={i} key={i}>{i}</option>);
 }
 const Years: ReactNode[] = [];
 for (let i = 1960; i <= 2024; i++) {
-  Years.push(<option value={i}>{i}</option>);
+  Years.push(<option value={i} key={i}>{i}</option>);
 }
 const countryOptions = [
     { value: "Afghanistan", label: "Afghanistan" },
