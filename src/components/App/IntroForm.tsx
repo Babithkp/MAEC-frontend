@@ -53,7 +53,7 @@ export default function IntroForm() {  return (
             </div>
             <div className="border-b flex flex-col mb-5 gap-5 w-[47%] ">
               <label>
-                DATE OD BIRTH (DAY) <span className="text-red-500">*</span>
+                DATE OF BIRTH (DAY) <span className="text-red-500">*</span>
               </label>
               <select>
                

@@ -1,6 +1,6 @@
 import { FaSortDown } from "react-icons/fa";import ieeLogo from "/maec_small_logo.jpg";
 import NeedAssistance from "./com/NeedAssistance";
-
+import { Button } from "../ui/button";
 
 export default function EvalutionService() {
   return (
@@ -8,43 +8,56 @@ export default function EvalutionService() {
       <section className="w-[90%] max-md:w-[100%] font-medium">
         <div className="p-5 flex flex-col gap-5">
           <h1 className="text-center text-4xl font-bold ">
-            IEE Evaluation Services
+            MAEC Transcript Evaluation
           </h1>
           <p className="text-center">
-            Let's begin with the primary purpose of your evaluation.
+            Let’s begin with primary purpose of your acdemic transcript
+            evaluation.
           </p>
         </div>
         <div className="p-5 flex-col flex gap-5">
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-3xl font-bold ">
             Course-By-Course Evaluation + GPA
           </h2>
-          <p className="text-lg font-bold">$325.00</p>
-          <p>For Education, Employment, Licensing and Certification</p>
           <p>
-            ICD performs a course-by-course evaluation for post-secondary
-            courses or degrees. Course-By-Course evaluations are for
-            post-secondary (college/university) education only. High school
-            level education will not be included in the course-by-course portion
-            of the evaluation. However, the evaluation will include a statement
-            of completion of High School education.
+            A course-by-course evaluation determines the U.S. equivalency for
+            courses and grades obtained at colleges and universities outside of
+            the United States. Most universities in the U.S requires that all
+            candidates with a bachelors or masters degree from an international
+            university must submit a full course-by-course evaluation of their
+            transcripts.
           </p>
-          <p>The Course-by-Course Evaluation Report contains:</p>
+          <p className="font-bold ">The Course-by-Course Evaluation Report contains:</p>
           <ul className="ml-5 list-disc">
-            <li>Verification of your identity</li>
-            <li>All degrees/diplomas/certificates earned</li>
-            <li>All institution(s) attended</li>
-            <li>Time period(s) of study</li>
-            <li>U.S. comparability of the foreign education credentials</li>
+            <li>U.S. comparability of the foreign education credentials.</li>
             <li>
-              A listing of all courses with suggested U.S. semester credits and
-              grades
+              A listing of all courses with the equivalent U.S. semester credits
+              and grades.
             </li>
-            <li>Grade point average (GPA)1 on a 4.0 scale</li>
+            <li>Grade point average (GPA)1 on a 4.0 scale.</li>
+            <li>U.S equivalent of final cumulative GPA.</li>
+            <li>U.S. comparability of the foreign education credentials</li>
           </ul>
+          <p className="font-bold ">Course-By-Course Evaluation fee: $25</p>
+          <p className="font-bold mt-5">How it works:</p>
+          <ul className="ml-5 list-disc">
+            <li>Create your account and enter your information.</li>
+            <li>Upload the orginal scanned copy of your transcripts.</li>
+            <li>Pay the evaluation fee.</li>
+            <li>
+              Recieve your transcript evaluation report in your email in 3
+              business days.
+            </li>
+          </ul>
+
           <p className="text-sm">
-            If the transcript(s) submitted by the institution does not include
-            grades or marks, ICD will not be able to calculate GPA.
+            If the transcript submitted by does not include grades or marks,
+            MAEC will not be able to calculate GPA.
           </p>
+
+          <div className="w-full flex items-center justify-center my-10">
+            <Button className="bg-[#2aaae0] font-bold rounded-full">Start Evaluation</Button>
+          </div>
         </div>
       </section>
       <section className="flex my-10 max-md:gap-5 justify-around max-md:flex-col max-md:items-center">
@@ -161,7 +174,7 @@ export default function EvalutionService() {
           </div>
         </div>
       </section>
-      <NeedAssistance/>
+      <NeedAssistance />
     </main>
   );
 }

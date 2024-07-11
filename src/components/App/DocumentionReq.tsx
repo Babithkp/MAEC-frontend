@@ -1,6 +1,7 @@
 import { Button } from "../ui/button";
 import {
   AlertDialog,
+  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -9,7 +10,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../../components/ui/alert-dialog";
-import { RxCross2 } from "react-icons/rx";
 
 export default function DocumentionReq() {
   return (
@@ -24,7 +24,7 @@ export default function DocumentionReq() {
             country to country. Please choose your country of education from the
             list below to determine which documents you'll need for your report.
           </p>
-          <AlertDialog>
+          {/* <AlertDialog>
             <AlertDialogTrigger>
               <Button
                 variant={"outline"}
@@ -126,6 +126,35 @@ export default function DocumentionReq() {
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter></AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog> */}
+
+          <AlertDialog>
+            <AlertDialogTrigger>Open</AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogDescription>
+                  <div>
+                    <p className="font-bold my-2 mt-5">For Academic Evaluation Report:</p>
+                    <ul className="ml-5 list-disc">
+                      <li>Orginal scanned copy of degree transcript.</li>
+                    </ul>
+                    <p className="font-bold my-2 mt-5">For Academic Verification report:
+                    </p>
+                    <ul className="ml-5 list-disc">
+                      <li>Orginal scanned copy of bachelor or masters degree certificate.
+                      </li>
+                      <li>Original scanned copy of bachelors or masters degree transcript.
+                      </li>
+                    </ul>
+                    <p className="font-bold my-2 mt-5">Translation:</p>
+                    <p>Official copy of academic transcript, legal or government issued official documents.</p>
+                  </div>
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Close</AlertDialogCancel>
+              </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
         </div>

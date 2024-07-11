@@ -8,43 +8,27 @@ export default function Transaction() {
       <section className="w-[90%] max-md:w-[100%] font-medium">
         <div className="p-5 flex flex-col gap-5">
           <h1 className="text-center text-4xl font-bold ">
-            IEE Evaluation Services
+          MAEC Translation Services.
           </h1>
           <p className="text-center">
-            Let's begin with the primary purpose of your evaluation.
+          Get your Non-English official documents translated into English language by our certified translation services.
           </p>
         </div>
         <div className="p-5 flex-col flex gap-5">
-          <h2 className="text-3xl font-bold">
-            Course-By-Course Evaluation + GPA
-          </h2>
-          <p className="text-lg font-bold">$325.00</p>
-          <p>For Education, Employment, Licensing and Certification</p>
+          <p>Academic transcript translation to English language: $20 per page.
+          </p>
           <p>
-            ICD performs a course-by-course evaluation for post-secondary
-            courses or degrees. Course-By-Course evaluations are for
-            post-secondary (college/university) education only. High school
-            level education will not be included in the course-by-course portion
-            of the evaluation. However, the evaluation will include a statement
-            of completion of High School education.
+          Other legal and official documents translation to English language: 10$ per page.
           </p>
-          <p>The Course-by-Course Evaluation Report contains:</p>
+
+          
           <ul className="ml-5 list-disc">
-            <li>Verification of your identity</li>
-            <li>All degrees/diplomas/certificates earned</li>
-            <li>All institution(s) attended</li>
+            <li>Translations in 24 hours or less!</li>
+            <li>Simple pricing only $60/page.</li>
+            <li>ATA-Certified Translations.</li>
             <li>Time period(s) of study</li>
-            <li>U.S. comparability of the foreign education credentials</li>
-            <li>
-              A listing of all courses with suggested U.S. semester credits and
-              grades
-            </li>
-            <li>Grade point average (GPA)1 on a 4.0 scale</li>
+            <li>Specialized in education and legel documents</li>
           </ul>
-          <p className="text-sm">
-            If the transcript(s) submitted by the institution does not include
-            grades or marks, ICD will not be able to calculate GPA.
-          </p>
         </div>
       </section>
       <section className="w-[50%] max-md:w-[90%] flex flex-col gap-10 items-center justify-center  my-10">
