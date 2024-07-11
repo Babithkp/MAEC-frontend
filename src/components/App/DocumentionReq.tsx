@@ -1,11 +1,17 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTrigger,
-} from "../../components/ui/dialog";
+
 import { Button } from "../ui/button";
+
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../../components/ui/required-dialog";
+import { RxCross2 } from "react-icons/rx";
 
 export default function DocumentionReq() {
   return (
@@ -21,18 +27,29 @@ export default function DocumentionReq() {
             list below to determine which documents you'll need for your report.
           </p>
 
-          <Dialog>
-            <DialogTrigger>
+          <AlertDialog>
+            <AlertDialogTrigger>
               <Button
                 variant={"outline"}
-                className="border-[#2aaae0] rounded-full"
+                className="border-[#2aaae0] font-bold rounded-full"
               >
                 View General Documentation Requirements
               </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogDescription>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  <div className="flex justify-between border-b text-left font-bold">
+                    <p className="max-md:text-base">
+                      General Documentation Requirements{" "}
+                    </p>
+                    <AlertDialogCancel className="border-none">
+                      <RxCross2 className="" size={25} />
+                    </AlertDialogCancel>
+                  </div>
+                </AlertDialogTitle>
+
+                <AlertDialogDescription className="flex flex-col gap-8 overflow-auto text-start">
                   <div>
                     <p className="font-bold my-2 mt-5">
                       For Academic Evaluation Report:
@@ -59,10 +76,11 @@ export default function DocumentionReq() {
                       issued official documents.
                     </p>
                   </div>
-                </DialogDescription>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter></AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </section>
     </main>

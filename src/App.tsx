@@ -12,27 +12,30 @@ import Pricing from "./components/App/Pricing";
 import EvalutionService from "./components/App/EvalutionService";
 import Transaction from "./components/App/Transaction";
 import Verification from "./components/App/Verification";
-import IntroForm from "./components/App/IntroForm";
+import IntroForm from "./components/App/introforms/IntroForm";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/get-started" element={<CreateAccount />} />
-        <Route path="/loggingIn" element={<Login />} />
-        <Route path="/customer-dashboard" element={<Dashboard />} />
-        <Route path="/aboutus" element={<Aboutus />} />
-        <Route path="/document-requirement" element={<DocumentionReq />} />
-        <Route path="/guidelines" element={<Guidelines />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/evalutionService" element={<EvalutionService />} />
-        <Route path="/transaction" element={<Transaction />} />
-        <Route path="/verification" element={<Verification />} />
-        <Route path="/get-started/Intro" element={<IntroForm />} />
-      </Routes>
-      <Footer/>
+      <RecoilRoot>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/get-started" element={<CreateAccount />} />
+          <Route path="/loggingIn" element={<Login />} />
+          <Route path="/customer-dashboard" element={<Dashboard />} />
+          <Route path="/aboutus" element={<Aboutus />} />
+          <Route path="/document-requirement" element={<DocumentionReq />} />
+          <Route path="/guidelines" element={<Guidelines />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/evalutionService" element={<EvalutionService />} />
+          <Route path="/transaction" element={<Transaction />} />
+          <Route path="/verification" element={<Verification />} />
+          <Route path="/get-started/Intro" element={<IntroForm />} />
+        </Routes>
+      </RecoilRoot>
+      <Footer />
     </>
   );
 }
