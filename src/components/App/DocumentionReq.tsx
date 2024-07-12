@@ -1,4 +1,3 @@
-
 import { Button } from "../ui/button";
 
 import {
@@ -16,16 +15,12 @@ import { RxCross2 } from "react-icons/rx";
 export default function DocumentionReq() {
   return (
     <main>
-      <section className="w-full flex justify-center items-center flex-col">
+      <section className="w-full flex justify-center items-center flex-col my-24">
         <div className="w-[65%] flex flex-col items-center gap-10">
           <h1 className="text-4xl font-bold max-md:text-center">
             Documentation Requirements
           </h1>
-          <p className="text-center">
-            Credential evaluation report documentation requirements vary from
-            country to country. Please choose your country of education from the
-            list below to determine which documents you'll need for your report.
-          </p>
+ 
 
           <AlertDialog>
             <AlertDialogTrigger>
@@ -55,12 +50,12 @@ export default function DocumentionReq() {
                       For Academic Evaluation Report:
                     </p>
                     <ul className="ml-5 list-disc">
-                      <li>Orginal scanned copy of degree transcript.</li>
+                      <li>Orginal scanned copy of academic transcript.</li>
                     </ul>
                     <p className="font-bold my-2 mt-5">
                       For Academic Verification report:
                     </p>
-                    <ul className="ml-5 list-disc">
+                    <ul className="ml-5 list-disc gap-3 flex flex-col">
                       <li>
                         Orginal scanned copy of bachelor or masters degree
                         certificate.
@@ -71,10 +66,14 @@ export default function DocumentionReq() {
                       </li>
                     </ul>
                     <p className="font-bold my-2 mt-5">Translation:</p>
-                    <p>
-                      Official copy of academic transcript, legal or government
-                      issued official documents.
-                    </p>
+                    <ul className="ml-5 list-disc flex gap-3 flex-col">
+                      <li>Official copy of academic transcript.</li>
+                      <li>
+                        Legal or government issued official documents.(Birth
+                        certificates, marriage certificates, employment
+                        contracts, etc.)
+                      </li>
+                    </ul>
                   </div>
                 </AlertDialogDescription>
               </AlertDialogHeader>

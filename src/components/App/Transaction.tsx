@@ -8,27 +8,27 @@ export default function Transaction() {
       <section className="w-[90%] max-md:w-[100%] font-medium">
         <div className="p-5 flex flex-col gap-5">
           <h1 className="text-center text-4xl font-bold ">
-          MAEC Translation Services.
+            MAEC Translation Services.
           </h1>
           <p className="text-center">
-          Get your Non-English official documents translated into English language by our certified translation services.
+            Get your Non-English official documents translated into English
+            language by our certified translation services.
           </p>
         </div>
         <div className="p-5 flex-col flex gap-5">
-          <p>Academic transcript translation to English language: $20 per page.
+          <p className="font-bold">
+            Academic transcript translation to English language: $20
           </p>
-          <p>
-          Other legal and official documents translation to English language: 10$ per page.
+          <p className="font-bold">
+            Other legal and official documents translation to English language:
+            $20
           </p>
+          <p>Translations in 5 days!</p>
 
-          
-          <ul className="ml-5 list-disc">
-            <li>Translations in 24 hours or less!</li>
-            <li>Simple pricing only $60/page.</li>
-            <li>ATA-Certified Translations.</li>
-            <li>Time period(s) of study</li>
-            <li>Specialized in education and legel documents</li>
-          </ul>
+          <p>
+            Specialized in education and legel documents: Birth certificate,
+            marriage certificate, licenses and employment contracts.
+          </p>
         </div>
       </section>
       <section className="w-[50%] max-md:w-[90%] flex flex-col gap-10 items-center justify-center  my-10">
@@ -41,7 +41,7 @@ export default function Transaction() {
           </p>
         </div>
         <div className="flex justify-center items-center gap-5">
-          <img src={reviewStart} alt="total reviws" className="w-[6rem]"/>
+          <img src={reviewStart} alt="total reviws" className="w-[6rem]" />
           <img
             src={reviewsimg}
             alt="total reviws"

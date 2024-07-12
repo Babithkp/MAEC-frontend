@@ -1,8 +1,7 @@
-import { useSetRecoilState } from "recoil";
-import { evalutonForm } from "../../../store/context";
+import { useSetRecoilState } from "recoil";import { evalutonForm } from "../../../store/context";
 import { Button } from "../../ui/button";
 import usImg from "/us.svg";
-import canadaImg from "/public/canada.svg";
+import canadaImg from "/canada.svg";
 import { ChangeEvent, useState } from "react";
 import educationImg from "/formIcon/education.svg";
 import licenseImg from "/formIcon/certification.svg";
@@ -130,11 +129,36 @@ const languageList = [
   { value: "zu", name: "Zulu" },
 ];
 
+// const educationOption = [
+//   " Secondary Education",
+
+//   "Undergraduate Application (First year)",
+
+//   "Transfer Credit",
+
+//   "Graduate Application",
+
+//   "Nursing Education",
+// ];
+
 export default function EvaluationForm() {
   const setPage = useSetRecoilState(evalutonForm);
   const [onlyEng, setOnlyEng] = useState(false);
   const [isusa, setIsusa] = useState(false);
   const [iscanada, setIscanada] = useState(false);
+  const [iseducation, setIseducation] = useState(false);
+
+  const [educationOption, setEducationOption] = useState({
+    Secondary: false,
+    Undergraduate: false,
+    Transfer: false,
+    Graduate: false,
+    Nursing: false,
+  });
+
+  const educationHandler = () => {
+    setIseducation(!iseducation);
+  };
 
   const usaHandler = () => {
     setIscanada(false);
@@ -218,35 +242,34 @@ export default function EvaluationForm() {
             <Dialog>
               <DialogTrigger>
                 {" "}
-                <figure className="flex flex-col w-[14rem] h-[9rem] justify-center items-center p-5 gap-3 border">
+                <figure
+                  className={`flex flex-col w-[14rem] h-[9rem] justify-center items-center p-5 gap-3 border active:bg-blue-50 ${
+                    iseducation ? "bg-blue-50" : ""
+                  }`}
+                  onClick={educationHandler}
+                >
                   <img src={educationImg} alt="education logo" />
                   <p>Education</p>
                 </figure>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle className="font-bold">Are you applying for:</DialogTitle>
+                  <DialogTitle className="font-bold">
+                    Are you applying for:
+                  </DialogTitle>
                   <DialogDescription className="p-5 flex flex-col gap-5 font-bold">
-                    <div className="flex items-center gap-5">
-                      <input
-                        id="1"
-                        type="radio"
-                        name="radio-1"
-                        className="border-black radio radio-info"
-                      />
-                      <label
-                        htmlFor="1"
-                        className="flex justify-between w-full"
-                      >
-                        Secondary Education
-                      </label>
-                    </div>
                     <div className="flex items-center gap-5">
                       <input
                         id="firstyear"
                         type="radio"
                         name="radio-1"
                         className="border-black radio radio-info"
+                        onChange={(e) =>
+                          setEducationOption((prev) => ({
+                            ...prev,
+                            Undergraduate: e.target.checked,
+                          }))
+                        }
                       />
                       <label
                         htmlFor="firstyear"
@@ -255,47 +278,25 @@ export default function EvaluationForm() {
                         Undergraduate Application (First year)
                       </label>
                     </div>
-                    <div className="flex items-center gap-5">
-                      <input
-                        id="credit"
-                        type="radio"
-                        name="radio-1"
-                        className="border-black radio radio-info"
-                      />
-                      <label
-                        htmlFor="credit"
-                        className="flex justify-between w-full"
-                      >
-                        Transfer Credit
-                      </label>
-                    </div>
+
                     <div className="flex items-center gap-5">
                       <input
                         id="4"
                         type="radio"
                         name="radio-1"
                         className="border-black radio radio-info"
+                        onChange={(e) =>
+                          setEducationOption((prev) => ({
+                            ...prev,
+                            Graduate: e.target.checked,
+                          }))
+                        }
                       />
                       <label
                         htmlFor="4"
                         className="flex justify-between w-full"
                       >
                         Graduate Application
-                      </label>
-                    </div>
-                    <div className="flex items-center gap-5">
-                      <input
-                        id="5"
-                        type="radio"
-                        name="radio-1"
-                        className="border-black radio radio-info"
-                        defaultChecked
-                      />
-                      <label
-                        htmlFor="5"
-                        className="flex justify-between w-full"
-                      >
-                        Nursing Education
                       </label>
                     </div>
                   </DialogDescription>
@@ -310,16 +311,18 @@ export default function EvaluationForm() {
 
             <Dialog>
               <DialogTrigger>
-              {iscanada && (
-              <figure className="flex flex-col w-[14rem] justify-center items-center p-5 gap-3 border">
-                <img src={licenseImg} alt="education logo" />
-                <p>Professional License / Certification</p>
-              </figure>
-            )}
+                {iscanada && (
+                  <figure className="flex flex-col w-[14rem] justify-center items-center p-5 gap-3 border">
+                    <img src={licenseImg} alt="education logo" />
+                    <p>Professional License / Certification</p>
+                  </figure>
+                )}
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle className="font-bold">Are you applying for:</DialogTitle>
+                  <DialogTitle className="font-bold">
+                    Are you applying for:
+                  </DialogTitle>
                   <DialogDescription className="p-5 flex flex-col gap-5 font-bold">
                     <div className="flex items-center gap-5">
                       <input
@@ -386,7 +389,7 @@ export default function EvaluationForm() {
                 </DialogHeader>
               </DialogContent>
             </Dialog>
-           
+
             <figure className="flex flex-col w-[14rem] justify-center items-center p-5 gap-3 border">
               <img src={employmentImg} alt="education logo" />
               <p>Employment</p>
@@ -403,6 +406,59 @@ export default function EvaluationForm() {
                 <p>Military</p>
               </figure>
             )}
+          </div>
+        </div>
+      )}
+      {educationOption.Secondary && (
+        <div className="flex flex-col gap-5 border-t ">
+          <p className="mt-10 font-bold">
+            Select the type of report you need{" "}
+            <span className="text-red-500">*</span>
+          </p>
+          <div className="flex flex-col gap-10 mb-10">
+            <div className="flex items-center gap-5">
+              <input
+                id="Course"
+                type="radio"
+                name="radio-7"
+                className="border-black radio radio-info "
+                defaultChecked
+              />
+              <label className="w-full flex justify-between" htmlFor="GPA">
+                <p>Education Course Report</p> <p>$185</p>
+              </label>
+            </div>
+            <div className="flex items-center gap-5">
+              <input
+                id="GPA"
+                type="radio"
+                name="radio-7"
+                className="border-black radio radio-info "
+                defaultChecked
+                onChange={(e) =>
+                  setEducationOption((prev) => ({
+                    ...prev,
+                    Undergraduate_Application: e.target.checked,
+                  }))
+                }
+              />
+              <label className="w-full flex justify-between" htmlFor="GPA">
+                <p>Education Document + GPA Report</p> <p>$130</p>
+              </label>
+            </div>
+            <div className="flex items-center gap-5">
+              <input
+                id="Document"
+                type="radio"
+                name="radio-7"
+                className="border-black radio radio-info "
+                defaultChecked
+                onChange={alldocHandler}
+              />
+              <label className="w-full flex justify-between" htmlFor="Document">
+                <p> Education Document Report </p> <p>$130</p>
+              </label>
+            </div>
           </div>
         </div>
       )}

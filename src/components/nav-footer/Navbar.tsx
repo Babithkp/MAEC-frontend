@@ -187,7 +187,7 @@ export default function Navbar() {
                         <p>Check out MAEC's low pricing.</p>
                       </div>
                       <div>
-                        <a href="/" className="font-bold">
+                        <a href="/contactus" className="font-bold">
                         Contact us
                         </a>
                         <p>Still have a question? We are here to help!</p>

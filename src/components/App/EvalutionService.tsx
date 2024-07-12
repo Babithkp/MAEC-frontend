@@ -11,7 +11,7 @@ export default function EvalutionService() {
             MAEC Transcript Evaluation
           </h1>
           <p className="text-center">
-            Let’s begin with primary purpose of your acdemic transcript
+            Let’s begin with primary purpose of your Acdemic transcript
             evaluation.
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function EvalutionService() {
           </ul>
 
           <p className="text-sm">
-            If the transcript submitted by does not include grades or marks,
+            If the transcript submitted does not include grades or marks,
             MAEC will not be able to calculate GPA.
           </p>
 

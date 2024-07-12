@@ -8,7 +8,7 @@ export default function Services() {
       <div className="flex w-[95%] justify-center items-center max-md:flex-col gap-5">
         <div className="flex max-md:w-[95%]  flex-col border gap-10 p-10  max-md:p-8 pr-32 rounded-2xl">
           <p className="text-xl flex items-center max-md:text-lg gap-2">
-            Transcript Evaluation.
+            Transcript Evaluation
             <div
               className="tooltip  primary-content bg-white"
               data-tip="Determines your academic standing according to US standards"
@@ -26,11 +26,11 @@ export default function Services() {
             courses and grades obtained at colleges and universities outside of
             the United States.
           </p>
-          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]">
+          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]" onClick={()=> window.location.href = "/evalutionService"}>
             Get Started
           </Button>
         </div>
-        <div className="flex flex-col border gap-10 p-10 pr-32 rounded-2xl max-md:p-8 max-md:w-[95%]">
+        <div className="flex flex-col border gap-10 p-10 pr-30 rounded-2xl max-md:p-8 max-md:w-[95%]">
           <p className="text-xl flex items-center max-md:text-lg gap-2">
             Document Verification
             <div
@@ -49,7 +49,7 @@ export default function Services() {
             This a process that verifies the authenticity of your academic
             certificate and transcript.
           </p>
-          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]">
+          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]" onClick={()=>window.location.href = "/verification"}>
             Get Started
           </Button>
         </div>
@@ -73,7 +73,7 @@ export default function Services() {
             another language to English.
           </p>
 
-          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]" onClick={()=>window.location.href = "loggingIn"}>
+          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]" onClick={()=>window.location.href = "transaction"}>
             Get Started
           </Button>
         </div>

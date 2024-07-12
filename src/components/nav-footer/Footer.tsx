@@ -19,7 +19,7 @@ export default function Footer() {
   return (
     <footer className={`${isOnSignup ? "hidden" :""}`}>
       <div className={`grid px-5 md:grid-cols-5 text-sm py-10 max-md:gap-10 `}>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-10">
           <a href="/">
             <img src={ieeLogo} alt="iee logo" className="w-[10rem]" />
           </a>

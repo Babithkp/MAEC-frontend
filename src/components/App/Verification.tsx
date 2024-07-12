@@ -1,4 +1,5 @@
-import { FaSortDown } from "react-icons/fa";import ieeLogo from "/maec_small_logo.jpg";
+import { FaSortDown } from "react-icons/fa";
+import ieeLogo from "/maec_small_logo.jpg";
 import NeedAssistance from "./com/NeedAssistance";
 import { Button } from "../ui/button";
 export default function Verification() {
@@ -25,8 +26,10 @@ export default function Verification() {
           <p className="font-bold">
             The academic verification report includes:
           </p>
-          <ul className="ml-5 list-disc">
-            <li>Confirmation of academic institutions accreditation status.</li>
+          <ul className="ml-5 list-disc flex flex-col gap-3">
+            <li>
+              Confirmation of academic institution’s accreditation status.
+            </li>
             <li>
               Confirmation of the student’s information with the academic
               institution.
@@ -35,15 +38,15 @@ export default function Verification() {
               Confirmation of the authenticity of your degree certificate and
               transcript.
             </li>
-            <li>Certificate Verification: $15</li>
-            <li>Transcript Verification: $15</li>
+            <li className="font-bold">Certificate Verification: $15.</li>
+            <li className="font-bold">Transcript Verification: $15.</li>
           </ul>
 
           <p className="font-bold">How it works:</p>
-          <ul className="ml-5 list-disc">
+          <ul className="ml-5 list-disc flex flex-col gap-3">
             <li>Create your account and login.</li>
             <li>
-              Upload your degree certificate and transcript for verification
+              Upload your degree certificate and transcript for verification.
             </li>
             <li>
               Receive your verification report in your email within 7 business
@@ -52,7 +55,7 @@ export default function Verification() {
           </ul>
           <div className="w-full flex items-center justify-center my-10">
             <Button className="bg-[#2aaae0] font-bold rounded-full">
-              Get started button
+              Get started
             </Button>
           </div>
         </div>
