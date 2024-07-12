@@ -149,14 +149,49 @@ export default function EvaluationForm() {
     courseReport: false,
     gpaReport: false,
     docReport: false,
-  })
-
+  });
 
   const [license, setlicense] = useState({
     accounting: false,
     teaching: false,
     other: false,
   });
+
+  const [edusecno, setEdusecno] = useState(true);
+
+  const educationGpaReport = (event:ChangeEvent<HTMLInputElement>) =>{
+      const ischecked = event.target.checked
+      if(ischecked){
+        setEducationReport({
+          courseReport: false,
+          gpaReport: true,
+          docReport: false,
+        })
+      }
+  }
+  const educationDocReport = (event:ChangeEvent<HTMLInputElement>) =>{
+      const ischecked = event.target.checked
+      if(ischecked){
+        setEducationReport({
+          courseReport: false,
+          gpaReport: false,
+          docReport: true,
+        })
+      }
+  }
+
+  const secondaryReportyes = (event:ChangeEvent<HTMLInputElement>)=>{
+    const isChecked = event.target.checked
+    if(isChecked){
+      setEdusecno(true)
+    }
+  }
+  const secondaryReportno = (event:ChangeEvent<HTMLInputElement>)=>{
+    const isChecked = event.target.checked
+    if(isChecked){
+      setEdusecno(false)
+    }
+  }
 
   const employeeHandler = () => {
     setIseducation(false);
@@ -174,7 +209,6 @@ export default function EvaluationForm() {
     setMilitary(false);
     setIsEmployee(true);
   };
-
 
   const immigrationHandler = () => {
     setIseducation(false);
@@ -206,7 +240,7 @@ export default function EvaluationForm() {
     });
     setIsEmployee(false);
     setImmigration(false);
-    setMilitary(true)
+    setMilitary(true);
   };
 
   const accounthandler = () => {
@@ -259,8 +293,8 @@ export default function EvaluationForm() {
       courseReport: isChecked,
       gpaReport: false,
       docReport: false,
-    })
-  }
+    });
+  };
 
   const alldocHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
@@ -513,9 +547,12 @@ export default function EvaluationForm() {
               </figure>
             )}
             {iscanada && (
-              <figure className={`flex flex-col w-[14rem] h-[9rem] justify-center items-center p-5 gap-3 border active:bg-blue-50 ${
-                isMilitary ? "bg-blue-50" : ""
-              }`} onClick={militaryHandler}>
+              <figure
+                className={`flex flex-col w-[14rem] h-[9rem] justify-center items-center p-5 gap-3 border active:bg-blue-50 ${
+                  isMilitary ? "bg-blue-50" : ""
+                }`}
+                onClick={militaryHandler}
+              >
                 <img src={militaryImg} alt="education logo" />
                 <p>Military</p>
               </figure>
@@ -623,6 +660,7 @@ export default function EvaluationForm() {
                 type="radio"
                 name="radio-7"
                 className="border-black radio radio-info "
+                onChange={educationGpaReport}
               />
               <label className="w-full flex justify-between" htmlFor="wed">
                 <p>Education Document + GPA Report</p>{" "}
@@ -635,7 +673,7 @@ export default function EvaluationForm() {
                 type="radio"
                 name="radio-7"
                 className="border-black radio radio-info "
-                onChange={alldocHandler}
+                onChange={educationDocReport}
               />
               <label className="w-full flex justify-between" htmlFor="zxc">
                 <p> Education Document Report </p>{" "}
@@ -791,8 +829,7 @@ export default function EvaluationForm() {
                 defaultChecked
               />
               <label className="w-full flex justify-between" htmlFor="emcore">
-                <p>Military Course Report</p>{" "}
-                <p className="font-bold">$185</p>
+                <p>Military Course Report</p> <p className="font-bold">$185</p>
               </label>
             </div>
             <div className="flex items-center gap-5">
@@ -821,38 +858,114 @@ export default function EvaluationForm() {
           </div>
         </div>
       )}
-      {educationreport.courseReport && (
-        <div className="flex flex-col gap-5 border-t ">
-          <p className="mt-10 font-bold">
-          Would you like to include both Secondary and Post-Secondary level credentials to your report?
-            <span className="text-red-500">*</span>
-          </p>
-          <div className="flex flex-col gap-10 mb-10">
-            <div className="flex items-center gap-5">
-              <input
-                id="emcore"
-                type="radio"
-                name="radio-7"
-                className="border-black radio radio-info "
-                defaultChecked
-              />
-              <label className="w-full flex justify-between" htmlFor="emcore">
-                Yes
-              </label>
-            </div>
-            <div className="flex items-center gap-5">
-              <input
-                id="emdogpa"
-                type="radio"
-                name="radio-7"
-                className="border-black radio radio-info "
-              />
-              <label className="w-full flex justify-between" htmlFor="emdogpa">
-                No
-              </label>
+      {(educationreport.courseReport || educationreport.gpaReport || educationreport.docReport)&& (
+        <>
+          <div className="flex flex-col gap-5 border-t ">
+            <p className="mt-10 font-bold">
+              Do you need a verification report for your academic credentials?
+              <span className="text-red-500">*</span>
+            </p>
+            <div className="flex flex-col gap-10 mb-10">
+              <div className="flex items-center gap-5">
+                <input
+                  id="yesemcore"
+                  type="radio"
+                  name="radio-0"
+                  className="border-black radio radio-info "
+                  onChange={secondaryReportyes}
+                />
+                <label
+                  className="w-full flex justify-between"
+                  htmlFor="yesemcore"
+                >
+                  Yes
+                </label>
+              </div>
+              <div className="flex items-center gap-5">
+                <input
+                  id="noemdogpa"
+                  type="radio"
+                  name="radio-0"
+                  className="border-black radio radio-info "
+                  onChange={secondaryReportno}
+                />
+                <label
+                  className="w-full flex justify-between"
+                  htmlFor="noemdogpa"
+                >
+                  No
+                </label>
+              </div>
             </div>
           </div>
-        </div>
+          {edusecno && <div className="flex flex-col gap-5 border-t ">
+            <p className="mt-10 font-bold">
+            Would you like to include your high school courses to your report?
+              <span className="text-red-500">*</span>
+            </p>
+            <div className="flex flex-col gap-10 mb-10">
+              <div className="flex items-center gap-5">
+                <input
+                  id="addHigh"
+                  type="checkbox"
+                  className="border-black checkbox checkbox-info [--chkfg:white]"
+                />
+                <label
+                  className="w-full flex justify-between"
+                  htmlFor="addHigh"
+                >
+                  <p>Add High School courses</p>
+                  <p>$30</p>
+                </label>
+              </div>
+            </div>
+          </div>}
+          <div className="flex flex-col gap-5 border-t ">
+            <p className="mt-10 font-bold">
+              Would you like to select an additional evaluation for any of the
+              following purposes?
+              <span className="text-red-500">*</span>
+            </p>
+            <div className="flex flex-col gap-10 mb-10">
+              <div className="flex items-center gap-5">
+                <input
+                  id="edcanada"
+                  type="checkbox"
+                  className="border-black checkbox checkbox-info [--chkfg:white]"
+                />
+                <label
+                  className="w-full flex justify-between"
+                  htmlFor="edcanada"
+                >
+                  <p>Education Course Report (Canada)</p>
+                  <p>$80</p>
+                </label>
+              </div>
+              <div className="flex items-center gap-5">
+                <input
+                  id="emus"
+                  type="checkbox"
+                  className="border-black checkbox checkbox-info [--chkfg:white]"
+                />
+                <label className="w-full flex justify-between" htmlFor="emus">
+                  <p>Employment Course Report (US)</p>
+                  <p>$80</p>
+                </label>
+              </div>
+              <div className="flex items-center gap-5">
+                <input
+                  id="imus"
+                  type="checkbox"
+                  className="border-black checkbox checkbox-info [--chkfg:white]"
+                />
+                <label className="w-full flex justify-between" htmlFor="imus">
+                  <p>Immigration Report (US)</p>
+                  <p>$40</p>
+                </label>
+              </div>
+            </div>
+          </div>
+        </>
       )}
       <div className="flex flex-col gap-5 border-t ">
         <p className="py-5 font-bold">
@@ -867,27 +980,27 @@ export default function EvaluationForm() {
         <div className="flex flex-col gap-5 ">
           <div className="flex items-center gap-5">
             <input
-              id="allDocuments"
+              id="tranallDoc"
               type="radio"
-              name="radio-7"
+              name="Translation"
               className="border-black radio radio-info "
               defaultChecked
               onChange={alldocHandler}
             />
-            <label htmlFor="allDocuments">
+            <label htmlFor="tranallDoc">
               All my documents are in English or I have a certified English
               translation
             </label>
           </div>
           <div className="flex items-center gap-5">
             <input
-              id="english"
+              id="tranEng"
               type="radio"
-              name="radio-7"
+              name="Translation"
               className="border-black radio radio-info"
               onChange={engHandler}
             />
-            <label htmlFor="english">Add English Translation</label>
+            <label htmlFor="tranEng">Add English Translation</label>
           </div>
           {onlyEng && (
             <div className="flex flex-col gap-5">
