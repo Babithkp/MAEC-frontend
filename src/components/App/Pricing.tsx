@@ -7,11 +7,8 @@ import NeedAssistance from "./com/NeedAssistance";export default function Pricin
         </h1>
         <p className="mb-10">Check out our industry leading low prices!</p>
         <div className="">
-          <article className="grid text-sm   mt-5 grid-cols-[16rem,10rem] grid-rows-[3rem,1fr] w-full justify-center">
-            <div className="col-start-2 p-5 col-span-full flex justify-around w-full bg-[#f5f5f5] mb-5 rounded-2xl items-center font-bold">
-              <p></p>
-              <p>Education</p>
-            </div>
+          <article className="grid text-sm   mt-5 grid-cols-[16rem,10rem] w-full justify-center">
+  
             <div className="bg-[#f5f5f5] rounded-lg p-2 grid col-span-full grid-cols-[15rem,10rem] justify-items-center items-center">
               <div className="border-b font-bold p-5 w-full h-full flex justify-center items-center">
                 Evaluation Report

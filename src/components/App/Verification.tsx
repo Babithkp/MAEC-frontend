@@ -38,10 +38,10 @@ export default function Verification() {
               Confirmation of the authenticity of your degree certificate and
               transcript.
             </li>
-            <li className="font-bold">Certificate Verification: $15.</li>
-            <li className="font-bold">Transcript Verification: $15.</li>
           </ul>
 
+            <p className="font-bold">Certificate Verification: $15.</p>
+            <p className="font-bold">Transcript Verification: $15.</p>
           <p className="font-bold">How it works:</p>
           <ul className="ml-5 list-disc flex flex-col gap-3">
             <li>Create your account and login.</li>

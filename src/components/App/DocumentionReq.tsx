@@ -16,12 +16,10 @@ export default function DocumentionReq() {
   return (
     <main>
       <section className="w-full flex justify-center items-center flex-col my-24">
-        <div className="w-[65%] flex flex-col items-center gap-10">
+        <div className="w-[65%] flex flex-col items-center gap-24">
           <h1 className="text-4xl font-bold max-md:text-center">
             Documentation Requirements
           </h1>
- 
-
           <AlertDialog>
             <AlertDialogTrigger>
               <Button

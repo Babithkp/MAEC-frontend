@@ -1,4 +1,4 @@
-import randomMapImg from "../../../public/GoogleMapTA.webp"
+import randomMapImg from "/GoogleMapTA.webp"
 export default function Contactus() {
   return (
     <main>
