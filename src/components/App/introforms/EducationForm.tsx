@@ -54,12 +54,12 @@ export default function EducationForm() {
           <AlertDialogHeader>
             <AlertDialogTitle>Add Credential</AlertDialogTitle>
             <AlertDialogDescription>
-              <div className="flex flex-col gap-10">
+              <div className="flex flex-col gap-10 text-start text-black">
                 <p>
                   Please note: if your institution is not listed, please proceed
                   to type it in manually.
                 </p>
-                <div className="flex gap-10 justify-between flex-wrap">
+                <div className="flex gap-10 justify-between flex-wrap ">
                   <div className="border-b flex flex-col mb-5 gap-5 max-md:w-full w-[47%] ">
                     <label>
                       COUNTRY OF EDUCATION{" "}
@@ -285,7 +285,7 @@ export default function EducationForm() {
             <AlertDialogCancel className="absolute top-0 right-0 border-none ">
               <RxCross2 size={20} />
             </AlertDialogCancel>
-            <AlertDialogAction className="bg-transparent active:bg-transparent hover:bg-transparent">
+            <AlertDialogAction className="bg-transparent active:bg-transparent hover:bg-transparent w-full flex justify-end">
               <Button
                 className="bg-[#2aaae0] font-bold rounded-full"
                 type="button"
