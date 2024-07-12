@@ -1,13 +1,23 @@
-import { useSetRecoilState } from "recoil";import { evalutonForm } from "../../../store/context";
+import { useSetRecoilState } from "recoil";
+import { evalutonForm } from "../../../store/context";
 import { Button } from "../../ui/button";
 import usImg from "/us.svg";
 import canadaImg from "/public/canada.svg";
 import { ChangeEvent, useState } from "react";
-import educationImg from "/formIcon/education.svg"
-import licenseImg from "/formIcon/certification.svg"
-import employmentImg from "/formIcon/employment.svg"
-import immigrationImg from "/formIcon/immigration.svg"
-import militaryImg from "/formIcon/Military.svg"
+import educationImg from "/formIcon/education.svg";
+import licenseImg from "/formIcon/certification.svg";
+import employmentImg from "/formIcon/employment.svg";
+import immigrationImg from "/formIcon/immigration.svg";
+import militaryImg from "/formIcon/Military.svg";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../../../components/ui/dialog";
 
 const languageList = [
   { value: "af", name: "Afrikaans" },
@@ -126,16 +136,14 @@ export default function EvaluationForm() {
   const [isusa, setIsusa] = useState(false);
   const [iscanada, setIscanada] = useState(false);
 
-
-  const usaHandler = () =>{
-    setIscanada(false)
-    setIsusa(true)
-  }
-  const canadaHandler = () =>{
-    setIscanada(true)
-    setIsusa(false)
-  }
-
+  const usaHandler = () => {
+    setIscanada(false);
+    setIsusa(true);
+  };
+  const canadaHandler = () => {
+    setIscanada(true);
+    setIsusa(false);
+  };
 
   const alldocHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
@@ -168,12 +176,24 @@ export default function EvaluationForm() {
           <label>
             Please select the countries in which you will be using your report.
           </label>
-          <div className={`w-[60%] max-md:w-full flex max-md:flex-col p-3 gap-8 mb-10 `}>
-            <figure className={`border flex flex-col justify-center items-center p-4 ${isusa ? "bg-blue-50":""  }`}  onClick={usaHandler}>
+          <div
+            className={`w-[60%] max-md:w-full flex max-md:flex-col p-3 gap-8 mb-10 `}
+          >
+            <figure
+              className={`border flex flex-col justify-center items-center p-4 ${
+                isusa ? "bg-blue-50" : ""
+              }`}
+              onClick={usaHandler}
+            >
               <img src={usImg} alt="usa flag" className="w-[12rem] h-[6rem]" />
               <p className="mt-3">US</p>
             </figure>
-            <figure className={`border flex flex-col justify-center items-center p-4 ${iscanada ? "bg-blue-50":""  }`}  onClick={canadaHandler}>
+            <figure
+              className={`border flex flex-col justify-center items-center p-4 ${
+                iscanada ? "bg-blue-50" : ""
+              }`}
+              onClick={canadaHandler}
+            >
               <img
                 src={canadaImg}
                 alt="canada flag"
@@ -185,39 +205,207 @@ export default function EvaluationForm() {
         </div>
       </div>
       {(isusa || iscanada) && (
-          <div>
-            <p className="font-bold">
-              What is the purpose of this evaluation?{" "}
-              <span className="text-red-500">*</span>
-            </p>
-            <p>
-              Select what this application will be used for from the options
-              below.
-            </p>
-            <div className="flex gap-5 text-center flex-wrap my-5">
-              <figure className="flex flex-col w-[14rem] justify-center items-center p-5 gap-3 border">
-                  <img src={educationImg} alt="education logo"/>
+        <div>
+          <p className="font-bold">
+            What is the purpose of this evaluation?{" "}
+            <span className="text-red-500">*</span>
+          </p>
+          <p>
+            Select what this application will be used for from the options
+            below.
+          </p>
+          <div className="flex gap-5 text-center flex-wrap my-5">
+            <Dialog>
+              <DialogTrigger>
+                {" "}
+                <figure className="flex flex-col w-[14rem] h-[9rem] justify-center items-center p-5 gap-3 border">
+                  <img src={educationImg} alt="education logo" />
                   <p>Education</p>
-              </figure>
-              {iscanada && <figure className="flex flex-col w-[14rem] justify-center items-center p-5 gap-3 border">
-                  <img src={licenseImg} alt="education logo"/>
-                  <p>Professional License / Certification</p>
-              </figure>}
+                </figure>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle className="font-bold">Are you applying for:</DialogTitle>
+                  <DialogDescription className="p-5 flex flex-col gap-5 font-bold">
+                    <div className="flex items-center gap-5">
+                      <input
+                        id="1"
+                        type="radio"
+                        name="radio-1"
+                        className="border-black radio radio-info"
+                      />
+                      <label
+                        htmlFor="1"
+                        className="flex justify-between w-full"
+                      >
+                        Secondary Education
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-5">
+                      <input
+                        id="firstyear"
+                        type="radio"
+                        name="radio-1"
+                        className="border-black radio radio-info"
+                      />
+                      <label
+                        htmlFor="firstyear"
+                        className="flex justify-between w-full"
+                      >
+                        Undergraduate Application (First year)
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-5">
+                      <input
+                        id="credit"
+                        type="radio"
+                        name="radio-1"
+                        className="border-black radio radio-info"
+                      />
+                      <label
+                        htmlFor="credit"
+                        className="flex justify-between w-full"
+                      >
+                        Transfer Credit
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-5">
+                      <input
+                        id="4"
+                        type="radio"
+                        name="radio-1"
+                        className="border-black radio radio-info"
+                      />
+                      <label
+                        htmlFor="4"
+                        className="flex justify-between w-full"
+                      >
+                        Graduate Application
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-5">
+                      <input
+                        id="5"
+                        type="radio"
+                        name="radio-1"
+                        className="border-black radio radio-info"
+                        defaultChecked
+                      />
+                      <label
+                        htmlFor="5"
+                        className="flex justify-between w-full"
+                      >
+                        Nursing Education
+                      </label>
+                    </div>
+                  </DialogDescription>
+                  <DialogClose className="w-full justify-end flex">
+                    <Button className="bg-[#2aaae0] font-bold rounded-full">
+                      Ok
+                    </Button>
+                  </DialogClose>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+
+            <Dialog>
+              <DialogTrigger>
+              {iscanada && (
               <figure className="flex flex-col w-[14rem] justify-center items-center p-5 gap-3 border">
-                  <img src={employmentImg} alt="education logo"/>
-                  <p>Employment</p>
+                <img src={licenseImg} alt="education logo" />
+                <p>Professional License / Certification</p>
               </figure>
-              {iscanada && <figure className="flex flex-col w-[14rem] justify-center items-center p-5 gap-3 border">
-                  <img src={immigrationImg} alt="education logo"/>
-                  <p>Immigration</p>
-              </figure>}
-              {iscanada && <figure className="flex flex-col w-[14rem] justify-center items-center p-5 gap-3 border">
-                  <img src={militaryImg} alt="education logo"/>
-                  <p>Military</p>
-              </figure>}
-            </div>
+            )}
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle className="font-bold">Are you applying for:</DialogTitle>
+                  <DialogDescription className="p-5 flex flex-col gap-5 font-bold">
+                    <div className="flex items-center gap-5">
+                      <input
+                        id="1"
+                        type="radio"
+                        name="radio-1"
+                        className="border-black radio radio-info"
+                      />
+                      <label
+                        htmlFor="1"
+                        className="flex justify-between w-full"
+                      >
+                        Accounting Licensure
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-5">
+                      <input
+                        id="firstyear"
+                        type="radio"
+                        name="radio-1"
+                        className="border-black radio radio-info"
+                      />
+                      <label
+                        htmlFor="firstyear"
+                        className="flex justify-between w-full"
+                      >
+                        Teaching Licensure
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-5">
+                      <input
+                        id="credit"
+                        type="radio"
+                        name="radio-1"
+                        className="border-black radio radio-info"
+                      />
+                      <label
+                        htmlFor="credit"
+                        className="flex justify-between w-full"
+                      >
+                        Nursing Licensure
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-5">
+                      <input
+                        id="4"
+                        type="radio"
+                        name="radio-1"
+                        className="border-black radio radio-info"
+                      />
+                      <label
+                        htmlFor="4"
+                        className="flex justify-between w-full"
+                      >
+                        Other Licensure/Certification
+                      </label>
+                    </div>
+                  </DialogDescription>
+                  <DialogClose className="w-full justify-end flex">
+                    <Button className="bg-[#2aaae0] font-bold rounded-full">
+                      Ok
+                    </Button>
+                  </DialogClose>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+           
+            <figure className="flex flex-col w-[14rem] justify-center items-center p-5 gap-3 border">
+              <img src={employmentImg} alt="education logo" />
+              <p>Employment</p>
+            </figure>
+            {iscanada && (
+              <figure className="flex flex-col w-[14rem] justify-center items-center p-5 gap-3 border">
+                <img src={immigrationImg} alt="education logo" />
+                <p>Immigration</p>
+              </figure>
+            )}
+            {iscanada && (
+              <figure className="flex flex-col w-[14rem] justify-center items-center p-5 gap-3 border">
+                <img src={militaryImg} alt="education logo" />
+                <p>Military</p>
+              </figure>
+            )}
           </div>
-        )}
+        </div>
+      )}
       <div className="flex flex-col gap-5 border-t ">
         <p className="py-5 font-bold">
           Translation Services
