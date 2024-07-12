@@ -2,6 +2,7 @@ import InformationForm from "./InformationForm";
 import { useRecoilValue } from "recoil";
 import { evalutonForm } from "../../../store/context";
 import EvaluationForm from "./EvaluationForm";
+import EducationForm from "./EducationForm";
 
 
 
@@ -45,6 +46,7 @@ export default function IntroForm() {
       </section>
       {page.informaton.page && <InformationForm/>}
       {page.evaluations.page && <EvaluationForm/>}
+      {page.education.page && <EducationForm/>}
     </main>
   );
 }

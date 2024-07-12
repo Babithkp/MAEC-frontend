@@ -185,11 +185,20 @@ export default function EvaluationForm() {
     setOnlyEng(isChecked);
   };
 
-  const nextButtonHandler = () => {
+  const prevButtonHandler = () => {
     setPage({
       informaton: { timeline: true, page: true },
       evaluations: { timeline: false, page: false },
       education: { timeline: false, page: false },
+      delivery: { timeline: false, page: false },
+      pay: { timeline: false, page: false },
+    });
+  };
+  const nextButtonHandler = () => {
+    setPage({
+      informaton: { timeline: true, page: false },
+      evaluations: { timeline: true, page: false },
+      education: { timeline: true, page: true },
       delivery: { timeline: false, page: false },
       pay: { timeline: false, page: false },
     });
@@ -648,10 +657,19 @@ export default function EvaluationForm() {
           </div>
         </div>
       </div>
-      <div className="w-full justify-end flex mt-5">
+      <div className="w-full justify-end flex mt-5 gap-5">
+        <Button
+        variant={"outline"}
+          className="border-[#2aaae0] font-bold rounded-full"
+          onClick={prevButtonHandler}
+          type="button"
+        >
+          Back
+        </Button>
         <Button
           className="bg-[#2aaae0] font-bold rounded-full"
           onClick={nextButtonHandler}
+          type="button"
         >
           Next
         </Button>
