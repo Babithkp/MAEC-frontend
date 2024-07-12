@@ -129,17 +129,7 @@ const languageList = [
   { value: "zu", name: "Zulu" },
 ];
 
-// const educationOption = [
-//   " Secondary Education",
 
-//   "Undergraduate Application (First year)",
-
-//   "Transfer Credit",
-
-//   "Graduate Application",
-
-//   "Nursing Education",
-// ];
 
 export default function EvaluationForm() {
   const setPage = useSetRecoilState(evalutonForm);
@@ -149,12 +139,22 @@ export default function EvaluationForm() {
   const [iseducation, setIseducation] = useState(false);
 
   const [educationOption, setEducationOption] = useState({
-    Secondary: false,
     Undergraduate: false,
-    Transfer: false,
     Graduate: false,
-    Nursing: false,
   });
+
+  const underguaranteHandler = ()=>{
+      setEducationOption({
+        Undergraduate: false,
+        Graduate: true,
+      })
+  }
+  const guaranteHandler = ()=>{
+      setEducationOption({
+        Undergraduate: true,
+        Graduate: false,
+      })
+  }
 
   const educationHandler = () => {
     setIseducation(!iseducation);
@@ -264,12 +264,7 @@ export default function EvaluationForm() {
                         type="radio"
                         name="radio-1"
                         className="border-black radio radio-info"
-                        onChange={(e) =>
-                          setEducationOption((prev) => ({
-                            ...prev,
-                            Undergraduate: e.target.checked,
-                          }))
-                        }
+                        onChange={guaranteHandler}
                       />
                       <label
                         htmlFor="firstyear"
@@ -285,12 +280,7 @@ export default function EvaluationForm() {
                         type="radio"
                         name="radio-1"
                         className="border-black radio radio-info"
-                        onChange={(e) =>
-                          setEducationOption((prev) => ({
-                            ...prev,
-                            Graduate: e.target.checked,
-                          }))
-                        }
+                        onChange={underguaranteHandler}
                       />
                       <label
                         htmlFor="4"
@@ -409,7 +399,7 @@ export default function EvaluationForm() {
           </div>
         </div>
       )}
-      {educationOption.Secondary && (
+      {educationOption.Undergraduate && (
         <div className="flex flex-col gap-5 border-t ">
           <p className="mt-10 font-bold">
             Select the type of report you need{" "}
@@ -418,14 +408,62 @@ export default function EvaluationForm() {
           <div className="flex flex-col gap-10 mb-10">
             <div className="flex items-center gap-5">
               <input
-                id="Course"
+                id="abu"
                 type="radio"
                 name="radio-7"
                 className="border-black radio radio-info "
                 defaultChecked
               />
-              <label className="w-full flex justify-between" htmlFor="GPA">
-                <p>Education Course Report</p> <p>$185</p>
+              <label className="w-full flex justify-between" htmlFor="abu">
+                <p>Education Course Report</p> <p className="font-bold">$185</p>
+              </label>
+            </div>
+            <div className="flex items-center gap-5">
+              <input
+                id="wed"
+                type="radio"
+                name="radio-7"
+                className="border-black radio radio-info "
+                defaultChecked
+               
+              />
+              <label className="w-full flex justify-between" htmlFor="wed">
+                <p>Education Document + GPA Report</p> <p className="font-bold">$130</p>
+              </label>
+            </div>
+            <div className="flex items-center gap-5">
+              <input
+                id="zxc"
+                type="radio"
+                name="radio-7"
+                className="border-black radio radio-info "
+                defaultChecked
+                onChange={alldocHandler}
+              />
+              <label className="w-full flex justify-between" htmlFor="zxc">
+                <p> Education Document Report </p> <p className="font-bold">$95</p>
+              </label>
+            </div>
+          </div>
+        </div>
+      )}
+      {educationOption.Graduate && (
+        <div className="flex flex-col gap-5 border-t ">
+          <p className="mt-10 font-bold">
+            Select the type of report you need{" "}
+            <span className="text-red-500">*</span>
+          </p>
+          <div className="flex flex-col gap-10 mb-10">
+            <div className="flex items-center gap-5">
+              <input
+                id="new"
+                type="radio"
+                name="radio-7"
+                className="border-black radio radio-info "
+                defaultChecked
+              />
+              <label className="w-full flex justify-between" htmlFor="new">
+                <p> Divisional Education Course Report</p> <p className="font-bold">$225</p>
               </label>
             </div>
             <div className="flex items-center gap-5">
@@ -443,20 +481,7 @@ export default function EvaluationForm() {
                 }
               />
               <label className="w-full flex justify-between" htmlFor="GPA">
-                <p>Education Document + GPA Report</p> <p>$130</p>
-              </label>
-            </div>
-            <div className="flex items-center gap-5">
-              <input
-                id="Document"
-                type="radio"
-                name="radio-7"
-                className="border-black radio radio-info "
-                defaultChecked
-                onChange={alldocHandler}
-              />
-              <label className="w-full flex justify-between" htmlFor="Document">
-                <p> Education Document Report </p> <p>$130</p>
+                <p> Education Course Report</p> <p className="font-bold">$185</p>
               </label>
             </div>
           </div>
