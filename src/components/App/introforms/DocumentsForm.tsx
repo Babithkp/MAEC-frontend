@@ -8,7 +8,7 @@ import {  AlertDialog,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "../../../components/ui/alert-dialog";
+} from "../../ui/alert-dialog";
 import { RxCross2, RxCrossCircled } from "react-icons/rx";
 
 import { Button } from "../../ui/button";
@@ -178,9 +178,7 @@ export default function EducationForm() {
       informaton: { timeline: true, page: false },
       evaluations: { timeline: true, page: false },
       education: { timeline: true, page: false },
-      delivery: { timeline: true, page: true },
-      review: { timeline: false, page: false },
-      pay: { timeline: false, page: false },
+      pay: { timeline: true, page: true },
     });
   };
   const prevButtonHandler = () => {
@@ -188,8 +186,6 @@ export default function EducationForm() {
       informaton: { timeline: true, page: false },
       evaluations: { timeline: true, page: true },
       education: { timeline: false, page: false },
-      delivery: { timeline: false, page: false },
-      review: { timeline: false, page: false },
       pay: { timeline: false, page: false },
     });
   };

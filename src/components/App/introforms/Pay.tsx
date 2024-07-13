@@ -1,19 +1,15 @@
-import { useSetRecoilState } from "recoil";
-import { Button } from "../../ui/button";
+import { useSetRecoilState } from "recoil";import { Button } from "../../ui/button";
 import { evalutonForm } from "../../../store/context";
 
 export default function Pay() {
   const setPage = useSetRecoilState(evalutonForm);
-  const nextButtonHandler = () => {
-   
-  };
+  const nextButtonHandler = () => {};
   const prevButtonHandler = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setPage({
       informaton: { timeline: true, page: false },
       evaluations: { timeline: true, page: false },
-      education: { timeline: true, page: false },
-      delivery: { timeline: true, page: false },
-      review: { timeline: true, page: true },
+      education: { timeline: true, page: true },
       pay: { timeline: false, page: false },
     });
   };
@@ -49,7 +45,7 @@ export default function Pay() {
             <p className="font-bold">$98.45</p>
           </div>
         </div>
-        
+
         <p>
           To pay by money order, contact Customer Service at (704) 772-0109.
           Orders paid by money order do not incur a transaction conv. fee.

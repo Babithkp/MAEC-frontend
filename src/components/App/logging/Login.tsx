@@ -1,7 +1,62 @@
 import { FaSortDown } from "react-icons/fa";import { Button } from "../../ui/button";
 import Map from "./objects/Map";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { CircularProgress } from "@mui/material";
+import { userLogin } from "../../../http/fetch";
+import { useState } from "react";
+
+interface FormValues {
+  email: string;
+  password: string;
+}
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>();
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    setIsLoading(true);
+
+    try {
+      const response = await userLogin(data);
+      if (response) {
+        console.log(response);
+        
+        if (response.data.message) {
+          localStorage.setItem("token", response.data.token)
+          localStorage.setItem("userId", response.data.userId)
+          window.location.href = "/get-started/Intro";
+          reset();
+        } else if (response.data.admin) {
+          window.location.href = "/adminDashboard";
+          reset();
+        } else if(response.data.userNotFound){
+          setFetchError("User Does Not Exist, try to Sign Up");
+          setTimeout(() => {
+            setFetchError(null);
+          }, 5000);
+        }else{
+          setFetchError("Wrong Password, Try again");
+          setTimeout(() => {
+            setFetchError(null);
+          }, 5000);
+        }
+      }
+    } catch (error) {
+      setFetchError("Something went wrong try again");
+      setTimeout(() => {
+        setFetchError(null);
+      }, 5000);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <main className="md:flex min-h-screen">
       <Map />
@@ -26,27 +81,54 @@ export default function Login() {
             </Button>
           </div>
         </div>
-        <div className="flex flex-col gap-5">
-          <h1 className="text-4xl font-bold max-md:text-3xl">Login to MAEC Portal</h1>
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+          <h1 className="text-4xl font-bold max-md:text-3xl">
+            Login to MAEC Portal
+          </h1>
           <div className="md:w-[60%]">
             <div className="border-b flex flex-col mb-5 gap-5">
               <label>
                 Email Address <span className="text-red-500">*</span>
               </label>
-              <input type="email" required className="outline-none mb-5 active:bg-none" />
+              <input
+                type="email"
+                required
+                className="outline-none mb-5 active:bg-none"
+                {...register("email")}
+              />
             </div>
             <div className="border-b flex flex-col mb-5 gap-5">
               <label>
                 Password <span className="text-red-500">*</span>
               </label>
-              <input type="email" required className="outline-none mb-5 active:bg-none" />
+              <input
+                type="text"
+                required
+                className="outline-none mb-5 active:bg-none"
+                {...register("password", { required: true, minLength: 5 })}
+              />
+              {errors.password && (
+                <span className="font-medium text-sm text-red-500">
+                  This Field is Required with Minimum 5 Characters
+                </span>
+              )}
             </div>
             <div className="flex my-5 w-full justify-end">
-                <a href="/" className="text-[#2aaae0] ">Forgot Password?</a>
+              <a href="/" className="text-[#2aaae0] ">
+                Forgot Password?
+              </a>
             </div>
-            <Button className="bg-[#2aaae0] w-full rounded-full py-6" onClick={()=>window.location.href = "/get-started/Intro"}>Login</Button>
+            {fetchError && (
+              <p className="my-5 text-red-500 font-bold">{fetchError}</p>
+            )}
+            <Button
+              className="bg-[#2aaae0] w-full rounded-full py-6 hover:bg-[#2aaae0]"
+              disabled={isLoading ? true : false}
+            >
+              {isLoading ? <CircularProgress color="inherit" /> : "Login"}
+            </Button>
           </div>
-        </div>
+        </form>
       </section>
     </main>
   );

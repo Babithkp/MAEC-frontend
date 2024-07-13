@@ -2,9 +2,7 @@ import InformationForm from "./InformationForm";
 import { useRecoilValue } from "recoil";
 import { evalutonForm } from "../../../store/context";
 import EvaluationForm from "./EvaluationForm";
-import EducationForm from "./EducationForm";
-import DelivaryOption from "./DelivaryOption";
-import Review from "./Review";
+import DocumentsForm from "./DocumentsForm";
 import Pay from "./Pay";
 
 
@@ -37,21 +35,14 @@ export default function IntroForm() {
           >
             Your Documents
           </li>
-          <li
-            className={`step  ${page.delivery.timeline ? "step-info font-bold" : ""} `}
-          >
-            Delivary Options
-          </li>
           <li className={`step  ${page.pay.timeline ? "step-info font-bold" : ""} `}>
-            Reviews & Pay
+             Pay
           </li>
         </ul>
       </section>
       {page.informaton.page && <InformationForm/>}
       {page.evaluations.page && <EvaluationForm/>}
-      {page.education.page && <EducationForm/>}
-      {page.delivery.page && <DelivaryOption/>}
-      {page.review.page && <Review/>}
+      {page.education.page && <DocumentsForm/>}
       {page.pay.page && <Pay/>}
     </main>
   );

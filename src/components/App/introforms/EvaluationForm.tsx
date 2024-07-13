@@ -2,7 +2,7 @@ import { useSetRecoilState } from "recoil";import { evalutonForm } from "../../.
 import { Button } from "../../ui/button";
 import usImg from "/us.svg";
 import canadaImg from "/canada.svg";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import educationImg from "/formIcon/education.svg";
 import employmentImg from "/formIcon/employment.svg";
 import {
@@ -16,114 +16,114 @@ import {
 } from "../../../components/ui/dialog";
 
 const languageList = [
-  { value: "af", name: "Afrikaans" },
-  { value: "sq", name: "Albanian" },
-  { value: "am", name: "Amharic" },
-  { value: "ar", name: "Arabic" },
-  { value: "hy", name: "Armenian" },
-  { value: "az", name: "Azerbaijani" },
-  { value: "eu", name: "Basque" },
-  { value: "be", name: "Belarusian" },
-  { value: "bn", name: "Bengali" },
-  { value: "bs", name: "Bosnian" },
-  { value: "bg", name: "Bulgarian" },
-  { value: "ca", name: "Catalan" },
-  { value: "ceb", name: "Cebuano" },
+  { value: "Afrikaans", name: "Afrikaans" },
+  { value: "Albanian", name: "Albanian" },
+  { value: "Amharic", name: "Amharic" },
+  { value: "Arabic", name: "Arabic" },
+  { value: "Armenian", name: "Armenian" },
+  { value: "Azerbaijani", name: "Azerbaijani" },
+  { value: "Basque", name: "Basque" },
+  { value: "Belarusian", name: "Belarusian" },
+  { value: "Bengali", name: "Bengali" },
+  { value: "Bosnian", name: "Bosnian" },
+  { value: "Bulgarian", name: "Bulgarian" },
+  { value: "Catalan", name: "Catalan" },
+  { value: "Cebuano", name: "Cebuano" },
   { value: "ny", name: "Chichewa" },
-  { value: "zh", name: "Chinese" },
-  { value: "co", name: "Corsican" },
-  { value: "hr", name: "Croatian" },
-  { value: "cs", name: "Czech" },
-  { value: "da", name: "Danish" },
-  { value: "nl", name: "Dutch" },
-  { value: "en", name: "English" },
-  { value: "eo", name: "Esperanto" },
-  { value: "et", name: "Estonian" },
-  { value: "tl", name: "Filipino" },
-  { value: "fi", name: "Finnish" },
-  { value: "fr", name: "French" },
-  { value: "fy", name: "Frisian" },
-  { value: "gl", name: "Galician" },
-  { value: "ka", name: "Georgian" },
-  { value: "de", name: "German" },
-  { value: "el", name: "Greek" },
-  { value: "gu", name: "Gujarati" },
-  { value: "ht", name: "Haitian" },
-  { value: "ha", name: "Hausa" },
-  { value: "haw", name: "Hawaiian" },
-  { value: "he", name: "Hebrew" },
-  { value: "hi", name: "Hindi" },
-  { value: "hmn", name: "Hmong" },
-  { value: "hu", name: "Hungarian" },
-  { value: "is", name: "Icelandic" },
-  { value: "ig", name: "Igbo" },
-  { value: "id", name: "Indonesian" },
-  { value: "ga", name: "Irish" },
-  { value: "it", name: "Italian" },
-  { value: "ja", name: "Japanese" },
-  { value: "jw", name: "Javanese" },
-  { value: "kn", name: "Kannada" },
-  { value: "kk", name: "Kazakh" },
-  { value: "km", name: "Khmer" },
-  { value: "rw", name: "Kinyarwanda" },
-  { value: "ko", name: "Korean" },
-  { value: "ku", name: "Kurdish" },
-  { value: "ky", name: "Kyrgyz" },
-  { value: "lo", name: "Lao" },
-  { value: "la", name: "Latin" },
-  { value: "lv", name: "Latvian" },
-  { value: "lt", name: "Lithuanian" },
-  { value: "lb", name: "Luxembourgish" },
-  { value: "mk", name: "Macedonian" },
-  { value: "mg", name: "Malagasy" },
-  { value: "ms", name: "Malay" },
-  { value: "ml", name: "Malayalam" },
-  { value: "mt", name: "Maltese" },
-  { value: "mi", name: "Maori" },
-  { value: "mr", name: "Marathi" },
-  { value: "mn", name: "Mongolian" },
-  { value: "my", name: "Myanmar" },
-  { value: "ne", name: "Nepali" },
-  { value: "no", name: "Norwegian" },
-  { value: "or", name: "Odia" },
-  { value: "ps", name: "Pashto" },
-  { value: "fa", name: "Persian" },
-  { value: "pl", name: "Polish" },
-  { value: "pt", name: "Portuguese" },
-  { value: "pa", name: "Punjabi" },
-  { value: "ro", name: "Romanian" },
-  { value: "ru", name: "Russian" },
-  { value: "sm", name: "Samoan" },
-  { value: "gd", name: "Scots" },
-  { value: "sr", name: "Serbian" },
-  { value: "st", name: "Sesotho" },
-  { value: "sn", name: "Shona" },
-  { value: "sd", name: "Sindhi" },
-  { value: "si", name: "Sinhala" },
-  { value: "sk", name: "Slovak" },
-  { value: "sl", name: "Slovenian" },
-  { value: "so", name: "Somali" },
-  { value: "es", name: "Spanish" },
-  { value: "su", name: "Sundanese" },
-  { value: "sw", name: "Swahili" },
-  { value: "sv", name: "Swedish" },
-  { value: "tg", name: "Tajik" },
-  { value: "ta", name: "Tamil" },
-  { value: "tt", name: "Tatar" },
-  { value: "te", name: "Telugu" },
-  { value: "th", name: "Thai" },
-  { value: "tr", name: "Turkish" },
-  { value: "tk", name: "Turkmen" },
-  { value: "uk", name: "Ukrainian" },
-  { value: "ur", name: "Urdu" },
-  { value: "ug", name: "Uyghur" },
-  { value: "uz", name: "Uzbek" },
-  { value: "vi", name: "Vietnamese" },
-  { value: "cy", name: "Welsh" },
-  { value: "xh", name: "Xhosa" },
-  { value: "yi", name: "Yiddish" },
-  { value: "yo", name: "Yoruba" },
-  { value: "zu", name: "Zulu" },
+  { value: "Chinese", name: "Chinese" },
+  { value: "Corsican", name: "Corsican" },
+  { value: "Croatian", name: "Croatian" },
+  { value: "Czech", name: "Czech" },
+  { value: "Danish", name: "Danish" },
+  { value: "Dutch", name: "Dutch" },
+  { value: "English", name: "English" },
+  { value: "Esperanto", name: "Esperanto" },
+  { value: "Estonian", name: "Estonian" },
+  { value: "Filipino", name: "Filipino" },
+  { value: "Finnish", name: "Finnish" },
+  { value: "French", name: "French" },
+  { value: "Frisian", name: "Frisian" },
+  { value: "Galician", name: "Galician" },
+  { value: "Georgian", name: "Georgian" },
+  { value: "German", name: "German" },
+  { value: "Greek", name: "Greek" },
+  { value: "Gujarati", name: "Gujarati" },
+  { value: "Haitian", name: "Haitian" },
+  { value: "Hausa", name: "Hausa" },
+  { value: "Hawaiian", name: "Hawaiian" },
+  { value: "Hebrew", name: "Hebrew" },
+  { value: "Hindi", name: "Hindi" },
+  { value: "Hmong", name: "Hmong" },
+  { value: "Hungarian", name: "Hungarian" },
+  { value: "Icelandic", name: "Icelandic" },
+  { value: "Igbo", name: "Igbo" },
+  { value: "Indonesian", name: "Indonesian" },
+  { value: "Irish", name: "Irish" },
+  { value: "Italian", name: "Italian" },
+  { value: "Japanese", name: "Japanese" },
+  { value: "Javanese", name: "Javanese" },
+  { value: "Kannada", name: "Kannada" },
+  { value: "Kazakh", name: "Kazakh" },
+  { value: "Khmer", name: "Khmer" },
+  { value: "Kinyarwanda", name: "Kinyarwanda" },
+  { value: "Korean", name: "Korean" },
+  { value: "Kurdish", name: "Kurdish" },
+  { value: "Kyrgyz", name: "Kyrgyz" },
+  { value: "Lao", name: "Lao" },
+  { value: "Latin", name: "Latin" },
+  { value: "Latvian", name: "Latvian" },
+  { value: "Lithuanian", name: "Lithuanian" },
+  { value: "Luxembourgish", name: "Luxembourgish" },
+  { value: "Macedonian", name: "Macedonian" },
+  { value: "Malagasy", name: "Malagasy" },
+  { value: "Malay", name: "Malay" },
+  { value: "Malayalam", name: "Malayalam" },
+  { value: "Maltese", name: "Maltese" },
+  { value: "Maori", name: "Maori" },
+  { value: "Marathi", name: "Marathi" },
+  { value: "Mongolian", name: "Mongolian" },
+  { value: "Myanmar", name: "Myanmar" },
+  { value: "Nepali", name: "Nepali" },
+  { value: "Norwegian", name: "Norwegian" },
+  { value: "Odia", name: "Odia" },
+  { value: "Pashto", name: "Pashto" },
+  { value: "Persian", name: "Persian" },
+  { value: "Polish", name: "Polish" },
+  { value: "Portuguese", name: "Portuguese" },
+  { value: "Punjabi", name: "Punjabi" },
+  { value: "Romanian", name: "Romanian" },
+  { value: "Russian", name: "Russian" },
+  { value: "Samoan", name: "Samoan" },
+  { value: "Scots", name: "Scots" },
+  { value: "Serbian", name: "Serbian" },
+  { value: "Sesotho", name: "Sesotho" },
+  { value: "Shona", name: "Shona" },
+  { value: "Sindhi", name: "Sindhi" },
+  { value: "Sinhala", name: "Sinhala" },
+  { value: "Slovak", name: "Slovak" },
+  { value: "Slovenian", name: "Slovenian" },
+  { value: "Somali", name: "Somali" },
+  { value: "Spanish", name: "Spanish" },
+  { value: "Sundanese", name: "Sundanese" },
+  { value: "Swahili", name: "Swahili" },
+  { value: "Swedish", name: "Swedish" },
+  { value: "Tajik", name: "Tajik" },
+  { value: "Tamil", name: "Tamil" },
+  { value: "Tatar", name: "Tatar" },
+  { value: "Telugu", name: "Telugu" },
+  { value: "Thai", name: "Thai" },
+  { value: "Turkish", name: "Turkish" },
+  { value: "Turkmen", name: "Turkmen" },
+  { value: "Ukrainian", name: "Ukrainian" },
+  { value: "Urdu", name: "Urdu" },
+  { value: "Uyghur", name: "Uyghur" },
+  { value: "Uzbek", name: "Uzbek" },
+  { value: "Vietnamese", name: "Vietnamese" },
+  { value: "Welsh", name: "Welsh" },
+  { value: "Xhosa", name: "Xhosa" },
+  { value: "Yiddish", name: "Yiddish" },
+  { value: "Yoruba", name: "Yoruba" },
+  { value: "Zulu", name: "Zulu" },
 ];
 
 export default function EvaluationForm() {
@@ -139,11 +139,7 @@ export default function EvaluationForm() {
     Graduate: false,
   });
 
-  const [license, setlicense] = useState({
-    accounting: false,
-    teaching: false,
-    other: false,
-  });
+
 
   const employeeHandler = () => {
     setIseducation(false);
@@ -160,12 +156,7 @@ export default function EvaluationForm() {
       Graduate: true,
     });
   };
-  const guaranteHandler = () => {
-    setEducationOption({
-      Undergraduate: true,
-      Graduate: false,
-    });
-  };
+ 
 
   const usaHandler = () => {
     setIscanada(false);
@@ -190,8 +181,6 @@ export default function EvaluationForm() {
       informaton: { timeline: true, page: true },
       evaluations: { timeline: false, page: false },
       education: { timeline: false, page: false },
-      delivery: { timeline: false, page: false },
-      review: { timeline: false, page: false },
       pay: { timeline: false, page: false },
     });
   };
@@ -204,38 +193,11 @@ export default function EvaluationForm() {
       informaton: { timeline: true, page: false },
       evaluations: { timeline: true, page: false },
       education: { timeline: true, page: true },
-      delivery: { timeline: false, page: false },
-      review: { timeline: false, page: false },
       pay: { timeline: false, page: false },
     });
   };
 
-  useEffect(() => {
-    if (
-      educationOption.Graduate == true ||
-      educationOption.Undergraduate == true
-    ) {
-      setlicense({
-        other: false,
-        teaching: false,
-        accounting: false,
-      });
-      setIseducation(true);
-      setIsEmployee(false);
-    }
-    if (
-      license.accounting == true ||
-      license.other == true ||
-      license.teaching == true
-    ) {
-      setIsEmployee(false);
-      setEducationOption({
-        Graduate: false,
-        Undergraduate: false,
-      });
-      setIseducation(false);
-    }
-  }, [educationOption, license]);
+
 
   return (
     <form className="px-10 max-md:px-2 flex flex-col gap-5 max-md:w-full w-[70%] md:border-l">
@@ -312,7 +274,7 @@ export default function EvaluationForm() {
                         type="radio"
                         name="radio-1"
                         className="border-black radio radio-info"
-                        onChange={guaranteHandler}
+                        onChange={underguaranteHandler}
                       />
                       <label
                         htmlFor="firstyear"
@@ -369,7 +331,7 @@ export default function EvaluationForm() {
                         type="radio"
                         name="radio-1"
                         className="border-black radio radio-info"
-                        onChange={guaranteHandler}
+                        onChange={underguaranteHandler}
                       />
                       <label
                         htmlFor="firstyear"

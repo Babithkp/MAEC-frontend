@@ -79,19 +79,17 @@ export default function Footer() {
           </li>
           <li>
             <a href="/" className="underline hover:text-white">
-              {" "}
+
               Cookie Policy
             </a>
           </li>
           <li>
-            {" "}
             <a href="/" className="underline hover:text-white">
-              {" "}
+
               Terms And Conditions
             </a>
           </li>
           <li>
-            {" "}
             <a href="/" className="underline hover:text-white">
               Sitemap
             </a>
