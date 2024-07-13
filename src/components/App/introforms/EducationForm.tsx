@@ -1,5 +1,4 @@
-import {
-  AlertDialog,
+import {  AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
@@ -9,23 +8,145 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../../../components/ui/alert-dialog";
-import { RxCross2 } from "react-icons/rx";
-import { PiBuilding } from "react-icons/pi";
-import { Button } from "../../ui/button";
-import { countries, evalutonForm } from "../../../store/context";
-import { RiArrowRightSLine } from "react-icons/ri";
-import maeclogo from "../../../../public/maec_small_logo.jpg";
-import { IoPersonOutline } from "react-icons/io5";
-import { useSetRecoilState } from "recoil";
+import { RxCross2, RxCrossCircled } from "react-icons/rx";
 
-const countryOptions = countries;
+import { Button } from "../../ui/button";
+import { v4 } from "uuid";
+import { useSetRecoilState } from "recoil";
+import { evalutonForm } from "../../../store/context";
+import { ChangeEvent, useRef, useState } from "react";
+
+interface Documents {
+  courseByCourse: string[];
+  academicCredentials: string[];
+  documentTranslations: string[];
+}
+
+interface DocumentsErrorType {
+  courseByCourse: boolean;
+  academicCredentials: boolean;
+  documentTranslations: boolean;
+}
 
 export default function EducationForm() {
+  const courseByRef = useRef<HTMLInputElement | null>(null);
+  const academicRef = useRef<HTMLInputElement | null>(null);
+  const docTrasRef = useRef<HTMLInputElement | null>(null);
+  const [courseByCourseError, setCouseByCouseFileError] = useState<
+    null | string
+  >(null);
+  const [academicError, setacademicError] = useState<null | string>(null);
+  const [documentError, setdocumentError] = useState<null | string>(null);
   const setPage = useSetRecoilState(evalutonForm);
+  const [dataStorage, setDataStorage] = useState<Documents>({
+    courseByCourse: [],
+    academicCredentials: [],
+    documentTranslations: [],
+  });
+  const [overloadmsg, setOverloadmsg] = useState<DocumentsErrorType>({
+    courseByCourse: false,
+    academicCredentials: false,
+    documentTranslations: false,
+  });
+  const [fileName, setFileName] = useState<Documents>({
+    courseByCourse: [],
+    academicCredentials: [],
+    documentTranslations: [],
+  });
+  const formdata = new FormData();
+
+  const coursebyInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    if (dataStorage.courseByCourse.length >= 3) {
+      setOverloadmsg((prev) => ({ ...prev, courseByCourse: true }));
+      return;
+    }
+    const files = event.target.files;
+    if (files) {
+      if (files[0].size > 5000000) {
+        setCouseByCouseFileError(
+          "File size is too large, (minimum sixe is 5Mb)"
+        );
+        return;
+      } else {
+        setCouseByCouseFileError(null);
+        const newId = v4() + files[0].name;
+        formdata.append("files", files[0], newId);
+        setFileName((prev) => ({
+          ...prev,
+          courseByCourse: [...prev.courseByCourse, files[0].name],
+        }));
+        setDataStorage((prev) => ({
+          ...prev,
+          courseByCourse: [...prev.courseByCourse, newId],
+        }));
+      }
+    }
+    console.log(dataStorage);
+    console.log(fileName);
+  };
+  const acdemicinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    if (dataStorage.academicCredentials.length >= 3) {
+      setOverloadmsg((prev) => ({ ...prev, academicCredentials: true }));
+      return;
+    }
+    const files = event.target.files;
+    if (files) {
+      if (files[0].size > 5000000) {
+        setacademicError("File size is too large, (minimum sixe is 5Mb)");
+        return;
+      } else {
+        setacademicError(null);
+        const newId = v4() + files[0].name;
+        formdata.append("files", files[0], newId);
+        setFileName((prev) => ({
+          ...prev,
+          academicCredentials: [...prev.academicCredentials, files[0].name],
+        }));
+        setDataStorage((prev) => ({
+          ...prev,
+          academicCredentials: [...prev.academicCredentials, newId],
+        }));
+      }
+    }
+    console.log(dataStorage);
+    console.log(fileName);
+  };
+  const docuTransInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    if (dataStorage.documentTranslations.length >= 3) {
+      setOverloadmsg((prev) => ({ ...prev, documentTranslations: true }));
+      return;
+    }
+    const files = event.target.files;
+    if (files) {
+      if (files[0].size > 5000000) {
+        setdocumentError("File size is too large, (minimum sixe is 5Mb)");
+        return;
+      } else {
+        setdocumentError(null);
+        const newId = v4() + files[0].name;
+        formdata.append("files", files[0], newId);
+        setFileName((prev) => ({
+          ...prev,
+          documentTranslations: [...prev.documentTranslations, files[0].name],
+        }));
+        setDataStorage((prev) => ({
+          ...prev,
+          documentTranslations: [...prev.documentTranslations, newId],
+        }));
+      }
+    }
+    console.log(dataStorage);
+    console.log(fileName);
+  };
+
+  const deleteSingleFileCBC = (index: number) => {
+    console.log(index);
+  };
+
   const nextButtonHandler = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth' 
+      behavior: "smooth",
     });
     setPage({
       informaton: { timeline: true, page: false },
@@ -73,232 +194,165 @@ export default function EducationForm() {
       <AlertDialog>
         <AlertDialogTrigger className="w-full flex flex-col justify-start mt-10">
           <Button className="bg-[#2aaae0] font-bold rounded-full" type="button">
-            + Add a Credential
+            Add Documents
           </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Add Credential</AlertDialogTitle>
-            <AlertDialogDescription>
-              <div className="flex flex-col gap-10 text-start text-black">
-                <p>
-                  Please note: if your institution is not listed, please proceed
-                  to type it in manually.
-                </p>
-                <div className="flex gap-10 justify-between flex-wrap ">
-                  <div className="flex flex-col gap-5 max-md:w-full w-[47%] ">
-                    <label>
-                      COUNTRY OF EDUCATION{" "}
-                      <span className="text-red-500">*</span>
-                    </label>
-                    <select className="focus:outline-none border-b pb-5">
-                      <option></option>
-                      {countryOptions.map((country) => (
-                        <option key={country.value} value={country.value}>
-                          {country.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="border-b flex flex-col mb-5 gap-5 max-md:w-full w-[47%] ">
-                    <label>
-                      TYPE OF DIPLOMA / CERTIFICATE
-                      <span className="text-red-500">*</span>
-                    </label>
-                    <select className="focus:outline-none border-b pb-5">
-                      <option></option>
-                      <option>secondary/High School</option>
-                      <option>Higher Education/university</option>
-                    </select>
-                  </div>
-                  <div className="border-b flex flex-col mb-5 gap-5 max-md:w-full w-[47%] ">
-                    <label>
-                      NAME OF THE INSTITUTION{" "}
-                      <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="outline-none mb-5 active:bg-none"
-                    />
-                  </div>
-                  <div className="border-b flex flex-col mb-5 gap-5 max-md:w-full w-[47%] ">
-                    <label>
-                      NAME OF DIPLOMA / CERTIFICATE
-                      <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="outline-none mb-5 active:bg-none"
-                    />
-                  </div>
-                  <div className="border-b flex flex-col mb-5 gap-5 max-md:w-full w-[47%] ">
-                    <label>
-                      YOUR NAME AS IT APPEARS ON CREDENTIAL
-                      <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="outline-none mb-5 active:bg-none"
-                    />
-                  </div>
-                  <div className="border-b flex flex-col mb-5 gap-5 max-md:w-full w-[47%] ">
-                    <label>
-                      FIELD OF STUDY
-                      <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="outline-none mb-5 active:bg-none"
-                    />
-                  </div>
-                  <div className="border-b flex flex-col mb-5 gap-5 max-md:w-full w-[47%] ">
-                    <label>
-                      YEAR FROM
-                      <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="outline-none mb-5 active:bg-none"
-                    />
-                  </div>
-                  <div className="border-b flex flex-col mb-5 gap-5 max-md:w-full w-[47%] ">
-                    <label>
-                      YEAR TO
-                      <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="outline-none mb-5 active:bg-none"
-                    />
-                  </div>
-                  <div className="flex flex-col mb-5 gap-5 max-md:w-full w-[47%] items-start ">
-                    <label>
-                      COMPLETED ?<span className="text-red-500">*</span>
-                    </label>
-                    <div className="flex gap-10">
-                      <div className="flex justify-center items-center gap-3">
-                        <input
-                          id="yes"
-                          type="radio"
-                          name="radio"
-                          className="border-black radio radio-info "
-                        />
-                        <label
-                          className="w-full flex justify-between"
-                          htmlFor="yes"
+            <AlertDialogDescription className="text-start">
+              <div className="my-5">
+                <label className="text-sm font-semibold">
+                  Course-by-Course Evaluation.
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
+                  <button
+                    type="button"
+                    className="bg-blue-500 px-2 py-1 text-white"
+                    onClick={() => courseByRef.current?.click()}
+                  >
+                    Browse
+                  </button>
+                  <input
+                    type="file"
+                    className="w-full px-2 text-sm focus:outline-blue-400 hidden"
+                    placeholder=""
+                    ref={courseByRef}
+                    onChange={coursebyInputHandler}
+                    accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
+                  />
+                  <div className="w-full  flex flex-wrap gap-1">
+                    {fileName.courseByCourse.map((doc, i) => (
+                      <span
+                        className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
+                        key={i}
+                      >
+                        {doc.substring(0, 20)}
+                        <Button
+                          variant={"secondary"}
+                          className="p-0 rounded-full w-5 h-5"
+                          onClick={() => deleteSingleFileCBC(i)}
+                          type="button"
                         >
-                          Yes
-                        </label>
-                      </div>
-                      <div className="flex justify-center items-center gap-3">
-                        <input
-                          id="no"
-                          type="radio"
-                          name="radio"
-                          className="border-black radio radio-info "
-                        />
-                        <label
-                          className="w-full flex justify-between"
-                          htmlFor="no"
-                        >
-                          No
-                        </label>
-                      </div>
-                    </div>
+                          <RxCrossCircled className="w-full h-full" />
+                        </Button>
+                      </span>
+                    ))}
                   </div>
                 </div>
-                <div className="flex flex-col gap-5">
-                  <p className="font-bold">How will the credential be sent?</p>
-                  <div className="flex justify-center items-center gap-3">
-                    <input
-                      id="institution"
-                      type="radio"
-                      name="radio-7"
-                      className="border-black radio radio-info "
-                    />
-                    <label
-                      className="w-full flex justify-between items-center"
-                      htmlFor="institution"
-                    >
-                      <p>
-                        My institution will be sending original documents to IEE
-                        by mail or email.
-                      </p>
-                      <div className="text-black flex gap-1 justify-center items-center">
-                        <PiBuilding size={25} />
-                        <RiArrowRightSLine size={25} />
-                        <img
-                          src={maeclogo}
-                          alt="maec logo"
-                          className="w-[2rem] h-[2rem] rounded-full object-cover"
-                        />
-                      </div>
-                    </label>
+                {courseByCourseError && (
+                  <span className="text-red-500 text-sm font-medium mt-2">
+                    {courseByCourseError}
+                  </span>
+                )}
+                {overloadmsg.courseByCourse && (
+                  <span className=" text-sm font-medium  text-red-500">
+                    Maxmium File Count Exceeded
+                  </span>
+                )}
+              </div>
+              <div className="my-5">
+                <label className="text-sm font-semibold">
+                  Academic credential verification.
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
+                  <button
+                    type="button"
+                    className="bg-blue-500 px-2 py-1 text-white"
+                    onClick={() => academicRef.current?.click()}
+                  >
+                    Browse
+                  </button>
+                  <input
+                    type="file"
+                    className="w-full px-2 text-sm focus:outline-blue-400 hidden"
+                    placeholder=""
+                    ref={academicRef}
+                    onChange={acdemicinputHandler}
+                    accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
+                  />
+                  <div className="w-full  flex flex-wrap gap-1">
+                    {fileName.academicCredentials.map((doc, i) => (
+                      <span
+                        className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
+                        key={i}
+                      >
+                        {doc.substring(0, 20)}
+                        <Button
+                          variant={"secondary"}
+                          className="p-0 rounded-full w-5 h-5"
+                          onClick={() => deleteSingleFileCBC(i)}
+                          type="button"
+                        >
+                          <RxCrossCircled className="w-full h-full" />
+                        </Button>
+                      </span>
+                    ))}
                   </div>
-                  <div className="flex justify-center items-center gap-3">
-                    <input
-                      id="sendiee"
-                      type="radio"
-                      name="radio-7"
-                      className="border-black radio radio-info "
-                    />
-                    <label
-                      className="w-full flex justify-between items-center"
-                      htmlFor="sendiee"
-                    >
-                      <p>
-                        I will be sending IEE original documents provided to me
-                        by my institution for an Official Evaluation.
-                      </p>
-                      <div className="text-black flex gap-1 justify-center items-center">
-                        <PiBuilding size={25} />
-                        <RiArrowRightSLine size={25} />
-                        <IoPersonOutline size={25} />
-                        <RiArrowRightSLine size={25} />
-                        <img
-                          src={maeclogo}
-                          alt="maec logo"
-                          className="w-[2rem] h-[2rem] rounded-full object-cover"
-                        />
-                      </div>
-                    </label>
-                  </div>
-                  <div className="flex justify-center items-center gap-3">
-                    <input
-                      id="UPLOADING"
-                      type="radio"
-                      name="radio-7"
-                      className="border-black radio radio-info "
-                    />
-                    <label
-                      className="w-full flex justify-between items-center"
-                      htmlFor="UPLOADING"
-                    >
-                      <p>
-                        I am uploading scans of documents and requesting a
-                        Provisional Evaluation
-                      </p>
-                      <div className="text-black flex gap-1 justify-center items-center">
-                        <IoPersonOutline size={25} />
-                        <RiArrowRightSLine size={25} />
-                        <img
-                          src={maeclogo}
-                          alt="maec logo"
-                          className="w-[2rem] h-[2rem] rounded-full object-cover"
-                        />
-                      </div>
-                    </label>
-                  </div>
-                  <p>Please click here for more information on Provisional Evaluation.</p>
-                  <p>Disclaimer: May incur additional verification fee.</p>
-                  <p>Disclaimer: May incur additional processing fee.</p>
                 </div>
+                {academicError && (
+                  <span className="text-red-500 text-sm font-medium mt-2">
+                    {academicError}
+                  </span>
+                )}
+                {overloadmsg.academicCredentials && (
+                  <span className=" text-sm font-medium  text-red-500">
+                    Maxmium File Count Exceeded
+                  </span>
+                )}
+              </div>
+              <div className="my-5 ">
+                <label className="text-sm font-semibold">
+                  Document Translation
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
+                  <button
+                    type="button"
+                    className="bg-blue-500 px-2 py-1 text-white"
+                    onClick={() => docTrasRef.current?.click()}
+                  >
+                    Browse
+                  </button>
+                  <input
+                    type="file"
+                    className="w-full px-2 text-sm focus:outline-blue-400 hidden"
+                    placeholder=""
+                    ref={docTrasRef}
+                    onChange={docuTransInputHandler}
+                    accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
+                  />
+                  <div className="w-full  flex flex-wrap gap-1">
+                    {fileName.documentTranslations.map((doc, i) => (
+                      <span
+                        className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
+                        key={i}
+                      >
+                        {doc.substring(0, 20)}
+                        <Button
+                          variant={"secondary"}
+                          className="p-0 rounded-full w-5 h-5"
+                          onClick={() => deleteSingleFileCBC(i)}
+                          type="button"
+                        >
+                          <RxCrossCircled className="w-full h-full" />
+                        </Button>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                {documentError && (
+                  <span className="text-red-500 text-sm font-medium mt-2">
+                    {documentError}
+                  </span>
+                )}
+                {overloadmsg.documentTranslations && (
+                  <span className=" text-sm font-medium  text-red-500">
+                    Maxmium File Count Exceeded
+                  </span>
+                )}
               </div>
             </AlertDialogDescription>
           </AlertDialogHeader>
@@ -306,20 +360,15 @@ export default function EducationForm() {
             <AlertDialogCancel className="absolute top-0 right-0 border-none ">
               <RxCross2 size={20} />
             </AlertDialogCancel>
-            <AlertDialogAction className="bg-transparent active:bg-transparent hover:bg-transparent w-full flex justify-end">
-              <Button
-                className="bg-[#2aaae0] font-bold rounded-full"
-                type="button"
-              >
-                Save
-              </Button>
+            <AlertDialogAction className="bg-[#2aaae0] font-bold rounded-full ">
+              Save
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
       <div className="w-full justify-end flex mt-5 gap-5">
         <Button
-        variant={"outline"}
+          variant={"outline"}
           className="border-[#2aaae0] font-bold rounded-full"
           onClick={prevButtonHandler}
           type="button"

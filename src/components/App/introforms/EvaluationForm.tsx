@@ -198,7 +198,7 @@ export default function EvaluationForm() {
   const nextButtonHandler = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth' 
+      behavior: "smooth",
     });
     setPage({
       informaton: { timeline: true, page: false },
@@ -462,27 +462,38 @@ export default function EvaluationForm() {
             <div className="flex items-center gap-5">
               <input
                 id="new"
-                type="radio"
+                type="checkbox"
                 name="radio-7"
-                className="border-black radio radio-info "
-                defaultChecked
+                className="checkbox checkbox-info [--chkfg:white] "
               />
               <label className="w-full flex justify-between" htmlFor="new">
-                <p> Divisional Education Course Report</p>{" "}
-                <p className="font-bold">$225</p>
+                <p>Course-by-Course evaluation</p>{" "}
+                <p className="font-bold">$12</p>
               </label>
             </div>
             <div className="flex items-center gap-5">
               <input
-                id="GPA"
-                type="radio"
+                id="courseby"
+                type="checkbox"
                 name="radio-7"
-                className="border-black radio radio-info "
-                defaultChecked
+                className="checkbox checkbox-info [--chkfg:white] "
               />
-              <label className="w-full flex justify-between" htmlFor="GPA">
-                <p> Education Course Report</p>{" "}
-                <p className="font-bold">$185</p>
+              <label className="w-full flex justify-between" htmlFor="courseby">
+                <p>Certificate Verification</p> <p className="font-bold">$9</p>
+              </label>
+            </div>
+            <div className="flex items-center gap-5">
+              <input
+                id="verification"
+                type="checkbox"
+                name="radio-7"
+                className="checkbox checkbox-info [--chkfg:white]"
+              />
+              <label
+                className="w-full flex justify-between"
+                htmlFor="verification"
+              >
+                <p>Transcript Verification</p> <p className="font-bold">$9</p>
               </label>
             </div>
           </div>
@@ -533,9 +544,8 @@ export default function EvaluationForm() {
           <span className="text-red-500">*</span>
         </p>
         <p>
-          International Education Evaluations requires certified English
-          translations for all documents issued in any language other than
-          English.
+          Certified English translations for all official and legal documents
+          issued in any language other than English.
         </p>
         <div className="flex flex-col gap-5 ">
           <div className="flex items-center gap-5">
@@ -548,8 +558,7 @@ export default function EvaluationForm() {
               onChange={alldocHandler}
             />
             <label htmlFor="tranallDoc">
-              All my documents are in English or I have a certified English
-              translation
+              Translated documents will be delivered via email once complete.
             </label>
           </div>
           <div className="flex items-center gap-5">
@@ -567,7 +576,7 @@ export default function EvaluationForm() {
               <p>
                 Final translation will be delivered via email once complete.
               </p>
-              <p className="font-bold">$60.00 per page</p>
+              <p className="font-bold">$20 per page</p>
               <p>
                 LANGUAGE OF THE DOCUMENTS{" "}
                 <span className="text-red-500">*</span>
@@ -584,87 +593,25 @@ export default function EvaluationForm() {
                   </option>
                 ))}
               </select>
-              <p>
-                HOW MANY PAGES? <span className="text-red-500">*</span>
-              </p>
-              <input
-                type="number"
-                required
-                className="outline-none mb-5 active:bg-none border-b py-3 "
-              />
             </div>
           )}
 
-          <div className="flex flex-col gap-5 pt-5 mt-5 border-t">
+          <div className="flex flex-col gap-5 pt-5 mt-5">
             <p className="font-bold">
               Processing Time <span className="text-red-500">*</span>
             </p>
-            <p>
-              The standard processing time to receive a completed MyIEE
-              evaluation report is 3 business days after receipt, review, and
-              approval of all documents and English translations and payment in
-              full. If additional research, correspondence, or verification is
-              required, the evaluation will take longer. Because expedited
-              orders are prioritized and begin processing immediately, expedited
-              service fees are non-refundable. Expedited processing is
-              guaranteed for 3-5 pages of translation. Any additional pages may
-              incur additional processing time.
-            </p>
-            <div className="flex items-center gap-5">
-              <input
-                id="3"
-                type="radio"
-                name="radio-1"
-                className="border-black radio radio-info "
-                defaultChecked
-              />
-              <label htmlFor="3" className="flex justify-between w-full">
-                <p> 3 Business Days - GUARANTEED</p>
-                <p className="font-bold">$50</p>
-              </label>
-            </div>
-            <div className="flex items-center gap-5">
-              <input
-                id="2"
-                type="radio"
-                name="radio-1"
-                className="border-black radio radio-info"
-              />
-              <label htmlFor="2" className="flex justify-between w-full">
-                <p> 2 Business Days - GUARANTEED</p>
-                <p className="font-bold">$100</p>
-              </label>
-            </div>
-            <div className="flex items-center gap-5">
-              <input
-                id="next"
-                type="radio"
-                name="radio-1"
-                className="border-black radio radio-info"
-              />
-              <label htmlFor="next" className="flex justify-between w-full">
-                <p>Next Business Day - GUARANTEED</p>
-                <p className="font-bold">$200</p>
-              </label>
-            </div>
-            <div className="flex items-center gap-5">
-              <input
-                id="32"
-                type="radio"
-                name="radio-1"
-                className="border-black radio radio-info"
-              />
-              <label htmlFor="32" className="flex justify-between w-full">
-                <p>3 Business Days - NOT GUARANTEED</p>
-                <p className="font-bold">$0</p>
-              </label>
-            </div>
+
+            <p>Transcript evaluation : 3 business days.</p>
+
+            <p> Academic credentials verification: 5 business days.</p>
+
+            <p>Document Translation: 3 business days.</p>
           </div>
         </div>
       </div>
       <div className="w-full justify-end flex mt-5 gap-5">
         <Button
-        variant={"outline"}
+          variant={"outline"}
           className="border-[#2aaae0] font-bold rounded-full"
           onClick={prevButtonHandler}
           type="button"

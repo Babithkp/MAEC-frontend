@@ -41,12 +41,6 @@ export default function InformationForm() {
     <form className="md:px-10 flex flex-col gap-5 md:w-[70%] md:border-l">
       <div className="flex flex-col gap-5">
         <h2 className="font-bold">Your Information</h2>
-        <p>
-          Please enter the name and date of birth for the person listed on the
-          academic credentials. The name and date of birth entered here is what
-          will appear on the report. Revision fees and additional shipping fees
-          will apply if the name and date of birth are entered incorrectly.
-        </p>
       </div>
       <div>
         <div className="flex max-sm:flex-col flex-wrap justify-between">
@@ -62,11 +56,10 @@ export default function InformationForm() {
           </div>
           <div className="border-b flex flex-col mb-5 gap-5 md:w-[47%] ">
             <label>
-              MIDDLE NAME <span className="text-red-500">*</span>
+              MIDDLE NAME
             </label>
             <input
               type="text"
-              required
               className="outline-none mb-5 active:bg-none"
             />
           </div>
@@ -127,7 +120,7 @@ export default function InformationForm() {
             <select className="focus:outline-none">
               <option></option>
               <option value={"Male"}>Male</option>
-              <option value={"Female"}>FeMale</option>
+              <option value={"Female"}>Female</option>
             </select>
           </div>
         </div>
