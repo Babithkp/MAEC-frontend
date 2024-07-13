@@ -41,7 +41,7 @@ export default function Review() {
             require additional documentation. If so, we will contact you
           </p>
         </div>
-        <p className="font-bold">User Profile</p>
+        {/* <p className="font-bold">User Profile</p>
         <div className="flex justify-between flex-wrap gap-5 p-5 border">
           
             <div className="flex flex-col md:w-[40%]">
@@ -65,7 +65,7 @@ export default function Review() {
               <p className="font-medium">Male</p>
             </div>
    
-        </div>
+        </div> */}
         <p className="font-bold">Your Education</p>
         <div className="flex justify-between flex-wrap gap-5 p-5 border">
        

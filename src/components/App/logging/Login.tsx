@@ -27,7 +27,7 @@ export default function Login() {
           </div>
         </div>
         <div className="flex flex-col gap-5">
-          <h1 className="text-4xl font-bold max-md:text-3xl">Login to MyIEE Portal</h1>
+          <h1 className="text-4xl font-bold max-md:text-3xl">Login to MAEC Portal</h1>
           <div className="md:w-[60%]">
             <div className="border-b flex flex-col mb-5 gap-5">
               <label>

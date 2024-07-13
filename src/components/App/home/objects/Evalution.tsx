@@ -14,7 +14,7 @@ export default function Evalution() {
         trusted evaluation service! We are here to answer your questions on
         chat, email and phone 24/7!
       </p>
-      <Button className="bg-[#2aaae0] rounded-full">Start Evaluation</Button>
+      <Button className="bg-[#2aaae0] rounded-full" onClick={() => (window.location.href = "get-started")}>Start Evaluation</Button>
     </section>
   );
 }

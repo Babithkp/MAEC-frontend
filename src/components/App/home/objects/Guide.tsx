@@ -13,7 +13,7 @@ export default function Guide() {
           </h3>
           <Button
             className="flex gap-7 py-10  max-md:w-full w-[80%] hover:bg-transparent hover:border hover:border-[#2aaae0] hover:scale-110 duration-100 transition-transform"
-            variant={"outline"}
+            variant={"outline"} onClick={() => (window.location.href = "get-started")}
           >
             <div className="p-2 bg-[#e4f8ff] rounded-lg">
               <IoDocumentTextOutline size={20} className="w-[2rem] h-[2rem]" />
@@ -24,12 +24,12 @@ export default function Guide() {
                 className="tooltip  primary-content "
                 data-tip="Determlnes your academic standing according to US standards"
               >
-                <button className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none">
+                <div className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none">
                   <AiOutlineExclamationCircle
                     className="rotate-180 text-[#2aaae0]"
                     size={20}
                   />
-                </button>
+                </div>
               </div>
             </p>
             <div>
@@ -41,7 +41,7 @@ export default function Guide() {
           </Button>
           <Button
             className="flex gap-7 py-10 max-md:w-full w-[80%] hover:bg-transparent hover:border hover:border-[#2aaae0] hover:scale-110 duration-100 transition-transform"
-            variant={"outline"}
+            variant={"outline"} onClick={() => (window.location.href = "get-started")}
           >
             <div className="p-2 bg-[#e4f8ff] rounded-lg">
               <GoGlobe size={20} className="w-[2rem] h-[2rem]" />
@@ -52,12 +52,12 @@ export default function Guide() {
                 className="tooltip  primary-content "
                 data-tip="world-for-word translation from one language to another."
               >
-                <button className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none">
+                <div className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none">
                   <AiOutlineExclamationCircle
                     className="rotate-180 text-[#2aaae0]"
                     size={20}
                   />
-                </button>
+                </div>
               </div>
             </p>
             <div>
@@ -69,7 +69,7 @@ export default function Guide() {
           </Button>
           <Button
             className="flex gap-7 py-10 max-md:w-full w-[80%] hover:bg-transparent hover:border hover:border-[#2aaae0] hover:scale-110 duration-100 transition-transform"
-            variant={"outline"}
+            variant={"outline"} onClick={() => (window.location.href = "get-started")}
           >
             <div className="p-2 bg-[#e4f8ff] rounded-lg ">
               <GoGlobe size={20} className="w-[2rem] h-[2rem]" />
@@ -80,12 +80,12 @@ export default function Guide() {
                 className="tooltip  primary-content "
                 data-tip="world-for-word translation from one language to another."
               >
-                <button className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none">
+                <div className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none">
                   <AiOutlineExclamationCircle
                     className="rotate-180 text-[#2aaae0]"
                     size={20}
                   />
-                </button>
+                </div>
               </div>
             </p>
             <div>
@@ -101,7 +101,7 @@ export default function Guide() {
           </p>
           <Button
             variant={"outline"}
-            className="border border-[#2aaae0] w-fit rounded-full font-bold"
+            className="border border-[#2aaae0] w-fit rounded-full font-bold" onClick={() => (window.location.href = "get-started")}
           >
             Get started
           </Button>

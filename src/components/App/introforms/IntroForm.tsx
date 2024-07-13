@@ -35,7 +35,7 @@ export default function IntroForm() {
           <li
             className={`step  ${page.education.timeline ? "step-info font-bold" : ""} `}
           >
-            Your Education
+            Your Documents
           </li>
           <li
             className={`step  ${page.delivery.timeline ? "step-info font-bold" : ""} `}

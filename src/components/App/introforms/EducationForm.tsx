@@ -1,3 +1,4 @@
+import Backdrop from "@mui/material/Backdrop";
 import {  AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -15,6 +16,8 @@ import { v4 } from "uuid";
 import { useSetRecoilState } from "recoil";
 import { evalutonForm } from "../../../store/context";
 import { ChangeEvent, useRef, useState } from "react";
+import { uploadPostDoc } from "../../../http/fetch";
+import { CircularProgress } from "@mui/material";
 
 interface Documents {
   courseByCourse: string[];
@@ -32,6 +35,7 @@ export default function EducationForm() {
   const courseByRef = useRef<HTMLInputElement | null>(null);
   const academicRef = useRef<HTMLInputElement | null>(null);
   const docTrasRef = useRef<HTMLInputElement | null>(null);
+  const [isLoading, setIsloading] = useState(false);
   const [courseByCourseError, setCouseByCouseFileError] = useState<
     null | string
   >(null);
@@ -55,7 +59,7 @@ export default function EducationForm() {
   });
   const formdata = new FormData();
 
-  const coursebyInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const coursebyInputHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     if (dataStorage.courseByCourse.length >= 3) {
       setOverloadmsg((prev) => ({ ...prev, courseByCourse: true }));
       return;
@@ -69,8 +73,12 @@ export default function EducationForm() {
         return;
       } else {
         setCouseByCouseFileError(null);
+        setIsloading(true)
+        formdata.delete("files");
         const newId = v4() + files[0].name;
         formdata.append("files", files[0], newId);
+        await uploadPostDoc(formdata)
+        setIsloading(false)
         setFileName((prev) => ({
           ...prev,
           courseByCourse: [...prev.courseByCourse, files[0].name],
@@ -81,10 +89,8 @@ export default function EducationForm() {
         }));
       }
     }
-    console.log(dataStorage);
-    console.log(fileName);
   };
-  const acdemicinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const acdemicinputHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     if (dataStorage.academicCredentials.length >= 3) {
       setOverloadmsg((prev) => ({ ...prev, academicCredentials: true }));
       return;
@@ -96,8 +102,12 @@ export default function EducationForm() {
         return;
       } else {
         setacademicError(null);
+        setIsloading(true)
+        formdata.delete("files");
         const newId = v4() + files[0].name;
         formdata.append("files", files[0], newId);
+        await uploadPostDoc(formdata)
+        setIsloading(false)
         setFileName((prev) => ({
           ...prev,
           academicCredentials: [...prev.academicCredentials, files[0].name],
@@ -108,10 +118,9 @@ export default function EducationForm() {
         }));
       }
     }
-    console.log(dataStorage);
-    console.log(fileName);
+
   };
-  const docuTransInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const docuTransInputHandler = async(event: ChangeEvent<HTMLInputElement>) => {
     if (dataStorage.documentTranslations.length >= 3) {
       setOverloadmsg((prev) => ({ ...prev, documentTranslations: true }));
       return;
@@ -123,8 +132,12 @@ export default function EducationForm() {
         return;
       } else {
         setdocumentError(null);
+        setIsloading(true)
+        formdata.delete("files");
         const newId = v4() + files[0].name;
         formdata.append("files", files[0], newId);
+        await uploadPostDoc(formdata)
+        setIsloading(false)
         setFileName((prev) => ({
           ...prev,
           documentTranslations: [...prev.documentTranslations, files[0].name],
@@ -135,12 +148,25 @@ export default function EducationForm() {
         }));
       }
     }
-    console.log(dataStorage);
-    console.log(fileName);
   };
 
-  const deleteSingleFileCBC = (index: number) => {
-    console.log(index);
+  const deleteSingleFileCourseBy = (index: number) => {
+    const filteredOut = dataStorage.courseByCourse.filter((_, i) => i != index);
+    const filteredName = fileName.courseByCourse.filter((_, i) => i != index);
+    setFileName((prev) => ({ ...prev, courseByCourse: filteredName }));
+    setDataStorage((prev) => ({ ...prev, courseByCourse: filteredOut }));
+  };
+  const deleteSingleFileAdamic = (index: number) => {
+    const filteredOut = dataStorage.academicCredentials.filter((_, i) => i != index);
+    const filteredName = fileName.academicCredentials.filter((_, i) => i != index);
+    setFileName((prev) => ({ ...prev, academicCredentials: filteredName }));
+    setDataStorage((prev) => ({ ...prev, academicCredentials: filteredOut }));
+  };
+  const deleteSingleFiledDocTras = (index: number) => {
+    const filteredOut = dataStorage.documentTranslations.filter((_, i) => i != index);
+    const filteredName = fileName.documentTranslations.filter((_, i) => i != index);
+    setFileName((prev) => ({ ...prev, documentTranslations: filteredName }));
+    setDataStorage((prev) => ({ ...prev, documentTranslations: filteredOut }));
   };
 
   const nextButtonHandler = () => {
@@ -168,7 +194,7 @@ export default function EducationForm() {
     });
   };
   return (
-    <form className="px-10 max-md:px-2 flex flex-col gap-5 max-md:w-full w-[70%] md:border-l">
+    <section className="px-10 max-md:px-2 flex flex-col gap-5 max-md:w-full w-[70%] md:border-l">
       <div className="flex flex-col gap-5">
         <h2 className="font-bold text-lg">Your Education</h2>
         <p className="py-5 font-bold">Please add your credentials</p>
@@ -209,7 +235,7 @@ export default function EducationForm() {
                 <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
                   <button
                     type="button"
-                    className="bg-blue-500 px-2 py-1 text-white"
+                    className="bg-[#2aaae0] px-2 py-1 text-white"
                     onClick={() => courseByRef.current?.click()}
                   >
                     Browse
@@ -232,7 +258,7 @@ export default function EducationForm() {
                         <Button
                           variant={"secondary"}
                           className="p-0 rounded-full w-5 h-5"
-                          onClick={() => deleteSingleFileCBC(i)}
+                          onClick={() => deleteSingleFileCourseBy(i)}
                           type="button"
                         >
                           <RxCrossCircled className="w-full h-full" />
@@ -260,7 +286,7 @@ export default function EducationForm() {
                 <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
                   <button
                     type="button"
-                    className="bg-blue-500 px-2 py-1 text-white"
+                    className="bg-[#2aaae0] px-2 py-1 text-white"
                     onClick={() => academicRef.current?.click()}
                   >
                     Browse
@@ -283,7 +309,7 @@ export default function EducationForm() {
                         <Button
                           variant={"secondary"}
                           className="p-0 rounded-full w-5 h-5"
-                          onClick={() => deleteSingleFileCBC(i)}
+                          onClick={() => deleteSingleFileAdamic(i)}
                           type="button"
                         >
                           <RxCrossCircled className="w-full h-full" />
@@ -311,7 +337,7 @@ export default function EducationForm() {
                 <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
                   <button
                     type="button"
-                    className="bg-blue-500 px-2 py-1 text-white"
+                    className="bg-[#2aaae0] px-2 py-1 text-white"
                     onClick={() => docTrasRef.current?.click()}
                   >
                     Browse
@@ -334,7 +360,7 @@ export default function EducationForm() {
                         <Button
                           variant={"secondary"}
                           className="p-0 rounded-full w-5 h-5"
-                          onClick={() => deleteSingleFileCBC(i)}
+                          onClick={() => deleteSingleFiledDocTras(i)}
                           type="button"
                         >
                           <RxCrossCircled className="w-full h-full" />
@@ -383,6 +409,12 @@ export default function EducationForm() {
           Next
         </Button>
       </div>
-    </form>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </section>
   );
 }

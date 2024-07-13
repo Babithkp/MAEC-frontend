@@ -73,7 +73,7 @@ export default function Services() {
             another language to English.
           </p>
 
-          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]" onClick={()=>window.location.href = "transaction"}>
+          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]" onClick={()=>window.location.href = "/transaction"}>
             Get Started
           </Button>
         </div>

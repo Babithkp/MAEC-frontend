@@ -56,7 +56,7 @@ export default function EvalutionService() {
           </p>
 
           <div className="w-full flex items-center justify-center my-10">
-            <Button className="bg-[#2aaae0] font-bold rounded-full">Start Evaluation</Button>
+            <Button className="bg-[#2aaae0] font-bold rounded-full" onClick={() => (window.location.href = "get-started")}>Start Evaluation</Button>
           </div>
         </div>
       </section>

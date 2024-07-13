@@ -123,6 +123,16 @@ export default function InformationForm() {
               <option value={"Female"}>Female</option>
             </select>
           </div>
+          <div className="border-b flex flex-col mb-5 pb-5 gap-5 w-[47%] max-md:w-full">
+            <label>
+              EMAIL <span className="text-red-500">*</span>
+            </label>
+            <input
+                type="text"
+                required
+                className="outline-none mb-5 active:bg-none"
+              />
+          </div>
         </div>
         <div>
           <p className="font-bold">Mailing Address</p>

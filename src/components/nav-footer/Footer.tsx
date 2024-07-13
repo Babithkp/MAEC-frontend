@@ -27,17 +27,17 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-3">
           <p className="font-bold">Credentail evaluation</p>
-          <a href="/">Evalution & Fees</a>
-          <a href="/">Apply Now</a>
-          <a href="/">My account</a>
+          <a href="/pricing">Fees</a>
+          <a href="/get-started">Apply Now</a>
+          <a href="/get-started">My account</a>
         </div>
         <div className="flex flex-col gap-3">
           <p className="font-bold">Help Center</p>
-          <a href="/">Contact Us</a>
+          <a href="/contactus">Contact Us</a>
         </div>
         <div className="flex flex-col gap-3">
           <p className="font-bold">Contact Us</p>
-          <a href="/">(704) 772-0109</a>
+          <a href="http://support@maec.us"  className="text-blue-600 underline">support@maec.us</a>
           <a href="/">
             <img src={rating} alt="rating" />
           </a>
@@ -88,12 +88,6 @@ export default function Footer() {
             <a href="/" className="underline hover:text-white">
               {" "}
               Terms And Conditions
-            </a>
-          </li>
-          <li>
-            {" "}
-            <a href="/" className="underline hover:text-white">
-              Refund Policy
             </a>
           </li>
           <li>

@@ -11,7 +11,7 @@ export default function Application() {
             process means you stay informed every step of the way and receive
             your evaluation in 3 day or less!
           </p>
-          <Button className="bg-[#2aaae0] rounded-full w-fit">Apply now</Button>
+          <Button className="bg-[#2aaae0] rounded-full w-fit" onClick={() => (window.location.href = "get-started")}>Apply now</Button>
         </div>
         <figure className="w-1/2 max-md:hidden">
           <img src={processImg} className="w-full h-full" />
@@ -23,11 +23,11 @@ export default function Application() {
           </div>
           <div>
             <span className="text-5xl text-[#caeefd]">02</span>
-            <p >Upload documents</p>
+            <p >Enter your details</p>
           </div>
           <div>
             <span className="text-5xl text-[#caeefd]">03</span>
-            <p >Track progress</p>
+            <p >Upload documents</p>
           </div>
           <div>
             <span className="text-5xl text-[#caeefd]">04</span>

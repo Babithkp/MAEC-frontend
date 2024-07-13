@@ -24,7 +24,7 @@ export default function Contactus() {
                 28227
               </p>
               <p>Mon-Fri: 9:00 AM - 4:00 PM Sat-Sun: Closed</p>
-              <p className="font-bold">Phone: +1 704 772 0109</p>
+              <p className="font-bold">Phone: +1 701 754 0219</p>
             </div>
             <div className="flex flex-col justify-center  p-5 gap-5 border rounded-3xl">
               <p className="font-bold">India intake location:</p>
@@ -32,7 +32,7 @@ export default function Contactus() {
                 100 Transcripts LLP, 3rd Floor, Sri Srinivasam, Plot No. 1133/1,
                 Mathrusree Nagar, Hyderabad, Telangana-500 049
               </p>
-              <p className="font-bold">Phone: +91 9941 9914 02</p>
+              <p className="font-bold">Phone: +91 9124 547 754</p>
             </div>
           </div>
           <figure>

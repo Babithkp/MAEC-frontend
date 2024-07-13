@@ -1,4 +1,5 @@
-import { Button } from "../ui/button";import webLogo from "/maec_full_logo.jpg";
+import { Button } from "../ui/button";
+import webLogo from "/maec_full_logo.jpg";
 import { TiSocialFacebook } from "react-icons/ti";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -26,7 +27,6 @@ import {
 export default function Navbar() {
   const [isOnSignup, setIsOnSignup] = useState(false);
 
-
   useEffect(() => {
     if (
       window.location.pathname === "/get-started" ||
@@ -43,7 +43,7 @@ export default function Navbar() {
         isOnSignup ? "hidden" : ""
       }`}
     >
-      <figure onClick={()=>window.location.href = "/"}>
+      <figure onClick={() => (window.location.href = "/")}>
         <img
           src={webLogo}
           alt="LOGO"
@@ -114,109 +114,114 @@ export default function Navbar() {
           </Button>
         </div>
       </div>
-
-      <AlertDialog>
-        <AlertDialogTrigger>
-          <RxHamburgerMenu className="md:hidden" size={25} />
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogCancel
-              className="w-full border-none relative "
-            >
-              <RxCross2 className="absolute right-5" size={25} />
-            </AlertDialogCancel>
-            <AlertDialogDescription>
-              <div className="p-2 w-screen text-black flex justify-end">
-                <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="item-3">
-                    <AccordionTrigger className="font-bold">By Service</AccordionTrigger>
-                    <AccordionContent className="text-start px-5 flex flex-col gap-3">
-                      <div>
-                        <a href="/evalutionService" className="font-bold">
-                          Evaluation
-                        </a>
-                        <p>
-                          Determines your academic standing according to US
-                          standards.
-                        </p>
-                      </div>
-                      <div>
-                        <a href="/transaction" className="font-bold">
-                          Translation
-                        </a>
-                        <p>
-                          Word-for-word translation from one language to another.
-                        </p>
-                      </div>
-                      <div>
-                        <a href="/verification" className="font-bold">
-                          Verification
-                        </a>
-                        <p>Service for authenticating documents.</p>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-1">
-                    <AccordionTrigger>Tools</AccordionTrigger>
-                    <AccordionContent className="text-start px-5 flex flex-col gap-3">
-                      <div>
-                        <a href="/document-requirement" className="font-bold">
-                          Document Requirement
-                        </a>
-                        <p>
-                          Requirement vary by country and repoter type. Use this
-                          easy tool to find out what documents to submit.
-                        </p>
-                      </div>
-                      <div>
-                        <a href="/guidelines" className="font-bold">
-                          Evalution Guldelines
-                        </a>
-                        <p>Evalution Guldelines.</p>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-2">
-                    <AccordionTrigger>Support</AccordionTrigger>
-                    <AccordionContent className="text-start px-5 flex flex-col gap-3">
-                      <div>
-                        <a href="/pricing" className="font-bold">
-                          Pricing
-                        </a>
-                        <p>Check out MAEC's low pricing.</p>
-                      </div>
-                      <div>
-                        <a href="/contactus" className="font-bold">
-                        Contact us
-                        </a>
-                        <p>Still have a question? We are here to help!</p>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                </Accordion>
+      <div className="md:hidden">
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <RxHamburgerMenu className="md:hidden" size={25} />
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogCancel className="w-full border-none relative ">
+                <RxCross2 className="absolute right-5" size={25} />
+              </AlertDialogCancel>
+              <AlertDialogDescription>
+                <div className="p-2 w-screen text-black flex justify-end">
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="item-3">
+                      <AccordionTrigger className="font-bold">
+                        Service
+                      </AccordionTrigger>
+                      <AccordionContent className="text-start px-5 flex flex-col gap-3">
+                        <div>
+                          <a href="/evalutionService" className="font-bold">
+                            Evaluation
+                          </a>
+                          <p>
+                            Determines your academic standing according to US
+                            standards.
+                          </p>
+                        </div>
+                        <div>
+                          <a href="/transaction" className="font-bold">
+                            Translation
+                          </a>
+                          <p>
+                            Word-for-word translation from one language to
+                            another.
+                          </p>
+                        </div>
+                        <div>
+                          <a href="/verification" className="font-bold">
+                            Verification
+                          </a>
+                          <p>Service for authenticating documents.</p>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-1">
+                      <AccordionTrigger className="font-bold">
+                        Tools
+                      </AccordionTrigger>
+                      <AccordionContent className="text-start px-5 flex flex-col gap-3">
+                        <div>
+                          <a href="/document-requirement" className="font-bold">
+                            Document Requirement
+                          </a>
+                          <p>
+                            Requirement vary by country and repoter type. Use
+                            this easy tool to find out what documents to submit.
+                          </p>
+                        </div>
+                        <div>
+                          <a href="/guidelines" className="font-bold">
+                            Evalution Guldelines
+                          </a>
+                          <p>Evalution Guldelines.</p>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
+                      <AccordionTrigger className="font-bold">
+                        Support
+                      </AccordionTrigger>
+                      <AccordionContent className="text-start px-5 flex flex-col gap-3">
+                        <div>
+                          <a href="/pricing" className="font-bold">
+                            Pricing
+                          </a>
+                          <p>Check out MAEC's low pricing.</p>
+                        </div>
+                        <div>
+                          <a href="/contactus" className="font-bold">
+                            Contact us
+                          </a>
+                          <p>Still have a question? We are here to help!</p>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              </AlertDialogDescription>
+              <div className="flex justify-center gap-5 pt-5">
+                <Button
+                  onClick={() => (window.location.href = "get-started")}
+                  className="bg-[#2aaae0] font-bold rounded-full"
+                >
+                  Get started
+                </Button>
+                <Button
+                  variant={"outline"}
+                  className="font-bold rounded-full"
+                  onClick={() => (window.location.href = "loggingIn")}
+                >
+                  Login
+                </Button>
               </div>
-            </AlertDialogDescription>
-            <div className="flex justify-center gap-5 pt-5">
-              <Button
-                onClick={() => (window.location.href = "get-started")}
-                className="bg-[#2aaae0] font-bold rounded-full"
-              >
-                Get started
-              </Button>
-              <Button
-                variant={"outline"}
-                className="font-bold rounded-full"
-                onClick={() => (window.location.href = "loggingIn")}
-              >
-                Login
-              </Button>
-            </div>
-          </AlertDialogHeader>
-          <AlertDialogFooter></AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+            </AlertDialogHeader>
+            <AlertDialogFooter></AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </div>
     </nav>
   );
 }

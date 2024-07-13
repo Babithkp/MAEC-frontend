@@ -12,7 +12,7 @@ export default function Experience() {
         approval of your documents. This means you are 3 days closer to that
         school acceptance letter, job offer or visa approval.
       </p>
-      <Button className="bg-[#2aaae0] rounded-full">Start Evaluation</Button>
+      <Button className="bg-[#2aaae0] rounded-full" onClick={() => (window.location.href = "get-started")}>Start Evaluation</Button>
     </section>
   );
 }
