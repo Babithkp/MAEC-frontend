@@ -191,15 +191,21 @@ export default function EvaluationForm() {
       evaluations: { timeline: false, page: false },
       education: { timeline: false, page: false },
       delivery: { timeline: false, page: false },
+      review: { timeline: false, page: false },
       pay: { timeline: false, page: false },
     });
   };
   const nextButtonHandler = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
     setPage({
       informaton: { timeline: true, page: false },
       evaluations: { timeline: true, page: false },
       education: { timeline: true, page: true },
       delivery: { timeline: false, page: false },
+      review: { timeline: false, page: false },
       pay: { timeline: false, page: false },
     });
   };
@@ -284,7 +290,6 @@ export default function EvaluationForm() {
           <div className="flex gap-5 text-center max-md:justify-center flex-wrap my-5">
             <Dialog>
               <DialogTrigger>
-                {" "}
                 <figure
                   className={`flex flex-col w-[14rem] h-[9rem] justify-center items-center p-5 gap-3 border active:bg-blue-50 ${
                     iseducation ? "bg-blue-50" : ""

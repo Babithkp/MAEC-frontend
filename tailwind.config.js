@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 // eslint-disable-next-line no-undef
 module.exports = {
+  daisyui: {
+    darkTheme: "light",
+   },
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',

@@ -12,14 +12,40 @@ import {
 import { RxCross2 } from "react-icons/rx";
 import { PiBuilding } from "react-icons/pi";
 import { Button } from "../../ui/button";
-import { countries } from "../../../store/context";
+import { countries, evalutonForm } from "../../../store/context";
 import { RiArrowRightSLine } from "react-icons/ri";
 import maeclogo from "../../../../public/maec_small_logo.jpg";
 import { IoPersonOutline } from "react-icons/io5";
+import { useSetRecoilState } from "recoil";
 
 const countryOptions = countries;
 
 export default function EducationForm() {
+  const setPage = useSetRecoilState(evalutonForm);
+  const nextButtonHandler = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
+    setPage({
+      informaton: { timeline: true, page: false },
+      evaluations: { timeline: true, page: false },
+      education: { timeline: true, page: false },
+      delivery: { timeline: true, page: true },
+      review: { timeline: false, page: false },
+      pay: { timeline: false, page: false },
+    });
+  };
+  const prevButtonHandler = () => {
+    setPage({
+      informaton: { timeline: true, page: false },
+      evaluations: { timeline: true, page: true },
+      education: { timeline: false, page: false },
+      delivery: { timeline: false, page: false },
+      review: { timeline: false, page: false },
+      pay: { timeline: false, page: false },
+    });
+  };
   return (
     <form className="px-10 max-md:px-2 flex flex-col gap-5 max-md:w-full w-[70%] md:border-l">
       <div className="flex flex-col gap-5">
@@ -60,12 +86,12 @@ export default function EducationForm() {
                   to type it in manually.
                 </p>
                 <div className="flex gap-10 justify-between flex-wrap ">
-                  <div className="border-b flex flex-col mb-5 gap-5 max-md:w-full w-[47%] ">
+                  <div className="flex flex-col gap-5 max-md:w-full w-[47%] ">
                     <label>
                       COUNTRY OF EDUCATION{" "}
                       <span className="text-red-500">*</span>
                     </label>
-                    <select className="focus:outline-none">
+                    <select className="focus:outline-none border-b pb-5">
                       <option></option>
                       {countryOptions.map((country) => (
                         <option key={country.value} value={country.value}>
@@ -79,7 +105,7 @@ export default function EducationForm() {
                       TYPE OF DIPLOMA / CERTIFICATE
                       <span className="text-red-500">*</span>
                     </label>
-                    <select className="focus:outline-none">
+                    <select className="focus:outline-none border-b pb-5">
                       <option></option>
                       <option>secondary/High School</option>
                       <option>Higher Education/university</option>
@@ -162,7 +188,6 @@ export default function EducationForm() {
                           type="radio"
                           name="radio"
                           className="border-black radio radio-info "
-                          defaultChecked
                         />
                         <label
                           className="w-full flex justify-between"
@@ -177,7 +202,6 @@ export default function EducationForm() {
                           type="radio"
                           name="radio"
                           className="border-black radio radio-info "
-                          defaultChecked
                         />
                         <label
                           className="w-full flex justify-between"
@@ -197,7 +221,6 @@ export default function EducationForm() {
                       type="radio"
                       name="radio-7"
                       className="border-black radio radio-info "
-                      defaultChecked
                     />
                     <label
                       className="w-full flex justify-between items-center"
@@ -224,7 +247,6 @@ export default function EducationForm() {
                       type="radio"
                       name="radio-7"
                       className="border-black radio radio-info "
-                      defaultChecked
                     />
                     <label
                       className="w-full flex justify-between items-center"
@@ -253,7 +275,6 @@ export default function EducationForm() {
                       type="radio"
                       name="radio-7"
                       className="border-black radio radio-info "
-                      defaultChecked
                     />
                     <label
                       className="w-full flex justify-between items-center"
@@ -296,6 +317,23 @@ export default function EducationForm() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      <div className="w-full justify-end flex mt-5 gap-5">
+        <Button
+        variant={"outline"}
+          className="border-[#2aaae0] font-bold rounded-full"
+          onClick={prevButtonHandler}
+          type="button"
+        >
+          Back
+        </Button>
+        <Button
+          className="bg-[#2aaae0] font-bold rounded-full"
+          onClick={nextButtonHandler}
+          type="button"
+        >
+          Next
+        </Button>
+      </div>
     </form>
   );
 }

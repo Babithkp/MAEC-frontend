@@ -5,6 +5,7 @@ import { atom } from "recoil";export const evalutonForm = atom({
     evaluations: { timeline: false, page: false },
     education: { timeline: false, page: false },
     delivery: { timeline: false, page: false },
+    review: { timeline: false, page: false },
     pay: { timeline: false, page: false },
   },
 });

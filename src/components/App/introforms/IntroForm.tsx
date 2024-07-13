@@ -3,6 +3,9 @@ import { useRecoilValue } from "recoil";
 import { evalutonForm } from "../../../store/context";
 import EvaluationForm from "./EvaluationForm";
 import EducationForm from "./EducationForm";
+import DelivaryOption from "./DelivaryOption";
+import Review from "./Review";
+import Pay from "./Pay";
 
 
 
@@ -47,6 +50,9 @@ export default function IntroForm() {
       {page.informaton.page && <InformationForm/>}
       {page.evaluations.page && <EvaluationForm/>}
       {page.education.page && <EducationForm/>}
+      {page.delivery.page && <DelivaryOption/>}
+      {page.review.page && <Review/>}
+      {page.pay.page && <Pay/>}
     </main>
   );
 }

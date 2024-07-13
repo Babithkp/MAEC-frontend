@@ -32,6 +32,7 @@ export default function InformationForm() {
       evaluations: { timeline: true, page: true },
       education: { timeline: false, page: false },
       delivery: { timeline: false, page: false },
+      review: { timeline: false, page: false },
       pay: { timeline: false, page: false },
     });
   };
