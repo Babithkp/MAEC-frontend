@@ -90,7 +90,7 @@ export default function EducationForm() {
         setCouseByCouseFileError(null);
         setIsloading(true);
         formdata.delete("files");
-        const newId = files[0].name + v4();
+        const newId = v4() + files[0].name;
         formdata.append("files", files[0], newId);
         await uploadPostDoc(formdata);
         setIsloading(false);
@@ -115,7 +115,7 @@ export default function EducationForm() {
         setacademicError(null);
         setIsloading(true);
         formdata.delete("files");
-        const newId = files[0].name + v4();
+        const newId = v4() + files[0].name;
         formdata.append("files", files[0], newId);
         await uploadPostDoc(formdata);
         setIsloading(false);
@@ -143,7 +143,7 @@ export default function EducationForm() {
         setdocumentError(null);
         setIsloading(true);
         formdata.delete("files");
-        const newId = files[0].name + v4();
+        const newId = v4() + files[0].name;
         formdata.append("files", files[0], newId);
         await uploadPostDoc(formdata);
         setIsloading(false);
@@ -289,7 +289,7 @@ export default function EducationForm() {
                   className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                   key={i}
                 >
-                  {doc.substring(0, 20)}
+                  {doc.substring(36)}
                 </span>
               ))}
             </div>
@@ -304,7 +304,7 @@ export default function EducationForm() {
                   className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                   key={i}
                 >
-                  {doc.substring(0, 20)}
+                  {doc.substring(36)}
                 </span>
               ))}
             </div>
@@ -319,7 +319,7 @@ export default function EducationForm() {
                   className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                   key={i}
                 >
-                  {doc.substring(0, 20)}
+                  {doc.substring(36)}
                 </span>
               ))}
             </div>
@@ -370,7 +370,7 @@ export default function EducationForm() {
                           className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                           key={i}
                         >
-                          {doc.substring(0, 20)}
+                          {doc.substring(36)}
                           <Button
                             variant={"secondary"}
                             className="p-0 rounded-full w-5 h-5"
@@ -422,7 +422,7 @@ export default function EducationForm() {
                           className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                           key={i}
                         >
-                          {doc.substring(0, 20)}
+                          {doc.substring(36)}
                           <Button
                             variant={"secondary"}
                             className="p-0 rounded-full w-5 h-5"
@@ -474,7 +474,7 @@ export default function EducationForm() {
                           className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                           key={i}
                         >
-                          {doc.substring(0, 20)}
+                          {doc.substring(36)}
                           <Button
                             variant={"secondary"}
                             className="p-0 rounded-full w-5 h-5"

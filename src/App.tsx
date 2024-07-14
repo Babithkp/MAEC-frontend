@@ -4,7 +4,7 @@ import Home from "./components/App/home/Home";
 import Footer from "./components/nav-footer/Footer";
 import CreateAccount from "./components/App/logging/CreateAccount";
 import Login from "./components/App/logging/Login";
-// import Dashboard from "./components/App/Dashboard";
+import Dashboard from "./components/App/Dashboard";
 import Aboutus from "./components/App/Aboutus";
 import DocumentionReq from "./components/App/DocumentionReq";
 import Guidelines from "./components/App/Guidelines";
@@ -38,7 +38,7 @@ function App() {
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/failed" element={<PaymentFailed />} />
-          {/* <Route path="/adminDashboard" element={<Dashboard />} /> */}
+          <Route path="/adminDashboard" element={<Dashboard />} />
         </Routes>
       </RecoilRoot>
       <Footer />

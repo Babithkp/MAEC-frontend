@@ -577,7 +577,7 @@ export default function EvaluationForm() {
       {fetchError && (
         <p className="my-5 text-red-500 font-bold">{fetchError}</p>
       )}
-      <div className="w-full justify-end flex mt-5 gap-5">
+      <div className="w-full justify-end items-center flex mt-5 gap-5">
         <Button
           variant={"outline"}
           className="border-[#2aaae0] font-bold rounded-full"
