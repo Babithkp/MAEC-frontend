@@ -42,7 +42,7 @@ export default function Guidelines() {
           professional access, curriculum rigor, and contact hours as central to
           the equivalency determination.
         </p>
-        <ul className="ml-8 list-disc mt-5 max-md:text-start">
+        <ul className="ml-8 list-disc mt-5 max-md:text-start flex  flex-col gap-5">
           <li>
             <span className="text-xl font-bold text-black">
               Year-Counting:{" "}
@@ -77,27 +77,8 @@ export default function Guidelines() {
         <p className="text-2xl font-bold my-5 text-black mt-5">
           Types of Evaluations
         </p>
-        <ul className="ml-8 list-disc mt-5 max-md:text-start">
-          <li>
-            <span className="text-xl font-bold text-black">
-              Immigration Report{" "}
-            </span>
-            <p>
-              States the academic, professional, or vocational education
-              equivalency of the foreign credential. Postsecondary credentials
-              are evaluated using a year-counting approach.
-            </p>
-          </li>
-          <li>
-            <span className="text-xl font-bold text-black">
-              Military Report{" "}
-            </span>
-            <p>
-              States the academic, professional, or vocational education
-              equivalency of the foreign credential. Postsecondary credentials
-              are evaluated using a year-counting approach.
-            </p>
-          </li>
+        <ul className="ml-8 list-disc mt-5 max-md:text-start flex  flex-col gap-5">
+
           <li>
             <span className="text-xl font-bold text-black">
               Education Document Report
@@ -248,7 +229,7 @@ export default function Guidelines() {
           Progress), and IC (Incomplete) are not included in a GPA calculation.
         </p>
         <p className="text-2xl font-bold my-5 text-black mt-5">Example</p>
-        <ul className="ml-8 list-disc mt-5 max-md:text-start">
+        <ul className="ml-8 list-disc mt-5 max-md:text-start flex  flex-col gap-3">
           <li>3 credits with a grade of A (4.0) = 3 x 4 = 12 grade points</li>
           <li>6 credits with a grade of B (3.0) = 6 x 3 = 18 grade points</li>
           <li>2 credits with a grade of C (2.0) = 2 x 2 = 4 grade points</li>
@@ -263,8 +244,8 @@ export default function Guidelines() {
         <p className="text-2xl font-bold my-5 text-black mt-5">Extra Copies</p>
         <p>
           You may order an extra copy of your report at{" "}
-          <a href="http://www.MAEC.org" className="text-blue-500">
-            www.MAEC.org
+          <a href="http://www.MAEC.us" className="text-blue-500">
+            www.MAEC.us
           </a>
           . If your evaluation is older than 1 year a revision fee may apply. If
           your evaluation is older than 5 years, you must reapply for
@@ -276,10 +257,10 @@ export default function Guidelines() {
         <p>
           Please refer to:{" "}
           <a
-            href=" https://MAEC.org/documentation-requirements "
+            href=" https://MAEC.us/document-requirement "
             className="text-blue-500"
           >
-            https://MAEC.org/documentation-requirements
+            https://MAEC.org/document-requirement
           </a>{" "}
           These vary by country and report type. MAEC reserves the right to
           request additional academic records, official/original academic

@@ -1,10 +1,9 @@
 import reviewStart from "/count-review.svg";
 import reviewsimg from "/review3.svg";
-import { FaSortDown } from "react-icons/fa";
 import ieeLogo from "/maec_small_logo.jpg";
 export default function Transaction() {
   return (
-    <main className="flex flex-col items-center justify-center">
+    <main className="flex flex-col items-center justify-center mb-10">
       <section className="w-[90%] max-md:w-[100%] font-medium">
         <div className="p-5 flex flex-col gap-5">
           <h1 className="text-center text-4xl font-bold ">
@@ -16,19 +15,16 @@ export default function Transaction() {
           </p>
         </div>
         <div className="p-5 flex-col flex gap-5">
-          <p className="font-bold">
-            Academic transcript translation to English language: $20
-          </p>
-          <p className="font-bold">
-            Other legal and official documents translation to English language:
-            $20
-          </p>
-          <p>Translations in 5 days!</p>
-
           <p>
             Specialized in education and legel documents: Birth certificate,
             marriage certificate, licenses and employment contracts.
           </p>
+          <p className="font-bold">
+            Translation of academic documents, birth certificates, Marriage
+            certificates, and any other legal or official documents: 10 per
+            documents.
+          </p>
+          <p>Processing Time: 3 business days.</p>
         </div>
       </section>
       <section className="w-[50%] max-md:w-[90%] flex flex-col gap-10 items-center justify-center  my-10">
@@ -49,8 +45,8 @@ export default function Transaction() {
           />
         </div>
         <p className="text-center">
-          We care about your success! Partner with IEE today for your
-          translation needs, receive your 100% human translation tomorrow!
+          We care about your success! Contact MAEC today for your translation
+          needs, receive your 100% certified translation in no time!
         </p>
       </section>
       <section className="flex my-10 max-md:gap-5 justify-around max-md:flex-col max-md:items-center">
@@ -65,10 +61,6 @@ export default function Transaction() {
             who have trusted MAEC with their evaluation experience and want to
             share it with you.
           </p>
-          <a href="/" className="text-[#2aaae0] font-bold flex items-center ">
-            View more reviews{" "}
-            <FaSortDown className="text-[#2aaae0] rotate-[-90deg]" size={20} />
-          </a>
         </div>
         <div className="w-[50%] max-md:w-[90%] flex flex-col gap-5">
           <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
@@ -166,6 +158,16 @@ export default function Transaction() {
           </div>
         </div>
       </section>
+      <div>
+
+
+      <button
+        className="font-bold rounded-full bg-[#2aaae0] p-2 px-4 text-white"
+        onClick={() => (window.location.href = "get-started")}
+        >
+        Start Verification
+      </button>
+        </div>
     </main>
   );
 }

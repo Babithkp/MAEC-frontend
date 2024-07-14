@@ -1,4 +1,5 @@
-import MAEClogo from "../../../../public/maec_small_logo.jpg";import { Button } from "../../ui/button";
+import MAEClogo from "/maec_small_logo.jpg";
+import { Button } from "../../ui/button";
 export default function NeedAssistance() {
   return (
     <article className=" flex flex-col justify-center items-center w-full py-10 bg-[#f9fdff]">
@@ -14,12 +15,16 @@ export default function NeedAssistance() {
         <div className="gap-5 flex">
           <Button
             variant={"outline"}
-            className="font-bold rounded-full border-[#2aaae0]" onClick={() => (window.location.href = "contactus")}
+            className="font-bold rounded-full border-[#2aaae0]"
+            onClick={() => (window.location.href = "contactus")}
           >
             Contact Us
           </Button>
-          <Button className="font-bold rounded-full bg-[#2aaae0]" onClick={() => (window.location.href = "get-started")}>
-            Start Evalution
+          <Button
+            className="font-bold rounded-full bg-[#2aaae0]"
+            onClick={() => (window.location.href = "get-started")}
+          >
+            Start Verification
           </Button>
         </div>
       </div>

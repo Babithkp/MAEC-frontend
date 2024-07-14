@@ -1,5 +1,3 @@
-import { FaSortDown } from "react-icons/fa";
-import ieeLogo from "/maec_small_logo.jpg";
 import NeedAssistance from "./com/NeedAssistance";
 import { Button } from "../ui/button";
 export default function Verification() {
@@ -39,10 +37,9 @@ export default function Verification() {
               transcript.
             </li>
           </ul>
-
-            <p className="font-bold">Certificate Verification: $15.</p>
-            <p className="font-bold">Transcript Verification: $15.</p>
-          <p className="font-bold">How it works:</p>
+          <p className="font-bold my-1">Certificate Verification: $10.</p>
+          <p className="font-bold my-1">Transcript Verification: $10.</p>
+          <p className="font-bold my-1">How it works:</p>
           <ul className="ml-5 list-disc flex flex-col gap-3">
             <li>Create your account and login.</li>
             <li>
@@ -60,8 +57,8 @@ export default function Verification() {
           </div>
         </div>
       </section>
-      <section className="flex my-10 max-md:gap-5 justify-around max-md:flex-col max-md:items-center">
-        <div className="w-[20%] max-md:w-[90%] flex max-md:text-center flex-col gap-5 max-md:items-center">
+      <section className="flex my-10 max-md:gap-5 justify-center max-md:flex-col items-center">
+        <div className="w-[90%] flex text-center flex-col gap-5 items-center">
           <h5 className="text-4xl font-bold max-md:text-xl ">
             What our customers say about us
           </h5>
@@ -72,107 +69,6 @@ export default function Verification() {
             who have trusted MAEC with their evaluation experience and want to
             share it with you.
           </p>
-          <a href="/" className="text-[#2aaae0] font-bold flex items-center ">
-            View more reviews{" "}
-            <FaSortDown className="text-[#2aaae0] rotate-[-90deg]" size={20} />
-          </a>
-        </div>
-        <div className="w-[50%] max-md:w-[90%] flex flex-col gap-5">
-          <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
-            <div className="flex justify-start items-center flex-col gap-3">
-              <figure>
-                <img src={ieeLogo} className="rounded-full w-[5rem]" />
-              </figure>
-              <div className="rating rating-xs">
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-              </div>
-            </div>
-            <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
-              <p className="text-slate-600 ">
-                I recently used International Education Evaluations for a
-                foreign credential evaluation, and I was very impressed with
-                their service. The entire process was smooth and efficient.
-              </p>
-              <p className="text-2xl font-bold">Sandra</p>
-            </div>
-          </div>
-          <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
-            <div className="flex justify-start items-center flex-col gap-3">
-              <figure>
-                <img src={ieeLogo} className="rounded-full w-[5rem]" />
-              </figure>
-              <div className="rating rating-xs">
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-              </div>
-            </div>
-            <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
-              <p className="text-slate-600">
-                Hello, My experience with your institution was very satisfying.
-                I reviewed many institutions, and among them, yours not only had
-                more reasonable prices but also prepared my certificate in a
-                relatively short time- Tank you.
-              </p>
-              <p className="text-2xl font-bold">sahar</p>
-            </div>
-          </div>
         </div>
       </section>
       <NeedAssistance />

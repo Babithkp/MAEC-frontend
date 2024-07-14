@@ -1,4 +1,6 @@
-import NeedAssistance from "./com/NeedAssistance";export default function Pricing() {
+import { Button } from "@mui/material";
+import MAEClogo from "/maec_small_logo.jpg";
+export default function Pricing() {
   return (
     <main className="flex flex-col justify-center items-center">
       <section className="w-[80%] text-center">
@@ -14,25 +16,50 @@ import NeedAssistance from "./com/NeedAssistance";export default function Pricin
                 Evaluation Report
               </div>
               <div className="bg-white w-full h-full rounded-tl-lg border flex justify-center items-center text-xl font-bold text-[#2aaae0]">
-                $25
+                $12
               </div>
 
               <div className="border-b font-bold p-5 w-full h-full flex justify-center items-center">
                 Verification Report
               </div>
               <div className="bg-white w-full h-full  border flex justify-center items-center text-xl font-bold text-[#2aaae0]">
-                $15
+                $10
               </div>
 
               <div className="border-b font-bold w-full p-5 h-full flex justify-center items-center">
                 Translation
               </div>
               <div className="bg-white w-full h-full  border flex justify-center items-center text-xl font-bold text-[#2aaae0]">
-                $20
+                $10
               </div>
             </div>
           </article>
-          <NeedAssistance />
+          <article className=" flex flex-col justify-center items-center w-full py-10 bg-[#f9fdff]">
+      <div className="w-[60%] max-md:w-[90%] justify-center items-center gap-7 flex flex-col text-center">
+        <img src={MAEClogo} alt="MAEC logo" className="w-[6rem]" />
+        <h4 className="text-4xl font-bold text-black max-md:text-2xl">
+          Need assistance?
+        </h4>
+        <p>
+          Our customer support team members are available to answer your
+          questions 24 hours a day via chat, phone and email!
+        </p>
+        <div className="gap-5 flex">
+          <Button
+            className="font-bold rounded-full border-[#2aaae0]"
+            onClick={() => (window.location.href = "contactus")}
+          >
+            Contact Us
+          </Button>
+          <Button
+            className="font-bold rounded-full bg-[#2aaae0]"
+            onClick={() => (window.location.href = "get-started")}
+          >
+            Start Evaluation
+          </Button>
+        </div>
+      </div>
+    </article>
         </div>
       </section>
     </main>

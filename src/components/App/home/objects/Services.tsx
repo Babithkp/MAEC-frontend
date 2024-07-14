@@ -1,4 +1,5 @@
-import { Button } from "../../../ui/button";import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { Button } from "../../../ui/button";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 export default function Services() {
   return (
@@ -48,7 +49,7 @@ export default function Services() {
             </div>
           </p>
           <p className="text-sm font-medium">
-            This a process that verifies the authenticity of your academic
+            This is a process that verifies the authenticity of your academic
             certificate and transcript.
           </p>
           <Button
@@ -60,7 +61,7 @@ export default function Services() {
         </div>
         <div className="flex flex-col border gap-10 p-10 pr-32 rounded-2xl relative max-md:p-8  max-md:w-[95%]">
           <p className="text-xl flex items-center max-md:text-lg gap-2">
-            Translations
+            English Translations
             <div
               className="tooltip  primary-content bg-white"
               data-tip="Word-for-word translation from one language to another"

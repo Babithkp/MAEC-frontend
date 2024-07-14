@@ -1,5 +1,4 @@
-import { useSetRecoilState } from "recoil";
-import { evalutonForm } from "../../../store/context";
+import { useSetRecoilState } from "recoil";import { evalutonForm } from "../../../store/context";
 import { Button } from "../../ui/button";
 import usImg from "/us.svg";
 import canadaImg from "/canada.svg";
@@ -213,7 +212,6 @@ export default function EvaluationForm() {
     setIsLoading(true);
     setFetchError(null);
     console.log(data);
-    
 
     if (data.courseByCourse || data.certificate || data.transcript) {
       if (localStorage.getItem("userId")) {
@@ -268,8 +266,8 @@ export default function EvaluationForm() {
           setValue("certificate", data.certificate);
           setValue("transcript", data.transcript);
           setValue("language", data.language);
-          if(data.language){
-            setOnlyEng(true)
+          if (data.language) {
+            setOnlyEng(true);
           }
         }
       }
@@ -515,7 +513,8 @@ export default function EvaluationForm() {
               onChange={alldocHandler}
             />
             <label htmlFor="tranallDoc">
-              Translated documents will be delivered via email once complete.
+              All my documents are in English or I already have certified
+              English translation.
             </label>
           </div>
           <div className="flex items-center gap-5">
@@ -533,7 +532,7 @@ export default function EvaluationForm() {
               <p>
                 Final translation will be delivered via email once complete.
               </p>
-              <p className="font-bold">$10 per page</p>
+              <p className="font-bold">$10 per document</p>
               <p>
                 Choose the language of the documents
                 <span className="text-red-500">*</span>
@@ -559,13 +558,18 @@ export default function EvaluationForm() {
             </p>
 
             <p>
-              <span className="font-bold">Transcript evaluation : </span>3 business days.
+              <span className="font-bold">Transcript Evaluation : </span>3
+              Business Days.
             </p>
             <p>
-              <span className="font-bold">Academic credentials verification:  </span>5 business days.
+              <span className="font-bold">
+                Academic Credentials Verification:{" "}
+              </span>
+              5 Business Days.
             </p>
             <p>
-              <span className="font-bold">Document Translation: </span>3 business days.
+              <span className="font-bold">Document Translation: </span>3
+              Business Days.
             </p>
           </div>
         </div>

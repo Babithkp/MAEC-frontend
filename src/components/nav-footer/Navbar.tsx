@@ -225,9 +225,9 @@ export default function Navbar() {
                         </div>
                         <div>
                           <a href="/guidelines" className="font-bold">
-                            Evalution Guldelines
+                          Evaluation Guidelines
                           </a>
-                          <p>Evalution Guldelines.</p>
+                          <p>Evaluation Guidelines.</p>
                         </div>
                       </AccordionContent>
                     </AccordionItem>

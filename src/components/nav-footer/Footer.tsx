@@ -39,9 +39,9 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-3">
           <p className="font-bold">Contact Us</p>
-          <a href="http://support@maec.us" className="text-blue-600 underline">
+          <p className="text-lg font-bold">
             support@maec.us
-          </a>
+          </p>
           <a href="/">
             <img src={rating} alt="rating" />
           </a>

@@ -241,14 +241,16 @@ export default function EducationForm() {
         const response = await getUserEvalutionById({ userId: userId });
         if (response.data.data) {
           const data = response.data.data;
+          console.log(data);
+          
           if (data.courseByCourse) {
             setisExist((prev) => ({ ...prev, courseByCourse: true }));
           }
           if (data.certificate) {
             setisExist((prev) => ({ ...prev, certificate: true }));
           }
-          if (data.courseByCourse) {
-            setisExist((prev) => ({ ...prev, courseByCourse: true }));
+          if (data.transcript) {
+            setisExist((prev) => ({ ...prev, transcript: true }));
           }
         }
       }
@@ -268,7 +270,7 @@ export default function EducationForm() {
           </li>
           <li>
             All documents uploaded on this portal will be processed for
-            evaluation, authentication and translation according to the
+            evaluation, authentication or translation according to the
             documents we have received.
           </li>
           <li>

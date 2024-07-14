@@ -12,7 +12,7 @@ export default function Contactus() {
             no time!
           </p>
         </div>
-        <div className="flex max-md:flex-col gap-5 max-md:w-[95%] w-[70%]">
+        <div className="flex flex-col gap-5 max-md:w-[95%] w-[70%]">
           <div className="flex flex-col gap-5">
             <div className="flex flex-col justify-center  p-5 gap-5 border rounded-3xl">
               <p className="font-bold">Customer Support:</p>

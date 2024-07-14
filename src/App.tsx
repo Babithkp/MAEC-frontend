@@ -15,6 +15,8 @@ import Verification from "./components/App/Verification";
 import IntroForm from "./components/App/introforms/IntroForm";
 import { RecoilRoot } from "recoil";
 import Contactus from "./components/App/Contactus";
+import PaymentSuccess from "./components/App/PaymentSuccess";
+import PaymentFailed from "./components/App/PaymentFailed";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
           <Route path="/verification" element={<Verification />} />
           <Route path="/get-started/Intro" element={<IntroForm />} />
           <Route path="/contactus" element={<Contactus />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/failed" element={<PaymentFailed />} />
         </Routes>
       </RecoilRoot>
       <Footer />

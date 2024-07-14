@@ -1,4 +1,4 @@
-import { FaSortDown } from "react-icons/fa";import ieeLogo from "/maec_small_logo.jpg";
+import ieeLogo from "/maec_small_logo.jpg";
 import NeedAssistance from "./com/NeedAssistance";
 import { Button } from "../ui/button";
 
@@ -28,7 +28,7 @@ export default function EvalutionService() {
             transcripts.
           </p>
           <p className="font-bold ">The Course-by-Course Evaluation Report contains:</p>
-          <ul className="ml-5 list-disc">
+          <ul className="ml-5 list-disc flex flex-col gap-3">
             <li>U.S. comparability of the foreign education credentials.</li>
             <li>
               A listing of all courses with the equivalent U.S. semester credits
@@ -38,7 +38,7 @@ export default function EvalutionService() {
             <li>U.S equivalent of final cumulative GPA.</li>
             <li>U.S. comparability of the foreign education credentials</li>
           </ul>
-          <p className="font-bold ">Course-By-Course Evaluation fee: $25</p>
+          <p className="font-bold ">Course-By-Course Evaluation fee: $12</p>
           <p className="font-bold mt-5">How it works:</p>
           <ul className="ml-5 list-disc">
             <li>Create your account and enter your information.</li>
@@ -65,10 +65,6 @@ export default function EvalutionService() {
           <h5 className="text-4xl font-bold max-md:text-xl ">
             What our customers say about us
           </h5>
-          <a href="/" className="text-[#2aaae0] font-bold flex items-center ">
-            View more reviews{" "}
-            <FaSortDown className="text-[#2aaae0] rotate-[-90deg]" size={20} />
-          </a>
         </div>
         <div className="w-[50%] max-md:w-[90%] flex flex-col gap-5">
           <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">

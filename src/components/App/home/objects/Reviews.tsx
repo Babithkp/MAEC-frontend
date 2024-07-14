@@ -1,4 +1,4 @@
-import { FaSortDown } from "react-icons/fa";import srudent1img from "/reviews/student1.jpg";
+import srudent1img from "/reviews/student1.jpg";
 import srudent2img from "/reviews/student2.jpg";
 
 export default function Reviews() {
@@ -15,10 +15,6 @@ export default function Reviews() {
           who have trusted MAEC with their evaluation experience and want to
           share it with you.
         </p>
-        <a href="/" className="text-[#2aaae0] font-bold flex items-center ">
-          View more reviews
-          <FaSortDown className="text-[#2aaae0] rotate-[-90deg]" size={20} />
-        </a>
       </div>
       <div className="w-[50%] max-md:w-[90%] flex flex-col gap-5">
         <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
