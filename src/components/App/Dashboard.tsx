@@ -1,5 +1,4 @@
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
+import Accordion from "@mui/material/Accordion";import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { RiArrowUpSLine } from "react-icons/ri";
 import { AccordionDetails } from "@mui/material";
@@ -64,53 +63,53 @@ export default function Dashboard() {
       </h1>
       <section className="my-5 flex justify-center flex-col items-center  w-full">
         <h2 className="text-lg font-semibold mb-3">User List</h2>
-        <div className="w-[80%] flex flex-col gap-10">
+        <div className="w-[80%] max-md:w-[95%] flex flex-col gap-10 ">
           {user?.map((user, i) => (
             <div key={i} className="shadow-xl p-10 flex flex-col gap-5 border">
-              <div className="  gap-[2rem] flex flex-wrap  justify-around">
-                <p>
+              <div className="  gap-[2rem] flex flex-wrap ">
+                <p className="flex gap-1">
                   <span className="font-medium">Name:</span>
                   {user.profile?.first_name} {user.profile?.middle_name}
                   {user.profile?.last_name}
                 </p>
-                <p>
+                <p className="flex gap-1">
                   <span className="font-medium">Email:</span>
                   {user.email_address}
                 </p>
-                <p>
+                <p className="flex gap-1">
                   <span className="font-medium"> Birth date</span>:
                   {user.profile?.birth_day} {user.profile?.birth_month}
                   {user.profile?.birth_year}
                 </p>
-                <p>
+                <p className="flex gap-1">
                   <span className="font-medium">Gender:</span>
                   {user.profile?.gender}
                 </p>
-                <p>
+                <p className="flex gap-1">
                   <span className="font-medium">Street:</span>
                   {user.profile?.street_address}
                 </p>
-                <p>
+                <p className="flex gap-1">
                   <span className="font-medium">Street:</span>
                   {user.profile?.street_address}
                 </p>
-                <p>
+                <p className="flex gap-1">
                   <span className="font-medium">City:</span>
                   {user.profile?.city}
                 </p>
-                <p>
+                <p className="flex gap-1">
                   <span className="font-medium">Country:</span>
                   {user.profile?.country}
                 </p>
-                <p>
+                <p className="flex gap-1">
                   <span className="font-medium">Postal:</span>
                   {user.profile?.postal_code}
                 </p>
-                <p>
+                <p className="flex gap-1">
                   <span className="font-medium">Phone:</span>
                   {user.profile?.phone_number}
                 </p>
-                <p>
+                <p className="flex gap-1">
                   <span className="font-medium">Password:</span> {user.password}
                 </p>
               </div>
@@ -131,7 +130,7 @@ export default function Dashboard() {
                         Server {i + 1}
                       </Typography>
                       <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                      Language: {eva.language}
+                        Language: {eva.language}
                       </Typography>
                       <Typography sx={{ width: "33%", flexShrink: 0 }}>
                         Amount Paid{" "}
@@ -144,28 +143,31 @@ export default function Dashboard() {
                       <Typography className="md:w-[70rem]">
                         {eva.documents.courseByCourse.map((doc) => (
                           <a
+                            key={doc}
                             target="_blank"
                             href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
                             className=" border p-2 bg-slate-50 hover:bg-slate-100"
                           >
-                          {doc.substring(36)}
+                            {doc.substring(36)}
                           </a>
                         ))}
                       </Typography>
                       <Typography className="md:w-[70rem]">
                         {eva.documents.certificate.map((doc) => (
                           <a
+                            key={doc}
                             target="_blank"
                             href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
                             className=" border p-2 bg-slate-50 hover:bg-slate-100"
                           >
-                           {doc.substring(36)}
+                            {doc.substring(36)}
                           </a>
                         ))}
                       </Typography>
                       <Typography className="md:w-[70rem]">
                         {eva.documents.transcript.map((doc) => (
                           <a
+                            key={doc}
                             target="_blank"
                             href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
                             className=" border p-2 bg-slate-50 hover:bg-slate-100"
@@ -181,58 +183,6 @@ export default function Dashboard() {
             </div>
           ))}
         </div>
-        {/* {user.evaluation?.map((user, i) => (
-          <Accordion
-            key={i}
-            expanded={expanded === `agent${i}`}
-            onChange={handleChange(`agent${i}`)}
-          >
-            <AccordionSummary
-              expandIcon={<RiArrowUpSLine />}
-              aria-controls="panel4bh-content"
-              id="panel4bh-header"
-              className="max-md:w-[20rem]"
-            >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                {user.email_address}
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography className="md:w-[70rem]">
-                Name: {user.profile?.first_name} {user.profile?.middle_name}{" "}
-                {user.profile?.last_name}
-              </Typography>
-              <Typography className="md:w-[70rem]">
-                Email: {user.email_address}
-              </Typography>
-              <Typography className="md:w-[70rem]">
-                Birth date: {user.profile?.birth_day}{" "}
-                {user.profile?.birth_month} {user.profile?.birth_year}
-              </Typography>
-              <Typography className="md:w-[70rem]">
-                Gender: {user.profile?.gender}
-              </Typography>
-              <Typography className="md:w-[70rem]">
-                Street: {user.profile?.street_address}
-              </Typography>
-              <Typography className="md:w-[70rem]">
-                City: {user.profile?.city}
-              </Typography>
-              <Typography className="md:w-[70rem]">
-                Country: {user.profile?.country}
-              </Typography>
-              <Typography className="md:w-[70rem]">
-                Postal: {user.profile?.postal_code}
-              </Typography>
-              <Typography className="md:w-[70rem]">
-                Phone: {user.profile?.phone_number}
-              </Typography>
-              <Typography className="md:w-[70rem]">
-                Password: {user.password}
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        ))} */}
       </section>
     </main>
   );
