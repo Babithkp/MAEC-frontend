@@ -1,4 +1,5 @@
-import Backdrop from "@mui/material/Backdrop";import {
+import Backdrop from "@mui/material/Backdrop";
+import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -16,20 +17,30 @@ import { v4 } from "uuid";
 import { useSetRecoilState } from "recoil";
 import { evalutonForm } from "../../../store/context";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { addDocuments, getDocumentByUserId, uploadPostDoc } from "../../../http/fetch";
+import {
+  addDocuments,
+  getDocumentByUserId,
+  getUserEvalutionById,
+  uploadPostDoc,
+} from "../../../http/fetch";
 import { CircularProgress } from "@mui/material";
 
 interface Documents {
   courseByCourse: string[];
-  academicCredentail: string[];
-  translation: string[];
+  certificate: string[];
+  transcript: string[];
   userId: string | null;
+}
+interface DocumentsIsExisting {
+  courseByCourse: boolean;
+  certificate: boolean;
+  transcript: boolean;
 }
 
 interface DocumentsErrorType {
   courseByCourse: boolean;
-  academicCredentail: boolean;
-  translation: boolean;
+  certificate: boolean;
+  transcript: boolean;
 }
 
 export default function EducationForm() {
@@ -47,20 +58,19 @@ export default function EducationForm() {
   const setPage = useSetRecoilState(evalutonForm);
   const [dataStorage, setDataStorage] = useState<Documents>({
     courseByCourse: [],
-    academicCredentail: [],
-    translation: [],
+    certificate: [],
+    transcript: [],
     userId: "",
   });
   const [overloadmsg, setOverloadmsg] = useState<DocumentsErrorType>({
     courseByCourse: false,
-    academicCredentail: false,
-    translation: false,
+    certificate: false,
+    transcript: false,
   });
-  const [fileName, setFileName] = useState<Documents>({
-    courseByCourse: [],
-    academicCredentail: [],
-    translation: [],
-    userId: "",
+  const [isExist, setisExist] = useState<DocumentsIsExisting>({
+    courseByCourse: false,
+    certificate: false,
+    transcript: false,
   });
   const formdata = new FormData();
 
@@ -84,10 +94,6 @@ export default function EducationForm() {
         formdata.append("files", files[0], newId);
         await uploadPostDoc(formdata);
         setIsloading(false);
-        setFileName((prev) => ({
-          ...prev,
-          courseByCourse: [...prev.courseByCourse, files[0].name],
-        }));
         setDataStorage((prev) => ({
           ...prev,
           courseByCourse: [...prev.courseByCourse, newId],
@@ -96,8 +102,8 @@ export default function EducationForm() {
     }
   };
   const acdemicinputHandler = async (event: ChangeEvent<HTMLInputElement>) => {
-    if (dataStorage.academicCredentail.length >= 3) {
-      setOverloadmsg((prev) => ({ ...prev, academicCredentail: true }));
+    if (dataStorage.certificate.length >= 3) {
+      setOverloadmsg((prev) => ({ ...prev, certificate: true }));
       return;
     }
     const files = event.target.files;
@@ -113,13 +119,10 @@ export default function EducationForm() {
         formdata.append("files", files[0], newId);
         await uploadPostDoc(formdata);
         setIsloading(false);
-        setFileName((prev) => ({
-          ...prev,
-          academicCredentail: [...prev.academicCredentail, files[0].name],
-        }));
+
         setDataStorage((prev) => ({
           ...prev,
-          academicCredentail: [...prev.academicCredentail, newId],
+          certificate: [...prev.certificate, newId],
         }));
       }
     }
@@ -127,8 +130,8 @@ export default function EducationForm() {
   const docuTransInputHandler = async (
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    if (dataStorage.translation.length >= 3) {
-      setOverloadmsg((prev) => ({ ...prev, translation: true }));
+    if (dataStorage.transcript.length >= 3) {
+      setOverloadmsg((prev) => ({ ...prev, transcript: true }));
       return;
     }
     const files = event.target.files;
@@ -144,13 +147,10 @@ export default function EducationForm() {
         formdata.append("files", files[0], newId);
         await uploadPostDoc(formdata);
         setIsloading(false);
-        setFileName((prev) => ({
-          ...prev,
-          translation: [...prev.translation, files[0].name],
-        }));
+
         setDataStorage((prev) => ({
           ...prev,
-          translation: [...prev.translation, newId],
+          transcript: [...prev.transcript, newId],
         }));
       }
     }
@@ -158,37 +158,23 @@ export default function EducationForm() {
 
   const deleteSingleFileCourseBy = (index: number) => {
     const filteredOut = dataStorage.courseByCourse.filter((_, i) => i != index);
-    const filteredName = fileName.courseByCourse.filter((_, i) => i != index);
-
-    setFileName((prev) => ({ ...prev, courseByCourse: filteredName }));
     setDataStorage((prev) => ({ ...prev, courseByCourse: filteredOut }));
   };
   const deleteSingleFileAdamic = (index: number) => {
-    const filteredOut = dataStorage.academicCredentail.filter(
-      (_, i) => i != index
-    );
-    const filteredName = fileName.academicCredentail.filter(
-      (_, i) => i != index
-    );
-    setFileName((prev) => ({ ...prev, academicCredentail: filteredName }));
-    setDataStorage((prev) => ({ ...prev, academicCredentail: filteredOut }));
+    const filteredOut = dataStorage.certificate.filter((_, i) => i != index);
+    setDataStorage((prev) => ({ ...prev, certificate: filteredOut }));
   };
   const deleteSingleFiledDocTras = (index: number) => {
-    const filteredOut = dataStorage.translation.filter(
-      (_, i) => i != index
-    );
-    const filteredName = fileName.translation.filter(
-      (_, i) => i != index
-    );
-    setFileName((prev) => ({ ...prev, translation: filteredName }));
-    setDataStorage((prev) => ({ ...prev, translation: filteredOut }));
+    const filteredOut = dataStorage.transcript.filter((_, i) => i != index);
+
+    setDataStorage((prev) => ({ ...prev, transcript: filteredOut }));
   };
 
   const nextButtonHandler = async () => {
     if (
       dataStorage.courseByCourse.length > 0 ||
-      dataStorage.academicCredentail.length > 0 ||
-      dataStorage.translation.length > 0
+      dataStorage.certificate.length > 0 ||
+      dataStorage.transcript.length > 0
     ) {
       setButtonsLoading(true);
       try {
@@ -235,19 +221,40 @@ export default function EducationForm() {
     });
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetch = async () => {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
-        const response = await getDocumentByUserId({userId:userId});
-        if(response.data.data){
-          setDataStorage(response.data.data)
-          setFileName(response.data.data)
+        const response = await getDocumentByUserId({ userId: userId });
+        if (response.data.data) {
+          setDataStorage(response.data.data);
         }
       }
-    }
-    fetch()
-  },[])
+    };
+    fetch();
+  }, []);
+
+  useEffect(() => {
+    const fetch = async () => {
+      if (localStorage.getItem("userId")) {
+        const userId = localStorage.getItem("userId");
+        const response = await getUserEvalutionById({ userId: userId });
+        if (response.data.data) {
+          const data = response.data.data;
+          if (data.courseByCourse) {
+            setisExist((prev) => ({ ...prev, courseByCourse: true }));
+          }
+          if (data.certificate) {
+            setisExist((prev) => ({ ...prev, certificate: true }));
+          }
+          if (data.courseByCourse) {
+            setisExist((prev) => ({ ...prev, courseByCourse: true }));
+          }
+        }
+      }
+    };
+    fetch();
+  }, []);
 
   return (
     <section className="px-10 max-md:px-2 flex flex-col gap-5 max-md:w-full w-[70%] md:border-l">
@@ -255,20 +262,18 @@ export default function EducationForm() {
         <h2 className="font-bold text-lg">Your Education</h2>
         <p className="py-5 font-bold">Please add your credentials</p>
         <ul className="flex flex-col gap-5">
-          <li>Each individual must complete a separate MAEC application.</li>
           <li>
-            Credentials added for other individuals, e.g. a spouse, will not be
-            included in your MAEC evaluation report.
+            Here you can upload your academic credentials and other official
+            documents for evaluation, verification, and translation purposes.
           </li>
           <li>
-            MAEC does not evaluate occupational study, trade qualifications,
-            short-term professional development programs, or work experience.
+            All documents uploaded on this portal will be processed for
+            evaluation, authentication and translation according to the
+            documents we have received.
           </li>
           <li>
-            MyIEE does not evaluate credentials from any of the 50 US states or
-            the District of Columbia. US credentials may be added in this
-            section for educational background purposes only, but will not be
-            included on your MyIEE evaluation report.
+            Ensure that you upload the orginal scanned copies of your documents.
+            We do not accept pictures.
           </li>
         </ul>
       </div>
@@ -278,7 +283,7 @@ export default function EducationForm() {
           <div className="flex flex-col gap-3">
             <p className="font-bold">Course-by-Course Evaluation.</p>
             <div className="p-1 border w-full flex">
-              {fileName.courseByCourse.map((doc, i) => (
+              {dataStorage.courseByCourse.map((doc, i) => (
                 <span
                   className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                   key={i}
@@ -289,11 +294,11 @@ export default function EducationForm() {
             </div>
           </div>
         )}
-        {dataStorage.academicCredentail.length > 0 && (
+        {dataStorage.certificate.length > 0 && (
           <div className="flex flex-col gap-3 mt-5">
             <p className="font-bold">Academic credential verification.</p>
             <div className="p-1 border w-full flex">
-              {fileName.academicCredentail.map((doc, i) => (
+              {dataStorage.certificate.map((doc, i) => (
                 <span
                   className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                   key={i}
@@ -304,11 +309,11 @@ export default function EducationForm() {
             </div>
           </div>
         )}
-        {dataStorage.translation.length > 0 && (
+        {dataStorage.transcript.length > 0 && (
           <div className="flex flex-col gap-3 mt-5">
-            <p className="font-bold">Document Translation.</p>
+            <p className="font-bold">Document transcript.</p>
             <div className="p-1 border w-full flex">
-              {fileName.translation.map((doc, i) => (
+              {dataStorage.transcript.map((doc, i) => (
                 <span
                   className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                   key={i}
@@ -325,8 +330,8 @@ export default function EducationForm() {
         <AlertDialogTrigger className="w-full flex flex-col justify-start mt-10">
           <Button className="bg-[#2aaae0] font-bold rounded-full" type="button">
             {dataStorage.courseByCourse.length > 0 ||
-            dataStorage.academicCredentail.length > 0 ||
-            dataStorage.translation.length > 0
+            dataStorage.certificate.length > 0 ||
+            dataStorage.transcript.length > 0
               ? "Edit Documents"
               : "Add Documents"}
           </Button>
@@ -337,156 +342,162 @@ export default function EducationForm() {
               Add Credential <span className="text-red-500 ml-1">*</span>
             </AlertDialogTitle>
             <AlertDialogDescription className="text-start">
-              <div className="my-5">
-                <label className="text-sm font-semibold">
-                  Course-by-Course Evaluation.
-                </label>
-                <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
-                  <button
-                    type="button"
-                    className="bg-[#2aaae0] px-2 py-1 text-white"
-                    onClick={() => courseByRef.current?.click()}
-                  >
-                    Browse
-                  </button>
-                  <input
-                    type="file"
-                    className="w-full px-2 text-sm focus:outline-blue-400 hidden"
-                    placeholder=""
-                    ref={courseByRef}
-                    onChange={coursebyInputHandler}
-                    accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
-                  />
-                  <div className="w-full  flex flex-wrap gap-1">
-                    {fileName.courseByCourse.map((doc, i) => (
-                      <span
-                        className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
-                        key={i}
-                      >
-                        {doc.substring(0, 20)}
-                        <Button
-                          variant={"secondary"}
-                          className="p-0 rounded-full w-5 h-5"
-                          onClick={() => deleteSingleFileCourseBy(i)}
-                          type="button"
+              {isExist.courseByCourse && (
+                <div className="my-5">
+                  <label className="text-sm font-semibold">
+                    Course-by-Course Evaluation.
+                  </label>
+                  <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
+                    <button
+                      type="button"
+                      className="bg-[#2aaae0] px-2 py-1 text-white"
+                      onClick={() => courseByRef.current?.click()}
+                    >
+                      Browse
+                    </button>
+                    <input
+                      type="file"
+                      className="w-full px-2 text-sm focus:outline-blue-400 hidden"
+                      placeholder=""
+                      ref={courseByRef}
+                      onChange={coursebyInputHandler}
+                      accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
+                    />
+                    <div className="w-full  flex flex-wrap gap-1">
+                      {dataStorage.courseByCourse.map((doc, i) => (
+                        <span
+                          className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
+                          key={i}
                         >
-                          <RxCrossCircled className="w-full h-full" />
-                        </Button>
-                      </span>
-                    ))}
+                          {doc.substring(0, 20)}
+                          <Button
+                            variant={"secondary"}
+                            className="p-0 rounded-full w-5 h-5"
+                            onClick={() => deleteSingleFileCourseBy(i)}
+                            type="button"
+                          >
+                            <RxCrossCircled className="w-full h-full" />
+                          </Button>
+                        </span>
+                      ))}
+                    </div>
                   </div>
+                  {courseByCourseError && (
+                    <span className="text-red-500 text-sm font-medium mt-2">
+                      {courseByCourseError}
+                    </span>
+                  )}
+                  {overloadmsg.courseByCourse && (
+                    <span className=" text-sm font-medium  text-red-500">
+                      Maxmium File Count Exceeded
+                    </span>
+                  )}
                 </div>
-                {courseByCourseError && (
-                  <span className="text-red-500 text-sm font-medium mt-2">
-                    {courseByCourseError}
-                  </span>
-                )}
-                {overloadmsg.courseByCourse && (
-                  <span className=" text-sm font-medium  text-red-500">
-                    Maxmium File Count Exceeded
-                  </span>
-                )}
-              </div>
-              <div className="my-5">
-                <label className="text-sm font-semibold">
-                  Academic credential verification.
-                </label>
-                <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
-                  <button
-                    type="button"
-                    className="bg-[#2aaae0] px-2 py-1 text-white"
-                    onClick={() => academicRef.current?.click()}
-                  >
-                    Browse
-                  </button>
-                  <input
-                    type="file"
-                    className="w-full px-2 text-sm focus:outline-blue-400 hidden"
-                    placeholder=""
-                    ref={academicRef}
-                    onChange={acdemicinputHandler}
-                    accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
-                  />
-                  <div className="w-full  flex flex-wrap gap-1">
-                    {fileName.academicCredentail.map((doc, i) => (
-                      <span
-                        className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
-                        key={i}
-                      >
-                        {doc.substring(0, 20)}
-                        <Button
-                          variant={"secondary"}
-                          className="p-0 rounded-full w-5 h-5"
-                          onClick={() => deleteSingleFileAdamic(i)}
-                          type="button"
+              )}
+              {isExist.certificate && (
+                <div className="my-5">
+                  <label className="text-sm font-semibold">
+                    Academic credential verification.
+                  </label>
+                  <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
+                    <button
+                      type="button"
+                      className="bg-[#2aaae0] px-2 py-1 text-white"
+                      onClick={() => academicRef.current?.click()}
+                    >
+                      Browse
+                    </button>
+                    <input
+                      type="file"
+                      className="w-full px-2 text-sm focus:outline-blue-400 hidden"
+                      placeholder=""
+                      ref={academicRef}
+                      onChange={acdemicinputHandler}
+                      accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
+                    />
+                    <div className="w-full  flex flex-wrap gap-1">
+                      {dataStorage.certificate.map((doc, i) => (
+                        <span
+                          className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
+                          key={i}
                         >
-                          <RxCrossCircled className="w-full h-full" />
-                        </Button>
-                      </span>
-                    ))}
+                          {doc.substring(0, 20)}
+                          <Button
+                            variant={"secondary"}
+                            className="p-0 rounded-full w-5 h-5"
+                            onClick={() => deleteSingleFileAdamic(i)}
+                            type="button"
+                          >
+                            <RxCrossCircled className="w-full h-full" />
+                          </Button>
+                        </span>
+                      ))}
+                    </div>
                   </div>
+                  {academicError && (
+                    <span className="text-red-500 text-sm font-medium mt-2">
+                      {academicError}
+                    </span>
+                  )}
+                  {overloadmsg.certificate && (
+                    <span className=" text-sm font-medium  text-red-500">
+                      Maxmium File Count Exceeded
+                    </span>
+                  )}
                 </div>
-                {academicError && (
-                  <span className="text-red-500 text-sm font-medium mt-2">
-                    {academicError}
-                  </span>
-                )}
-                {overloadmsg.academicCredentail && (
-                  <span className=" text-sm font-medium  text-red-500">
-                    Maxmium File Count Exceeded
-                  </span>
-                )}
-              </div>
-              <div className="my-5 ">
-                <label className="text-sm font-semibold">
-                  Document Translation
-                </label>
-                <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
-                  <button
-                    type="button"
-                    className="bg-[#2aaae0] px-2 py-1 text-white"
-                    onClick={() => docTrasRef.current?.click()}
-                  >
-                    Browse
-                  </button>
-                  <input
-                    type="file"
-                    className="w-full px-2 text-sm focus:outline-blue-400 hidden"
-                    placeholder=""
-                    ref={docTrasRef}
-                    onChange={docuTransInputHandler}
-                    accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
-                  />
-                  <div className="w-full  flex flex-wrap gap-1">
-                    {fileName.translation.map((doc, i) => (
-                      <span
-                        className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
-                        key={i}
-                      >
-                        {doc.substring(0, 20)}
-                        <Button
-                          variant={"secondary"}
-                          className="p-0 rounded-full w-5 h-5"
-                          onClick={() => deleteSingleFiledDocTras(i)}
-                          type="button"
+              )}
+              {isExist.transcript && (
+                <div className="my-5 ">
+                  <label className="text-sm font-semibold">
+                    Document transcript
+                  </label>
+                  <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
+                    <button
+                      type="button"
+                      className="bg-[#2aaae0] px-2 py-1 text-white"
+                      onClick={() => docTrasRef.current?.click()}
+                    >
+                      Browse
+                    </button>
+                    <input
+                      type="file"
+                      className="w-full px-2 text-sm focus:outline-blue-400 hidden"
+                      placeholder=""
+                      ref={docTrasRef}
+                      onChange={docuTransInputHandler}
+                      accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
+                    />
+                    <div className="w-full  flex flex-wrap gap-1">
+                      {dataStorage.transcript.map((doc, i) => (
+                        <span
+                          className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
+                          key={i}
                         >
-                          <RxCrossCircled className="w-full h-full" />
-                        </Button>
-                      </span>
-                    ))}
+                          {doc.substring(0, 20)}
+                          <Button
+                            variant={"secondary"}
+                            className="p-0 rounded-full w-5 h-5"
+                            onClick={() => deleteSingleFiledDocTras(i)}
+                            type="button"
+                          >
+                            <RxCrossCircled className="w-full h-full" />
+                          </Button>
+                        </span>
+                      ))}
+                    </div>
                   </div>
+                  {documentError && (
+                    <span className="text-red-500 text-sm font-medium mt-2">
+                      {documentError}
+                    </span>
+                  )}
+                  {overloadmsg.transcript && (
+                    <span className=" text-sm font-medium  text-red-500">
+                      Maxmium File Count Exceeded
+                    </span>
+                  )}
                 </div>
-                {documentError && (
-                  <span className="text-red-500 text-sm font-medium mt-2">
-                    {documentError}
-                  </span>
-                )}
-                {overloadmsg.translation && (
-                  <span className=" text-sm font-medium  text-red-500">
-                    Maxmium File Count Exceeded
-                  </span>
-                )}
-              </div>
+              )}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

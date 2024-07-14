@@ -1,32 +1,34 @@
-import { TiSocialFacebook } from "react-icons/ti";import ieeLogo from "/maec_full_logo.jpg";
+import { TiSocialFacebook } from "react-icons/ti";
+import ieeLogo from "/maec_full_logo.jpg";
 import rating from "/rating.png";
 import { Button } from "../ui/button";
 import { FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
-
 export default function Footer() {
   const [isOnSignup, setIsOnSignup] = useState(false);
 
   useEffect(() => {
-    
-    if (window.location.pathname === "/get-started" || window.location.pathname === "/loggingIn") {
+    if (
+      window.location.pathname === "/get-started" ||
+      window.location.pathname === "/loggingIn"
+    ) {
       setIsOnSignup(true);
     } else {
       setIsOnSignup(false);
     }
   }, []);
   return (
-    <footer className={`${isOnSignup ? "hidden" :""}`}>
+    <footer className={`${isOnSignup ? "hidden" : ""}`}>
       <div className={`grid px-5 md:grid-cols-5 text-sm py-10 max-md:gap-10 `}>
         <div className="flex flex-col gap-10">
           <a href="/">
             <img src={ieeLogo} alt="iee logo" className="w-[10rem]" />
           </a>
-          <a href="/aboutus">About us</a>
         </div>
         <div className="flex flex-col gap-3">
-          <p className="font-bold">Credentail evaluation</p>
+          <a href="/aboutus">About us</a>
+          <p className="font-bold">Credential evaluation</p>
           <a href="/pricing">Fees</a>
           <a href="/get-started">Apply Now</a>
           <a href="/get-started">My account</a>
@@ -37,7 +39,9 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-3">
           <p className="font-bold">Contact Us</p>
-          <a href="http://support@maec.us"  className="text-blue-600 underline">support@maec.us</a>
+          <a href="http://support@maec.us" className="text-blue-600 underline">
+            support@maec.us
+          </a>
           <a href="/">
             <img src={rating} alt="rating" />
           </a>
@@ -79,13 +83,11 @@ export default function Footer() {
           </li>
           <li>
             <a href="/" className="underline hover:text-white">
-
               Cookie Policy
             </a>
           </li>
           <li>
             <a href="/" className="underline hover:text-white">
-
               Terms And Conditions
             </a>
           </li>

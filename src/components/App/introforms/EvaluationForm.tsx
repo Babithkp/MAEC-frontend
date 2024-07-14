@@ -1,4 +1,5 @@
-import { useSetRecoilState } from "recoil";import { evalutonForm } from "../../../store/context";
+import { useSetRecoilState } from "recoil";
+import { evalutonForm } from "../../../store/context";
 import { Button } from "../../ui/button";
 import usImg from "/us.svg";
 import canadaImg from "/canada.svg";
@@ -21,7 +22,7 @@ import { addEvalutions, getUserEvalutionById } from "../../../http/fetch";
 interface FormValues {
   courseByCourse: number;
   certificate: number;
-  transcripte: number;
+  transcript: number;
   language: string;
   userId: string | null;
 }
@@ -211,8 +212,10 @@ export default function EvaluationForm() {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setIsLoading(true);
     setFetchError(null);
+    console.log(data);
+    
 
-    if (data.courseByCourse || data.certificate || data.transcripte) {
+    if (data.courseByCourse || data.certificate || data.transcript) {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
         data.userId = userId;
@@ -227,10 +230,10 @@ export default function EvaluationForm() {
         } else {
           data.certificate = 0;
         }
-        if (data.transcripte) {
-          data.transcripte = 9;
+        if (data.transcript) {
+          data.transcript = 9;
         } else {
-          data.transcripte = 0;
+          data.transcript = 0;
         }
         try {
           const response = await addEvalutions(data);
@@ -263,8 +266,11 @@ export default function EvaluationForm() {
           const data = response.data.data;
           setValue("courseByCourse", data.courseByCourse);
           setValue("certificate", data.certificate);
-          setValue("transcripte", data.transcripte);
+          setValue("transcript", data.transcript);
           setValue("language", data.language);
+          if(data.language){
+            setOnlyEng(true)
+          }
         }
       }
     };
@@ -476,7 +482,7 @@ export default function EvaluationForm() {
                 id="verification"
                 type="checkbox"
                 className="checkbox checkbox-info [--chkfg:white]"
-                {...register("transcripte")}
+                {...register("transcript")}
               />
               <label
                 className="w-full flex justify-between"
@@ -529,7 +535,7 @@ export default function EvaluationForm() {
               </p>
               <p className="font-bold">$10 per page</p>
               <p>
-              Choose the language of the documents
+                Choose the language of the documents
                 <span className="text-red-500">*</span>
               </p>
               <select
@@ -552,11 +558,15 @@ export default function EvaluationForm() {
               Processing Time <span className="text-red-500">*</span>
             </p>
 
-            <p>Transcript evaluation : 3 business days.</p>
-
-            <p> Academic credentials verification: 5 business days.</p>
-
-            <p>Document Translation: 3 business days.</p>
+            <p>
+              <span className="font-bold">Transcript evaluation : </span>3 business days.
+            </p>
+            <p>
+              <span className="font-bold">Academic credentials verification:  </span>5 business days.
+            </p>
+            <p>
+              <span className="font-bold">Document Translation: </span>3 business days.
+            </p>
           </div>
         </div>
       </div>

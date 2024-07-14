@@ -1,5 +1,5 @@
 import blueMap from "/mapwithbluebackgroung.jpg";
-import logo from "../../../../../public/maec_full_logo.jpg"
+import logo from "/maec_full_logo.jpg"
 
 export default function Map() {
   return (

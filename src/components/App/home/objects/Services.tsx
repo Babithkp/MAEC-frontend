@@ -1,5 +1,4 @@
-import { Button } from "../../../ui/button";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { Button } from "../../../ui/button";import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 export default function Services() {
   return (
@@ -26,7 +25,10 @@ export default function Services() {
             courses and grades obtained at colleges and universities outside of
             the United States.
           </p>
-          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]" onClick={()=> window.location.href = "/evalutionService"}>
+          <Button
+            className="bg-[#2aaae0] font-bold rounded-full w-[8rem]"
+            onClick={() => (window.location.href = "/evalutionService")}
+          >
             Get Started
           </Button>
         </div>
@@ -49,7 +51,10 @@ export default function Services() {
             This a process that verifies the authenticity of your academic
             certificate and transcript.
           </p>
-          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]" onClick={()=>window.location.href = "/verification"}>
+          <Button
+            className="bg-[#2aaae0] font-bold rounded-full w-[8rem]"
+            onClick={() => (window.location.href = "/verification")}
+          >
             Get Started
           </Button>
         </div>
@@ -69,11 +74,13 @@ export default function Services() {
             </div>
           </p>
           <p className="text-sm font-medium">
-            The official certified translation of academic credentials from
-            another language to English.
+            The official certified translation of a document from one language
+            to English.
           </p>
-
-          <Button className="bg-[#2aaae0] font-bold rounded-full w-[8rem]" onClick={()=>window.location.href = "/transaction"}>
+          <Button
+            className="bg-[#2aaae0] font-bold rounded-full w-[8rem]"
+            onClick={() => (window.location.href = "/transaction")}
+          >
             Get Started
           </Button>
         </div>

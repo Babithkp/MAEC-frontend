@@ -9,7 +9,7 @@ export default function Application() {
           <p className="max-md:text-center">
             Getting your evaluation is easy with MAEC. Our streamlined digital
             process means you stay informed every step of the way and receive
-            your evaluation in 3 day or less!
+            your evaluation in 3 day!
           </p>
           <Button className="bg-[#2aaae0] rounded-full w-fit" onClick={() => (window.location.href = "get-started")}>Apply now</Button>
         </div>
