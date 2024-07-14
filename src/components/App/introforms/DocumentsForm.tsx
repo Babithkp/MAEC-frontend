@@ -1,5 +1,5 @@
-import Backdrop from "@mui/material/Backdrop";
-import {  AlertDialog,
+import Backdrop from "@mui/material/Backdrop";import {
+  AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
@@ -15,27 +15,30 @@ import { Button } from "../../ui/button";
 import { v4 } from "uuid";
 import { useSetRecoilState } from "recoil";
 import { evalutonForm } from "../../../store/context";
-import { ChangeEvent, useRef, useState } from "react";
-import { uploadPostDoc } from "../../../http/fetch";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { addDocuments, getDocumentByUserId, uploadPostDoc } from "../../../http/fetch";
 import { CircularProgress } from "@mui/material";
 
 interface Documents {
   courseByCourse: string[];
-  academicCredentials: string[];
-  documentTranslations: string[];
+  academicCredentail: string[];
+  translation: string[];
+  userId: string | null;
 }
 
 interface DocumentsErrorType {
   courseByCourse: boolean;
-  academicCredentials: boolean;
-  documentTranslations: boolean;
+  academicCredentail: boolean;
+  translation: boolean;
 }
 
 export default function EducationForm() {
   const courseByRef = useRef<HTMLInputElement | null>(null);
   const academicRef = useRef<HTMLInputElement | null>(null);
   const docTrasRef = useRef<HTMLInputElement | null>(null);
+  const [fetchError, setFetchError] = useState<string | null>(null);
   const [isLoading, setIsloading] = useState(false);
+  const [buttonsLoading, setButtonsLoading] = useState(false);
   const [courseByCourseError, setCouseByCouseFileError] = useState<
     null | string
   >(null);
@@ -44,18 +47,20 @@ export default function EducationForm() {
   const setPage = useSetRecoilState(evalutonForm);
   const [dataStorage, setDataStorage] = useState<Documents>({
     courseByCourse: [],
-    academicCredentials: [],
-    documentTranslations: [],
+    academicCredentail: [],
+    translation: [],
+    userId: "",
   });
   const [overloadmsg, setOverloadmsg] = useState<DocumentsErrorType>({
     courseByCourse: false,
-    academicCredentials: false,
-    documentTranslations: false,
+    academicCredentail: false,
+    translation: false,
   });
   const [fileName, setFileName] = useState<Documents>({
     courseByCourse: [],
-    academicCredentials: [],
-    documentTranslations: [],
+    academicCredentail: [],
+    translation: [],
+    userId: "",
   });
   const formdata = new FormData();
 
@@ -73,12 +78,12 @@ export default function EducationForm() {
         return;
       } else {
         setCouseByCouseFileError(null);
-        setIsloading(true)
+        setIsloading(true);
         formdata.delete("files");
-        const newId = v4() + files[0].name;
+        const newId = files[0].name + v4();
         formdata.append("files", files[0], newId);
-        await uploadPostDoc(formdata)
-        setIsloading(false)
+        await uploadPostDoc(formdata);
+        setIsloading(false);
         setFileName((prev) => ({
           ...prev,
           courseByCourse: [...prev.courseByCourse, files[0].name],
@@ -91,8 +96,8 @@ export default function EducationForm() {
     }
   };
   const acdemicinputHandler = async (event: ChangeEvent<HTMLInputElement>) => {
-    if (dataStorage.academicCredentials.length >= 3) {
-      setOverloadmsg((prev) => ({ ...prev, academicCredentials: true }));
+    if (dataStorage.academicCredentail.length >= 3) {
+      setOverloadmsg((prev) => ({ ...prev, academicCredentail: true }));
       return;
     }
     const files = event.target.files;
@@ -102,27 +107,28 @@ export default function EducationForm() {
         return;
       } else {
         setacademicError(null);
-        setIsloading(true)
+        setIsloading(true);
         formdata.delete("files");
-        const newId = v4() + files[0].name;
+        const newId = files[0].name + v4();
         formdata.append("files", files[0], newId);
-        await uploadPostDoc(formdata)
-        setIsloading(false)
+        await uploadPostDoc(formdata);
+        setIsloading(false);
         setFileName((prev) => ({
           ...prev,
-          academicCredentials: [...prev.academicCredentials, files[0].name],
+          academicCredentail: [...prev.academicCredentail, files[0].name],
         }));
         setDataStorage((prev) => ({
           ...prev,
-          academicCredentials: [...prev.academicCredentials, newId],
+          academicCredentail: [...prev.academicCredentail, newId],
         }));
       }
     }
-
   };
-  const docuTransInputHandler = async(event: ChangeEvent<HTMLInputElement>) => {
-    if (dataStorage.documentTranslations.length >= 3) {
-      setOverloadmsg((prev) => ({ ...prev, documentTranslations: true }));
+  const docuTransInputHandler = async (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    if (dataStorage.translation.length >= 3) {
+      setOverloadmsg((prev) => ({ ...prev, translation: true }));
       return;
     }
     const files = event.target.files;
@@ -132,19 +138,19 @@ export default function EducationForm() {
         return;
       } else {
         setdocumentError(null);
-        setIsloading(true)
+        setIsloading(true);
         formdata.delete("files");
-        const newId = v4() + files[0].name;
+        const newId = files[0].name + v4();
         formdata.append("files", files[0], newId);
-        await uploadPostDoc(formdata)
-        setIsloading(false)
+        await uploadPostDoc(formdata);
+        setIsloading(false);
         setFileName((prev) => ({
           ...prev,
-          documentTranslations: [...prev.documentTranslations, files[0].name],
+          translation: [...prev.translation, files[0].name],
         }));
         setDataStorage((prev) => ({
           ...prev,
-          documentTranslations: [...prev.documentTranslations, newId],
+          translation: [...prev.translation, newId],
         }));
       }
     }
@@ -153,34 +159,73 @@ export default function EducationForm() {
   const deleteSingleFileCourseBy = (index: number) => {
     const filteredOut = dataStorage.courseByCourse.filter((_, i) => i != index);
     const filteredName = fileName.courseByCourse.filter((_, i) => i != index);
+
     setFileName((prev) => ({ ...prev, courseByCourse: filteredName }));
     setDataStorage((prev) => ({ ...prev, courseByCourse: filteredOut }));
   };
   const deleteSingleFileAdamic = (index: number) => {
-    const filteredOut = dataStorage.academicCredentials.filter((_, i) => i != index);
-    const filteredName = fileName.academicCredentials.filter((_, i) => i != index);
-    setFileName((prev) => ({ ...prev, academicCredentials: filteredName }));
-    setDataStorage((prev) => ({ ...prev, academicCredentials: filteredOut }));
+    const filteredOut = dataStorage.academicCredentail.filter(
+      (_, i) => i != index
+    );
+    const filteredName = fileName.academicCredentail.filter(
+      (_, i) => i != index
+    );
+    setFileName((prev) => ({ ...prev, academicCredentail: filteredName }));
+    setDataStorage((prev) => ({ ...prev, academicCredentail: filteredOut }));
   };
   const deleteSingleFiledDocTras = (index: number) => {
-    const filteredOut = dataStorage.documentTranslations.filter((_, i) => i != index);
-    const filteredName = fileName.documentTranslations.filter((_, i) => i != index);
-    setFileName((prev) => ({ ...prev, documentTranslations: filteredName }));
-    setDataStorage((prev) => ({ ...prev, documentTranslations: filteredOut }));
+    const filteredOut = dataStorage.translation.filter(
+      (_, i) => i != index
+    );
+    const filteredName = fileName.translation.filter(
+      (_, i) => i != index
+    );
+    setFileName((prev) => ({ ...prev, translation: filteredName }));
+    setDataStorage((prev) => ({ ...prev, translation: filteredOut }));
   };
 
-  const nextButtonHandler = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-    setPage({
-      informaton: { timeline: true, page: false },
-      evaluations: { timeline: true, page: false },
-      education: { timeline: true, page: false },
-      pay: { timeline: true, page: true },
-    });
+  const nextButtonHandler = async () => {
+    if (
+      dataStorage.courseByCourse.length > 0 ||
+      dataStorage.academicCredentail.length > 0 ||
+      dataStorage.translation.length > 0
+    ) {
+      setButtonsLoading(true);
+      try {
+        if (localStorage.getItem("userId")) {
+          const userId = localStorage.getItem("userId");
+          dataStorage.userId = userId;
+          const response = await addDocuments(dataStorage);
+          if (response.data.message) {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+            setPage({
+              informaton: { timeline: true, page: false },
+              evaluations: { timeline: true, page: false },
+              education: { timeline: true, page: false },
+              pay: { timeline: true, page: true },
+            });
+          }
+        }
+        setButtonsLoading(false);
+      } catch (err) {
+        setFetchError("Something went wrong, please try again");
+        setTimeout(() => {
+          setFetchError(null);
+        }, 3000);
+      }
+    } else {
+      setFetchError("Upload your Files to Proceed");
+      setTimeout(() => {
+        setFetchError(null);
+      }, 3000);
+    }
+
+    setButtonsLoading(false);
   };
+
   const prevButtonHandler = () => {
     setPage({
       informaton: { timeline: true, page: false },
@@ -189,6 +234,21 @@ export default function EducationForm() {
       pay: { timeline: false, page: false },
     });
   };
+
+  useEffect(()=>{
+    const fetch = async () => {
+      if (localStorage.getItem("userId")) {
+        const userId = localStorage.getItem("userId");
+        const response = await getDocumentByUserId({userId:userId});
+        if(response.data.data){
+          setDataStorage(response.data.data)
+          setFileName(response.data.data)
+        }
+      }
+    }
+    fetch()
+  },[])
+
   return (
     <section className="px-10 max-md:px-2 flex flex-col gap-5 max-md:w-full w-[70%] md:border-l">
       <div className="flex flex-col gap-5">
@@ -213,20 +273,73 @@ export default function EducationForm() {
         </ul>
       </div>
 
+      <div>
+        {dataStorage.courseByCourse.length > 0 && (
+          <div className="flex flex-col gap-3">
+            <p className="font-bold">Course-by-Course Evaluation.</p>
+            <div className="p-1 border w-full flex">
+              {fileName.courseByCourse.map((doc, i) => (
+                <span
+                  className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
+                  key={i}
+                >
+                  {doc.substring(0, 20)}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        {dataStorage.academicCredentail.length > 0 && (
+          <div className="flex flex-col gap-3 mt-5">
+            <p className="font-bold">Academic credential verification.</p>
+            <div className="p-1 border w-full flex">
+              {fileName.academicCredentail.map((doc, i) => (
+                <span
+                  className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
+                  key={i}
+                >
+                  {doc.substring(0, 20)}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        {dataStorage.translation.length > 0 && (
+          <div className="flex flex-col gap-3 mt-5">
+            <p className="font-bold">Document Translation.</p>
+            <div className="p-1 border w-full flex">
+              {fileName.translation.map((doc, i) => (
+                <span
+                  className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
+                  key={i}
+                >
+                  {doc.substring(0, 20)}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
       <AlertDialog>
         <AlertDialogTrigger className="w-full flex flex-col justify-start mt-10">
           <Button className="bg-[#2aaae0] font-bold rounded-full" type="button">
-            Add Documents
+            {dataStorage.courseByCourse.length > 0 ||
+            dataStorage.academicCredentail.length > 0 ||
+            dataStorage.translation.length > 0
+              ? "Edit Documents"
+              : "Add Documents"}
           </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Add Credential</AlertDialogTitle>
+            <AlertDialogTitle>
+              Add Credential <span className="text-red-500 ml-1">*</span>
+            </AlertDialogTitle>
             <AlertDialogDescription className="text-start">
               <div className="my-5">
                 <label className="text-sm font-semibold">
                   Course-by-Course Evaluation.
-                  <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
                   <button
@@ -277,7 +390,6 @@ export default function EducationForm() {
               <div className="my-5">
                 <label className="text-sm font-semibold">
                   Academic credential verification.
-                  <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
                   <button
@@ -296,7 +408,7 @@ export default function EducationForm() {
                     accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
                   />
                   <div className="w-full  flex flex-wrap gap-1">
-                    {fileName.academicCredentials.map((doc, i) => (
+                    {fileName.academicCredentail.map((doc, i) => (
                       <span
                         className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                         key={i}
@@ -319,7 +431,7 @@ export default function EducationForm() {
                     {academicError}
                   </span>
                 )}
-                {overloadmsg.academicCredentials && (
+                {overloadmsg.academicCredentail && (
                   <span className=" text-sm font-medium  text-red-500">
                     Maxmium File Count Exceeded
                   </span>
@@ -328,7 +440,6 @@ export default function EducationForm() {
               <div className="my-5 ">
                 <label className="text-sm font-semibold">
                   Document Translation
-                  <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
                   <button
@@ -347,7 +458,7 @@ export default function EducationForm() {
                     accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
                   />
                   <div className="w-full  flex flex-wrap gap-1">
-                    {fileName.documentTranslations.map((doc, i) => (
+                    {fileName.translation.map((doc, i) => (
                       <span
                         className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                         key={i}
@@ -370,7 +481,7 @@ export default function EducationForm() {
                     {documentError}
                   </span>
                 )}
-                {overloadmsg.documentTranslations && (
+                {overloadmsg.translation && (
                   <span className=" text-sm font-medium  text-red-500">
                     Maxmium File Count Exceeded
                   </span>
@@ -388,6 +499,9 @@ export default function EducationForm() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      {fetchError && (
+        <p className="my-5 text-red-500 font-bold">{fetchError}</p>
+      )}
       <div className="w-full justify-end flex mt-5 gap-5">
         <Button
           variant={"outline"}
@@ -402,7 +516,7 @@ export default function EducationForm() {
           onClick={nextButtonHandler}
           type="button"
         >
-          Next
+          {buttonsLoading ? <CircularProgress color="inherit" /> : "Next"}
         </Button>
       </div>
       <Backdrop

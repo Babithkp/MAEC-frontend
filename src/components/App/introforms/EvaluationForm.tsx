@@ -2,7 +2,7 @@ import { useSetRecoilState } from "recoil";import { evalutonForm } from "../../.
 import { Button } from "../../ui/button";
 import usImg from "/us.svg";
 import canadaImg from "/canada.svg";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import educationImg from "/formIcon/education.svg";
 import employmentImg from "/formIcon/employment.svg";
 import {
@@ -14,6 +14,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../../components/ui/dialog";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { CircularProgress } from "@mui/material";
+import { addEvalutions, getUserEvalutionById } from "../../../http/fetch";
+
+interface FormValues {
+  courseByCourse: number;
+  certificate: number;
+  transcripte: number;
+  language: string;
+  userId: string | null;
+}
 
 const languageList = [
   { value: "Afrikaans", name: "Afrikaans" },
@@ -133,13 +144,13 @@ export default function EvaluationForm() {
   const [iscanada, setIscanada] = useState(false);
   const [iseducation, setIseducation] = useState(false);
   const [isEmployee, setIsEmployee] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   const [educationOption, setEducationOption] = useState({
     Undergraduate: false,
     Graduate: false,
   });
-
-
 
   const employeeHandler = () => {
     setIseducation(false);
@@ -156,7 +167,6 @@ export default function EvaluationForm() {
       Graduate: true,
     });
   };
- 
 
   const usaHandler = () => {
     setIscanada(false);
@@ -197,10 +207,75 @@ export default function EvaluationForm() {
     });
   };
 
+  const { register, handleSubmit, setValue } = useForm<FormValues>();
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    setIsLoading(true);
+    setFetchError(null);
 
+    if (data.courseByCourse || data.certificate || data.transcripte) {
+      if (localStorage.getItem("userId")) {
+        const userId = localStorage.getItem("userId");
+        data.userId = userId;
+
+        if (data.courseByCourse) {
+          data.courseByCourse = 12;
+        } else {
+          data.courseByCourse = 0;
+        }
+        if (data.certificate) {
+          data.certificate = 9;
+        } else {
+          data.certificate = 0;
+        }
+        if (data.transcripte) {
+          data.transcripte = 9;
+        } else {
+          data.transcripte = 0;
+        }
+        try {
+          const response = await addEvalutions(data);
+          if (response.data.message) {
+            nextButtonHandler();
+          }
+        } catch (err) {
+          setFetchError("Something went wrong, please try again");
+          setTimeout(() => {
+            setFetchError(null);
+          }, 5000);
+        }
+      } else {
+        window.location.href = "/get-started";
+      }
+    } else {
+      setFetchError("Please Select a course or certificate");
+      setIsLoading(false);
+    }
+
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    const fetch = async () => {
+      if (localStorage.getItem("userId")) {
+        const userId = localStorage.getItem("userId");
+        const response = await getUserEvalutionById({ userId: userId });
+        if (response.data.data) {
+          const data = response.data.data;
+          setValue("courseByCourse", data.courseByCourse);
+          setValue("certificate", data.certificate);
+          setValue("transcripte", data.transcripte);
+          setValue("language", data.language);
+        }
+      }
+    };
+    fetch();
+  }, [setValue]);
 
   return (
-    <form className="px-10 max-md:px-2 flex flex-col gap-5 max-md:w-full w-[70%] md:border-l">
+    <form
+      className="px-10 max-md:px-2 flex flex-col gap-5 max-md:w-full w-[70%] md:border-l"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="flex flex-col gap-5">
         <h2 className="font-bold text-lg">Your Evaluation</h2>
         <p className="py-5 font-bold">
@@ -300,9 +375,9 @@ export default function EvaluationForm() {
                     </div>
                   </DialogDescription>
                   <DialogClose className="w-full justify-end flex">
-                    <Button className="bg-[#2aaae0] font-bold rounded-full">
+                    <p className="bg-[#2aaae0] p-2 rounded-full px-5 text-white">
                       Ok
-                    </Button>
+                    </p>
                   </DialogClose>
                 </DialogHeader>
               </DialogContent>
@@ -356,60 +431,12 @@ export default function EvaluationForm() {
                       </label>
                     </div>
                   </DialogDescription>
-                  <DialogClose className="w-full justify-end flex">
-                    <Button className="bg-[#2aaae0] font-bold rounded-full">
-                      Ok
-                    </Button>
+                  <DialogClose className="w-full justify-end flex bg-[#2aaae0] font-bold rounded-full">
+                    Ok
                   </DialogClose>
                 </DialogHeader>
               </DialogContent>
             </Dialog>
-          </div>
-        </div>
-      )}
-
-      {educationOption.Undergraduate && (
-        <div className="flex flex-col gap-5 border-t ">
-          <p className="mt-10 font-bold">
-            Select the type of report you need{" "}
-            <span className="text-red-500">*</span>
-          </p>
-          <div className="flex flex-col gap-10 mb-10">
-            <div className="flex items-center gap-5">
-              <input
-                id="abu"
-                type="radio"
-                name="radio-7"
-                className="border-black radio radio-info "
-              />
-              <label className="w-full flex justify-between" htmlFor="abu">
-                <p>Education Course Report</p> <p className="font-bold">$185</p>
-              </label>
-            </div>
-            <div className="flex items-center gap-5">
-              <input
-                id="wed"
-                type="radio"
-                name="radio-7"
-                className="border-black radio radio-info "
-              />
-              <label className="w-full flex justify-between" htmlFor="wed">
-                <p>Education Document + GPA Report</p>{" "}
-                <p className="font-bold">$130</p>
-              </label>
-            </div>
-            <div className="flex items-center gap-5">
-              <input
-                id="zxc"
-                type="radio"
-                name="radio-7"
-                className="border-black radio radio-info "
-              />
-              <label className="w-full flex justify-between" htmlFor="zxc">
-                <p> Education Document Report </p>{" "}
-                <p className="font-bold">$95</p>
-              </label>
-            </div>
           </div>
         </div>
       )}
@@ -425,8 +452,8 @@ export default function EvaluationForm() {
               <input
                 id="new"
                 type="checkbox"
-                name="radio-7"
                 className="checkbox checkbox-info [--chkfg:white] "
+                {...register("courseByCourse")}
               />
               <label className="w-full flex justify-between" htmlFor="new">
                 <p>Course-by-Course evaluation</p>{" "}
@@ -437,8 +464,8 @@ export default function EvaluationForm() {
               <input
                 id="courseby"
                 type="checkbox"
-                name="radio-7"
                 className="checkbox checkbox-info [--chkfg:white] "
+                {...register("certificate")}
               />
               <label className="w-full flex justify-between" htmlFor="courseby">
                 <p>Certificate Verification</p> <p className="font-bold">$9</p>
@@ -448,8 +475,8 @@ export default function EvaluationForm() {
               <input
                 id="verification"
                 type="checkbox"
-                name="radio-7"
                 className="checkbox checkbox-info [--chkfg:white]"
+                {...register("transcripte")}
               />
               <label
                 className="w-full flex justify-between"
@@ -462,44 +489,6 @@ export default function EvaluationForm() {
         </div>
       )}
 
-      {educationOption.Undergraduate && (
-        <div className="flex flex-col gap-5 border-t ">
-          <p className="mt-10 font-bold">
-            Do you need a verification report for your academic credentials?
-            <span className="text-red-500">*</span>
-          </p>
-          <div className="flex flex-col gap-10 mb-10">
-            <div className="flex items-center gap-5">
-              <input
-                id="yesemcore"
-                type="radio"
-                name="radio-0"
-                className="border-black radio radio-info "
-              />
-              <label
-                className="w-full flex justify-between"
-                htmlFor="yesemcore"
-              >
-                Yes
-              </label>
-            </div>
-            <div className="flex items-center gap-5">
-              <input
-                id="noemdogpa"
-                type="radio"
-                name="radio-0"
-                className="border-black radio radio-info "
-              />
-              <label
-                className="w-full flex justify-between"
-                htmlFor="noemdogpa"
-              >
-                No
-              </label>
-            </div>
-          </div>
-        </div>
-      )}
       <div className="flex flex-col gap-5 border-t ">
         <p className="py-5 font-bold">
           Translation Services
@@ -538,15 +527,15 @@ export default function EvaluationForm() {
               <p>
                 Final translation will be delivered via email once complete.
               </p>
-              <p className="font-bold">$20 per page</p>
+              <p className="font-bold">$10 per page</p>
               <p>
-                LANGUAGE OF THE DOCUMENTS{" "}
+              Choose the language of the documents
                 <span className="text-red-500">*</span>
               </p>
               <select
                 id="languages"
-                name="languages"
                 className="focus:outline-none w-full border-b py-3 "
+                {...register("language")}
               >
                 <option></option>
                 {languageList.map((country) => (
@@ -571,6 +560,9 @@ export default function EvaluationForm() {
           </div>
         </div>
       </div>
+      {fetchError && (
+        <p className="my-5 text-red-500 font-bold">{fetchError}</p>
+      )}
       <div className="w-full justify-end flex mt-5 gap-5">
         <Button
           variant={"outline"}
@@ -581,11 +573,10 @@ export default function EvaluationForm() {
           Back
         </Button>
         <Button
-          className="bg-[#2aaae0] font-bold rounded-full"
-          onClick={nextButtonHandler}
-          type="button"
+          className="bg-[#2aaae0]  rounded-full py-6 hover:bg-[#2aaae0]"
+          disabled={isLoading ? true : false}
         >
-          Next
+          {isLoading ? <CircularProgress color="inherit" /> : "Next"}
         </Button>
       </div>
     </form>

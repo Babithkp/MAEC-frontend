@@ -1,11 +1,18 @@
-import { Button } from "../ui/button";
-import webLogo from "/maec_full_logo.jpg";
+import { Button } from "../ui/button";import webLogo from "/maec_full_logo.jpg";
 import { TiSocialFacebook } from "react-icons/ti";
-import { FaLinkedinIn } from "react-icons/fa";
+import { FaLinkedinIn, FaSortDown } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../../components/ui/dropdown-menu";
 
 import {
   AlertDialog,
@@ -26,6 +33,14 @@ import {
 
 export default function Navbar() {
   const [isOnSignup, setIsOnSignup] = useState(false);
+  const [userName, setuserName] = useState<string | null>(null);
+
+  const logoutHandler = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("usermail");
+    window.location.reload();
+  };
 
   useEffect(() => {
     if (
@@ -37,6 +52,19 @@ export default function Navbar() {
       setIsOnSignup(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("usermail")) {
+      const userName = localStorage.getItem("usermail");
+      const name = userName?.split("@")[0];
+      if (name) {
+        setuserName(name);
+      }
+    } else {
+      setuserName(null);
+    }
+  }, []);
+
   return (
     <nav
       className={`flex p-8 w-full justify-between ${
@@ -73,19 +101,42 @@ export default function Navbar() {
           </li>
         </ul>
         <div className="flex gap-3">
-          <Button
-            className="rounded-full bg-[#2aaae0]"
-            onClick={() => (window.location.href = "get-started")}
-          >
-            Get Started
-          </Button>
-          <Button
-            variant={"outline"}
-            className="rounded-full border-[1px] border-black"
-            onClick={() => (window.location.href = "loggingIn")}
-          >
-            Login
-          </Button>
+          {!userName && (
+            <>
+              <Button
+                className="rounded-full bg-[#2aaae0]"
+                onClick={() => (window.location.href = "get-started")}
+              >
+                Get Started
+              </Button>
+              <Button
+                variant={"outline"}
+                className="rounded-full border-[1px] border-black"
+                onClick={() => (window.location.href = "loggingIn")}
+              >
+                Login
+              </Button>
+            </>
+          )}
+          {userName && (
+            <DropdownMenu>
+              <DropdownMenuTrigger className="bg-[#2aaae0] font-bold rounded-full text-white px-3 p-2 flex justify-center items-center">
+                {userName} <FaSortDown className=" pb-1" size={20} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => (window.location.href = "/get-started/Intro")}
+                >
+                  Evaluation
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={logoutHandler}>
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
         <div className="flex ">
           <Button variant={"ghost"} className="p-[2px] text-[#2aaae0]">
@@ -202,21 +253,45 @@ export default function Navbar() {
                   </Accordion>
                 </div>
               </AlertDialogDescription>
-              <div className="flex justify-center gap-5 pt-5">
-                <Button
-                  onClick={() => (window.location.href = "get-started")}
-                  className="bg-[#2aaae0] font-bold rounded-full"
-                >
-                  Get started
-                </Button>
-                <Button
-                  variant={"outline"}
-                  className="font-bold rounded-full"
-                  onClick={() => (window.location.href = "loggingIn")}
-                >
-                  Login
-                </Button>
-              </div>
+              {!userName && (
+                <div className="flex justify-center gap-5 pt-5">
+                  <Button
+                    onClick={() => (window.location.href = "get-started")}
+                    className="bg-[#2aaae0] font-bold rounded-full"
+                  >
+                    Get started
+                  </Button>
+                  <Button
+                    variant={"outline"}
+                    className="font-bold rounded-full"
+                    onClick={() => (window.location.href = "loggingIn")}
+                  >
+                    Login
+                  </Button>
+                </div>
+              )}
+
+              {userName && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="bg-[#2aaae0] font-bold rounded-full w-fit text-white px-3 ml-5 p-2 flex justify-center items-center">
+                    {userName} <FaSortDown className=" pb-1" size={20} />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      onClick={() =>
+                        (window.location.href = "/get-started/Intro")
+                      }
+                    >
+                      Evaluation
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={logoutHandler}>
+                      Logout
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
             </AlertDialogHeader>
             <AlertDialogFooter></AlertDialogFooter>
           </AlertDialogContent>

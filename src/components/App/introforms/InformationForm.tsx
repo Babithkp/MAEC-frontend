@@ -67,19 +67,18 @@ export default function InformationForm() {
       try {
         const response = await updateProfile(data);
         if (response) {
-          console.log(response);
           if (response.data.message) {
             nextButtonHandler();
           }
         }
       } catch (e) {
-        setFetchError("Wrong Password, Try again");
+        setFetchError("Something went wrong, please try again");
         setTimeout(() => {
           setFetchError(null);
         }, 5000);
       }
     } else {
-      window.location.href = "get-started";
+      window.location.href = "/get-started";
     }
     setIsLoading(false);
   };
@@ -108,7 +107,7 @@ export default function InformationForm() {
       }
     };
     fetch()
-  }, []);
+  }, [setValue]);
 
   return (
     <section className="md:px-10 flex flex-col gap-5 md:w-[70%] md:border-l">
@@ -298,7 +297,6 @@ export default function InformationForm() {
                 required
                 className="outline-none mb-5 active:bg-none"
                 {...register("phone_number")}
-                pattern="[0-9]{10}"
               />
             </div>
           </div>

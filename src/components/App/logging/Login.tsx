@@ -31,6 +31,7 @@ export default function Login() {
         if (response.data.message) {
           localStorage.setItem("token", response.data.token)
           localStorage.setItem("userId", response.data.userId)
+          localStorage.setItem("usermail", response.data.usermail)
           window.location.href = "/get-started/Intro";
           reset();
         } else if (response.data.admin) {
