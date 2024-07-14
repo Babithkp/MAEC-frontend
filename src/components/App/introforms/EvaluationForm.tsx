@@ -211,7 +211,6 @@ export default function EvaluationForm() {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setIsLoading(true);
     setFetchError(null);
-    console.log(data);
 
     if (data.courseByCourse || data.certificate || data.transcript) {
       if (localStorage.getItem("userId")) {
@@ -266,6 +265,7 @@ export default function EvaluationForm() {
           setValue("certificate", data.certificate);
           setValue("transcript", data.transcript);
           setValue("language", data.language);
+          underguaranteHandler()
           if (data.language) {
             setOnlyEng(true);
           }

@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button } from "../ui/button";
 import MAEClogo from "/maec_small_logo.jpg";
 export default function Pricing() {
   return (
@@ -46,6 +46,7 @@ export default function Pricing() {
         </p>
         <div className="gap-5 flex">
           <Button
+          variant={"outline"}
             className="font-bold rounded-full border-[#2aaae0]"
             onClick={() => (window.location.href = "contactus")}
           >

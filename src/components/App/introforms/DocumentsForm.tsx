@@ -241,7 +241,6 @@ export default function EducationForm() {
         const response = await getUserEvalutionById({ userId: userId });
         if (response.data.data) {
           const data = response.data.data;
-          console.log(data);
           
           if (data.courseByCourse) {
             setisExist((prev) => ({ ...prev, courseByCourse: true }));

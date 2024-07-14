@@ -3,7 +3,7 @@ import Map from "./objects/Map";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CircularProgress } from "@mui/material";
 import { userLogin } from "../../../http/fetch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface FormValues {
   email: string;
@@ -13,6 +13,15 @@ interface FormValues {
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState<string | null>(null);
+
+
+
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      window.location.href = "/";
+    }
+  }, []);
 
   const {
     register,

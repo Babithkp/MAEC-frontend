@@ -1,4 +1,5 @@
-import MAEClogo from "/maec_small_logo.jpg";import { Button } from "../ui/button";
+import MAEClogo from "/maec_small_logo.jpg";
+import { Button } from "../ui/button";
 export default function Guidelines() {
   return (
     <main className="flex justify-center flex-col items-center w-full text-lg max-md:text-base text-slate-600 font-medium">
@@ -78,7 +79,6 @@ export default function Guidelines() {
           Types of Evaluations
         </p>
         <ul className="ml-8 list-disc mt-5 max-md:text-start flex  flex-col gap-5">
-
           <li>
             <span className="text-xl font-bold text-black">
               Education Document Report
@@ -114,33 +114,6 @@ export default function Guidelines() {
               standard benchmarking approach is used by default, but receiving
               higher education institutions may opt-out and request
               year-counting evaluations exclusively.
-            </p>
-          </li>
-          <li>
-            <span className="text-xl font-bold text-black">
-              Divisional Education Report
-            </span>
-            <p>
-              States the equivalency of the foreign credential, as well as the
-              equivalent credits, grades, and GPA from the foreign transcript.
-              Specifies upper-division coursework from lower-division coursework
-              in bachelor degree programs. Postsecondary credentials are
-              evaluated using a year-counting approach.
-            </p>
-          </li>
-          <li>
-            <span className="text-xl font-bold text-black">
-              Licensure Report
-            </span>
-            <p>
-              States the equivalency of the foreign credential, as well as the
-              equivalent credits, grades, and GPA from the foreign transcript.
-              Coursework is organized into subject categories helpful for
-              licensing boards and agencies. The report may include additional
-              information regarding professional access. MAEC offers a general
-              licensure report, as well as specialized licensure reports for
-              accounting, teaching, and nursing. Postsecondary credentials are
-              evaluated using a year-counting approach.
             </p>
           </li>
         </ul>
@@ -260,7 +233,7 @@ export default function Guidelines() {
             href=" https://MAEC.us/document-requirement "
             className="text-blue-500"
           >
-            https://MAEC.org/document-requirement
+            https://MAEC.us/document-requirement
           </a>{" "}
           These vary by country and report type. MAEC reserves the right to
           request additional academic records, official/original academic
@@ -277,8 +250,8 @@ export default function Guidelines() {
           please consider setting up an account at no cost for your institution
           to receive electronic delivery of future reports from MAEC at Please
           refer to:{" "}
-          <a href="https://access.MAEC.org " className="text-blue-500">
-            https://access.MAEC.org
+          <a href="https://access.MAEC.us " className="text-blue-500">
+            https://access.MAEC.us
           </a>
           .
         </p>

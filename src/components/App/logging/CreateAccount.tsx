@@ -2,7 +2,7 @@ import { Button } from "../../ui/button";
 import { FaSortDown } from "react-icons/fa";
 import Map from "./objects/Map";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { createUser } from "../../../http/fetch";
 
@@ -17,7 +17,11 @@ export default function CreateAccount() {
   const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState<string | null>(null)
 
-  
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      window.location.href = "/";
+    }
+  }, []);
   const {
     register,
     handleSubmit,

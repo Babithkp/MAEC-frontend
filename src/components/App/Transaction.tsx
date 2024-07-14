@@ -1,6 +1,7 @@
 import reviewStart from "/count-review.svg";
 import reviewsimg from "/review3.svg";
 import ieeLogo from "/maec_small_logo.jpg";
+import { Button } from "../ui/button";
 export default function Transaction() {
   return (
     <main className="flex flex-col items-center justify-center mb-10">
@@ -9,19 +10,19 @@ export default function Transaction() {
           <h1 className="text-center text-4xl font-bold ">
             MAEC Translation Services.
           </h1>
-          <p className="text-center">
+          <p className="text-center ">
             Get your Non-English official documents translated into English
             language by our certified translation services.
           </p>
         </div>
-        <div className="p-5 flex-col flex gap-5">
-          <p>
-            Specialized in education and legel documents: Birth certificate,
+        <div className="p-5 flex-col flex gap-5 ">
+          <p className="capitalize">
+            Specialized in education and Legal documents: Birth certificate,
             marriage certificate, licenses and employment contracts.
           </p>
           <p className="font-bold">
             Translation of academic documents, birth certificates, Marriage
-            certificates, and any other legal or official documents: 10 per
+            certificates, and any other legal or official documents: $10 per
             documents.
           </p>
           <p>Processing Time: 3 business days.</p>
@@ -149,7 +150,7 @@ export default function Transaction() {
             </div>
             <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
               <p className="text-slate-600">
-                Like the way you evaluate and what you guys say is what you do .
+                Like the way you Translate and what you guys say is what you do .
                 Like for example you stated that you will sent my original
                 document back to me and you did. Thank you very much
               </p>
@@ -161,12 +162,12 @@ export default function Transaction() {
       <div>
 
 
-      <button
-        className="font-bold rounded-full bg-[#2aaae0] p-2 px-4 text-white"
+      <Button
+        className="font-bold rounded-full bg-[#2aaae0]"
         onClick={() => (window.location.href = "get-started")}
         >
-        Start Verification
-      </button>
+        Start Transaction
+      </Button>
         </div>
     </main>
   );
