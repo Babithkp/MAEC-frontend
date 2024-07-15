@@ -217,7 +217,7 @@ export default function Pay() {
           className="bg-[#2aaae0] font-bold rounded-full"
           onClick={nextButtonHandler}
           type="button"
-          disabled={isChecked ? true : false}
+          disabled={isLoading ? true : false}
         >
           {isLoading ? <CircularProgress color="inherit" /> : "Next"}
         </Button>
