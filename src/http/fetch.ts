@@ -37,3 +37,6 @@ export const getDocumentByUserId = async (file: unknown) => {
 export const getAllUserDetails = async () => {
   return await axios.get(`${vercelUrl}getAllUserDetails`);
 };
+export const makePayment = async (file:unknown) => {
+  return await axios.post(`${vercelUrl}makePayment`,file);
+};

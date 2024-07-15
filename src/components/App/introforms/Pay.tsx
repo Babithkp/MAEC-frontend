@@ -2,7 +2,8 @@ import { useSetRecoilState } from "recoil";
 import { Button } from "../../ui/button";
 import { evalutonForm } from "../../../store/context";
 import { ChangeEvent, useEffect, useState } from "react";
-import { getDocumentByUserId } from "../../../http/fetch";
+import { getDocumentByUserId, makePayment } from "../../../http/fetch";
+import { CircularProgress } from "@mui/material";
 
 interface DocumentRate {
   courseByCourse: number;
@@ -15,11 +16,19 @@ interface DocumentQuantity {
   transcript: string[];
 }
 
+interface PaymentItemType {
+  name: string;
+  amount: number;
+  quantity: number;
+}
+
 export default function Pay() {
   const setPage = useSetRecoilState(evalutonForm);
   const [totalRate, setToatlRate] = useState(0);
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isError, setIsError] = useState<string | null>(null);
+  const [paymentdata, setPaymentData] = useState<PaymentItemType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [materialRate, setMaterialRate] = useState<DocumentRate>({
     courseByCourse: 0,
@@ -41,15 +50,25 @@ export default function Pay() {
     }
   };
 
-  const nextButtonHandler = () => {
+  const nextButtonHandler = async () => {
     if (isChecked) {
-      console.log("checked");
+      setIsLoading(true)
+      try {
+        const response = await makePayment({data:paymentdata});
+        if (response) {
+          window.location.href = response.data.url;
+          console.log(response);
+        }
+      } catch (e) {
+        console.log(e);
+      }
     } else {
       setIsError("Check this box to proceed");
       setTimeout(() => {
         setIsError(null);
       }, 3000);
     }
+    setIsLoading(false)
   };
   const prevButtonHandler = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -69,8 +88,8 @@ export default function Pay() {
 
         if (docResponse) {
           const docData = docResponse.data.data;
- 
           setQuantity(docData);
+
           const courseByCourseRate = docData.courseByCourse?.length * 12;
           const academicRate = docData.certificate?.length * 10;
           const transcriptRate = docData.transcript?.length * 10;
@@ -80,13 +99,42 @@ export default function Pay() {
             certificate: academicRate,
             transcript: transcriptRate,
           });
-         
+
           setToatlRate(
-            courseByCourseRate +
-              academicRate +
-              transcriptRate +
-              3.45 
+            courseByCourseRate + academicRate + transcriptRate + 1.45
           );
+          const newPaymentData = [];
+
+          if (docData.courseByCourse?.length > 0) {
+            newPaymentData.push({
+              name: "Course-by-Course Evaluation",
+              amount: 12,
+              quantity: docData.courseByCourse?.length,
+            });
+          }
+
+          if (docData.certificate?.length > 0) {
+            newPaymentData.push({
+              name: "Academic credential verification",
+              amount: 10,
+              quantity: docData.certificate?.length,
+            });
+          }
+
+          if (docData.transcript?.length > 0) {
+            newPaymentData.push({
+              name: "Document Translation",
+              amount: 10,
+              quantity: docData.transcript?.length,
+            });
+          }
+          newPaymentData.push({
+            name: "VAT",
+            amount: 1.45,
+            quantity: 1,
+          });
+
+          setPaymentData(newPaymentData);
         }
       }
     };
@@ -120,14 +168,14 @@ export default function Pay() {
             <p>{quantity.transcript.length} x</p>
             <p>${materialRate.transcript}</p>
           </div>
-  
+
           <div className="w-full gap-5 flex justify-between border p-3 pr-5">
             <p>Email Delivery</p>
             <p>$0.00</p>
           </div>
           <div className="w-full gap-5 flex justify-between border p-3 pr-5">
-            <p>Transaction Conv. Fee</p>
-            <p>$3.45</p>
+            <p>VAT</p>
+            <p>$1.45</p>
           </div>
           <div className="w-full gap-5 flex justify-between border p-3 pr-5">
             <p>Order Total:</p>
@@ -169,8 +217,9 @@ export default function Pay() {
           className="bg-[#2aaae0] font-bold rounded-full"
           onClick={nextButtonHandler}
           type="button"
+          disabled={isChecked ? true : false}
         >
-          Pay Now
+          {isLoading ? <CircularProgress color="inherit" /> : "Next"}
         </Button>
       </div>
     </form>

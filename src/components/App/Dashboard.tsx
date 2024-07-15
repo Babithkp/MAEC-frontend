@@ -126,7 +126,7 @@ export default function Dashboard() {
                       className="max-md:w-[20rem]"
                     >
                       <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                        Server {i + 1}
+                      Service {i + 1}
                       </Typography>
                       <Typography sx={{ width: "33%", flexShrink: 0 }}>
                         Language: {eva.language}
