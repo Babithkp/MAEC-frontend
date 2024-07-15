@@ -116,7 +116,7 @@ export default function Pay() {
             <p>${materialRate.certificate}</p>
           </div>
           <div className="w-full gap-5 flex justify-between border p-3 pr-5">
-            <p className="max-md:w-1/2 w-[30%]">Document transcript</p>
+            <p className="max-md:w-1/2 w-[30%]">Document Translation</p>
             <p>{quantity.transcript.length} x</p>
             <p>${materialRate.transcript}</p>
           </div>

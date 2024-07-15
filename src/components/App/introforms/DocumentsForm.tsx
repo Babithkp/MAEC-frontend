@@ -312,7 +312,7 @@ export default function EducationForm() {
         )}
         {dataStorage.transcript.length > 0 && (
           <div className="flex flex-col gap-3 mt-5">
-            <p className="font-bold">Document transcript.</p>
+            <p className="font-bold">Document Translation.</p>
             <div className="p-1 border w-full flex">
               {dataStorage.transcript.map((doc, i) => (
                 <span
@@ -450,7 +450,7 @@ export default function EducationForm() {
               {isExist.transcript && (
                 <div className="my-5 ">
                   <label className="text-sm font-semibold">
-                    Document transcript
+                    Document Translation 
                   </label>
                   <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
                     <button
