@@ -2,7 +2,12 @@ import { useSetRecoilState } from "recoil";
 import { Button } from "../../ui/button";
 import { evalutonForm } from "../../../store/context";
 import { ChangeEvent, useEffect, useState } from "react";
-import { getDocumentByUserId, makePayment } from "../../../http/fetch";
+import {
+  addTotalAmt,
+  getDocumentByUserId,
+  makePaymentPaypal,
+  makePaymentStripe,
+} from "../../../http/fetch";
 import { CircularProgress } from "@mui/material";
 
 interface DocumentRate {
@@ -29,6 +34,7 @@ export default function Pay() {
   const [isError, setIsError] = useState<string | null>(null);
   const [paymentdata, setPaymentData] = useState<PaymentItemType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingPay, setIsLoadingPay] = useState(false);
 
   const [materialRate, setMaterialRate] = useState<DocumentRate>({
     courseByCourse: 0,
@@ -50,14 +56,55 @@ export default function Pay() {
     }
   };
 
-  const nextButtonHandler = async () => {
+  const paypalButtonHandler = async () => {
     if (isChecked) {
-      setIsLoading(true)
+      setIsLoadingPay(true);
+      if (localStorage.getItem("userId")) {
+        const userId = localStorage.getItem("userId");
+        const totalAmount = paymentdata.reduce(
+          (total, pay) => total + pay.amount * pay.quantity,
+          0
+        );
+        const updadtedresponse = await addTotalAmt({
+          id: userId,
+          totalAmt: totalAmount,
+        });
+        const response = await makePaymentPaypal({ data: paymentdata });
+        if (response || updadtedresponse) {
+          console.log(updadtedresponse);
+          window.location.href = response.data;
+        }
+      }
+    } else {
+      setIsError("Check this box to proceed");
+      setTimeout(() => {
+        setIsError(null);
+      }, 3000);
+    }
+    setIsLoadingPay(false);
+  };
+
+  const stripeButtonHandler = async () => {
+    if (isChecked) {
+      setIsLoading(true);
       try {
-        const response = await makePayment({data:paymentdata});
-        if (response) {
-          window.location.href = response.data.url;
-          console.log(response);
+        if (localStorage.getItem("userId")) {
+          const userId = localStorage.getItem("userId");
+          const totalAmount = paymentdata.reduce(
+            (total, pay) => total + pay.amount * pay.quantity,
+            0
+          );
+          const updadtedresponse = await addTotalAmt({
+            id: userId,
+            totalAmt: totalAmount,
+          });
+
+          const response = await makePaymentStripe({ data: paymentdata });
+          if (response && updadtedresponse) {
+            window.location.href = response.data.url;
+            console.log(response);
+            console.log(updadtedresponse);
+          }
         }
       } catch (e) {
         console.log(e);
@@ -68,7 +115,7 @@ export default function Pay() {
         setIsError(null);
       }, 3000);
     }
-    setIsLoading(false)
+    setIsLoading(false);
   };
   const prevButtonHandler = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -215,11 +262,19 @@ export default function Pay() {
         </Button>
         <Button
           className="bg-[#2aaae0] font-bold rounded-full"
-          onClick={nextButtonHandler}
+          onClick={stripeButtonHandler}
           type="button"
           disabled={isLoading ? true : false}
         >
-          {isLoading ? <CircularProgress color="inherit" /> : "Next"}
+          {isLoading ? <CircularProgress color="inherit" /> : "Pay with Stripe"}
+        </Button>
+        <Button
+          className="bg-[#2aaae0] font-bold rounded-full"
+          onClick={paypalButtonHandler}
+          type="button"
+          disabled={isLoadingPay ? true : false}
+        >
+          {isLoadingPay ? <CircularProgress color="inherit" /> : "Pay with Paypal"}
         </Button>
       </div>
     </form>

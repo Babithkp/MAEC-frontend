@@ -1,6 +1,31 @@
 import { TiTick } from "react-icons/ti";
 import { Button } from "../ui/button";
+import { useEffect } from "react";
+import {  compeltePayment } from "../../http/fetch";
+
 export default function PaymentSuccess() {
+  
+  
+  useEffect(()=>{
+   
+    async function fetch(){
+    
+      
+        try{
+          if (localStorage.getItem("userId")) {
+            const userId = localStorage.getItem("userId");
+            await compeltePayment({id: userId})
+          }
+          
+        }catch(err){
+          console.log();
+          
+        
+      }
+    }
+    fetch()
+    
+  },[])
   return (
     <main className="flex justify-center items-center h-[70vh] flex-col gap-10">
       <section className="w-[30%] border-b-[2px] border-green-500 shadow-lg p-5 text-center flex flex-col max-md:w-[90%] items-center gap-5">

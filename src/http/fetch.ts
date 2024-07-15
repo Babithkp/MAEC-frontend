@@ -37,6 +37,21 @@ export const getDocumentByUserId = async (file: unknown) => {
 export const getAllUserDetails = async () => {
   return await axios.get(`${vercelUrl}getAllUserDetails`);
 };
-export const makePayment = async (file:unknown) => {
+export const makePaymentStripe = async (file:unknown) => {
   return await axios.post(`${vercelUrl}makePayment`,file);
+}
+
+export const makePaymentPaypal = async (file:unknown) => {
+  return await axios.post(`${vercelUrl}makePaymentPaypal`,file);
+};
+
+export const capturePaypalPayment = async (file:unknown) => {
+  return await axios.post(`${vercelUrl}capturePaypalPayment`,file);
+};
+
+export const addTotalAmt = async (file:unknown) => {
+  return await axios.post(`${vercelUrl}addTotalAmt`,file);
+};
+export const compeltePayment = async (file:unknown) => {
+  return await axios.post(`${vercelUrl}compeltePayment`,file);
 };
