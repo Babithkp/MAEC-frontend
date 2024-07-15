@@ -2,7 +2,7 @@ import { useSetRecoilState } from "recoil";
 import { Button } from "../../ui/button";
 import { evalutonForm } from "../../../store/context";
 import { ChangeEvent, useEffect, useState } from "react";
-import { getDocumentByUserId, getUserEvalutionById } from "../../../http/fetch";
+import { getDocumentByUserId } from "../../../http/fetch";
 
 interface DocumentRate {
   courseByCourse: number;
@@ -20,11 +20,7 @@ export default function Pay() {
   const [totalRate, setToatlRate] = useState(0);
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isError, setIsError] = useState<string | null>(null);
-  const [fileToTranslate, setFileToTranslate] = useState({
-    translatationQuantity: 0,
-    translationRate: 0,
-    translationLang: "",
-  });
+
   const [materialRate, setMaterialRate] = useState<DocumentRate>({
     courseByCourse: 0,
     certificate: 0,
@@ -70,39 +66,26 @@ export default function Pay() {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
         const docResponse = await getDocumentByUserId({ userId: userId });
-        const evaResponse = await getUserEvalutionById({ userId: userId });
-        if (docResponse && evaResponse) {
+
+        if (docResponse) {
           const docData = docResponse.data.data;
-          const evaData = evaResponse.data.data;
+ 
           setQuantity(docData);
           const courseByCourseRate = docData.courseByCourse?.length * 12;
-          const academicRate = docData.certificate?.length * 9;
-          const transcriptRate = docData.transcript?.length * 9;
+          const academicRate = docData.certificate?.length * 10;
+          const transcriptRate = docData.transcript?.length * 10;
 
           setMaterialRate({
             courseByCourse: courseByCourseRate,
             certificate: academicRate,
             transcript: transcriptRate,
           });
-          const docQunatity =
-            docData.courseByCourse?.length +
-            docData.certificate?.length +
-            docData.transcript?.length;
-          let translateRate = 0;
-          if (evaData.language) {
-            translateRate = docQunatity * 10;
-            setFileToTranslate({
-              translatationQuantity: docQunatity,
-              translationLang: evaData.language,
-              translationRate: translateRate,
-            });
-          }
+         
           setToatlRate(
             courseByCourseRate +
               academicRate +
               transcriptRate +
-              3.45 +
-              translateRate
+              3.45 
           );
         }
       }
@@ -137,16 +120,7 @@ export default function Pay() {
             <p>{quantity.transcript.length} x</p>
             <p>${materialRate.transcript}</p>
           </div>
-          <div className="w-full gap-5 flex justify-between border p-3 pr-5">
-            <p className="max-md:w-1/2 w-[30%]">
-              Language Translation{" "}
-              {fileToTranslate.translationLang
-                ? "(" + fileToTranslate.translationLang + ")"
-                : ""}
-            </p>
-            <p>{fileToTranslate.translatationQuantity} x</p>
-            <p>${fileToTranslate.translationRate}</p>
-          </div>
+  
           <div className="w-full gap-5 flex justify-between border p-3 pr-5">
             <p>Email Delivery</p>
             <p>$0.00</p>

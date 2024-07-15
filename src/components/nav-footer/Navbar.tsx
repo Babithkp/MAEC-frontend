@@ -82,7 +82,7 @@ export default function Navbar() {
       <div className="justify-evenly items-center flex w-full max-md:hidden">
         <ul className="font-medium  flex gap-6 text-sm">
           <li>
-            <a href="/evalutionService">Evalution</a>
+            <a href="/evalutionService">Evaluation</a>
           </li>
           <li>
             <a href="/transaction">Translation</a>

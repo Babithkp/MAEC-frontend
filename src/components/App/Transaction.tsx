@@ -166,7 +166,7 @@ export default function Transaction() {
         className="font-bold rounded-full bg-[#2aaae0]"
         onClick={() => (window.location.href = "get-started")}
         >
-        Start Transaction
+        Start Translation 
       </Button>
         </div>
     </main>

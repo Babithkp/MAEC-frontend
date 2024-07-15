@@ -50,7 +50,6 @@ export default function Dashboard() {
       if (response) {
         const data = response.data.data;
         setUser(data);
-        console.log(data);
       }
     };
     fetch();
@@ -114,7 +113,7 @@ export default function Dashboard() {
                 </p>
               </div>
               <div>
-                {user.evaluation?.map((eva, i) => (
+                {user.evaluation?.map((eva) => (
                   <Accordion
                     key={i}
                     expanded={expanded === `agent${i}`}
@@ -141,36 +140,39 @@ export default function Dashboard() {
                     </AccordionSummary>
                     <AccordionDetails className="flex flex-col gap-5">
                       <Typography className="md:w-[70rem]">
+                      <p className="font-bold mb-2">Course-by-Course evaluation</p>
                         {eva.documents.courseByCourse.map((doc) => (
                           <a
-                            key={doc}
-                            target="_blank"
-                            href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                            className=" border p-2 bg-slate-50 hover:bg-slate-100"
+                          key={doc}
+                          target="_blank"
+                          href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
+                          className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
                           >
                             {doc.substring(36)}
                           </a>
                         ))}
                       </Typography>
                       <Typography className="md:w-[70rem]">
+                        <p className="font-bold mb-2">Certificate Verification</p>
                         {eva.documents.certificate.map((doc) => (
                           <a
-                            key={doc}
-                            target="_blank"
-                            href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                            className=" border p-2 bg-slate-50 hover:bg-slate-100"
+                          key={doc}
+                          target="_blank"
+                          href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
+                          className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
                           >
                             {doc.substring(36)}
                           </a>
                         ))}
                       </Typography>
                       <Typography className="md:w-[70rem]">
+                        <p className="font-bold mb-2">Transcript Verification</p>
                         {eva.documents.transcript.map((doc) => (
                           <a
                             key={doc}
                             target="_blank"
                             href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                            className=" border p-2 bg-slate-50 hover:bg-slate-100"
+                            className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
                           >
                             {doc.substring(36)}
                           </a>

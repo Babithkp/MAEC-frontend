@@ -12,7 +12,7 @@ export default function Map() {
     <div className="absolute max-md:top-[2rem] max-md:left-[-4rem] top-[7rem] px-24 flex flex-col gap-5">
       <img src={logo} alt="iee logo" className="w-[10rem] max-md:w-[8rem]" />
       <h4 className="text-3xl max-md:text-xl font-bold">
-        Get your evaluation in 3 days or less!
+        Get your evaluation in 3 days
       </h4>
     </div>
   </section>

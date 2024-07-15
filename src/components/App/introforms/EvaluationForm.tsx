@@ -146,11 +146,11 @@ export default function EvaluationForm() {
   const [isEmployee, setIsEmployee] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState<string | null>(null);
-
   const [educationOption, setEducationOption] = useState({
     Undergraduate: false,
     Graduate: false,
   });
+  
 
   const employeeHandler = () => {
     setIseducation(false);
@@ -209,6 +209,9 @@ export default function EvaluationForm() {
 
   const { register, handleSubmit, setValue } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    if(!onlyEng){
+      data.language = "" 
+    }
     setIsLoading(true);
     setFetchError(null);
 
@@ -472,7 +475,7 @@ export default function EvaluationForm() {
                 {...register("certificate")}
               />
               <label className="w-full flex justify-between" htmlFor="courseby">
-                <p>Certificate Verification</p> <p className="font-bold">$9</p>
+                <p>Certificate Verification</p> <p className="font-bold">$10</p>
               </label>
             </div>
             <div className="flex items-center gap-5">
@@ -486,7 +489,7 @@ export default function EvaluationForm() {
                 className="w-full flex justify-between"
                 htmlFor="verification"
               >
-                <p>Transcript Verification</p> <p className="font-bold">$9</p>
+                <p>Transcript Verification</p> <p className="font-bold">$10</p>
               </label>
             </div>
           </div>
