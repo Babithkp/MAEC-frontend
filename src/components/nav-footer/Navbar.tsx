@@ -1,4 +1,5 @@
-import { Button } from "../ui/button";import webLogo from "/maec_full_logo.jpg";
+import { Button } from "../ui/button";
+import webLogo from "/maec_full_logo.jpg";
 import { TiSocialFacebook } from "react-icons/ti";
 import { FaLinkedinIn, FaSortDown } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -230,7 +231,7 @@ export default function Navbar() {
                         </div>
                         <div>
                           <a href="/guidelines" className="font-bold">
-                          Evaluation Guidelines
+                            Evaluation Guidelines
                           </a>
                           <p>Evaluation Guidelines.</p>
                         </div>
@@ -290,6 +291,11 @@ export default function Navbar() {
                       }
                     >
                       Evaluation
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => (window.location.href = "/userDashboard")}
+                    >
+                      My Dashboad
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={logoutHandler}>
                       Logout
