@@ -185,7 +185,7 @@ export default function Navbar() {
                 <div className="p-2 w-screen text-black flex justify-end">
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-3">
-                      <AccordionTrigger className="font-bold">
+                      <AccordionTrigger className="font-bold  focus:no-underline">
                         Service
                       </AccordionTrigger>
                       <AccordionContent className="text-start px-5 flex flex-col gap-3">
@@ -216,7 +216,7 @@ export default function Navbar() {
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-1">
-                      <AccordionTrigger className="font-bold">
+                      <AccordionTrigger className="font-bold focus:no-underline">
                         Tools
                       </AccordionTrigger>
                       <AccordionContent className="text-start px-5 flex flex-col gap-3">
@@ -238,7 +238,7 @@ export default function Navbar() {
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
-                      <AccordionTrigger className="font-bold">
+                      <AccordionTrigger className="font-bold focus:no-underline">
                         Support
                       </AccordionTrigger>
                       <AccordionContent className="text-start px-5 flex flex-col gap-3">

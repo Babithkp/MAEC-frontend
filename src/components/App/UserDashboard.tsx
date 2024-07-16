@@ -191,7 +191,7 @@ export default function UserDashboard() {
                 Payment : {eva.documents.paid_amount ? "Completed" : "Pending"}
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="">
+            <AccordionDetails className="flex flex-col gap-5">
               <Typography className="md:w-[70rem]">
                 <p className="font-bold mb-2">Course-by-Course evaluation</p>
                 {eva.documents.courseByCourse.map((doc) => (
@@ -199,7 +199,7 @@ export default function UserDashboard() {
                     key={doc}
                     target="_blank"
                     href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                    className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
+                    className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-5"
                   >
                     {doc.substring(36)}
                   </a>
@@ -214,7 +214,7 @@ export default function UserDashboard() {
                     key={doc}
                     target="_blank"
                     href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                    className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
+                    className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-5"
                   >
                     {doc.substring(36)}
                   </a>
@@ -227,7 +227,7 @@ export default function UserDashboard() {
                     key={doc}
                     target="_blank"
                     href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                    className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
+                    className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-5"
                   >
                     {doc.substring(36)}
                   </a>
