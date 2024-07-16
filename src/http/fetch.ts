@@ -3,7 +3,7 @@ const vercelUrl = "https://maec-backend.vercel.app/api/";
 // const localUrl = "http://localhost:3000/api/"
 
 export const uploadPostDoc = async (file: unknown) => {
-  await axios.post(`${localUrl}fileupload`, file, {
+  await axios.post(`${vercelUrl}fileupload`, file, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
