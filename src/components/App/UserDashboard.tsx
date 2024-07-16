@@ -44,6 +44,12 @@ export default function UserDashboard() {
       setExpanded(isExpanded ? panel : false);
     };
 
+    useEffect(() => {
+      if (!localStorage.getItem("token")) {
+        window.location.href = "/";
+      }
+    }, []);
+
   useEffect(() => {
     const fetch = async () => {
       if (localStorage.getItem("userId")) {
@@ -107,8 +113,8 @@ export default function UserDashboard() {
               aria-controls="panel4bh-content"
               id="panel4bh-header"
             >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Service {i + 1}
+              <Typography sx={{ width: "33%", flexShrink: 0 }} className="font-bold">
+                #Order {i + 1}
               </Typography>
               <Typography sx={{ width: "33%", flexShrink: 0 }}>
                 Document Language: {eva.language ? eva.language : "Engligh"}
@@ -117,7 +123,7 @@ export default function UserDashboard() {
                 Payment : {eva.documents.paid_amount ? "Completed" : "Pending"}
               </Typography>
             </AccordionSummary>
-            <AccordionDetails className="flex flex-col gap-5">
+            <AccordionDetails className="">
               <Typography className="md:w-[70rem]">
                 <p className="font-bold mb-2">Course-by-Course evaluation</p>
                 {eva.documents.courseByCourse.map((doc) => (

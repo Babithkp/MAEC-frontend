@@ -177,6 +177,15 @@ export default function EducationForm() {
       dataStorage.transcript.length > 0
     ) {
       setButtonsLoading(true);
+      if(!isExist.courseByCourse){
+        dataStorage.courseByCourse = []
+      }
+      if(!isExist.certificate){
+        dataStorage.certificate = []
+      }
+      if(!isExist.transcript){
+        dataStorage.transcript = []
+      }
       try {
         if (localStorage.getItem("userId")) {
           const userId = localStorage.getItem("userId");
@@ -238,6 +247,7 @@ export default function EducationForm() {
     const fetch = async () => {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
+        setIsloading(true);
         const response = await getUserEvalutionById({ userId: userId });
         if (response.data.data) {
           const data = response.data.data;
@@ -253,6 +263,7 @@ export default function EducationForm() {
           }
         }
       }
+      setIsloading(false);
     };
     fetch();
   }, []);

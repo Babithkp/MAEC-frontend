@@ -90,10 +90,6 @@ export default function AdminDashboard() {
                   {user.profile?.street_address}
                 </p>
                 <p className="flex gap-1">
-                  <span className="font-medium">Street:</span>
-                  {user.profile?.street_address}
-                </p>
-                <p className="flex gap-1">
                   <span className="font-medium">City:</span>
                   {user.profile?.city}
                 </p>

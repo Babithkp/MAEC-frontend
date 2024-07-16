@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useState } from "react";import { Button } from ".
 import { useSetRecoilState } from "recoil";
 import { countries, evalutonForm } from "../../../store/context";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CircularProgress } from "@mui/material";
+import { Backdrop, CircularProgress } from "@mui/material";
 import { getUserProfileById, updateProfile } from "../../../http/fetch";
 
 const daysInMonth: ReactNode[] = [];
@@ -87,6 +87,7 @@ export default function InformationForm() {
     const fetch = async () => {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
+        setIsLoading(true);
         const response = await getUserProfileById({userId:userId});
         if (response.data.data) {
           const data = response.data.data;
@@ -105,6 +106,7 @@ export default function InformationForm() {
           setValue("phone_number", data.phone_number);
         }
       }
+      setIsLoading(false);
     };
     fetch()
   }, [setValue]);
@@ -313,6 +315,12 @@ export default function InformationForm() {
           </div>
         </div>
       </form>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </section>
   );
 }

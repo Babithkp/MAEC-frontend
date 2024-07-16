@@ -15,7 +15,7 @@ import {
   DialogTrigger,
 } from "../../../components/ui/dialog";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CircularProgress } from "@mui/material";
+import { Backdrop, CircularProgress } from "@mui/material";
 import { addEvalutions, getUserEvalutionById } from "../../../http/fetch";
 
 interface FormValues {
@@ -261,6 +261,7 @@ export default function EvaluationForm() {
     const fetch = async () => {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
+        setIsLoading(true)
         const response = await getUserEvalutionById({ userId: userId });
         if (response.data.data) {
           const data = response.data.data;
@@ -274,6 +275,7 @@ export default function EvaluationForm() {
           }
         }
       }
+      setIsLoading(false)
     };
     fetch();
   }, [setValue]);
@@ -596,6 +598,12 @@ export default function EvaluationForm() {
           {isLoading ? <CircularProgress color="inherit" /> : "Next"}
         </Button>
       </div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </form>
   );
 }
