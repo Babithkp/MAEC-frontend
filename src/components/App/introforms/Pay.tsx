@@ -268,7 +268,7 @@ export default function Pay() {
           type="button"
           disabled={isLoading ? true : false}
         >
-          {isLoading ? <CircularProgress color="inherit" /> : `Pay with Stripe`}
+          {isLoading ? <CircularProgress color="inherit" /> : `Pay with Card`}
         </Button>
         <Button
           className="bg-[#2aaae0] font-bold rounded-full"
