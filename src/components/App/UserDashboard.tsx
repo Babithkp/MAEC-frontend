@@ -185,7 +185,7 @@ export default function UserDashboard() {
                 #Order {i + 1}
               </Typography>
               <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Document Language: {eva.language ? eva.language : "Engligh"}
+                Document Language: {eva.language ? eva.language : "English"}
               </Typography>
               <Typography sx={{ width: "33%", flexShrink: 0 }}>
                 Payment : {eva.documents.paid_amount ? "Completed" : "Pending"}
