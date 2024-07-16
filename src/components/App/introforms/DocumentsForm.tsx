@@ -245,10 +245,10 @@ export default function EducationForm() {
           if (data.courseByCourse) {
             setisExist((prev) => ({ ...prev, courseByCourse: true }));
           }
-          if (data.certificate) {
+          if (data.certificate || data.transcript) {
             setisExist((prev) => ({ ...prev, certificate: true }));
           }
-          if (data.transcript) {
+          if (data.language) {
             setisExist((prev) => ({ ...prev, transcript: true }));
           }
         }

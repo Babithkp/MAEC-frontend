@@ -4,7 +4,7 @@ import Home from "./components/App/home/Home";
 import Footer from "./components/nav-footer/Footer";
 import CreateAccount from "./components/App/logging/CreateAccount";
 import Login from "./components/App/logging/Login";
-import Dashboard from "./components/App/Dashboard";
+import AdminDashboard from "./components/App/AdminDashboard";
 import Aboutus from "./components/App/Aboutus";
 import DocumentionReq from "./components/App/DocumentionReq";
 import Guidelines from "./components/App/Guidelines";
@@ -17,6 +17,7 @@ import { RecoilRoot } from "recoil";
 import Contactus from "./components/App/Contactus";
 import PaymentSuccess from "./components/App/PaymentSuccess";
 import PaymentFailed from "./components/App/PaymentFailed";
+import UserDashboard from "./components/App/UserDashboard";
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
           <Route path="/contactus" element={<Contactus />} />
           <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/failed" element={<PaymentFailed />} />
-          <Route path="/adminDashboard" element={<Dashboard />} />
+          <Route path="/admin/dashboard/admin" element={<AdminDashboard />} />
+          <Route path="/userDashboard" element={<UserDashboard />} />
         </Routes>
       </RecoilRoot>
       <Footer />

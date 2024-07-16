@@ -127,6 +127,11 @@ export default function Navbar() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
+                  onClick={() => (window.location.href = "/userDashboard")}
+                >
+                  My Dashboad
+                </DropdownMenuItem>
+                <DropdownMenuItem
                   onClick={() => (window.location.href = "/get-started/Intro")}
                 >
                   Evaluation

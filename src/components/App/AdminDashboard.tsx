@@ -34,7 +34,7 @@ interface UserProfileType {
   }[];
 }
 
-export default function Dashboard() {
+export default function AdminDashboard() {
   const [user, setUser] = useState<UserProfileType[]>();
   const [expanded, setExpanded] = useState<string | false>(false);
 
@@ -47,6 +47,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetch = async () => {
       const response = await getAllUserDetails();
+      
       if (response) {
         const data = response.data.data;
         setUser(data);

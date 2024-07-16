@@ -44,7 +44,7 @@ export default function Login() {
           window.location.href = "/get-started/Intro";
           reset();
         } else if (response.data.admin) {
-          window.location.href = "/adminDashboard";
+          window.location.href = "/admin/dashboard/admin";
           reset();
         } else if(response.data.userNotFound){
           setFetchError("User Does Not Exist, try to Sign Up");
