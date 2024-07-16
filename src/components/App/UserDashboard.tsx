@@ -1,20 +1,23 @@
-import Accordion from "@mui/material/Accordion";import AccordionSummary from "@mui/material/AccordionSummary";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { RiArrowUpSLine } from "react-icons/ri";
-
+import { SubmitHandler, useForm } from "react-hook-form";
 import { SyntheticEvent, useEffect, useState } from "react";
-import { AccordionDetails } from "@mui/material";
+import { AccordionDetails, Backdrop, CircularProgress } from "@mui/material";
 import {
   getUserEmailById,
   getUserEvaluationDetailsById,
   getUserProfileById,
+  updateProfile,
 } from "../../http/fetch";
+import { Button } from "../ui/button";
 
 interface FormValues {
   first_name: string;
   middle_name: string;
   last_name: string;
-
+  email_address: string;
   street_address: string;
   city: string;
   state: string;
@@ -33,72 +36,134 @@ interface Evaluation {
   };
 }
 
+interface User {
+  email_address: string;
+  password: string;
+}
+
 export default function UserDashboard() {
-  const [userEmail, setUserEmail] = useState<string>();
   const [userEvaluation, setUserEvaluation] = useState<Evaluation[]>([]);
   const [userProfile, setUserProfile] = useState<FormValues>();
+  const [user, setUser] = useState<User>();
   const [expanded, setExpanded] = useState<string | false>(false);
+  const [isLoading, setIsLoading] = useState(false);
   const handleChange =
     (panel: string) => (event: SyntheticEvent, isExpanded: boolean) => {
       event.preventDefault();
       setExpanded(isExpanded ? panel : false);
     };
 
-    useEffect(() => {
-      if (!localStorage.getItem("token")) {
-        window.location.href = "/";
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      window.location.href = "/";
+    }
+  }, []);
+
+  const { register, handleSubmit, setValue } = useForm<FormValues>();
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      if (user && userProfile) {
+        userProfile.first_name = data.first_name;
+        userProfile.last_name = data.last_name;
+        userProfile.phone_number = data.phone_number;
+        setIsLoading(true);
+        const profileResponse = await updateProfile(userProfile);
+        setIsLoading(false);
+        if (profileResponse) {
+          console.log(profileResponse);
+        }
       }
-    }, []);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
     const fetch = async () => {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
+        setIsLoading(true);
         const mailResponse = await getUserEmailById({ userId: userId });
         const response = await getUserProfileById({ userId: userId });
         const evaResponse = await getUserEvaluationDetailsById({
           userId: userId,
         });
+        setIsLoading(false);
         if (mailResponse && response && evaResponse) {
-          setUserEmail(mailResponse.data.data);
+          setValue("email_address", mailResponse.data.data.email_address);
+          setValue("first_name", response.data.data.first_name);
+          setValue("last_name", response.data.data.last_name);
+          setValue("phone_number", response.data.data.phone_number);
           setUserProfile(response.data.data);
           setUserEvaluation(evaResponse.data.data);
+          setUser(mailResponse.data.data);
         }
       }
     };
     fetch();
-  }, []);
+  }, [setValue]);
 
   return (
     <main className="flex flex-col justify-center items-center">
       <section className="w-[50%] max-md:w-[95%]">
         <h1 className="font-bold text-4xl text-center my-5">My Account</h1>
-        <div className="shadow-lg p-5 flex flex-col gap-5 border border-[#2aaae0]">
-          <div>
-            <label className="font-medium">FIRST NAME</label>
-            <p>{userProfile?.first_name}</p>
+        <form
+          className="p-5 flex flex-col gap-5  justify-center items-center"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="border-b border-slate-300 flex flex-col mb-5 gap-5 w-[70%] max-md:w-[95%]">
+            <label>
+              FIRST NAME <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              required
+              className="outline-none mb-5 active:bg-none"
+              {...register("first_name")}
+              minLength={3}
+
+            />
+          </div>
+          <div className="border-b border-slate-300  flex flex-col mb-5 gap-5 w-[70%] max-md:w-[95%]">
+            <label>
+              LAST NAME <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              required
+              className="outline-none mb-5 active:bg-none"
+              {...register("last_name")}
+              minLength={1}
+            />
+          </div>
+          <div className="border-b border-slate-300  flex flex-col mb-5 gap-5 w-[70%] max-md:w-[95%]">
+            <label>
+              EMAIL ADDRESS <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              required
+              className="outline-none mb-5 active:bg-none disabled:bg-white"
+              {...register("email_address")}
+              disabled
+            />
+          </div>
+          <div className="border-b border-slate-300  flex flex-col mb-5 gap-5 w-[70%] max-md:w-[95%]">
+            <label>
+              PHONE NO. <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              required
+              className="outline-none mb-5 active:bg-none"
+              {...register("phone_number")}
+              minLength={10}
+            />
           </div>
           <div>
-            <label className="font-medium">LAST NAME</label>
-            <p>{userProfile?.last_name}</p>
+            <Button className="bg-[#2aaae0] rounded-full">Save</Button>
           </div>
-          <div>
-            <label className="font-medium">EMAIL ADDRESS</label>
-            <p>{userEmail}</p>
-          </div>
-          <div>
-            <label className="font-medium">ADDRESS</label>
-            <p>
-              {userProfile?.street_address} {userProfile?.state}{" "}
-              {userProfile?.postal_code} <br />
-              {userProfile?.country}
-            </p>
-          </div>
-          <div>
-            <label className="font-medium">PHONE</label>
-            <p>{userProfile?.phone_number}</p>
-          </div>
-        </div>
+        </form>
       </section>
       <section className="w-[70%] my-5 flex flex-col gap-3 max-md:w-[95%]">
         <h3 className="text-2xl font-bold my-5">ORDERS</h3>
@@ -113,7 +178,10 @@ export default function UserDashboard() {
               aria-controls="panel4bh-content"
               id="panel4bh-header"
             >
-              <Typography sx={{ width: "33%", flexShrink: 0 }} className="font-bold">
+              <Typography
+                sx={{ width: "33%", flexShrink: 0 }}
+                className="font-bold"
+              >
                 #Order {i + 1}
               </Typography>
               <Typography sx={{ width: "33%", flexShrink: 0 }}>
@@ -138,7 +206,9 @@ export default function UserDashboard() {
                 ))}
               </Typography>
               <Typography className="md:w-[70rem]">
-                <p className="font-bold mb-2">Academic credential verification.</p>
+                <p className="font-bold mb-2">
+                  Academic credential verification.
+                </p>
                 {eva.documents.certificate.map((doc) => (
                   <a
                     key={doc}
@@ -167,6 +237,12 @@ export default function UserDashboard() {
           </Accordion>
         ))}
       </section>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </main>
   );
 }

@@ -1,5 +1,4 @@
-import Backdrop from "@mui/material/Backdrop";
-import {
+import Backdrop from "@mui/material/Backdrop";import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -177,14 +176,14 @@ export default function EducationForm() {
       dataStorage.transcript.length > 0
     ) {
       setButtonsLoading(true);
-      if(!isExist.courseByCourse){
-        dataStorage.courseByCourse = []
+      if (!isExist.courseByCourse) {
+        dataStorage.courseByCourse = [];
       }
-      if(!isExist.certificate){
-        dataStorage.certificate = []
+      if (!isExist.certificate) {
+        dataStorage.certificate = [];
       }
-      if(!isExist.transcript){
-        dataStorage.transcript = []
+      if (!isExist.transcript) {
+        dataStorage.transcript = [];
       }
       try {
         if (localStorage.getItem("userId")) {
@@ -251,7 +250,7 @@ export default function EducationForm() {
         const response = await getUserEvalutionById({ userId: userId });
         if (response.data.data) {
           const data = response.data.data;
-          
+
           if (data.courseByCourse) {
             setisExist((prev) => ({ ...prev, courseByCourse: true }));
           }
@@ -280,8 +279,8 @@ export default function EducationForm() {
           </li>
           <li>
             All documents uploaded on this portal will be processed for
-            evaluation, authentication or translation according to the
-            documents we have received.
+            evaluation, authentication or translation according to the documents
+            we have received.
           </li>
           <li>
             Ensure that you upload the orginal scanned copies of your documents.
@@ -291,7 +290,7 @@ export default function EducationForm() {
       </div>
 
       <div>
-        {(isExist.courseByCourse && dataStorage.courseByCourse.length > 0) && (
+        {isExist.courseByCourse && dataStorage.courseByCourse.length > 0 && (
           <div className="flex flex-col gap-3">
             <p className="font-bold">Course-by-Course Evaluation.</p>
             <div className="p-1 border w-full flex">
@@ -306,7 +305,7 @@ export default function EducationForm() {
             </div>
           </div>
         )}
-        {(isExist.certificate && dataStorage.certificate.length > 0) && (
+        {isExist.certificate && dataStorage.certificate.length > 0 && (
           <div className="flex flex-col gap-3 mt-5">
             <p className="font-bold">Academic credential verification.</p>
             <div className="p-1 border w-full flex">
@@ -321,7 +320,7 @@ export default function EducationForm() {
             </div>
           </div>
         )}
-        {(isExist.transcript && dataStorage.transcript.length > 0) && (
+        {isExist.transcript && dataStorage.transcript.length > 0 && (
           <div className="flex flex-col gap-3 mt-5">
             <p className="font-bold">Document Translation.</p>
             <div className="p-1 border w-full flex">
@@ -538,6 +537,7 @@ export default function EducationForm() {
           className="bg-[#2aaae0] font-bold rounded-full"
           onClick={nextButtonHandler}
           type="button"
+          disabled={buttonsLoading ? true : false}
         >
           {buttonsLoading ? <CircularProgress color="inherit" /> : "Next"}
         </Button>

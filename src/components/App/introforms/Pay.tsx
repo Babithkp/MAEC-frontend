@@ -8,7 +8,7 @@ import {
   makePaymentPaypal,
   makePaymentStripe,
 } from "../../../http/fetch";
-import { CircularProgress } from "@mui/material";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 interface DocumentRate {
   courseByCourse: number;
@@ -31,6 +31,7 @@ export default function Pay() {
   const setPage = useSetRecoilState(evalutonForm);
   const [totalRate, setToatlRate] = useState(0);
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [isFetch, setIsFetch] = useState<boolean>(false);
   const [isError, setIsError] = useState<string | null>(null);
   const [paymentdata, setPaymentData] = useState<PaymentItemType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -131,8 +132,9 @@ export default function Pay() {
     const fetch = async () => {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
+        setIsFetch(true);
         const docResponse = await getDocumentByUserId({ userId: userId });
-
+        setIsFetch(false);
         if (docResponse) {
           const docData = docResponse.data.data;
           setQuantity(docData);
@@ -251,7 +253,7 @@ export default function Pay() {
         </div>
         {isError && <span className=" text-red-500 ">{isError}</span>}
       </div>
-      <div className="w-full justify-end flex mt-5 gap-5">
+      <div className="w-full justify-end flex max-md:flex-col mt-5 gap-5">
         <Button
           variant={"outline"}
           className="border-[#2aaae0] font-bold rounded-full"
@@ -266,7 +268,7 @@ export default function Pay() {
           type="button"
           disabled={isLoading ? true : false}
         >
-          {isLoading ? <CircularProgress color="inherit" /> : "Pay with Stripe"}
+          {isLoading ? <CircularProgress color="inherit" /> : `Pay with Stripe`}
         </Button>
         <Button
           className="bg-[#2aaae0] font-bold rounded-full"
@@ -274,9 +276,19 @@ export default function Pay() {
           type="button"
           disabled={isLoadingPay ? true : false}
         >
-          {isLoadingPay ? <CircularProgress color="inherit" /> : "Pay with Paypal"}
+          {isLoadingPay ? (
+            <CircularProgress color="inherit" />
+          ) : (
+            "Pay with Paypal"
+          )}
         </Button>
       </div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isFetch}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </form>
   );
 }
