@@ -186,7 +186,7 @@ export default function Navbar() {
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-3">
                       <AccordionTrigger className="font-bold  focus:no-underline">
-                        Service
+                      Services
                       </AccordionTrigger>
                       <AccordionContent className="text-start px-5 flex flex-col gap-3">
                         <div>
