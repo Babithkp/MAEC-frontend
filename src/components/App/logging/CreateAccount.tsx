@@ -19,7 +19,7 @@ export default function CreateAccount() {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      window.location.href = "/";
+      window.location.href = "/get-started/Intro";
     }
   }, []);
   const {

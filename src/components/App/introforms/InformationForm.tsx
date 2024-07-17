@@ -61,7 +61,6 @@ export default function InformationForm() {
   const { register, handleSubmit, setValue } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setIsLoading(true);
-    localStorage.setItem("username", data.first_name)
     if (localStorage.getItem("userId")) {
       const userId = localStorage.getItem("userId");
       data.userId = userId;
