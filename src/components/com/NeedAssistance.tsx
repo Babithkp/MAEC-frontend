@@ -1,5 +1,5 @@
 import MAEClogo from "/maec_small_logo.jpg";
-import { Button } from "../../ui/button";
+import { Button } from "../ui/button";
 export default function NeedAssistance() {
   return (
     <article className=" flex flex-col justify-center items-center w-full py-10 bg-[#f9fdff]">

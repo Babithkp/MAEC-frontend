@@ -1,4 +1,5 @@
-import Backdrop from "@mui/material/Backdrop";import {
+import Backdrop from "@mui/material/Backdrop";
+import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -279,8 +280,8 @@ export default function EducationForm() {
           </li>
           <li>
             All documents uploaded on this portal will be processed for
-            evaluation, authentication or translation according to the documents
-            we have received.
+            evaluation, verification or translation according to the options you
+            have selected and the documents you have provided.
           </li>
           <li>
             Ensure that you upload the orginal scanned copies of your documents.

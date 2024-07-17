@@ -1,4 +1,5 @@
-import { useSetRecoilState } from "recoil";import { evalutonForm } from "../../../store/context";
+import { useSetRecoilState } from "recoil";
+import { evalutonForm } from "../../../store/context";
 import { Button } from "../../ui/button";
 import usImg from "/us.svg";
 import canadaImg from "/canada.svg";
@@ -150,7 +151,6 @@ export default function EvaluationForm() {
     Undergraduate: false,
     Graduate: false,
   });
-  
 
   const employeeHandler = () => {
     setIseducation(false);
@@ -209,8 +209,8 @@ export default function EvaluationForm() {
 
   const { register, handleSubmit, setValue } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    if(!onlyEng){
-      data.language = "" 
+    if (!onlyEng) {
+      data.language = "";
     }
     setIsLoading(true);
     setFetchError(null);
@@ -261,7 +261,7 @@ export default function EvaluationForm() {
     const fetch = async () => {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
-        setIsLoading(true)
+        setIsLoading(true);
         const response = await getUserEvalutionById({ userId: userId });
         if (response.data.data) {
           const data = response.data.data;
@@ -269,13 +269,13 @@ export default function EvaluationForm() {
           setValue("certificate", data.certificate);
           setValue("transcript", data.transcript);
           setValue("language", data.language);
-          underguaranteHandler()
+          underguaranteHandler();
           if (data.language) {
             setOnlyEng(true);
           }
         }
       }
-      setIsLoading(false)
+      setIsLoading(false);
     };
     fetch();
   }, [setValue]);
@@ -563,18 +563,16 @@ export default function EvaluationForm() {
             </p>
 
             <p>
-              <span className="font-bold">Transcript Evaluation : </span>3
-              Business Days.
+              Transcript Evaluation:
+              <span className="font-bold"> 3 Business Days.</span>
             </p>
             <p>
-              <span className="font-bold">
-                Academic Credentials Verification:{" "}
-              </span>
-              5 Business Days.
+              Academic Credentials Verification:
+              <span className="font-bold"> 5 Business Days.</span>
             </p>
             <p>
-              <span className="font-bold">Document Translation: </span>3
-              Business Days.
+              Document Translation:
+              <span className="font-bold"> 3 Business Days.</span>
             </p>
           </div>
         </div>

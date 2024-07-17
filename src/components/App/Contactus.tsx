@@ -16,7 +16,7 @@ export default function Contactus() {
           <div className="flex flex-col gap-5">
             <div className="flex flex-col justify-center  p-5 gap-5 border rounded-3xl">
               <p className="font-bold">Customer Support:</p>
-              <p>Support@maec.us</p>
+              <p>Email: Support@maec.us</p>
               <p>Mon-Fri: 8:00 AM - 4:00 PM </p>
               <p>Sat-Sun: 12:00 PM - 3:00 PM.</p>
             </div>

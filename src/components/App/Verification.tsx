@@ -1,5 +1,4 @@
-import NeedAssistance from "./com/NeedAssistance";
-import { Button } from "../ui/button";
+import NeedAssistance from "../com/NeedAssistance";
 export default function Verification() {
   return (
     <main className="flex justify-center items-center flex-col">
@@ -17,7 +16,7 @@ export default function Verification() {
           <p>
             The verification of degree certificates and transcripts is done to
             determine the authenticity of bachelors or masters degree
-            certificate and transcript. This process proves to universities in
+            certificate and transcript. This report proves to universities in
             the U.S that your academic credentials are genuine.
           </p>
 
@@ -50,25 +49,6 @@ export default function Verification() {
               days.
             </li>
           </ul>
-          <div className="w-full flex items-center justify-center my-10">
-            <Button className="bg-[#2aaae0] font-bold rounded-full">
-              Get started
-            </Button>
-          </div>
-        </div>
-      </section>
-      <section className="flex my-10 max-md:gap-5 justify-center max-md:flex-col items-center">
-        <div className="w-[90%] flex text-center flex-col gap-5 items-center">
-          <h5 className="text-4xl font-bold max-md:text-xl ">
-            What our customers say about us
-          </h5>
-          <p className="">
-            We have helped thousands of people just like you accomplish their
-            dreams through education, licensing, military and employment. But
-            don't just take our word for it. Take the word of these individuals
-            who have trusted MAEC with their evaluation experience and want to
-            share it with you.
-          </p>
         </div>
       </section>
       <NeedAssistance />

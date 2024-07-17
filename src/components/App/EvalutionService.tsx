@@ -1,6 +1,5 @@
-import ieeLogo from "/maec_small_logo.jpg";
-import NeedAssistance from "./com/NeedAssistance";
 import { Button } from "../ui/button";
+import MAEClogo from "/maec_small_logo.jpg";
 
 export default function EvalutionService() {
   return (
@@ -60,117 +59,34 @@ export default function EvalutionService() {
           </div>
         </div>
       </section>
-      <section className="flex my-10 max-md:gap-5 justify-around max-md:flex-col max-md:items-center">
-        <div className="w-[20%] max-md:w-[90%] flex max-md:text-center flex-col gap-5 max-md:items-center">
-          <h5 className="text-4xl font-bold max-md:text-xl ">
-            What our customers say about us
-          </h5>
+  
+      <article className=" flex flex-col justify-center items-center w-full py-10 bg-[#f9fdff]">
+      <div className="w-[60%] max-md:w-[90%] justify-center items-center gap-7 flex flex-col text-center">
+        <img src={MAEClogo} alt="MAEC logo" className="w-[6rem]" />
+        <h4 className="text-4xl font-bold text-black max-md:text-2xl">
+          Need assistance?
+        </h4>
+        <p>
+          Our customer support team members are available to answer your
+          questions 24 hours a day via chat, phone and email!
+        </p>
+        <div className="gap-5 flex">
+          <Button
+            variant={"outline"}
+            className="font-bold rounded-full border-[#2aaae0]"
+            onClick={() => (window.location.href = "contactus")}
+          >
+            Contact Us
+          </Button>
+          <Button
+            className="font-bold rounded-full bg-[#2aaae0]"
+            onClick={() => (window.location.href = "get-started")}
+          >
+            Start Evaluation
+          </Button>
         </div>
-        <div className="w-[50%] max-md:w-[90%] flex flex-col gap-5">
-          <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
-            <div className="flex justify-start items-center flex-col gap-3">
-              <figure>
-                <img src={ieeLogo} className="rounded-full w-[5rem]" />
-              </figure>
-              <div className="rating rating-xs">
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-              </div>
-            </div>
-            <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
-              <p className="text-slate-600 ">
-                Thanks a lot MAEC. I had a great experience with your company. I
-                expected to get my documents in 3- 5 business days but recievd
-                those just in one day.
-              </p>
-              <p className="text-2xl font-bold">Sara</p>
-            </div>
-          </div>
-          <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
-            <div className="flex justify-start items-center flex-col gap-3">
-              <figure>
-                <img src={ieeLogo} className="rounded-full w-[5rem]" />
-              </figure>
-              <div className="rating rating-xs">
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-yellow-400"
-                  disabled
-                />
-              </div>
-            </div>
-            <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
-              <p className="text-slate-600">
-                Great product and excellent customer experience. A user-friendly
-                application with a live customer support chat box that I found
-                very helpful. I received on-time/live clarifications/responses
-                to all my questions regarding the service/process and the agents
-                were professional and supportive. The order process was
-                self-explanatory and I received timely updates on my case until
-                the completion. I even got a credit back since apparently, I
-                placed incorrect information on the initial order. I received a
-                great customer experience and would highly recommend this
-                service/product to others.
-              </p>
-              <p className="text-2xl font-bold">Nosir</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <NeedAssistance />
+      </div>
+    </article>
     </main>
   );
 }
