@@ -1,5 +1,4 @@
-import { Button } from "../ui/button";
-import webLogo from "/maec_full_logo.jpg";
+import { Button } from "../ui/button";import webLogo from "/maec_full_logo.jpg";
 import { TiSocialFacebook } from "react-icons/ti";
 import { FaLinkedinIn, FaSortDown } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -57,7 +56,7 @@ export default function Navbar() {
   useEffect(() => {
     if (localStorage.getItem("usermail")) {
       const userName = localStorage.getItem("usermail");
-      const name = userName?.split("@")[0];
+      const name = userName?.substring(0, 1);
       if (name) {
         setuserName(name);
       }
@@ -121,7 +120,7 @@ export default function Navbar() {
           )}
           {userName && (
             <DropdownMenu>
-              <DropdownMenuTrigger className="bg-[#2aaae0] font-bold rounded-full text-white px-3 p-2 flex justify-center items-center">
+              <DropdownMenuTrigger className="bg-[#2aaae0] font-bold rounded-full  text-white uppercase text-2xl px-5 p-1 flex justify-center items-center">
                 {userName} <FaSortDown className=" pb-1" size={20} />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
@@ -186,7 +185,7 @@ export default function Navbar() {
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-3">
                       <AccordionTrigger className="font-bold  focus:no-underline">
-                      Services
+                        Services
                       </AccordionTrigger>
                       <AccordionContent className="text-start px-5 flex flex-col gap-3">
                         <div>
@@ -279,7 +278,7 @@ export default function Navbar() {
 
               {userName && (
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="bg-[#2aaae0] font-bold rounded-full w-fit text-white px-3 ml-5 p-2 flex justify-center items-center">
+                  <DropdownMenuTrigger className="bg-[#2aaae0] uppercase font-bold rounded-full w-fit text-white px-5 ml-5 p-2 flex justify- text-xl items-center">
                     {userName} <FaSortDown className=" pb-1" size={20} />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
