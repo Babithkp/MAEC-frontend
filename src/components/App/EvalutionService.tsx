@@ -11,7 +11,7 @@ export default function EvalutionService() {
             MAEC Transcript Evaluation
           </h1>
           <p className="text-center">
-            Let’s begin with primary purpose of your Acdemic transcript
+            Let’s begin with primary purpose of your Academic transcript
             evaluation.
           </p>
         </div>
