@@ -1,4 +1,5 @@
-import { Button } from "../ui/button";import webLogo from "/maec_full_logo.jpg";
+import { Button } from "../ui/button";
+import webLogo from "/maec_full_logo.jpg";
 import { TiSocialFacebook } from "react-icons/ti";
 import { FaLinkedinIn, FaSortDown } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -30,6 +31,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../../components/ui/accordion";
+import { getUserProfileById } from "../../http/fetch";
 
 export default function Navbar() {
   const [isOnSignup, setIsOnSignup] = useState(false);
@@ -54,15 +56,24 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("usermail")) {
-      const userName = localStorage.getItem("usermail");
-      const name = userName?.substring(0, 1);
+    if (localStorage.getItem("usermail") && localStorage.getItem("userId")) {
+      const userMail = localStorage.getItem("usermail");
+      const userId = localStorage.getItem("userId");
+      const name = userMail?.split("@")[0];
       if (name) {
         setuserName(name);
       }
+      const fetch = async ()=>{
+        const response = await getUserProfileById({userId:userId})
+        if(response){
+          setuserName(response.data.data.first_name);
+        }
+      }
+      fetch()
     } else {
       setuserName(null);
     }
+   
   }, []);
 
   return (
@@ -120,7 +131,7 @@ export default function Navbar() {
           )}
           {userName && (
             <DropdownMenu>
-              <DropdownMenuTrigger className="bg-[#2aaae0] font-bold rounded-full  text-white uppercase text-2xl px-5 p-1 flex justify-center items-center">
+              <DropdownMenuTrigger className="bg-[#2aaae0] font-bold rounded-full text-white px-3 p-2 flex justify-center items-center">
                 {userName} <FaSortDown className=" pb-1" size={20} />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
@@ -185,7 +196,7 @@ export default function Navbar() {
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-3">
                       <AccordionTrigger className="font-bold  focus:no-underline">
-                        Services
+                      Services
                       </AccordionTrigger>
                       <AccordionContent className="text-start px-5 flex flex-col gap-3">
                         <div>
@@ -278,7 +289,7 @@ export default function Navbar() {
 
               {userName && (
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="bg-[#2aaae0] uppercase font-bold rounded-full w-fit text-white px-5 ml-5 p-2 flex justify- text-xl items-center">
+                  <DropdownMenuTrigger className="bg-[#2aaae0] font-bold rounded-full w-fit text-white px-3 ml-5 p-2 flex justify-center items-center">
                     {userName} <FaSortDown className=" pb-1" size={20} />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
