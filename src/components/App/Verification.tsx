@@ -44,7 +44,7 @@ export default function Verification() {
             <li>
               Upload your degree certificate and transcript for verification.
             </li>
-            <li>Pay the evaluation fee.</li>
+            <li>Pay the verification fee.</li>
             <li>
               Receive your verification report in your email within 7 business
               days.

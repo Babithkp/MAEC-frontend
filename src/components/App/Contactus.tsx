@@ -1,5 +1,4 @@
-import randomMapImg from "/GoogleMapTA.webp";
-export default function Contactus() {
+import randomMapImg from "/GoogleMapTA.webp";export default function Contactus() {
   return (
     <main>
       <section className="w-full flex justify-center items-center flex-col gap-20 mt-10">
@@ -17,6 +16,7 @@ export default function Contactus() {
             <div className="flex flex-col justify-center  p-5 gap-5 border rounded-3xl">
               <p className="font-bold">Customer Support:</p>
               <p>Email: Support@maec.us</p>
+              <p>Phone: +12697956182</p>
               <p>Mon-Fri: 8:00 AM - 4:00 PM </p>
               <p>Sat-Sun: 12:00 PM - 3:00 PM.</p>
             </div>
