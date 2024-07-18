@@ -3,7 +3,8 @@ import map from "/half_globe.webp";
 import blutCutLogo from "/blue_cut.svg";
 import ieeLogo from "/maec_small_logo.jpg";
 import { Button } from "../ui/button";
-
+import stud1 from "/reviews/student3.jpg"
+import stud2 from "/reviews/student4.jpg"
 export default function Aboutus() {
   return (
     <main className="min-h-[80vh] flex-col flex justify-center items-center ">
@@ -83,7 +84,7 @@ export default function Aboutus() {
           <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
             <div className="flex justify-start items-center flex-col gap-3">
               <figure>
-                <img src={ieeLogo} className="rounded-full w-[5rem]" />
+                <img src={stud1} className="rounded-full w-[5rem] h-[5rem]" />
               </figure>
               <div className="rating rating-xs">
                 <input
@@ -122,7 +123,7 @@ export default function Aboutus() {
               <p className="text-slate-600 ">
                 MAEC EVALUATION IS simply Super. I like mainly customer support
                 24/7 always they respond any time and evaluation time also very
-                less and low price. Tnq Iee..
+                less and low price.
               </p>
               <p className="text-2xl font-bold">JENNIFER</p>
             </div>
@@ -130,7 +131,7 @@ export default function Aboutus() {
           <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
             <div className="flex justify-start items-center flex-col gap-3">
               <figure>
-                <img src={ieeLogo} className="rounded-full w-[5rem]" />
+                <img src={stud2} className="rounded-full w-[5rem]" />
               </figure>
               <div className="rating rating-xs">
                 <input
@@ -171,7 +172,7 @@ export default function Aboutus() {
                 well. I recommend MAEC and I'll use their services in the future
                 again!
               </p>
-              <p className="text-2xl font-bold">Alice</p>
+              <p className="text-2xl font-bold">Alex</p>
             </div>
           </div>
         </div>

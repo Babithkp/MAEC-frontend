@@ -33,13 +33,13 @@ export default function EvalutionService() {
               A listing of all courses with the equivalent U.S. semester credits
               and grades.
             </li>
-            <li>Grade point average (GPA)1 on a 4.0 scale.</li>
+            <li>Grade point average (GPA) on a 4.0 scale.</li>
             <li>U.S equivalent of final cumulative GPA.</li>
-            <li>U.S. comparability of the foreign education credentials</li>
+            <li>U.S. comparability of the foreign education credentials.</li>
           </ul>
           <p className="font-bold ">Course-By-Course Evaluation fee: $12</p>
           <p className="font-bold mt-5">How it works:</p>
-          <ul className="ml-5 list-disc">
+          <ul className="ml-5 list-disc flex flex-col gap-3">
             <li>Create your account and enter your information.</li>
             <li>Upload the orginal scanned copy of your transcripts.</li>
             <li>Pay the evaluation fee.</li>
