@@ -1,4 +1,5 @@
-import Accordion from "@mui/material/Accordion";import AccordionSummary from "@mui/material/AccordionSummary";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { RiArrowUpSLine } from "react-icons/ri";
 import { AccordionDetails } from "@mui/material";
@@ -29,7 +30,7 @@ interface UserProfileType {
       courseByCourse: string[];
       certificate: string[];
       transcript: string[];
-      paid_amount: number;
+      paid_amount: number | null;
     };
   }[];
 }
@@ -47,9 +48,11 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetch = async () => {
       const response = await getAllUserDetails();
-      
+
       if (response) {
         const data = response.data.data;
+        console.log(data);
+        
         setUser(data);
       }
     };
@@ -110,7 +113,7 @@ export default function AdminDashboard() {
                 </p>
               </div>
               <div>
-                {user.evaluation?.map((eva) => (
+                {user.evaluation?.map((eva,i) => (
                   <Accordion
                     key={i}
                     expanded={expanded === `agent${i}`}
@@ -123,48 +126,54 @@ export default function AdminDashboard() {
                       className="max-md:w-[20rem]"
                     >
                       <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                      Service {i + 1}
+                        Service {i + 1}
                       </Typography>
                       <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                        Language: {eva.language}
+                        Language: {eva.language ? eva.language : "English"}
                       </Typography>
                       <Typography sx={{ width: "33%", flexShrink: 0 }}>
                         Amount Paid{" "}
-                        {eva.documents.paid_amount
+                        {eva.documents?.paid_amount
                           ? "$" + eva.documents.paid_amount
                           : "$0"}
                       </Typography>
                     </AccordionSummary>
                     <AccordionDetails className="flex flex-col gap-5">
                       <Typography className="md:w-[70rem]">
-                      <p className="font-bold mb-2">Course-by-Course evaluation</p>
-                        {eva.documents.courseByCourse.map((doc) => (
+                        <p className="font-bold mb-2">
+                          Course-by-Course evaluation
+                        </p>
+                        {eva.documents?.courseByCourse?.map((doc) => (
                           <a
-                          key={doc}
-                          target="_blank"
-                          href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                          className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
+                            key={doc}
+                            target="_blank"
+                            href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
+                            className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
                           >
                             {doc.substring(36)}
                           </a>
                         ))}
                       </Typography>
                       <Typography className="md:w-[70rem]">
-                        <p className="font-bold mb-2">Certificate Verification</p>
-                        {eva.documents.certificate.map((doc) => (
+                        <p className="font-bold mb-2">
+                          Certificate Verification
+                        </p>
+                        {eva.documents?.certificate?.map((doc) => (
                           <a
-                          key={doc}
-                          target="_blank"
-                          href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                          className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
+                            key={doc}
+                            target="_blank"
+                            href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
+                            className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
                           >
                             {doc.substring(36)}
                           </a>
                         ))}
                       </Typography>
                       <Typography className="md:w-[70rem]">
-                        <p className="font-bold mb-2">Transcript Verification</p>
-                        {eva.documents.transcript.map((doc) => (
+                        <p className="font-bold mb-2">
+                          Transcript Verification
+                        </p>
+                        {eva.documents?.transcript?.map((doc) => (
                           <a
                             key={doc}
                             target="_blank"
