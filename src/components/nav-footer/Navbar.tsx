@@ -117,14 +117,14 @@ export default function Navbar() {
             <>
               <Button
                 className="rounded-full bg-[#2aaae0]"
-                onClick={() => (window.location.href = "get-started")}
+                onClick={() => (window.location.href = "/get-started")}
               >
                 Get Started
               </Button>
               <Button
                 variant={"outline"}
                 className="rounded-full border-[1px] border-black"
-                onClick={() => (window.location.href = "loggingIn")}
+                onClick={() => (window.location.href = "/loggingIn")}
               >
                 Login
               </Button>
@@ -273,7 +273,7 @@ export default function Navbar() {
               {!userName && (
                 <div className="flex justify-center gap-5 pt-5">
                   <Button
-                    onClick={() => (window.location.href = "get-started")}
+                    onClick={() => (window.location.href = "/get-started")}
                     className="bg-[#2aaae0] font-bold rounded-full"
                   >
                     Get started
@@ -281,7 +281,7 @@ export default function Navbar() {
                   <Button
                     variant={"outline"}
                     className="font-bold rounded-full"
-                    onClick={() => (window.location.href = "loggingIn")}
+                    onClick={() => (window.location.href = "/loggingIn")}
                   >
                     Login
                   </Button>
