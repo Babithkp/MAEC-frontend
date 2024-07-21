@@ -194,7 +194,7 @@ export default function UserDashboard() {
             <AccordionDetails className="flex flex-col gap-5">
               <Typography className="md:w-[70rem]">
                 <p className="font-bold mb-2">Course-by-Course evaluation</p>
-                {eva.documents.courseByCourse.map((doc) => (
+                {eva.documents?.courseByCourse.map((doc) => (
                   <a
                     key={doc}
                     target="_blank"
@@ -209,7 +209,7 @@ export default function UserDashboard() {
                 <p className="font-bold mb-2">
                   Academic credential verification.
                 </p>
-                {eva.documents.certificate.map((doc) => (
+                {eva.documents?.certificate.map((doc) => (
                   <a
                     key={doc}
                     target="_blank"
@@ -222,7 +222,7 @@ export default function UserDashboard() {
               </Typography>
               <Typography className="md:w-[70rem]">
                 <p className="font-bold mb-2">Document Translation.</p>
-                {eva.documents.transcript.map((doc) => (
+                {eva.documents?.transcript.map((doc) => (
                   <a
                     key={doc}
                     target="_blank"
