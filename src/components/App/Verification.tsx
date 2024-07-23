@@ -36,8 +36,8 @@ export default function Verification() {
               transcript.
             </li>
           </ul>
-          <p className="font-bold my-1">Certificate Verification: $10.</p>
-          <p className="font-bold my-1">Transcript Verification: $10.</p>
+          <p className="font-bold my-1">Certificate Verification Fee: $10.</p>
+          <p className="font-bold my-1">Transcript Verification Fee: $10.</p>
           <p className="font-bold my-1">How it works:</p>
           <ul className="ml-5 list-disc flex flex-col gap-3">
             <li>Create your account and login.</li>

@@ -1,4 +1,5 @@
-import reviewStart from "/count-review.svg";import reviewsimg from "/review3.svg";
+import reviewStart from "/count-review.svg";
+import reviewsimg from "/review3.svg";
 import { Button } from "../ui/button";
 export default function Transaction() {
   return (
@@ -15,15 +16,16 @@ export default function Transaction() {
         </div>
         <div className="p-5 flex-col flex gap-5 ">
           <p className="">
-            Specialized in education and Legal documents: Birth Certificate,
-            Marriage Certificate, Licenses and Employment Contracts.
+            Specialize in the translation of education and official documents
+            such as; Acdemic transcript, Birth Certificate, Marriage
+            Certificate, Licenses and Employment Contracts etc.
           </p>
           <p className="">
-            Translation of academic documents, birth certificates, Marriage
-            certificates, and any other legal or official documents:
-            <span className="font-bold"> $10 per documents.</span>
+          Translation Fee: $10 per document.
           </p>
-          <p>Processing Time: <span className="font-bold">3 business days</span>.</p>
+          <p>
+            Processing Time: <span className="font-bold">3 business days</span>.
+          </p>
         </div>
       </section>
       <section className="w-[50%] max-md:w-[90%] flex flex-col gap-10 items-center justify-center  my-10">
@@ -48,7 +50,7 @@ export default function Transaction() {
           needs, receive your 100% certified translation in no time!
         </p>
       </section>
-    
+
       <div>
         <Button
           className="font-bold rounded-full bg-[#2aaae0]"
