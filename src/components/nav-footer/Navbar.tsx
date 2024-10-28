@@ -306,7 +306,7 @@ export default function Navbar() {
                     <DropdownMenuItem
                       onClick={() => (window.location.href = "/userDashboard")}
                     >
-                      My Dashboad
+                      My Dashboard 
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={logoutHandler}>
                       Logout
