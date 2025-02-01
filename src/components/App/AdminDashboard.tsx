@@ -208,7 +208,7 @@ export default function AdminDashboard() {
                             <a
                               key={doc}
                               target="_blank"
-                              href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
+                              href={`https://studyinmaryland-stroage-buckets.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
                               className="border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
                             >
                               {doc.substring(36)}
@@ -221,7 +221,7 @@ export default function AdminDashboard() {
                             <a
                               key={doc}
                               target="_blank"
-                              href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
+                              href={`https://studyinmaryland-stroage-buckets.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
                               className="border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
                             >
                               {doc.substring(36)}
@@ -234,7 +234,7 @@ export default function AdminDashboard() {
                             <a
                               key={doc}
                               target="_blank"
-                              href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
+                              href={`https://studyinmaryland-stroage-buckets.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
                               className="border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
                             >
                               {doc.substring(36)}
