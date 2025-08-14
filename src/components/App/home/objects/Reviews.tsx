@@ -12,7 +12,7 @@ export default function Reviews() {
           We have helped thousands of people just like you accomplish their
           dreams through education, licensing, military and employment. But
           don't just take our word for it. Take the word of these individuals
-          who have trusted MASE with their evaluation experience and want to
+          who have trusted MSAE with their evaluation experience and want to
           share it with you.
         </p>
       </div>
