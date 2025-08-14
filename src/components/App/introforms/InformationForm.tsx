@@ -220,7 +220,7 @@ export default function InformationForm() {
         <div>
           <p className="font-bold">Mailing Address</p>
           <p className="my-5">
-            This is where MAEC will send your copy of the report
+            This is where MSAC will send your copy of the report
           </p>
           <div className="flex flex-wrap justify-between">
             <div className="border-b flex flex-col mb-5 gap-5 w-screen ">

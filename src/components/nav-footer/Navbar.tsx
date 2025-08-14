@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-import webLogo from "/maec_full_logo.jpg";
+import webLogo from "/msac_full_logo.png";
 import { TiSocialFacebook } from "react-icons/ti";
 import { FaLinkedinIn, FaSortDown } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -83,14 +83,14 @@ export default function Navbar() {
         isOnSignup ? "hidden" : ""
       }`}
     >
-      <figure onClick={() => (window.location.href = "/")}>
+      <a href="/">
         <img
           src={webLogo}
           alt="LOGO"
           loading="lazy"
-          className="w-[10rem] max-md:w-[8rem]"
+          className="w-[12rem] max-md:w-[13rem]"
         />
-      </figure>
+      </a>
       <div className="justify-evenly items-center flex w-full max-md:hidden">
         <ul className="font-medium  flex gap-6 text-sm">
           <li>
@@ -257,7 +257,7 @@ export default function Navbar() {
                           <a href="/pricing" className="font-bold">
                             Pricing
                           </a>
-                          <p>Check out MAEC's low pricing.</p>
+                          <p>Check out MSAC's low pricing.</p>
                         </div>
                         <div>
                           <a href="/contactus" className="font-bold">

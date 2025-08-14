@@ -1,4 +1,4 @@
-import { Button } from "../../../ui/button";import ieeLogo from "/maec_small_logo.jpg";
+import { Button } from "../../../ui/button";import ieeLogo from "/msac_small_logo.png";
 
 export default function Evalution() {
   return (
@@ -10,7 +10,7 @@ export default function Evalution() {
         Get an evaluation today
       </h5>
       <p className="w-[60%] max-md:w-[90%] text-center text-lg">
-        Join the thousands of people just like you who have made MAEC their
+        Join the thousands of people just like you who have made MSAC their
         trusted evaluation service! We are here to answer your questions on
         chat, email and phone 24/7!
       </p>

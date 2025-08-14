@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-import MAEClogo from "/maec_small_logo.jpg";
+import MAEClogo from "/msac_small_logo.png";
 
 export default function EvalutionService() {
   return (
@@ -7,7 +7,7 @@ export default function EvalutionService() {
       <section className="w-[90%] max-md:w-[100%] font-medium">
         <div className="p-5 flex flex-col gap-5">
           <h1 className="text-center text-4xl font-bold ">
-            MAEC Transcript Evaluation
+            MSAC Transcript Evaluation
           </h1>
           <p className="text-center">
             Let’s begin with primary purpose of your Academic transcript
@@ -51,7 +51,7 @@ export default function EvalutionService() {
 
           <p className="text-sm">
             If the transcript submitted does not include grades or marks,
-            MAEC will not be able to calculate GPA.
+            MSAC will not be able to calculate GPA.
           </p>
 
           <div className="w-full flex items-center justify-center my-10">

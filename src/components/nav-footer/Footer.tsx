@@ -1,5 +1,5 @@
 import { TiSocialFacebook } from "react-icons/ti";
-import ieeLogo from "/maec_full_logo.jpg";
+import ieeLogo from "/msac_full_logo.png"; 
 import rating from "/rating.png";
 import { Button } from "../ui/button";
 import { FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
@@ -23,7 +23,7 @@ export default function Footer() {
       <div className={`grid px-5 md:grid-cols-5 text-sm py-10 max-md:gap-10 `}>
         <div className="flex flex-col gap-10">
           <a href="/">
-            <img src={ieeLogo} alt="iee logo" className="w-[10rem]" />
+            <img src={ieeLogo} alt="iee logo" className="w-[12rem]" />
           </a>
         </div>
         <div className="flex flex-col gap-3">
@@ -40,7 +40,7 @@ export default function Footer() {
         <div className="flex flex-col gap-3">
           <p className="font-bold">Contact Us</p>
           <p className="text-lg font-bold">
-            support@maec.us
+            support@msac.us
           </p>
           <a href="/">
             <img src={rating} alt="rating" />
@@ -74,7 +74,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="md:flex text-sm max-md:text-xs  justify-center max-md:text-center items-center bg-black text-slate-500  py-5">
-        <p>Ⓒ 2024 MAEC. all right reserved.</p>
+        <p>Ⓒ 2024 MSAC. all right reserved.</p>
         <ul className="flex flex-wrap gap-3 max-md:px-5 justify-center">
           <li>
             <a href="/" className="underline hover:text-white">

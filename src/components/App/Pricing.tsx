@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-import MAEClogo from "/maec_small_logo.jpg";
+import MAEClogo from "/msac_small_logo.png";
 export default function Pricing() {
   return (
     <main className="flex flex-col justify-center items-center">

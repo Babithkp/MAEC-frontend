@@ -1,7 +1,7 @@
 import naces from "/naces.png";
 import map from "/half_globe.webp";
 import blutCutLogo from "/blue_cut.svg";
-import ieeLogo from "/maec_small_logo.jpg";
+import ieeLogo from "/msac_small_logo.png"; 
 import { Button } from "../ui/button";
 import stud1 from "/reviews/student3.jpg"
 import stud2 from "/reviews/student4.jpg"
@@ -39,7 +39,7 @@ export default function Aboutus() {
           <img src={ieeLogo} alt="iee logo" className="w-[6rem]" />
           <h3 className="font-bold text-4xl">Our mission</h3>
           <p>
-            MAEC advances the global mobility and integration of people into
+            MSAC advances the global mobility and integration of people into
             academic and professional settings by evaluating and advocating for
             the recognition of international educational qualifications and
             enabling individuals to fully utilize their education.
@@ -76,7 +76,7 @@ export default function Aboutus() {
             We have helped thousands of people just like you accomplish their
             dreams through education, licensing, military and employment. But
             don't just take our word for it. Take the word of these individuals
-            who have trusted MAEC with their evaluation experience and want to
+            who have trusted MSAC with their evaluation experience and want to
             share it with you.
           </p>
         </div>
@@ -121,7 +121,7 @@ export default function Aboutus() {
             </div>
             <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
               <p className="text-slate-600 ">
-                MAEC EVALUATION IS simply Super. I like mainly customer support
+                MSAC EVALUATION IS simply Super. I like mainly customer support
                 24/7 always they respond any time and evaluation time also very
                 less and low price.
               </p>
@@ -169,7 +169,7 @@ export default function Aboutus() {
             <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
               <p className="text-slate-600">
                 Excellent and fast services. Very efficient chat service as
-                well. I recommend MAEC and I'll use their services in the future
+                well. I recommend MSAC and I'll use their services in the future
                 again!
               </p>
               <p className="text-2xl font-bold">Alex</p>

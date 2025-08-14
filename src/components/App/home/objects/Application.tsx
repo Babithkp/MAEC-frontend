@@ -7,7 +7,7 @@ export default function Application() {
         <div className="w-1/2 max-md:w-full flex flex-col gap-5 max-md:items-center">
           <h5 className="text-3xl font-bold  max-md:text-2xl">Application Process</h5>
           <p className="max-md:text-center">
-            Getting your evaluation is easy with MAEC. Our streamlined digital
+            Getting your evaluation is easy with MSAC. Our streamlined digital
             process means you stay informed every step of the way and receive
             your evaluation in 3 day!
           </p>

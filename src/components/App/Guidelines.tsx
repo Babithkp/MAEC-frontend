@@ -1,4 +1,4 @@
-import MAEClogo from "/maec_small_logo.jpg";
+import MAEClogo from "/msac_small_logo.png"; 
 import { Button } from "../ui/button";
 export default function Guidelines() {
   return (
@@ -8,9 +8,9 @@ export default function Guidelines() {
           Evaluation Guidelines
         </h1>
         <p>
-          Founded in 1981, International Education Evaluations, Inc. (MAEC)
+          Founded in 1981, International Education Evaluations, Inc. (MSAC)
           provides quality evaluation and assessment services for foreign
-          academic and vocational credentials. MAEC evaluations are based on the
+          academic and vocational credentials. MSAC evaluations are based on the
           judgment of highly trained and experienced international credential
           analysts who have access to an extensive library of both physical and
           electronic resources. We are members of NACES, NAFSA, AACRAO, and
@@ -22,24 +22,24 @@ export default function Guidelines() {
           Non-binding Nature of Evaluations
         </p>
         <p>
-          MAEC evaluations and assessments are advisory in nature and are in no
+          MSAC evaluations and assessments are advisory in nature and are in no
           way binding on any institution, agency, or organization, each of which
           has the authority to make its own decision regarding the educational
-          credentials, grades, and credits described in MAEC’s evaluation
+          credentials, grades, and credits described in MSAC’s evaluation
           reports.
         </p>
         <p className="text-2xl font-bold my-5 text-black mt-5">
           Evaluation Approach
         </p>
         <p>
-          The evaluation methodologies used at MAEC include both year-counting
+          The evaluation methodologies used at MSAC include both year-counting
           and benchmarking. Implementation of these is dependent upon the
-          report's purpose and the receiving organization. MAEC will prioritize
+          report's purpose and the receiving organization. MSAC will prioritize
           years of full-time study as foundational to the equivalency
           determination for immigration and licensure purposes, as well as for
           reports created for specific colleges and universities which have
           opted out of benchmarked equivalencies. For most education and
-          employment reports, however, MAEC will prioritize academic and
+          employment reports, however, MSAC will prioritize academic and
           professional access, curriculum rigor, and contact hours as central to
           the equivalency determination.
         </p>
@@ -119,7 +119,7 @@ export default function Guidelines() {
         </ul>
         <p className="text-2xl font-bold my-5 text-black mt-5">Credits</p>
         <p>
-          On MAEC’s Course Reports, high school credits are reported in Carnegie
+          On MSAC’s Course Reports, high school credits are reported in Carnegie
           Units, with 6-8 units generally representing one year of full-time
           study. Postsecondary units are reported in semester credits, with 30
           to 36 credits (semester hours) representing the equivalent of one year
@@ -217,8 +217,8 @@ export default function Guidelines() {
         <p className="text-2xl font-bold my-5 text-black mt-5">Extra Copies</p>
         <p>
           You may order an extra copy of your report at{" "}
-          <a href="http://www.MAEC.us" className="text-blue-500">
-            www.MAEC.us
+          <a href="http://www.MSAC.us" className="text-blue-500">
+            www.MSAC.us
           </a>
           . If your evaluation is older than 1 year a revision fee may apply. If
           your evaluation is older than 5 years, you must reapply for
@@ -230,28 +230,28 @@ export default function Guidelines() {
         <p>
           Please refer to:{" "}
           <a
-            href=" https://MAEC.us/document-requirement "
+            href=" https://MSAC.us/document-requirement "
             className="text-blue-500"
           >
-            https://MAEC.us/document-requirement
+            https://MSAC.us/document-requirement
           </a>{" "}
-          These vary by country and report type. MAEC reserves the right to
+          These vary by country and report type. MSAC reserves the right to
           request additional academic records, official/original academic
           records, or verification of document authenticity, should it be deemed
-          necessary. MAEC reserves the right to refuse service if appropriate
+          necessary. MSAC reserves the right to refuse service if appropriate
           documentation is not provided.
         </p>
         <p className="text-2xl font-bold my-5 text-black mt-5">
-          MAEC Institution Portal
+          MSAC Institution Portal
         </p>
         <p>
           If you are an institution of higher education, a licensing agency, an
           employer, or another organization receiving multiple evaluations,
           please consider setting up an account at no cost for your institution
-          to receive electronic delivery of future reports from MAEC at Please
+          to receive electronic delivery of future reports from MSAC at Please
           refer to:{" "}
-          <a href="https://access.MAEC.us " className="text-blue-500">
-            https://access.MAEC.us
+          <a href="https://access.MSAC.us " className="text-blue-500">
+            https://access.MSAC.us
           </a>
           .
         </p>
@@ -269,7 +269,7 @@ export default function Guidelines() {
             Get an evaluation today
           </h4>
           <p>
-            Join the thousands of people just like you who have made MAEC their
+            Join the thousands of people just like you who have made MSAC their
             trusted evaluation service! We are here to answer your questions on
             chat, email and phone 24/7!
           </p>

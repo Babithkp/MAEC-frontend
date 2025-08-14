@@ -1,4 +1,4 @@
-import MAEClogo from "/maec_small_logo.jpg";
+import MAEClogo from "/msac_small_logo.png";
 import { Button } from "../ui/button";
 export default function NeedAssistance() {
   return (

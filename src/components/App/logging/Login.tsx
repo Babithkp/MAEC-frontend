@@ -93,7 +93,7 @@ export default function Login() {
         </div>
         <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
           <h1 className="text-4xl font-bold max-md:text-3xl">
-            Login to MAEC Portal
+            Login to MSAC Portal
           </h1>
           <div className="md:w-[60%]">
             <div className="border-b flex flex-col mb-5 gap-5">

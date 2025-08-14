@@ -247,7 +247,7 @@ export default function Pay() {
             htmlFor="checkEdu"
             className="flex justify-between w-full max-md:text-xs"
           >
-            I AGREE TO THE TERMS AND CONDITIONS SET BY MAEC.
+            I AGREE TO THE TERMS AND CONDITIONS SET BY MSAC.
           </label>
         </div>
         {isError && <span className=" text-red-500 ">{isError}</span>}

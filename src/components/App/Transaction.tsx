@@ -7,7 +7,7 @@ export default function Transaction() {
       <section className="w-[90%] max-md:w-[100%] font-medium">
         <div className="p-5 flex flex-col gap-5">
           <h1 className="text-center text-4xl font-bold ">
-            MAEC Translation Services.
+            MSAC Translation Services.
           </h1>
           <p className="text-center ">
             Get your Non-English official documents translated into English
@@ -46,7 +46,7 @@ export default function Transaction() {
           />
         </div>
         <p className="text-center">
-          We care about your success! Contact MAEC today for your translation
+          We care about your success! Contact MSAC today for your translation
           needs, receive your 100% certified translation in no time!
         </p>
       </section>
