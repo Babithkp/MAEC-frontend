@@ -8,13 +8,6 @@ export default function Reviews() {
         <h5 className="text-4xl font-bold max-md:text-xl ">
           What our customers say about us
         </h5>
-        <p className="">
-          We have helped thousands of people just like you accomplish their
-          dreams through education, licensing, military and employment. But
-          don't just take our word for it. Take the word of these individuals
-          who have trusted MSAE with their evaluation experience and want to
-          share it with you.
-        </p>
       </div>
       <div className="w-[50%] max-md:w-[90%] flex flex-col gap-5">
         <div className="border p-5 rounded-2xl flex max-md:flex-col max-md:items-center justify-between">
@@ -57,10 +50,7 @@ export default function Reviews() {
           </div>
           <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
             <p className="text-slate-600 ">
-              Thank you so much for such a great service, your customer service
-              is also one in a million, very nice, kind and responsive! I got a
-              great guidance before, during and after my evaluation was
-              completed. Keep it up!
+            Very good service and fast delivery l. I will use again if I need more official  translations.
             </p>
             <p className="text-2xl font-bold">Suzanne</p>
           </div>
@@ -105,9 +95,7 @@ export default function Reviews() {
           </div>
           <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
             <p className="text-slate-600">
-              Thanks a lot MSAC. I had a great experience with your company. I
-              expected to get my documents in 5 days but I received it just in 3
-              days.
+            Translation were excellent, fast and delivered on time. They were super helpful and able to assist in a very urgent matter… quality of their work was great… would definitely recommend ITS for any translation to German language.
             </p>
             <p className="text-2xl font-bold">Sara</p>
           </div>

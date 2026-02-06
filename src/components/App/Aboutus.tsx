@@ -1,16 +1,15 @@
-import naces from "/naces.png";
 import map from "/half_globe.webp";
-import blutCutLogo from "/blue_cut.svg";
 import ieeLogo from "/msac_small_logo.png"; 
 import { Button } from "../ui/button";
 import stud1 from "/reviews/student3.jpg"
 import stud2 from "/reviews/student4.jpg"
+import Blue_cut from "./home/objects/Blue_cut";
 export default function Aboutus() {
   return (
     <main className="min-h-[80vh] flex-col flex justify-center items-center ">
       <section className="w-[80%] max-md:w-[95%] flex flex-col justify-center items-center text-center gap-10 overflow-hidden ">
-        <span className="text-base flex items-end gap-5 font-medium">
-          A MEMBER OF <img src={naces} alt="naces logo" />
+        <span className="text-base flex  gap-5 font-medium items-center">
+          A MEMBER OF <span className="text-4xl font-serif">BIBB</span>
         </span>
         <h1 className="text-4xl font-bold">
           We provide <span className="text-[#2aaae0]">evaluation</span> and{" "}
@@ -47,7 +46,7 @@ export default function Aboutus() {
         </div>
       </section>
       <section className="h-[80vh]  gap-10  flex justify-center flex-col items-center my-20">
-        <img src={blutCutLogo} className="w-[30rem] max-md:w-[20rem]" />
+        <Blue_cut/>
         <h5 className="text-4xl max-md:text-center font-bold">
           Evaluation with the ‘Experienced’
         </h5>

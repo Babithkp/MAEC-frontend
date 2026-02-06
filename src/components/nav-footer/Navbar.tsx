@@ -202,27 +202,19 @@ export default function Navbar() {
                       <AccordionContent className="text-start px-5 flex flex-col gap-3">
                         <div>
                           <a href="/evalutionService" className="font-bold">
-                            Evaluation
+                          Translation
                           </a>
                           <p>
-                            Determines your academic standing according to US
-                            standards.
+                          Official document translation from one language to German language.
                           </p>
                         </div>
                         <div>
                           <a href="/transaction" className="font-bold">
-                            Translation
+                          Aunthentication
                           </a>
                           <p>
-                            Word-for-word translation from one language to
-                            another.
+                          Service for authenticating and verifying official documents.
                           </p>
-                        </div>
-                        <div>
-                          <a href="/verification" className="font-bold">
-                            Verification
-                          </a>
-                          <p>Service for authenticating documents.</p>
                         </div>
                       </AccordionContent>
                     </AccordionItem>
@@ -257,7 +249,7 @@ export default function Navbar() {
                           <a href="/pricing" className="font-bold">
                             Pricing
                           </a>
-                          <p>Check out MSAC's low pricing.</p>
+                          <p>Check out our pricing.</p>
                         </div>
                         <div>
                           <a href="/contactus" className="font-bold">
