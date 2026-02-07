@@ -50,7 +50,7 @@ export default function Reviews() {
           </div>
           <div className="w-[80%] max-md:w-[90%] flex flex-col gap-5 max-md:text-center">
             <p className="text-slate-600 ">
-            Very good service and fast delivery l. I will use again if I need more official  translations.
+            Very good service and fast delivery. I will use again if I need more official  translations.
             </p>
             <p className="text-2xl font-bold">Suzanne</p>
           </div>

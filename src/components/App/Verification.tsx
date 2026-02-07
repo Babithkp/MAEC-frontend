@@ -4,7 +4,7 @@ export default function Verification() {
     <main className="flex justify-center items-center flex-col">
       <section className="w-[90%] max-md:w-[100%] font-medium">
         <div className="p-5 flex flex-col gap-5">
-          <h1 className="text-center text-4xl font-bold ">TS Authentication Services.</h1>
+          <h1 className="text-center text-4xl font-bold ">ITS Authentication Services.</h1>
           <p className="text-center">
             Get your official documents verified and authenticated.
           </p>

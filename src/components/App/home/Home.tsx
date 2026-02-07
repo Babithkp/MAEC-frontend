@@ -5,6 +5,7 @@ import Guide from "./objects/Guide"
 import Hero from "./objects/Hero"
 import Reviews from "./objects/Reviews"
 import Services from "./objects/Services"
+
 export default function Home() {
   return (
     <main className="flex flex-col justify-center items-center min-h-[80vh] w-full">

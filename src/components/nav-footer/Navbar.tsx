@@ -63,25 +63,24 @@ export default function Navbar() {
       if (name) {
         setuserName(name);
       }
-      const fetch = async ()=>{
-        const response = await getUserProfileById({userId:userId})
-        if(response){
+      const fetch = async () => {
+        const response = await getUserProfileById({ userId: userId })
+        if (response) {
           setuserName(response.data.data.first_name);
-          localStorage.setItem("usermail",response.data.data.first_name)
+          localStorage.setItem("usermail", response.data.data.first_name)
         }
       }
       fetch()
     } else {
       setuserName(null);
     }
-   
+
   }, []);
 
   return (
     <nav
-      className={`flex p-8 w-full justify-between ${
-        isOnSignup ? "hidden" : ""
-      }`}
+      className={`flex p-8 w-full justify-between ${isOnSignup ? "hidden" : ""
+        }`}
     >
       <a href="/">
         <img
@@ -93,9 +92,6 @@ export default function Navbar() {
       </a>
       <div className="justify-evenly items-center flex w-full max-md:hidden">
         <ul className="font-medium  flex gap-6 text-sm">
-          <li>
-            <a href="/evalutionService">Evaluation</a>
-          </li>
           <li>
             <a href="/transaction">Translation</a>
           </li>
@@ -183,6 +179,7 @@ export default function Navbar() {
         </div>
       </div>
       <div className="md:hidden">
+
         <AlertDialog>
           <AlertDialogTrigger>
             <RxHamburgerMenu className="md:hidden" size={25} />
@@ -193,50 +190,31 @@ export default function Navbar() {
                 <RxCross2 className="absolute right-5" size={25} />
               </AlertDialogCancel>
               <AlertDialogDescription>
+                <a href="/aboutus" className="font-bold p-2 w-screen text-black flex border-b ">
+                  About us
+                </a>
                 <div className="p-2 w-screen text-black flex justify-end">
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-3">
                       <AccordionTrigger className="font-bold  focus:no-underline">
-                      Services
+                        Services
                       </AccordionTrigger>
                       <AccordionContent className="text-start px-5 flex flex-col gap-3">
-                        <div>
-                          <a href="/evalutionService" className="font-bold">
-                          Translation
-                          </a>
-                          <p>
-                          Official document translation from one language to German language.
-                          </p>
-                        </div>
                         <div>
                           <a href="/transaction" className="font-bold">
-                          Aunthentication
+                            Translation
                           </a>
                           <p>
-                          Service for authenticating and verifying official documents.
-                          </p>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="item-1">
-                      <AccordionTrigger className="font-bold focus:no-underline">
-                        Tools
-                      </AccordionTrigger>
-                      <AccordionContent className="text-start px-5 flex flex-col gap-3">
-                        <div>
-                          <a href="/document-requirement" className="font-bold">
-                            Document Requirement
-                          </a>
-                          <p>
-                            Requirement vary by country and repoter type. Use
-                            this easy tool to find out what documents to submit.
+                            Official document translation from one language to German language.
                           </p>
                         </div>
                         <div>
-                          <a href="/guidelines" className="font-bold">
-                            Evaluation Guidelines
+                          <a href="/evalutionService" className="font-bold">
+                            Aunthentication
                           </a>
-                          <p>Evaluation Guidelines.</p>
+                          <p>
+                            Service for authenticating and verifying official documents.
+                          </p>
                         </div>
                       </AccordionContent>
                     </AccordionItem>
@@ -298,7 +276,7 @@ export default function Navbar() {
                     <DropdownMenuItem
                       onClick={() => (window.location.href = "/userDashboard")}
                     >
-                      My Dashboard 
+                      My Dashboard
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={logoutHandler}>
                       Logout

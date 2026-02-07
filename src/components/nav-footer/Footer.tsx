@@ -1,5 +1,5 @@
 import { TiSocialFacebook } from "react-icons/ti";
-import ieeLogo from "/msac_full_logo.png"; 
+import ieeLogo from "/msac_full_logo.png";
 import rating from "/rating.png";
 import { Button } from "../ui/button";
 import { FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
@@ -28,9 +28,6 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-3">
           <a href="/aboutus">About us</a>
-          <p className="font-bold">Credential evaluation</p>
-          <a href="/pricing">Fees</a>
-          <a href="/get-started">Apply Now</a>
           <a href="/get-started">My account</a>
         </div>
         <div className="flex flex-col gap-3">
@@ -39,8 +36,8 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-3">
           <p className="font-bold">Contact Us</p>
-          <p className="text-lg font-bold">
-            support@msac.us
+          <p className="font-bold">
+            Support@internationaltranslationservice.de
           </p>
           <a href="/">
             <img src={rating} alt="rating" />

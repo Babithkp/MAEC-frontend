@@ -1,7 +1,7 @@
 
 export default function Blue_cut() {
     return (
-        <svg width="570" height="155" viewBox="0 0 570 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="300" height="155" viewBox="0 0 570 155" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g transform="scale(0.9)">
                 <path
                     d="M1 122.937V101.28L49.2 57.6C63.6 44.64 68.64 38.88 68.64 30.24C68.64 19.44 60.48 12.96 48.96 12.96C37.44 12.96 28.8 18.72 21.12 27.36L4.32 11.52C16.32 -1.44 30.24 -9.6 53.76 -9.6C81.12 -9.6 100.8 5.76 100.8 28.32C100.8 44.16 92.64 54.24 72.96 71.04L39.36 100.32H102.24V122.937H1Z"

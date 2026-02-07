@@ -5,7 +5,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { GoGlobe } from "react-icons/go";
 export default function Guide() {
   return (
-    <section className="  flex justify-center flex-col items-center mt-10">
+    <section className="  flex justify-center flex-col items-center mt-10 overflow-hidden">
       <div className="flex w-[70%] max-md:w-[90%] max-md:flex-col">
         <div className="w-1/2 max-md:w-full flex flex-col gap-5 max-md:items-center">
           <h3 className="text-4xl max-md:text-2xl font-medium">
