@@ -67,35 +67,6 @@ export default function Guide() {
               />
             </div>
           </Button>
-
-          <Button
-            className="flex gap-7 py-10 max-md:w-full w-[80%] hover:bg-transparent hover:border hover:border-[#2aaae0] hover:scale-110 duration-100 transition-transform"
-            variant={"outline"} onClick={() => (window.location.href = "get-started")}
-          >
-            <div className="p-2 bg-[#e4f8ff] rounded-lg ">
-              <GoGlobe size={20} className="w-[2rem] h-[2rem]" />
-            </div>
-            <p className="flex text-base justify-between items-center">
-              I need a Verification
-              <div
-                className="tooltip  primary-content "
-                data-tip="world-for-word translation from one language to another."
-              >
-                <div className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none">
-                  <AiOutlineExclamationCircle
-                    className="rotate-180 text-[#2aaae0]"
-                    size={20}
-                  />
-                </div>
-              </div>
-            </p>
-            <div>
-              <FaSortDown
-                className="text-[#2aaae0] rotate-[-90deg]"
-                size={20}
-              />
-            </div>
-          </Button>
           <p>
             Not sure which service you need? Let’s get you started within no
             time!{" "}

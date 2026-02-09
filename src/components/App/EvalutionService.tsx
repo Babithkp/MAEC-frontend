@@ -61,7 +61,7 @@ export default function EvalutionService() {
               className="font-bold rounded-full bg-[#2aaae0]"
               onClick={() => (window.location.href = "get-started")}
             >
-              Start Evaluation
+              Get Start
             </Button>
           </div>
         </div>
