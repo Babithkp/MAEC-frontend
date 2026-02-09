@@ -1,4 +1,3 @@
-import { Button } from "../ui/button";
 
 import {
   AlertDialog,
@@ -21,13 +20,8 @@ export default function DocumentionReq() {
             Documentation Requirements
           </h1>
           <AlertDialog>
-            <AlertDialogTrigger>
-              <Button
-                variant={"outline"}
-                className="border-[#2aaae0] font-bold rounded-full"
-              >
+            <AlertDialogTrigger   className="border-[#2aaae0] font-bold rounded-full">
                 View General Documentation Requirements
-              </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>

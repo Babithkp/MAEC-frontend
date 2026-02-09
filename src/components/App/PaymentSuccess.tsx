@@ -4,13 +4,8 @@ import { useEffect } from "react";
 import {  compeltePayment } from "../../http/fetch";
 
 export default function PaymentSuccess() {
-  
-  
   useEffect(()=>{
-   
     async function fetch(){
-    
-      
         try{
           if (localStorage.getItem("userId")) {
             const userId = localStorage.getItem("userId");
@@ -18,9 +13,7 @@ export default function PaymentSuccess() {
           }
           
         }catch(err){
-          console.log();
-          
-        
+          console.log(err);
       }
     }
     fetch()

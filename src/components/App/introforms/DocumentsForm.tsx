@@ -18,7 +18,7 @@ import { useSetRecoilState } from "recoil";
 import { evalutonForm } from "../../../store/context";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import {
-  addDocuments,
+  // addDocuments,
   getDocumentByUserId,
   getUserEvalutionById,
   uploadPostDoc,
@@ -47,7 +47,7 @@ export default function EducationForm() {
   const courseByRef = useRef<HTMLInputElement | null>(null);
   const academicRef = useRef<HTMLInputElement | null>(null);
   const docTrasRef = useRef<HTMLInputElement | null>(null);
-  const [fetchError, setFetchError] = useState<string | null>(null);
+  // const [fetchError, setFetchError] = useState<string | null>(null);
   const [isLoading, setIsloading] = useState(false);
   const [buttonsLoading, setButtonsLoading] = useState(false);
   const [courseByCourseError, setCouseByCouseFileError] = useState<
@@ -171,54 +171,60 @@ export default function EducationForm() {
   };
 
   const nextButtonHandler = async () => {
-    if (
-      dataStorage.courseByCourse.length > 0 ||
-      dataStorage.certificate.length > 0 ||
-      dataStorage.transcript.length > 0
-    ) {
+    setPage({
+      informaton: { timeline: true, page: false },
+      evaluations: { timeline: true, page: false },
+      education: { timeline: true, page: false },
+      pay: { timeline: true, page: true },
+    });
+    // if (
+    //   dataStorage.courseByCourse.length > 0 ||
+    //   dataStorage.certificate.length > 0 ||
+    //   dataStorage.transcript.length > 0
+    // ) {
       setButtonsLoading(true);
-      if (!isExist.courseByCourse) {
-        dataStorage.courseByCourse = [];
-      }
-      if (!isExist.certificate) {
-        dataStorage.certificate = [];
-      }
-      if (!isExist.transcript) {
-        dataStorage.transcript = [];
-      }
-      try {
-        if (localStorage.getItem("userId")) {
-          const userId = localStorage.getItem("userId");
-          dataStorage.userId = userId;
-          const response = await addDocuments(dataStorage);
-          if (response.data.message) {
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            });
-            setPage({
-              informaton: { timeline: true, page: false },
-              evaluations: { timeline: true, page: false },
-              education: { timeline: true, page: false },
-              pay: { timeline: true, page: true },
-            });
-          }
-        }
+    //   if (!isExist.courseByCourse) {
+    //     dataStorage.courseByCourse = [];
+    //   }
+    //   if (!isExist.certificate) {
+    //     dataStorage.certificate = [];
+    //   }
+    //   if (!isExist.transcript) {
+    //     dataStorage.transcript = [];
+    //   }
+    //   try {
+    //     if (localStorage.getItem("userId")) {
+    //       const userId = localStorage.getItem("userId");
+    //       dataStorage.userId = userId;
+    //       const response = await addDocuments(dataStorage);
+    //       if (response.data.message) {
+    //         window.scrollTo({
+    //           top: 0,
+    //           behavior: "smooth",
+    //         });
+    //         setPage({
+    //           informaton: { timeline: true, page: false },
+    //           evaluations: { timeline: true, page: false },
+    //           education: { timeline: true, page: false },
+    //           pay: { timeline: true, page: true },
+    //         });
+    //       }
+    //     }
         setButtonsLoading(false);
-      } catch (err) {
-        setFetchError("Something went wrong, please try again");
-        setTimeout(() => {
-          setFetchError(null);
-        }, 3000);
-      }
-    } else {
-      setFetchError("Upload your Files to Proceed");
-      setTimeout(() => {
-        setFetchError(null);
-      }, 3000);
-    }
+    //   } catch (err) {
+    //     setFetchError("Something went wrong, please try again");
+    //     setTimeout(() => {
+    //       setFetchError(null);
+    //     }, 3000);
+    //   }
+    // } else {
+    //   setFetchError("Upload your Files to Proceed");
+    //   setTimeout(() => {
+    //     setFetchError(null);
+    //   }, 3000);
+    // }
 
-    setButtonsLoading(false);
+    // setButtonsLoading(false);
   };
 
   const prevButtonHandler = () => {
@@ -522,9 +528,9 @@ export default function EducationForm() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      {fetchError && (
+      {/* {fetchError && (
         <p className="my-5 text-red-500 font-bold">{fetchError}</p>
-      )}
+      )} */}
       <div className="w-full justify-end flex mt-5 gap-5">
         <Button
           variant={"outline"}
