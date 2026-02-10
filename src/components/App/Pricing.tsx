@@ -16,14 +16,14 @@ export default function Pricing() {
               Official Translations 
               </div>
               <div className="bg-white w-full h-full rounded-tl-lg border flex justify-center items-center text-xl font-bold text-[#2aaae0]">
-              €18
+              €10
               </div>
 
               <div className="border-b font-bold p-5 w-full h-full flex justify-center items-center">
-              Official Authentication
+              Official Verification
               </div>
               <div className="bg-white w-full h-full  border flex justify-center items-center text-xl font-bold text-[#2aaae0]">
-              €15
+              €10
               </div>
             </div>
           </article>

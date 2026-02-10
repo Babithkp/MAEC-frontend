@@ -71,7 +71,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="md:flex text-sm max-md:text-xs  justify-center max-md:text-center items-center bg-black text-slate-500  py-5">
-        <p>Ⓒ 2024 MSAC. all right reserved.</p>
+        <p>Ⓒ 2026 ITS. all right reserved.</p>
         <ul className="flex flex-wrap gap-3 max-md:px-5 justify-center">
           <li>
             <a href="/" className="underline hover:text-white">

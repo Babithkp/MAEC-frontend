@@ -304,7 +304,7 @@ export default function EvaluationForm() {
               className="border-black radio radio-info"
               onChange={engHandler}
             />
-            <label htmlFor="tranEng">Add English Translation</label>
+            <label htmlFor="tranEng">Add German Translation</label>
           </div>
           {onlyEng && (
             <div className="flex flex-col gap-5">
