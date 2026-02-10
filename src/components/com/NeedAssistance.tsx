@@ -24,7 +24,7 @@ export default function NeedAssistance() {
             className="font-bold rounded-full bg-[#2aaae0]"
             onClick={() => (window.location.href = "get-started")}
           >
-            Start Verification
+            Get Started
           </Button>
         </div>
       </div>

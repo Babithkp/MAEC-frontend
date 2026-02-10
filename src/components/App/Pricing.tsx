@@ -49,7 +49,7 @@ export default function Pricing() {
             className="font-bold rounded-full bg-[#2aaae0]"
             onClick={() => (window.location.href = "get-started")}
           >
-            Start Evaluation
+            Get Started
           </Button>
         </div>
       </div>

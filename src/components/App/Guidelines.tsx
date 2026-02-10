@@ -274,7 +274,7 @@ export default function Guidelines() {
             chat, email and phone 24/7!
           </p>
           <Button className="font-bold rounded-full bg-[#2aaae0]">
-            Start Evaluation
+            Get Started
           </Button>
         </div>
       </article>

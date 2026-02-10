@@ -139,11 +139,6 @@ export default function Navbar() {
                 >
                   My Dashboad
                 </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => (window.location.href = "/get-started/Intro")}
-                >
-                  Evaluation
-                </DropdownMenuItem>
                 <DropdownMenuItem onClick={logoutHandler}>
                   Logout
                 </DropdownMenuItem>

@@ -15,8 +15,6 @@ export default function Login() {
   const [fetchError, setFetchError] = useState<string | null>(null);
 
 
-
-
   useEffect(() => {
     if (localStorage.getItem("token")) {
       window.location.href = "/get-started/Intro";
@@ -93,7 +91,7 @@ export default function Login() {
         </div>
         <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
           <h1 className="text-4xl font-bold max-md:text-3xl">
-            Login to MSAC Portal
+            Login to ITS Portal
           </h1>
           <div className="md:w-[60%]">
             <div className="border-b flex flex-col mb-5 gap-5">
