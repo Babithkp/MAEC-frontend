@@ -169,16 +169,11 @@ export default function EvaluationForm() {
     setIsLoading(true);
     setFetchError(null);
 
-    if (data.courseByCourse || data.certificate || data.transcript) {
+    if ( data.certificate || data.transcript) {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
         data.userId = userId;
 
-        if (data.courseByCourse) {
-          data.courseByCourse = 12;
-        } else {
-          data.courseByCourse = 0;
-        }
         if (data.certificate) {
           data.certificate = 9;
         } else {
@@ -204,7 +199,7 @@ export default function EvaluationForm() {
         window.location.href = "/get-started";
       }
     } else {
-      setFetchError("Please Select a course or certificate");
+      nextButtonHandler();
       setIsLoading(false);
     }
 
