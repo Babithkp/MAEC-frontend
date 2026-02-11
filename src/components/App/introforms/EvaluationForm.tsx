@@ -132,19 +132,7 @@ export default function EvaluationForm() {
   const [onlyEng, setOnlyEng] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState<string | null>(null);
-  const [educationOption, setEducationOption] = useState({
-    Undergraduate: false,
-    Graduate: false,
-  });
 
-
-
-  const underguaranteHandler = () => {
-    setEducationOption({
-      Undergraduate: false,
-      Graduate: true,
-    });
-  };
 
 
   const engHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -235,7 +223,6 @@ export default function EvaluationForm() {
           setValue("certificate", data.certificate);
           setValue("transcript", data.transcript);
           setValue("language", data.language);
-          underguaranteHandler();
           if (data.language) {
             setOnlyEng(true);
           }
@@ -251,41 +238,39 @@ export default function EvaluationForm() {
       className="px-10 max-md:px-2 flex flex-col gap-5 max-md:w-full w-[70%] md:border-l"
       onSubmit={handleSubmit(onSubmit)}
     >
-      {educationOption.Graduate && (
-        <div className="flex flex-col gap-5">
-          <p className="mt-10 font-bold">
+      <div className="flex flex-col gap-5">
+        <p className="mt-10 font-bold">
           Select type of service you need
-            <span className="text-red-500">*</span>
-          </p>
-          <div className="flex flex-col gap-10 mb-10">
-            <div className="flex items-center gap-5">
-              <input
-                id="courseby"
-                type="checkbox"
-                className="checkbox checkbox-info [--chkfg:white] "
-                {...register("certificate")}
-              />
-              <label className="w-full flex justify-between" htmlFor="courseby">
-                <p>Certificate Verification</p> <p className="font-bold">€10</p>
-              </label>
-            </div>
-            <div className="flex items-center gap-5">
-              <input
-                id="verification"
-                type="checkbox"
-                className="checkbox checkbox-info [--chkfg:white]"
-                {...register("transcript")}
-              />
-              <label
-                className="w-full flex justify-between"
-                htmlFor="verification"
-              >
-                <p>Transcript Verification</p> <p className="font-bold">€10</p>
-              </label>
-            </div>
+          <span className="text-red-500">*</span>
+        </p>
+        <div className="flex flex-col gap-10 mb-10">
+          <div className="flex items-center gap-5">
+            <input
+              id="courseby"
+              type="checkbox"
+              className="checkbox checkbox-info [--chkfg:white] "
+              {...register("certificate")}
+            />
+            <label className="w-full flex justify-between" htmlFor="courseby">
+              <p>Certificate Verification</p> <p className="font-bold">€10</p>
+            </label>
+          </div>
+          <div className="flex items-center gap-5">
+            <input
+              id="verification"
+              type="checkbox"
+              className="checkbox checkbox-info [--chkfg:white]"
+              {...register("transcript")}
+            />
+            <label
+              className="w-full flex justify-between"
+              htmlFor="verification"
+            >
+              <p>Transcript Verification</p> <p className="font-bold">€10</p>
+            </label>
           </div>
         </div>
-      )}
+      </div>
 
       <div className="flex flex-col gap-5 border-t ">
         <p className="py-5 font-bold">
@@ -293,7 +278,7 @@ export default function EvaluationForm() {
           <span className="text-red-500">*</span>
         </p>
         <p>
-        Certified translations for all official and legal documents not issued in German language.
+          Certified translations for all official and legal documents not issued in German language.
         </p>
         <div className="flex flex-col gap-5 ">
           <div className="flex items-center gap-5">
@@ -309,11 +294,11 @@ export default function EvaluationForm() {
           {onlyEng && (
             <div className="flex flex-col gap-5">
               <p>
-              Translated documents will be delivered via email once complete.
+                Translated documents will be delivered via email once complete.
               </p>
               <p className="font-bold">€15 per document</p>
               <p>
-              Select the current language of your document.
+                Select the current language of your document.
                 <span className="text-red-500">*</span>
               </p>
               <select
@@ -336,11 +321,11 @@ export default function EvaluationForm() {
             </p>
 
             <p>
-            Document Translation:
+              Document Translation:
               <span className="font-bold"> 3 Business Days.</span>
             </p>
             <p>
-            Document verification:
+              Document verification:
               <span className="font-bold"> 3 Business Days.</span>
             </p>
           </div>
