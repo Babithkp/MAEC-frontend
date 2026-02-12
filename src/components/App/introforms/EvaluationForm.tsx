@@ -199,7 +199,7 @@ export default function EvaluationForm() {
         window.location.href = "/get-started";
       }
     } else {
-      nextButtonHandler();
+      setFetchError("Please select Service you need")
       setIsLoading(false);
     }
 

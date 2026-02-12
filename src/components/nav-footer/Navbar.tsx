@@ -99,6 +99,9 @@ export default function Navbar() {
             <a href="/verification">Verification</a>
           </li>
           <li>
+            <a href="/evalutionService">Authentication</a>
+          </li>
+          <li>
             <a href="/document-requirement">Document Requirement</a>
           </li>
           <li>
@@ -261,13 +264,6 @@ export default function Navbar() {
                   <DropdownMenuContent>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem
-                      onClick={() =>
-                        (window.location.href = "/get-started/Intro")
-                      }
-                    >
-                      Evaluation
-                    </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() => (window.location.href = "/userDashboard")}
                     >
