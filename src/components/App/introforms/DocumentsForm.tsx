@@ -13,11 +13,11 @@ import {
 import { RxCross2, RxCrossCircled } from "react-icons/rx";
 
 import { Button } from "../../ui/button";
-import { v4 } from "uuid";
 import { useSetRecoilState } from "recoil";
 import { evalutonForm } from "../../../store/context";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import {
+  addDocuments,
   // addDocuments,
   getDocumentByUserId,
   getUserEvalutionById,
@@ -42,11 +42,12 @@ interface DocumentsErrorType {
   certificate: boolean;
   transcript: boolean;
 }
+const endpoint = import.meta.env.VITE_CLOUDEFLARE_ENDPOINT;
 
 export default function EducationForm() {
   const academicRef = useRef<HTMLInputElement | null>(null);
   const docTrasRef = useRef<HTMLInputElement | null>(null);
-  // const [fetchError, setFetchError] = useState<string | null>(null);
+  const [fetchError, setFetchError] = useState<string | null>(null);
   const [isLoading, setIsloading] = useState(false);
   const [buttonsLoading, setButtonsLoading] = useState(false);
 
@@ -71,7 +72,6 @@ export default function EducationForm() {
   });
   const formdata = new FormData();
 
-
   const acdemicinputHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     if (dataStorage.certificate.length >= 3) {
       setOverloadmsg((prev) => ({ ...prev, certificate: true }));
@@ -86,20 +86,20 @@ export default function EducationForm() {
         setacademicError(null);
         setIsloading(true);
         formdata.delete("files");
-        const newId = v4() + files[0].name;
+        const newId = new Date().toISOString() + files[0].name;
         formdata.append("files", files[0], newId);
         await uploadPostDoc(formdata);
         setIsloading(false);
 
         setDataStorage((prev) => ({
           ...prev,
-          certificate: [...prev.certificate, newId],
+          certificate: [...prev.certificate, endpoint+newId],
         }));
       }
     }
   };
   const docuTransInputHandler = async (
-    event: ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>,
   ) => {
     if (dataStorage.transcript.length >= 3) {
       setOverloadmsg((prev) => ({ ...prev, transcript: true }));
@@ -114,14 +114,14 @@ export default function EducationForm() {
         setdocumentError(null);
         setIsloading(true);
         formdata.delete("files");
-        const newId = v4() + files[0].name;
+        const newId = new Date().toISOString() + files[0].name;
         formdata.append("files", files[0], newId);
         await uploadPostDoc(formdata);
         setIsloading(false);
 
         setDataStorage((prev) => ({
           ...prev,
-          transcript: [...prev.transcript, newId],
+          transcript: [...prev.transcript, endpoint+newId],
         }));
       }
     }
@@ -138,60 +138,54 @@ export default function EducationForm() {
   };
 
   const nextButtonHandler = async () => {
-    setPage({
-      informaton: { timeline: true, page: false },
-      evaluations: { timeline: true, page: false },
-      education: { timeline: true, page: false },
-      pay: { timeline: true, page: true },
-    });
-    // if (
-    //   dataStorage.courseByCourse.length > 0 ||
-    //   dataStorage.certificate.length > 0 ||
-    //   dataStorage.transcript.length > 0
-    // ) {
-    setButtonsLoading(true);
-    //   if (!isExist.courseByCourse) {
-    //     dataStorage.courseByCourse = [];
-    //   }
-    //   if (!isExist.certificate) {
-    //     dataStorage.certificate = [];
-    //   }
-    //   if (!isExist.transcript) {
-    //     dataStorage.transcript = [];
-    //   }
-    //   try {
-    //     if (localStorage.getItem("userId")) {
-    //       const userId = localStorage.getItem("userId");
-    //       dataStorage.userId = userId;
-    //       const response = await addDocuments(dataStorage);
-    //       if (response.data.message) {
-    //         window.scrollTo({
-    //           top: 0,
-    //           behavior: "smooth",
-    //         });
-    //         setPage({
-    //           informaton: { timeline: true, page: false },
-    //           evaluations: { timeline: true, page: false },
-    //           education: { timeline: true, page: false },
-    //           pay: { timeline: true, page: true },
-    //         });
-    //       }
-    //     }
-    setButtonsLoading(false);
-    //   } catch (err) {
-    //     setFetchError("Something went wrong, please try again");
-    //     setTimeout(() => {
-    //       setFetchError(null);
-    //     }, 3000);
-    //   }
-    // } else {
-    //   setFetchError("Upload your Files to Proceed");
-    //   setTimeout(() => {
-    //     setFetchError(null);
-    //   }, 3000);
-    // }
+    if (
+      dataStorage.courseByCourse.length > 0 ||
+      dataStorage.certificate.length > 0 ||
+      dataStorage.transcript.length > 0
+    ) {
+      setButtonsLoading(true);
+      if (!isExist.courseByCourse) {
+        dataStorage.courseByCourse = [];
+      }
+      if (!isExist.certificate) {
+        dataStorage.certificate = [];
+      }
+      if (!isExist.transcript) {
+        dataStorage.transcript = [];
+      }
+      try {
+        if (localStorage.getItem("userId")) {
+          const userId = localStorage.getItem("userId");
+          dataStorage.userId = userId;
+          const response = await addDocuments(dataStorage);
+          if (response.data.message) {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+            setPage({
+              informaton: { timeline: true, page: false },
+              evaluations: { timeline: true, page: false },
+              education: { timeline: true, page: false },
+              pay: { timeline: true, page: true },
+            });
+          }
+        }
+        setButtonsLoading(false);
+      } catch (err) {
+        setFetchError("Something went wrong, please try again");
+        setTimeout(() => {
+          setFetchError(null);
+        }, 3000);
+      }
+    } else {
+      setFetchError("Upload your Files to Proceed");
+      setTimeout(() => {
+        setFetchError(null);
+      }, 3000);
+    }
 
-    // setButtonsLoading(false);
+    setButtonsLoading(false);
   };
 
   const prevButtonHandler = () => {
@@ -247,13 +241,17 @@ export default function EducationForm() {
         <p className="py-5 font-bold">Please add your documents</p>
         <ul className="flex flex-col gap-5">
           <li>
-            Here you can upload your academic credentials and other official documents for translation or verification purposes.
+            Here you can upload your academic credentials and other official
+            documents for translation or verification purposes.
           </li>
           <li>
-            All documents uploaded on this portal will be processed for translation or verification according to the options you have selected and the documents you have uploaded.
+            All documents uploaded on this portal will be processed for
+            translation or verification according to the options you have
+            selected and the documents you have uploaded.
           </li>
           <li>
-            Ensure that you upload the orginal scanned copies of your documents. We do not accept pictures.
+            Ensure that you upload the orginal scanned copies of your documents.
+            We do not accept pictures.
           </li>
         </ul>
       </div>
@@ -268,7 +266,7 @@ export default function EducationForm() {
                   className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                   key={i}
                 >
-                  {doc.substring(36)}
+                  {doc.substring(104)}
                 </span>
               ))}
             </div>
@@ -284,24 +282,21 @@ export default function EducationForm() {
                   className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                   key={i}
                 >
-                  {doc.substring(36)}
+                  {doc.substring(104)}
                 </span>
               ))}
             </div>
           </div>
         )}
-
       </div>
 
       <AlertDialog>
-        <AlertDialogTrigger className="w-full flex flex-col justify-start mt-10">
-          <Button className="bg-[#2aaae0] font-bold rounded-full" type="button">
-            {dataStorage.courseByCourse.length > 0 ||
-              dataStorage.certificate.length > 0 ||
-              dataStorage.transcript.length > 0
-              ? "Edit Documents"
-              : "Upload Documents"}
-          </Button>
+        <AlertDialogTrigger className="w-full mt-10 bg-[#2aaae0] font-bold rounded-full text-white p-2">
+          {dataStorage.courseByCourse.length > 0 ||
+          dataStorage.certificate.length > 0 ||
+          dataStorage.transcript.length > 0
+            ? "Edit Documents"
+            : "Upload Documents"}
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -336,7 +331,7 @@ export default function EducationForm() {
                           className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                           key={i}
                         >
-                          {doc.substring(36)}
+                          {doc.substring(104)}
                           <Button
                             variant={"secondary"}
                             className="p-0 rounded-full w-5 h-5"
@@ -388,7 +383,7 @@ export default function EducationForm() {
                           className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
                           key={i}
                         >
-                          {doc.substring(36)}
+                          {doc.substring(104)}
                           <Button
                             variant={"secondary"}
                             className="p-0 rounded-full w-5 h-5"
@@ -413,7 +408,6 @@ export default function EducationForm() {
                   )}
                 </div>
               )}
-
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -426,9 +420,9 @@ export default function EducationForm() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      {/* {fetchError && (
+      {fetchError && (
         <p className="my-5 text-red-500 font-bold">{fetchError}</p>
-      )} */}
+      )}
       <div className="w-full justify-end flex mt-5 gap-5">
         <Button
           variant={"outline"}

@@ -1,9 +1,8 @@
 import axios from "axios";
-const BASE_URL = "https://maec-backend.vercel.app";
-// const BASE_URL = "http://localhost:3000"
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const uploadPostDoc = async (file: unknown) => {
-  await axios.post(`${BASE_URL}fileupload`, file, {
+  await axios.post(`${BASE_URL}/api/fileupload`, file, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

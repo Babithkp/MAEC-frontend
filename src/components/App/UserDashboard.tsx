@@ -1,5 +1,4 @@
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
+import Accordion from "@mui/material/Accordion";import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { RiArrowUpSLine } from "react-icons/ri";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -121,7 +120,6 @@ export default function UserDashboard() {
               className="outline-none mb-5 active:bg-none"
               {...register("first_name")}
               minLength={3}
-
             />
           </div>
           <div className="border-b border-slate-300  flex flex-col mb-5 gap-5 w-[70%] max-md:w-[95%]">
@@ -193,44 +191,52 @@ export default function UserDashboard() {
             </AccordionSummary>
             <AccordionDetails className="flex flex-col gap-5">
               <Typography className="md:w-[70rem]">
-                <p className="font-bold mb-2">Course-by-Course evaluation</p>
                 {eva.documents?.courseByCourse.map((doc) => (
-                  <a
-                    key={doc}
-                    target="_blank"
-                    href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                    className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-5"
-                  >
-                    {doc.substring(36)}
-                  </a>
+                  <>
+                    <p className="font-bold mb-2">
+                      Course-by-Course evaluation
+                    </p>
+                    <a
+                      key={doc}
+                      target="_blank"
+                      href={`${doc}`}
+                      className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-5"
+                    >
+                      {doc.substring(104)}
+                    </a>
+                  </>
                 ))}
               </Typography>
               <Typography className="md:w-[70rem]">
-                <p className="font-bold mb-2">
-                  Academic credential verification.
-                </p>
                 {eva.documents?.certificate.map((doc) => (
-                  <a
-                    key={doc}
-                    target="_blank"
-                    href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                    className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-5"
-                  >
-                    {doc.substring(36)}
-                  </a>
+                  <>
+                    <p className="font-bold mb-2">
+                      Academic credential verification.
+                    </p>
+                    <a
+                      key={doc}
+                      target="_blank"
+                      href={`${doc}`}
+                      className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-5"
+                    >
+                      {doc.substring(104)}
+                    </a>
+                  </>
                 ))}
               </Typography>
               <Typography className="md:w-[70rem]">
-                <p className="font-bold mb-2">Document Translation.</p>
                 {eva.documents?.transcript.map((doc) => (
-                  <a
-                    key={doc}
-                    target="_blank"
-                    href={`https://studyinmaryland-stroage-bucket.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                    className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-5"
-                  >
-                    {doc.substring(36)}
-                  </a>
+                  <>
+                    <p className="font-bold mb-2">Document Translation.</p>
+                    <a
+                      key={doc}
+                      target="_blank"
+                      href={`${doc}`}
+                      className=" border p-2 bg-slate-50 hover:bg-slate-100 ml-5"
+                    >
+                      {doc.substring(104)}
+                    </a>
+                  </>
                 ))}
               </Typography>
             </AccordionDetails>
