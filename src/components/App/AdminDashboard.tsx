@@ -49,12 +49,12 @@ export default function AdminDashboard() {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
-      setPage(0); // Reset to first page on new search
-      setIsLastPage(false); // Reset last page flag on new search
-    }, 1000); // 300ms debounce delay
+      setPage(0);
+      setIsLastPage(false); 
+    }, 1000); 
 
     return () => {
-      clearTimeout(handler); // Clear the timeout on new keystrokes
+      clearTimeout(handler);
     };
   }, [searchTerm]);
 
@@ -67,7 +67,7 @@ export default function AdminDashboard() {
         console.log(data);
 
         if (data.length === 0) {
-          setIsLastPage(true); // Stop further requests if no more data
+          setIsLastPage(true);
         } else {
           setUsers((prevUsers) =>
             newPage === 0 ? data : [...prevUsers, ...data]
