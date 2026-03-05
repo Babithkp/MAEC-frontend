@@ -73,7 +73,7 @@ export default function EducationForm() {
   const formdata = new FormData();
 
   const acdemicinputHandler = async (event: ChangeEvent<HTMLInputElement>) => {
-    if (dataStorage.certificate.length >= 3) {
+    if (dataStorage.certificate.length >= 8) {
       setOverloadmsg((prev) => ({ ...prev, certificate: true }));
       return;
     }
@@ -101,7 +101,7 @@ export default function EducationForm() {
   const docuTransInputHandler = async (
     event: ChangeEvent<HTMLInputElement>,
   ) => {
-    if (dataStorage.transcript.length >= 3) {
+    if (dataStorage.transcript.length >= 8) {
       setOverloadmsg((prev) => ({ ...prev, transcript: true }));
       return;
     }
@@ -216,16 +216,13 @@ export default function EducationForm() {
         const userId = localStorage.getItem("userId");
         setIsloading(true);
         const response = await getUserEvalutionById({ userId: userId });
+        console.log(response.data.data);
         if (response.data.data) {
           const data = response.data.data;
-
-          if (data.courseByCourse) {
-            setisExist((prev) => ({ ...prev, courseByCourse: true }));
-          }
-          if (data.certificate || data.transcript) {
+          if (data.certificate) {
             setisExist((prev) => ({ ...prev, certificate: true }));
           }
-          if (data.language) {
+          if (data.transcript || data.language) {
             setisExist((prev) => ({ ...prev, transcript: true }));
           }
         }
@@ -275,7 +272,7 @@ export default function EducationForm() {
 
         {isExist.certificate && dataStorage.certificate.length > 0 && (
           <div className="flex flex-col gap-3 mt-5">
-            <p className="font-bold">Document verification.</p>
+            <p className="font-bold">Document Verification.</p>
             <div className="p-1 border w-full flex">
               {dataStorage.certificate.map((doc, i) => (
                 <span
@@ -305,11 +302,11 @@ export default function EducationForm() {
             </AlertDialogTitle>
             <AlertDialogDescription className="text-start">
               {isExist.transcript && (
-                <div className="my-5 ">
+                <span className="my-5 ">
                   <label className="text-sm font-semibold">
                     Document Translation.
                   </label>
-                  <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
+                  <span className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
                     <button
                       type="button"
                       className="bg-[#2aaae0] px-2 py-1 text-white"
@@ -325,7 +322,7 @@ export default function EducationForm() {
                       onChange={docuTransInputHandler}
                       accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
                     />
-                    <div className="w-full  flex flex-wrap gap-1">
+                    <span className="w-full  flex flex-wrap gap-1">
                       {dataStorage.transcript.map((doc, i) => (
                         <span
                           className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
@@ -342,8 +339,8 @@ export default function EducationForm() {
                           </Button>
                         </span>
                       ))}
-                    </div>
-                  </div>
+                    </span>
+                  </span>
                   {documentError && (
                     <span className="text-red-500 text-sm font-medium mt-2">
                       {documentError}
@@ -354,14 +351,14 @@ export default function EducationForm() {
                       Maxmium File Count Exceeded
                     </span>
                   )}
-                </div>
+                </span>
               )}
               {isExist.certificate && (
-                <div className="my-5">
+                <span className="my-5">
                   <label className="text-sm font-semibold">
-                    Document verification.
+                    Document Verification.
                   </label>
-                  <div className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
+                  <span className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
                     <button
                       type="button"
                       className="bg-[#2aaae0] px-2 py-1 text-white"
@@ -377,7 +374,7 @@ export default function EducationForm() {
                       onChange={acdemicinputHandler}
                       accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
                     />
-                    <div className="w-full  flex flex-wrap gap-1">
+                    <span className="w-full  flex flex-wrap gap-1">
                       {dataStorage.certificate.map((doc, i) => (
                         <span
                           className="text-sm  font-medium mx-2 border rounded-lg p-1 bg-blue-200 max-md:m-0  max-md:text-xs flex items-center gap-1"
@@ -394,8 +391,8 @@ export default function EducationForm() {
                           </Button>
                         </span>
                       ))}
-                    </div>
-                  </div>
+                    </span>
+                  </span>
                   {academicError && (
                     <span className="text-red-500 text-sm font-medium mt-2">
                       {academicError}
@@ -406,7 +403,7 @@ export default function EducationForm() {
                       Maxmium File Count Exceeded
                     </span>
                   )}
-                </div>
+                </span>
               )}
             </AlertDialogDescription>
           </AlertDialogHeader>

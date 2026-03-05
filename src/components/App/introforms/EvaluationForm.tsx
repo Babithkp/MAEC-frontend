@@ -3,7 +3,6 @@ import { evalutonForm } from "../../../store/context";
 import { Button } from "../../ui/button";
 import { ChangeEvent, useEffect, useState } from "react";
 
-
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { addEvalutions, getUserEvalutionById } from "../../../http/fetch";
@@ -133,8 +132,6 @@ export default function EvaluationForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
-
-
   const engHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
     setOnlyEng(isChecked);
@@ -161,26 +158,32 @@ export default function EvaluationForm() {
     });
   };
 
-  const { register, handleSubmit, setValue } = useForm<FormValues>();
+  const { register, handleSubmit, setValue } = useForm<FormValues>({
+    defaultValues: {
+      transcript: 10,
+      certificate: 10,
+    },
+  });
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     if (!onlyEng) {
-      data.language = "";
+      setFetchError("Please select any service you need");
+      return;
     }
     setIsLoading(true);
     setFetchError(null);
 
-    if ( data.certificate || data.transcript) {
+    if (data.certificate || data.transcript) {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
         data.userId = userId;
 
         if (data.certificate) {
-          data.certificate = 9;
+          data.certificate = 10;
         } else {
           data.certificate = 0;
         }
         if (data.transcript) {
-          data.transcript = 9;
+          data.transcript = 10;
         } else {
           data.transcript = 0;
         }
@@ -199,8 +202,23 @@ export default function EvaluationForm() {
         window.location.href = "/get-started";
       }
     } else {
-      setFetchError("Please select Service you need")
-      setIsLoading(false);
+      if (localStorage.getItem("userId")) {
+        const userId = localStorage.getItem("userId");
+        data.userId = userId;
+        data.certificate = 0;
+        data.transcript = 0;
+        try {
+          const response = await addEvalutions(data);
+          if (response.data.message) {
+            nextButtonHandler();
+          }
+        } catch (err) {
+          setFetchError("Something went wrong, please try again");
+          setTimeout(() => {
+            setFetchError(null);
+          }, 5000);
+        }
+      }
     }
 
     setIsLoading(false);
@@ -234,10 +252,7 @@ export default function EvaluationForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-5">
-        <p className="mt-10 font-bold">
-          Select type of service you need
-          <span className="text-red-500">*</span>
-        </p>
+        <p className="mt-10 font-bold">Select type of service you need</p>
         <div className="flex flex-col gap-10 mb-10">
           <div className="flex items-center gap-5">
             <input
@@ -245,6 +260,7 @@ export default function EvaluationForm() {
               type="checkbox"
               className="checkbox checkbox-info [--chkfg:white] "
               {...register("certificate")}
+              defaultChecked
             />
             <label className="w-full flex justify-between" htmlFor="courseby">
               <p>Certificate Verification</p> <p className="font-bold">€10</p>
@@ -256,6 +272,7 @@ export default function EvaluationForm() {
               type="checkbox"
               className="checkbox checkbox-info [--chkfg:white]"
               {...register("transcript")}
+              defaultChecked
             />
             <label
               className="w-full flex justify-between"
@@ -273,7 +290,8 @@ export default function EvaluationForm() {
           <span className="text-red-500">*</span>
         </p>
         <p>
-          Certified translations for all official and legal documents not issued in German language.
+          Certified translations for all official and legal documents not issued
+          in German language.
         </p>
         <div className="flex flex-col gap-5 ">
           <div className="flex items-center gap-5">
@@ -320,7 +338,7 @@ export default function EvaluationForm() {
               <span className="font-bold"> 3 Business Days.</span>
             </p>
             <p>
-              Document verification:
+              Document Verification:
               <span className="font-bold"> 3 Business Days.</span>
             </p>
           </div>

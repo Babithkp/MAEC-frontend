@@ -1,4 +1,5 @@
-import { useSetRecoilState } from "recoil";import { Button } from "../../ui/button";
+import { useSetRecoilState } from "recoil";
+import { Button } from "../../ui/button";
 import { evalutonForm } from "../../../store/context";
 import { ChangeEvent, useEffect, useState } from "react";
 import {
@@ -10,15 +11,9 @@ import {
 import { Backdrop, CircularProgress } from "@mui/material";
 
 interface DocumentRate {
-  courseByCourse: number;
-  certificate: number;
   transcript: number;
 }
-interface DocumentQuantity {
-  courseByCourse: string[];
-  certificate: string[];
-  transcript: string[];
-}
+
 
 interface PaymentItemType {
   name: string;
@@ -37,15 +32,9 @@ export default function Pay() {
   // const [isLoadingPay, setIsLoadingPay] = useState(false);
 
   const [materialRate, setMaterialRate] = useState<DocumentRate>({
-    courseByCourse: 0,
-    certificate: 0,
     transcript: 0,
   });
-  const [quantity, setQuantity] = useState<DocumentQuantity>({
-    courseByCourse: [],
-    certificate: [],
-    transcript: [],
-  });
+  const [quantity, setQuantity] = useState(0);
 
   const agreeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked;
@@ -92,7 +81,7 @@ export default function Pay() {
           const userId = localStorage.getItem("userId");
           const totalAmount = paymentdata.reduce(
             (total, pay) => total + pay.amount * pay.quantity,
-            0
+            0,
           );
           const updadtedresponse = await addTotalAmt({
             id: userId,
@@ -136,38 +125,19 @@ export default function Pay() {
         setIsFetch(false);
         if (docResponse) {
           const docData = docResponse.data.data;
-          setQuantity(docData);
+          const qty = docData.transcript?.length + docData.certificate?.length;
+          setQuantity(qty);
 
-          const courseByCourseRate = docData.courseByCourse?.length * 12;
-          const academicRate = docData.certificate?.length * 10;
-          const transcriptRate = docData.transcript?.length * 10;
+          const academicRate = docData.certificate?.length * 15;
+          const transcriptRate = docData.transcript?.length * 15;
 
           setMaterialRate({
-            courseByCourse: courseByCourseRate,
-            certificate: academicRate,
-            transcript: transcriptRate,
+            transcript: transcriptRate + academicRate,
           });
 
-          setToatlRate(
-            courseByCourseRate + academicRate + transcriptRate + 1.45
-          );
+          setToatlRate(academicRate + transcriptRate + 5);
           const newPaymentData = [];
 
-          if (docData.courseByCourse?.length > 0) {
-            newPaymentData.push({
-              name: "Course-by-Course Evaluation",
-              amount: 12,
-              quantity: docData.courseByCourse?.length,
-            });
-          }
-
-          if (docData.certificate?.length > 0) {
-            newPaymentData.push({
-              name: "Academic credential verification",
-              amount: 10,
-              quantity: docData.certificate?.length,
-            });
-          }
 
           if (docData.transcript?.length > 0) {
             newPaymentData.push({
@@ -178,7 +148,7 @@ export default function Pay() {
           }
           newPaymentData.push({
             name: "VAT",
-            amount: 1.45,
+            amount: 5,
             quantity: 1,
           });
 
@@ -200,20 +170,8 @@ export default function Pay() {
             <p>PRICE</p>
           </div>
           <div className="w-full gap-5 flex justify-between border p-3 pr-5">
-            <p className="max-md:w-1/2 w-[30%]">Course-by-Course Evaluation</p>
-            <p>{quantity.courseByCourse.length} x</p>
-            <p>${materialRate.courseByCourse}</p>
-          </div>
-          <div className="w-full gap-5 flex justify-between border p-3 pr-5">
-            <p className="max-md:w-1/2 w-[30%]">
-              Academic credential verification
-            </p>
-            <p>{quantity.certificate.length} x</p>
-            <p>${materialRate.certificate}</p>
-          </div>
-          <div className="w-full gap-5 flex justify-between border p-3 pr-5">
             <p className="max-md:w-1/2 w-[30%]">Document Translation</p>
-            <p>{quantity.transcript.length} x</p>
+            <p>{quantity} x</p>
             <p>${materialRate.transcript}</p>
           </div>
 
@@ -223,7 +181,7 @@ export default function Pay() {
           </div>
           <div className="w-full gap-5 flex justify-between border p-3 pr-5">
             <p>VAT</p>
-            <p>$1.45</p>
+            <p>€5.00</p>
           </div>
           <div className="w-full gap-5 flex justify-between border p-3 pr-5">
             <p>Order Total:</p>
