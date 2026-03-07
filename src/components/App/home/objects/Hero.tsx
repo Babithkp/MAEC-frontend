@@ -14,9 +14,9 @@ export default function Home() {
         </p>
         <h1 className="text-center w-[90%]">
           Your Path to Success: Fast{" "}
-          <span className="text-[#2aaae0]">3-Day</span> Document Translations, Flat Rate Guarantee!
+          <span className="text-primary">3-Day</span> Document Translations, Flat Rate Guarantee!
         </h1>
-          <Button className="bg-[#2aaae0] font-bold rounded-full p-6" onClick={()=>window.location.href = "get-started"}>
+          <Button className="bg-primary font-bold rounded-full p-6" onClick={()=>window.location.href = "get-started"}>
           Get Started
           </Button>
       </div>

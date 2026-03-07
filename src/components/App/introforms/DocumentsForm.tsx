@@ -288,7 +288,7 @@ export default function EducationForm() {
       </div>
 
       <AlertDialog>
-        <AlertDialogTrigger className="w-full mt-10 bg-[#2aaae0] font-bold rounded-full text-white p-2">
+        <AlertDialogTrigger className="w-full mt-10 bg-primary font-bold rounded-full text-white p-2">
           {dataStorage.courseByCourse.length > 0 ||
           dataStorage.certificate.length > 0 ||
           dataStorage.transcript.length > 0
@@ -309,7 +309,7 @@ export default function EducationForm() {
                   <span className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
                     <button
                       type="button"
-                      className="bg-[#2aaae0] px-2 py-1 text-white"
+                      className="bg-primary px-2 py-1 text-white"
                       onClick={() => docTrasRef.current?.click()}
                     >
                       Browse
@@ -361,7 +361,7 @@ export default function EducationForm() {
                   <span className="flex max-md:items-end rounded-sm border-[1.9px] border-slate-300 max-md:p-1 max-md:gap-2">
                     <button
                       type="button"
-                      className="bg-[#2aaae0] px-2 py-1 text-white"
+                      className="bg-primary px-2 py-1 text-white"
                       onClick={() => academicRef.current?.click()}
                     >
                       Browse
@@ -411,7 +411,7 @@ export default function EducationForm() {
             <AlertDialogCancel className="absolute top-0 right-0 border-none ">
               <RxCross2 size={20} />
             </AlertDialogCancel>
-            <AlertDialogAction className="bg-[#2aaae0] font-bold rounded-full ">
+            <AlertDialogAction className="bg-primary font-bold rounded-full ">
               Save
             </AlertDialogAction>
           </AlertDialogFooter>
@@ -423,14 +423,14 @@ export default function EducationForm() {
       <div className="w-full justify-end flex mt-5 gap-5">
         <Button
           variant={"outline"}
-          className="border-[#2aaae0] font-bold rounded-full"
+          className="border-primary font-bold rounded-full"
           onClick={prevButtonHandler}
           type="button"
         >
           Back
         </Button>
         <Button
-          className="bg-[#2aaae0] font-bold rounded-full"
+          className="bg-primary font-bold rounded-full"
           onClick={nextButtonHandler}
           type="button"
           disabled={buttonsLoading ? true : false}

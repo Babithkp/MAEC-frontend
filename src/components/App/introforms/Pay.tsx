@@ -216,7 +216,7 @@ export default function Pay() {
         <div className="w-full justify-end flex max-md:flex-col mt-5 gap-5">
           <Button
             variant={"outline"}
-            className="border-[#2aaae0] font-bold rounded-full"
+            className="border-primary font-bold rounded-full"
             onClick={prevButtonHandler}
             type="button"
           >
@@ -224,7 +224,7 @@ export default function Pay() {
           </Button>
 
           <Button
-            className="bg-[#2aaae0] font-bold rounded-full"
+            className="bg-primary font-bold rounded-full"
             onClick={paypalButtonHandler}
             type="button"
             disabled={isLoading ? true : false}

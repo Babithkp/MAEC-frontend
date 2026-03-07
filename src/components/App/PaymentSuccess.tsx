@@ -40,7 +40,7 @@ export default function PaymentSuccess() {
         </p>
       </section>
       <Button
-        className="bg-[#2aaae0]"
+        className="bg-primary"
         onClick={() => (window.location.href = "/")}
       >
         Home

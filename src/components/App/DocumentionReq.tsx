@@ -19,7 +19,7 @@ export default function DocumentionReq() {
             Documentation Requirements
           </h1>
           <AlertDialog>
-            <AlertDialogTrigger   className="border-[#2aaae0] font-bold rounded-full">
+            <AlertDialogTrigger   className="border-primary font-bold rounded-full">
                 View General Documentation Requirements
             </AlertDialogTrigger>
             <AlertDialogContent>

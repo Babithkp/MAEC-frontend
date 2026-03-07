@@ -217,7 +217,7 @@ export default function Guidelines() {
         <p className="text-2xl font-bold my-5 text-black mt-5">Extra Copies</p>
         <p>
           You may order an extra copy of your report at{" "}
-          <a href="http://www.MSAC.us" className="text-blue-500">
+          <a href="http://www.MSAC.us" className="text-green-500">
             www.MSAC.us
           </a>
           . If your evaluation is older than 1 year a revision fee may apply. If
@@ -231,7 +231,7 @@ export default function Guidelines() {
           Please refer to:{" "}
           <a
             href=" https://MSAC.us/document-requirement "
-            className="text-blue-500"
+            className="text-green-500"
           >
             https://MSAC.us/document-requirement
           </a>{" "}
@@ -250,14 +250,14 @@ export default function Guidelines() {
           please consider setting up an account at no cost for your institution
           to receive electronic delivery of future reports from MSAC at Please
           refer to:{" "}
-          <a href="https://access.MSAC.us " className="text-blue-500">
+          <a href="https://access.MSAC.us " className="text-primary">
             https://access.MSAC.us
           </a>
           .
         </p>
         <p className="text-2xl font-bold my-5 text-black mt-5">
           New Standard Evaluation Policy:{" "}
-          <a href="/ " className="text-blue-500">
+          <a href="/ " className="text-primary">
             White Paper - Benchmarking and Year-Counting Defined
           </a>
         </p>
@@ -273,7 +273,7 @@ export default function Guidelines() {
             trusted evaluation service! We are here to answer your questions on
             chat, email and phone 24/7!
           </p>
-          <Button className="font-bold rounded-full bg-[#2aaae0]">
+          <Button className="font-bold rounded-full bg-primary">
             Get Started
           </Button>
         </div>

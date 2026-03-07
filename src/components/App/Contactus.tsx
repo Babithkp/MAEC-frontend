@@ -7,7 +7,7 @@ import randomMapImg from "/GoogleMapTA.webp";export default function Contactus()
             We are here if you need us
           </h1>
           <p className="text-center w-[70%] max-md:w-[95%]">
-            Our team is here to answer questions so you get your evaluation in
+            Our team is here to answer questions so you get your translation in
             no time!
           </p>
         </div>
@@ -15,8 +15,7 @@ import randomMapImg from "/GoogleMapTA.webp";export default function Contactus()
           <div className="flex flex-col gap-5">
             <div className="flex flex-col justify-center  p-5 gap-5 border rounded-3xl">
               <p className="font-bold">Customer Support:</p>
-              <p>Email: Support@msac.us</p>
-              <p>Phone: +12697956182</p>
+              <p>Email: Support@internationaltranslationservice.de</p>
               <p>Mon-Fri: 8:00 AM - 4:00 PM </p>
               <p>Sat-Sun: 12:00 PM - 3:00 PM.</p>
             </div>

@@ -7,8 +7,8 @@ export default function Aboutus() {
           A MEMBER OF <span className="text-4xl font-serif">BIBB</span>
         </span>
         <h1 className="text-4xl font-bold">
-          We provide <span className="text-[#2aaae0]">evaluation</span> and{" "}
-          <span className="text-[#2aaae0]">translation</span> services
+          We provide <span className="text-primary">evaluation</span> and{" "}
+          <span className="text-primary">translation</span> services
         </h1>
         <p>
           With over 20 years of experience, we are a trusted international

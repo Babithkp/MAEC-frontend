@@ -1,4 +1,5 @@
-import { ReactNode, useEffect, useState } from "react";import { Button } from "../../ui/button";
+import { ReactNode, useEffect, useState } from "react";
+import { Button } from "../../ui/button";
 import { useSetRecoilState } from "recoil";
 import { countries, evalutonForm } from "../../../store/context";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -10,7 +11,7 @@ for (let i = 1; i <= 31; i++) {
   daysInMonth.push(
     <option value={i} key={i}>
       {i}
-    </option>
+    </option>,
   );
 }
 const Years: ReactNode[] = [];
@@ -18,7 +19,7 @@ for (let i = 1960; i <= 2024; i++) {
   Years.push(
     <option value={i} key={i}>
       {i}
-    </option>
+    </option>,
   );
 }
 const countryOptions = countries;
@@ -88,7 +89,7 @@ export default function InformationForm() {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
         setIsLoading(true);
-        const response = await getUserProfileById({userId:userId});
+        const response = await getUserProfileById({ userId: userId });
         if (response.data.data) {
           const data = response.data.data;
           setValue("first_name", data.first_name);
@@ -108,7 +109,7 @@ export default function InformationForm() {
       }
       setIsLoading(false);
     };
-    fetch()
+    fetch();
   }, [setValue]);
 
   return (
@@ -307,7 +308,7 @@ export default function InformationForm() {
           )}
           <div className="w-full justify-end flex mt-5">
             <Button
-              className="bg-[#2aaae0]  rounded-full py-6 hover:bg-[#2aaae0]"
+              className="bg-primary  rounded-full py-6 "
               disabled={isLoading ? true : false}
             >
               {isLoading ? <CircularProgress color="inherit" /> : "Next"}

@@ -43,28 +43,28 @@ export default function Footer() {
             <img src={rating} alt="rating" />
           </a>
           <div className="flex ">
-            <Button variant={"ghost"} className="p-[2px] text-[#2aaae0]">
+            <Button variant={"ghost"} className="p-[2px] text-primary">
               <TiSocialFacebook
                 size={30}
-                className="border-[#2aaae0] border-[1px] text-[#2aaae0] rounded-full p-1"
+                className="border-primary border-[1px] text-primary rounded-full p-1"
               />
             </Button>
-            <Button variant={"ghost"} className="p-[2px] text-[#2aaae0]">
+            <Button variant={"ghost"} className="p-[2px] text-primary">
               <FaLinkedinIn
                 size={30}
-                className="border-[#2aaae0] border-[1px] text-[#2aaae0] rounded-full p-1"
+                className="border-primary border-[1px] text-primary rounded-full p-1"
               />
             </Button>
-            <Button variant={"ghost"} className="p-[2px] text-[#2aaae0]">
+            <Button variant={"ghost"} className="p-[2px] text-primary">
               <FaInstagram
                 size={30}
-                className="border-[#2aaae0] border-[1px] text-[#2aaae0] rounded-full p-1"
+                className="border-primary border-[1px] text-primary rounded-full p-1"
               />
             </Button>
-            <Button variant={"ghost"} className="p-[2px] text-[#2aaae0]">
+            <Button variant={"ghost"} className="p-[2px] text-primary">
               <FaTwitter
                 size={30}
-                className="border-[#2aaae0] border-[1px] text-[#2aaae0] rounded-full p-1"
+                className="border-primary border-[1px] text-primary rounded-full p-1"
               />
             </Button>
           </div>

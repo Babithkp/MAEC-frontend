@@ -115,7 +115,7 @@ export default function Navbar() {
           {!userName && (
             <>
               <Button
-                className="rounded-full bg-[#2aaae0]"
+                className="rounded-full bg-primary"
                 onClick={() => (window.location.href = "/get-started")}
               >
                 Get Started
@@ -131,7 +131,7 @@ export default function Navbar() {
           )}
           {userName && (
             <DropdownMenu>
-              <DropdownMenuTrigger className="bg-[#2aaae0] font-bold rounded-full text-white px-3 p-2 flex justify-center items-center">
+              <DropdownMenuTrigger className="bg-primary font-bold rounded-full text-white px-3 p-2 flex justify-center items-center">
                 {userName} <FaSortDown className=" pb-1" size={20} />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
@@ -150,28 +150,28 @@ export default function Navbar() {
           )}
         </div>
         <div className="flex ">
-          <Button variant={"ghost"} className="p-[2px] text-[#2aaae0]">
+          <Button variant={"ghost"} className="p-[2px] text-primary">
             <TiSocialFacebook
               size={30}
-              className="border-[#2aaae0] border-[1px] text-[#2aaae0] rounded-full p-1"
+              className="border-primary border-[1px] text-primary rounded-full p-1"
             />
           </Button>
-          <Button variant={"ghost"} className="p-[2px] text-[#2aaae0]">
+          <Button variant={"ghost"} className="p-[2px] text-primary">
             <FaLinkedinIn
               size={30}
-              className="border-[#2aaae0] border-[1px] text-[#2aaae0] rounded-full p-1"
+              className="border-primary border-[1px] text-primary rounded-full p-1"
             />
           </Button>
-          <Button variant={"ghost"} className="p-[2px] text-[#2aaae0]">
+          <Button variant={"ghost"} className="p-[2px] text-primary">
             <FaInstagram
               size={30}
-              className="border-[#2aaae0] border-[1px] text-[#2aaae0] rounded-full p-1"
+              className="border-primary border-[1px] text-primary rounded-full p-1"
             />
           </Button>
-          <Button variant={"ghost"} className="p-[2px] text-[#2aaae0]">
+          <Button variant={"ghost"} className="p-[2px] text-primary">
             <FaTwitter
               size={30}
-              className="border-[#2aaae0] border-[1px] text-[#2aaae0] rounded-full p-1"
+              className="border-primary border-[1px] text-primary rounded-full p-1"
             />
           </Button>
         </div>
@@ -242,7 +242,7 @@ export default function Navbar() {
                 <div className="flex justify-center gap-5 pt-5">
                   <Button
                     onClick={() => (window.location.href = "/get-started")}
-                    className="bg-[#2aaae0] font-bold rounded-full"
+                    className="bg-primary font-bold rounded-full"
                   >
                     Get started
                   </Button>
@@ -258,7 +258,7 @@ export default function Navbar() {
 
               {userName && (
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="bg-[#2aaae0] font-bold rounded-full w-fit text-white px-3 ml-5 p-2 flex justify-center items-center">
+                  <DropdownMenuTrigger className="bg-primary font-bold rounded-full w-fit text-white px-3 ml-5 p-2 flex justify-center items-center">
                     {userName} <FaSortDown className=" pb-1" size={20} />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>

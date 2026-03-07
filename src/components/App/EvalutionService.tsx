@@ -1,5 +1,4 @@
-import { Button } from "../ui/button";
-import MAEClogo from "/msac_small_logo.png";
+import { Button } from "../ui/button";import MAEClogo from "/msac_small_logo.png";
 
 export default function EvalutionService() {
   return (
@@ -18,23 +17,32 @@ export default function EvalutionService() {
             Documents that can be authenticated by ITS
           </h2>
           <p>
-            Academic certificates and transcripts, employment letters, bank statements, and birth certificates.
+            Academic certificates and transcripts, employment letters, bank
+            statements, and birth certificates.
           </p>
-
-          <p className="font-bold ">Translation Fee: €15 per document.</p>
+          <p className="font-bold">
+            The academic verification report includes:
+          </p>
+          <p className="font-bold ">Verification Fee: €10 per document.</p>
           <p className="font-bold ">Processing time : 3 business days </p>
           <p className="font-bold mt-5">How it works:</p>
           <ul className="ml-5 list-disc flex flex-col gap-3">
             <li>Create your account and login.</li>
-            <li>Upload your documents for translation.</li>
+            <li>Upload your documents for verification.</li>
             <li>Pay the fee.</li>
             <li>
-              Receive your verification reports in your email address in 3 business days.
+              Receive your verification reports in your email address in 3
+              business days.
             </li>
           </ul>
 
           <div className="w-full flex items-center justify-center my-10">
-            <Button className="bg-[#2aaae0] font-bold rounded-full" onClick={() => (window.location.href = "get-started")}>Start Evaluation</Button>
+            <Button
+              className="bg-primary font-bold rounded-full"
+              onClick={() => (window.location.href = "get-started")}
+            >
+              Start Verification
+            </Button>
           </div>
         </div>
       </section>
@@ -52,13 +60,13 @@ export default function EvalutionService() {
           <div className="gap-5 flex">
             <Button
               variant={"outline"}
-              className="font-bold rounded-full border-[#2aaae0]"
+              className="font-bold rounded-full border-primary"
               onClick={() => (window.location.href = "contactus")}
             >
               Contact Us
             </Button>
             <Button
-              className="font-bold rounded-full bg-[#2aaae0]"
+              className="font-bold rounded-full bg-primary"
               onClick={() => (window.location.href = "get-started")}
             >
               Get Start

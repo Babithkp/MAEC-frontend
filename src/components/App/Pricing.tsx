@@ -15,15 +15,15 @@ export default function Pricing() {
               <div className="border-b font-bold p-5 w-full h-full flex justify-center items-center">
               Official Translations 
               </div>
-              <div className="bg-white w-full h-full rounded-tl-lg border flex justify-center items-center text-xl font-bold text-[#2aaae0]">
-              €10
+              <div className="bg-white w-full h-full rounded-tl-lg border flex justify-center items-center text-xl font-bold text-primary">
+              €15
               </div>
 
               <div className="border-b font-bold p-5 w-full h-full flex justify-center items-center">
               Official Verification
               </div>
-              <div className="bg-white w-full h-full  border flex justify-center items-center text-xl font-bold text-[#2aaae0]">
-              €10
+              <div className="bg-white w-full h-full  border flex justify-center items-center text-xl font-bold text-primary">
+              €15
               </div>
             </div>
           </article>
@@ -40,13 +40,13 @@ export default function Pricing() {
         <div className="gap-5 flex">
           <Button
           variant={"outline"}
-            className="font-bold rounded-full border-[#2aaae0]"
+            className="font-bold rounded-full border-primary"
             onClick={() => (window.location.href = "contactus")}
           >
             Contact Us
           </Button>
           <Button
-            className="font-bold rounded-full bg-[#2aaae0]"
+            className="font-bold rounded-full bg-primary"
             onClick={() => (window.location.href = "get-started")}
           >
             Get Started

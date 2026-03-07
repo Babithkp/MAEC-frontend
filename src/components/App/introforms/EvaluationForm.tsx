@@ -263,7 +263,7 @@ export default function EvaluationForm() {
               defaultChecked
             />
             <label className="w-full flex justify-between" htmlFor="courseby">
-              <p>Certificate Verification</p> <p className="font-bold">€10</p>
+              <p>Certificate Verification</p> <p className="font-bold">€15</p>
             </label>
           </div>
           <div className="flex items-center gap-5">
@@ -278,7 +278,7 @@ export default function EvaluationForm() {
               className="w-full flex justify-between"
               htmlFor="verification"
             >
-              <p>Transcript Verification</p> <p className="font-bold">€10</p>
+              <p>Transcript Verification</p> <p className="font-bold">€15</p>
             </label>
           </div>
         </div>
@@ -350,14 +350,14 @@ export default function EvaluationForm() {
       <div className="w-full justify-end items-center flex mt-5 gap-5">
         <Button
           variant={"outline"}
-          className="border-[#2aaae0] font-bold rounded-full"
+          className="border-primary font-bold rounded-full"
           onClick={prevButtonHandler}
           type="button"
         >
           Back
         </Button>
         <Button
-          className="bg-[#2aaae0]  rounded-full py-6 hover:bg-[#2aaae0]"
+          className="bg-primary  rounded-full py-6 "
           disabled={isLoading ? true : false}
         >
           {isLoading ? <CircularProgress color="inherit" /> : "Next"}

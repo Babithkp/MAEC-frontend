@@ -12,7 +12,7 @@ export default function PaymentFailed() {
           Try again later
         </p>
       </section>
-      <Button className="bg-[#2aaae0]" onClick={()=>window.location.href = "/"}>
+      <Button className="bg-primary" onClick={()=>window.location.href = "/"}>
         Home
       </Button>
     </main>

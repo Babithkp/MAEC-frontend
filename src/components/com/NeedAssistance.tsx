@@ -15,13 +15,13 @@ export default function NeedAssistance() {
         <div className="gap-5 flex">
           <Button
             variant={"outline"}
-            className="font-bold rounded-full border-[#2aaae0]"
+            className="font-bold rounded-full border-primary"
             onClick={() => (window.location.href = "contactus")}
           >
             Contact Us
           </Button>
           <Button
-            className="font-bold rounded-full bg-[#2aaae0]"
+            className="font-bold rounded-full bg-primary"
             onClick={() => (window.location.href = "get-started")}
           >
             Get Started

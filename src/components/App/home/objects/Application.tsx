@@ -9,7 +9,7 @@ export default function Application() {
           <p className="max-md:text-center">
           Getting your document translated is easy with ITS. Our streamlined digital process means you stay informed every step of the way and receive your documents in 3 days!
           </p>
-          <Button className="bg-[#2aaae0] rounded-full w-fit" onClick={() => (window.location.href = "get-started")}>Apply now</Button>
+          <Button className="bg-primary rounded-full w-fit" onClick={() => (window.location.href = "get-started")}>Apply now</Button>
         </div>
         <figure className="w-1/2 max-md:hidden">
           <img src={processImg} className="w-full h-full" />

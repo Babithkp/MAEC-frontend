@@ -63,7 +63,7 @@ export default function CreateAccount() {
               className="btn hover:bg-transparent bg-transparent border-none p-0 shadow-none"
               onClick={() => (window.location.href = "/")}
             >
-              <FaSortDown className="text-[#2aaae0] rotate-[90deg]" size={20} />
+              <FaSortDown className="text-primary rotate-[90deg]" size={20} />
               <p className="text-black">Back to Home</p>
             </Button>
           </div>
@@ -150,7 +150,7 @@ export default function CreateAccount() {
               )}
             </div>
             {fetchError && <p className="my-5 text-red-500 font-bold">{fetchError}</p>}
-            <Button className="bg-[#2aaae0] w-full rounded-full py-6 hover:bg-[#2aaae0]" disabled={isLoading ? true : false}>
+            <Button className="bg-primary w-full rounded-full py-6 hover:bg-primary" disabled={isLoading ? true : false}>
               {isLoading ? (
                 <CircularProgress color="inherit" />
               ) : (

@@ -18,7 +18,7 @@ export default function Transaction() {
           Specialize in the translation official documents such as; Acdemic transcript and certificates, Birth Certificate, Marriage Certificate, official letters, bank statements, Application letters, Licenses and Employment Contracts etc.
           </p>
           <p className="">
-          Translation Fee: €18 per document.
+          Translation Fee: €15 per document.
           </p>
           <p>
             Processing Time: <span className="font-bold">3 business days</span>.
@@ -37,10 +37,10 @@ export default function Transaction() {
       <section className="w-[50%] max-md:w-[90%] flex flex-col gap-10 items-center justify-center  my-10">
         <div className="font-bold text-2xl max-md:text-xl md:flex gap-5">
           <p>
-            <span className="text-[#2aaae0]">300,000</span> translated documents
+            <span className="text-primary">300,000</span> translated documents
           </p>
           <p>
-            <span className="text-[#2aaae0]">9,000+</span> happy clients
+            <span className="text-primary">9,000+</span> happy clients
           </p>
         </div>
         <div className="flex justify-center items-center gap-5">
@@ -58,7 +58,7 @@ export default function Transaction() {
 
       <div>
         <Button
-          className="font-bold rounded-full bg-[#2aaae0]"
+          className="font-bold rounded-full bg-primary"
           onClick={() => (window.location.href = "get-started")}
         >
           Start Translation

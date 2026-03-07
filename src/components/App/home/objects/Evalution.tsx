@@ -12,7 +12,7 @@ export default function Evalution() {
       <p className="w-[60%] max-md:w-[90%] text-center text-lg">
       Join the thousands of people just like you who have made ITS their trusted translation service! We are here to answer your questions on chat, email ..24/7!
       </p>
-      <Button className="bg-[#2aaae0] rounded-full" onClick={() => (window.location.href = "get-started")}>Get started</Button>
+      <Button className="bg-primary rounded-full" onClick={() => (window.location.href = "get-started")}>Get started</Button>
     </section>
   );
 }

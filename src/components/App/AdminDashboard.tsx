@@ -116,7 +116,7 @@ export default function AdminDashboard() {
 
   return (
     <main className="flex items-center justify-center gap-5 flex-col">
-      <h1 className="md:text-4xl font-semibold text-3xl text-center text-[#2aaae0]">
+      <h1 className="md:text-4xl font-semibold text-3xl text-center text-primary">
         Admin Dashboard
       </h1>
       <section className="my-5 flex justify-center flex-col items-center  w-full">
