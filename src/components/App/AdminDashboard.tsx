@@ -139,7 +139,7 @@ export default function AdminDashboard() {
               key={userIndex}
               className="shadow-xl p-10 flex flex-col gap-5 border"
             >
-              <div className="gap-[2rem] flex flex-wrap ">
+              <div className="gap-[2rem] flex flex-wrap max-md:text-sm">
                 <p className="flex gap-1">
                   <span className="font-medium">Name:</span>
                   {user.profile?.first_name} {user.profile?.middle_name}
@@ -196,24 +196,73 @@ export default function AdminDashboard() {
                         aria-controls={`${panelId}-content`}
                         id={`${panelId}-header`}
                       >
-                        <Typography sx={{ width: "25%", flexShrink: 0 }}>
+                        <Typography
+                          sx={{
+                            width: "25%",
+                            flexShrink: 0,
+                            fontSize: {
+                              xs: "12px",
+                              md: "14px",
+                              lg: "16px",
+                            },
+                          }}
+                        >
                           Service {evalIndex + 1}
                         </Typography>
-                        <Typography sx={{ width: "25%", flexShrink: 0 }}>
+                        <Typography
+                          sx={{
+                            width: "25%",
+                            flexShrink: 0,
+                            fontSize: {
+                              xs: "12px",
+                              md: "14px",
+                              lg: "16px",
+                            },
+                          }}
+                        >
                           Language: {eva?.language || "English"}
                         </Typography>
-                        <Typography sx={{ width: "25%", flexShrink: 0 }}>
+                        <Typography
+                          sx={{
+                            width: "25%",
+                            flexShrink: 0,
+                            fontSize: {
+                              xs: "12px",
+                              md: "14px",
+                              lg: "16px",
+                            },
+                          }}
+                        >
                           Amount Paid: ${eva.documents?.paid_amount ?? 0}
                         </Typography>
                         {eva.documents?.order_id && (
-                          <Typography sx={{ width: "25%", flexShrink: 0 }}>
+                          <Typography
+                            sx={{
+                              width: "25%",
+                              flexShrink: 0,
+                              fontSize: {
+                                xs: "12px",
+                                md: "14px",
+                                lg: "16px",
+                              },
+                            }}
+                          >
                             Order Id: {eva.documents?.order_id}
                           </Typography>
                         )}
                       </AccordionSummary>
                       <AccordionDetails className="flex flex-col gap-5">
                         {eva.documents?.certificate.length > 0 && (
-                          <Typography className="md:w-[70rem]">
+                          <Typography
+                            className="md:w-[70rem] "
+                            sx={{
+                              fontSize: {
+                                xs: "12px",
+                                md: "14px",
+                                lg: "16px",
+                              },
+                            }}
+                          >
                             <span className="font-bold mb-2">
                               Certificate Verification
                             </span>
@@ -230,7 +279,16 @@ export default function AdminDashboard() {
                           </Typography>
                         )}
                         {eva.documents?.transcript.length > 0 && (
-                          <Typography className="md:w-[70rem]">
+                          <Typography
+                            className="md:w-[70rem]"
+                            sx={{
+                              fontSize: {
+                                xs: "12px",
+                                md: "14px",
+                                lg: "16px",
+                              },
+                            }}
+                          >
                             <span className="font-bold mb-2">
                               Transcript Verification
                             </span>
