@@ -1,19 +1,17 @@
-import { useSetRecoilState } from "recoil";
-import { Button } from "../../ui/button";
+import { useSetRecoilState } from "recoil";import { Button } from "../../ui/button";
 import { evalutonForm } from "../../../store/context";
 import { ChangeEvent, useEffect, useState } from "react";
 import {
   addTotalAmt,
   getDocumentByUserId,
-  // makePaymentPaypal,
-  makePaymentStripe,
+  makePaymentPaypal,
+  // makePaymentStripe,
 } from "../../../http/fetch";
 import { Backdrop, CircularProgress } from "@mui/material";
 
 interface DocumentRate {
   transcript: number;
 }
-
 
 interface PaymentItemType {
   name: string;
@@ -45,58 +43,28 @@ export default function Pay() {
     }
   };
 
-  // const paypalButtonHandler = async () => {
-  //   if (isChecked) {
-  //     setIsLoadingPay(true);
-  //     if (localStorage.getItem("userId")) {
-  //       const userId = localStorage.getItem("userId");
-  //       const totalAmount = paymentdata.reduce(
-  //         (total, pay) => total + pay.amount * pay.quantity,
-  //         0
-  //       );
-  //       const updadtedresponse = await addTotalAmt({
-  //         id: userId,
-  //         totalAmt: totalAmount,
-  //       });
-  //       const response = await makePaymentPaypal({ data: paymentdata });
-  //       if (response || updadtedresponse) {
-  //         console.log(updadtedresponse);
-  //         window.location.href = response.data;
-  //       }
-  //     }
-  //   } else {
-  //     setIsError("Check this box to proceed");
-  //     setTimeout(() => {
-  //       setIsError(null);
-  //     }, 3000);
-  //   }
-  //   setIsLoadingPay(false);
-  // };
-
-  const stripeButtonHandler = async () => {
+  const paypalButtonHandler = async () => {
     if (isChecked) {
       setIsLoading(true);
-      try {
-        if (localStorage.getItem("userId")) {
-          const userId = localStorage.getItem("userId");
-          const totalAmount = paymentdata.reduce(
-            (total, pay) => total + pay.amount * pay.quantity,
-            0,
-          );
-          const updadtedresponse = await addTotalAmt({
-            id: userId,
-            totalAmt: totalAmount,
-          });
-
-          const response = await makePaymentStripe({ data: paymentdata });
-          if (response && updadtedresponse) {
-            window.location.href = response.data.url;
-            console.log(response);
-            console.log(updadtedresponse);
+      if (localStorage.getItem("userId")) {
+        const userId = localStorage.getItem("userId");
+        const updadtedresponse = await addTotalAmt({
+          id: userId,
+          totalAmt: totalRate,
+        });
+        console.log(updadtedresponse);
+        try {
+          const response = await makePaymentPaypal({ data: paymentdata });
+          if (response?.data) {            
+            window.location.href = response.data; 
           }
+        } catch (e) {
+          setIsError("Payment failed");
+          setTimeout(() => {
+            setIsError(null);
+          }, 3000);
+          setIsLoading(false);
         }
-      } catch (e) {
-        console.log(e);
       }
     } else {
       setIsError("Check this box to proceed");
@@ -106,6 +74,41 @@ export default function Pay() {
     }
     setIsLoading(false);
   };
+
+  // const stripeButtonHandler = async () => {
+  //   if (isChecked) {
+  //     setIsLoading(true);
+  //     try {
+  //       if (localStorage.getItem("userId")) {
+  //         const userId = localStorage.getItem("userId");
+  //         const totalAmount = paymentdata.reduce(
+  //           (total, pay) => total + pay.amount * pay.quantity,
+  //           0,
+  //         );
+  //         const updadtedresponse = await addTotalAmt({
+  //           id: userId,
+  //           totalAmt: totalAmount,
+  //         });
+
+  //         const response = await makePaymentStripe({ data: paymentdata });
+  //         if (response && updadtedresponse) {
+  //           window.location.href = response.data.url;
+  //           console.log(response);
+  //           console.log(updadtedresponse);
+  //         }
+  //       }
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   } else {
+  //     setIsError("Check this box to proceed");
+  //     setTimeout(() => {
+  //       setIsError(null);
+  //     }, 3000);
+  //   }
+  //   setIsLoading(false);
+  // };
+
   const prevButtonHandler = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setPage({
@@ -138,12 +141,11 @@ export default function Pay() {
           setToatlRate(academicRate + transcriptRate + 5);
           const newPaymentData = [];
 
-
           if (docData.transcript?.length > 0) {
             newPaymentData.push({
               name: "Document Translation",
-              amount: 10,
-              quantity: docData.transcript?.length,
+              amount: 15,
+              quantity: qty,
             });
           }
           newPaymentData.push({
@@ -160,92 +162,87 @@ export default function Pay() {
   }, []);
 
   return (
-    <form className="px-10 max-md:p-0 flex flex-col gap-5 max-md:w-full w-[70%] md:border-l">
-      <div className="flex flex-col gap-5">
-        <h2 className="font-bold text-lg">Order Summary</h2>
-        <div>
-          <div className="w-full  flex justify-between p-3 pr-5 font-bold">
-            <p className="md:mr-20">ITEM</p>
-            <p className="md:ml-20">DESCRIPTION/QTY</p>
-            <p>PRICE</p>
-          </div>
-          <div className="w-full gap-5 flex justify-between border p-3 pr-5">
-            <p className="max-md:w-1/2 w-[30%]">Document Translation</p>
-            <p>{quantity} x</p>
-            <p>${materialRate.transcript}</p>
+    <>
+      <form className="px-10 max-md:p-0 flex flex-col gap-5 max-md:w-full w-[70%] md:border-l">
+        <div className="flex flex-col gap-5">
+          <h2 className="font-bold text-lg">Order Summary</h2>
+          <div>
+            <div className="w-full  flex justify-between p-3 pr-5 font-bold">
+              <p className="md:mr-20">ITEM</p>
+              <p className="md:ml-20">DESCRIPTION/QTY</p>
+              <p>PRICE</p>
+            </div>
+            <div className="w-full gap-5 flex justify-between border p-3 pr-5">
+              <p className="max-md:w-1/2 w-[30%]">Document Translation</p>
+              <p>{quantity} x</p>
+              <p>€{materialRate.transcript}</p>
+            </div>
+
+            <div className="w-full gap-5 flex justify-between border p-3 pr-5">
+              <p>Email Delivery</p>
+              <p>€0.00</p>
+            </div>
+            <div className="w-full gap-5 flex justify-between border p-3 pr-5">
+              <p>VAT</p>
+              <p>€5.00</p>
+            </div>
+            <div className="w-full gap-5 flex justify-between border p-3 pr-5">
+              <p>Order Total:</p>
+              <p className="font-bold">€{totalRate}</p>
+            </div>
           </div>
 
-          <div className="w-full gap-5 flex justify-between border p-3 pr-5">
-            <p>Email Delivery</p>
-            <p>$0.00</p>
+          <p>
+            All services selected are delivered via email in line with the
+            service processing time.
+          </p>
+          <div className="flex items-start gap-5 mt-10 ">
+            <input
+              id="checkEdu"
+              type="checkbox"
+              name="radio-2"
+              className=" checkbox checkbox-info [--chkfg:white]"
+              onChange={agreeInputHandler}
+            />
+            <label
+              htmlFor="checkEdu"
+              className="flex justify-between w-full max-md:text-xs"
+            >
+              I AGREE TO THE TERMS AND CONDITIONS SET BY ITS.
+            </label>
           </div>
-          <div className="w-full gap-5 flex justify-between border p-3 pr-5">
-            <p>VAT</p>
-            <p>€5.00</p>
-          </div>
-          <div className="w-full gap-5 flex justify-between border p-3 pr-5">
-            <p>Order Total:</p>
-            <p className="font-bold">${totalRate}</p>
-          </div>
+          {isError && <span className=" text-red-500 ">{isError}</span>}
         </div>
-
-        <p>
-          All services selected are delivered via email in line with the service
-          processing time.
-        </p>
-        <div className="flex items-start gap-5 mt-10 ">
-          <input
-            id="checkEdu"
-            type="checkbox"
-            name="radio-2"
-            className=" checkbox checkbox-info [--chkfg:white]"
-            onChange={agreeInputHandler}
-          />
-          <label
-            htmlFor="checkEdu"
-            className="flex justify-between w-full max-md:text-xs"
+        <div className="w-full justify-end flex max-md:flex-col mt-5 gap-5">
+          <Button
+            variant={"outline"}
+            className="border-[#2aaae0] font-bold rounded-full"
+            onClick={prevButtonHandler}
+            type="button"
           >
-            I AGREE TO THE TERMS AND CONDITIONS SET BY ITS.
-          </label>
+            Back
+          </Button>
+
+          <Button
+            className="bg-[#2aaae0] font-bold rounded-full"
+            onClick={paypalButtonHandler}
+            type="button"
+            disabled={isLoading ? true : false}
+          >
+            {isLoading ? (
+              <CircularProgress color="inherit" />
+            ) : (
+              "Pay with Paypal"
+            )}
+          </Button>
         </div>
-        {isError && <span className=" text-red-500 ">{isError}</span>}
-      </div>
-      <div className="w-full justify-end flex max-md:flex-col mt-5 gap-5">
-        <Button
-          variant={"outline"}
-          className="border-[#2aaae0] font-bold rounded-full"
-          onClick={prevButtonHandler}
-          type="button"
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={isFetch}
         >
-          Back
-        </Button>
-        <Button
-          className="bg-[#2aaae0] font-bold rounded-full"
-          onClick={stripeButtonHandler}
-          type="button"
-          disabled={isLoading ? true : false}
-        >
-          {isLoading ? <CircularProgress color="inherit" /> : `Pay with Card`}
-        </Button>
-        {/* <Button
-          className="bg-[#2aaae0] font-bold rounded-full"
-          onClick={paypalButtonHandler}
-          type="button"
-          disabled={isLoadingPay ? true : false}
-        >
-          {isLoadingPay ? (
-            <CircularProgress color="inherit" />
-          ) : (
-            "Pay with Paypal"
-          )}
-        </Button> */}
-      </div>
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={isFetch}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    </form>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </form>
+    </>
   );
 }

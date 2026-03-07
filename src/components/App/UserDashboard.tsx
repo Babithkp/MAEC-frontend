@@ -32,6 +32,7 @@ interface Evaluation {
     certificate: string[];
     transcript: string[];
     paid_amount: number;
+    order_id: string;
   };
 }
 
@@ -163,7 +164,7 @@ export default function UserDashboard() {
           </div>
         </form>
       </section>
-      <section className="w-[70%] my-5 flex flex-col gap-3 max-md:w-[95%]">
+      <section className="w-[70%] my-5 flex flex-col gap-3 max-md:w-[95%] ">
         <h3 className="text-2xl font-bold my-5">ORDERS</h3>
         {userEvaluation?.map((eva, i) => (
           <Accordion
@@ -177,15 +178,66 @@ export default function UserDashboard() {
               id="panel4bh-header"
             >
               <Typography
-                sx={{ width: "33%", flexShrink: 0 }}
-                className="font-bold"
+                sx={{
+                  width: {
+                    xs: "10%",
+                    md: "20%",
+                  },
+                  flexShrink: 0,
+                  fontSize: {
+                    xs: "12px",
+                    md: "14px",
+                    lg: "16px",
+                  },
+                }}
+                className="font-bold max-md:text-xs"
               >
-                #Order {i + 1}
+                # {i + 1}
               </Typography>
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
+              <Typography
+                sx={{
+                  width: {
+                    xs: "40%",
+                    md: "20%",
+                  },
+                  flexShrink: 0,
+                  fontSize: {
+                    xs: "12px",
+                    md: "14px",
+                    lg: "16px",
+                  },
+                }}
+                className="font-bold "
+              >
+                #Order ID: {eva.documents.order_id}
+              </Typography>
+              <Typography
+                sx={{
+                  width: {
+                    xs: "30%",
+                    md: "20%",
+                  },
+                  flexShrink: 0,
+                  fontSize: {
+                    xs: "12px",
+                    md: "14px",
+                    lg: "16px",
+                  },
+                }}
+              >
                 Document Language: {eva.language ? eva.language : "English"}
               </Typography>
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
+              <Typography
+                sx={{
+                  width: "33%",
+                  flexShrink: 0,
+                  fontSize: {
+                    xs: "12px",
+                    md: "14px",
+                    lg: "16px",
+                  },
+                }}
+              >
                 Payment : {eva.documents.paid_amount ? "Completed" : "Pending"}
               </Typography>
             </AccordionSummary>

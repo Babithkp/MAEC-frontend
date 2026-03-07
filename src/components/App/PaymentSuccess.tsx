@@ -1,24 +1,32 @@
 import { TiTick } from "react-icons/ti";
 import { Button } from "../ui/button";
 import { useEffect } from "react";
-import {  compeltePayment } from "../../http/fetch";
+import { capturePaypalPayment, compeltePayment } from "../../http/fetch";
 
 export default function PaymentSuccess() {
-  useEffect(()=>{
-    async function fetch(){
-        try{
-          if (localStorage.getItem("userId")) {
-            const userId = localStorage.getItem("userId");
-            await compeltePayment({id: userId})
+  useEffect(() => {
+    async function fetch() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const orderId = params.get("token");
+        if (orderId) {
+          const response = await capturePaypalPayment({ id: orderId });
+          if (response.status === 200) {
+            if (localStorage.getItem("userId")) {
+              const userId = localStorage.getItem("userId");
+              const req = await compeltePayment({ id: userId, order_id: orderId });
+              if (req.status === 200) {
+                window.location.href = "/";
+              }
+            }
           }
-          
-        }catch(err){
-          console.log(err);
+        }
+      } catch (err) {
+        console.log(err);
       }
     }
-    fetch()
-    
-  },[])
+    fetch();
+  }, []);
   return (
     <main className="flex justify-center items-center h-[70vh] flex-col gap-10">
       <section className="w-[30%] border-b-[2px] border-green-500 shadow-lg p-5 text-center flex flex-col max-md:w-[90%] items-center gap-5">
@@ -31,7 +39,10 @@ export default function PaymentSuccess() {
           shortly
         </p>
       </section>
-      <Button className="bg-[#2aaae0]" onClick={()=>window.location.href = "/"}>
+      <Button
+        className="bg-[#2aaae0]"
+        onClick={() => (window.location.href = "/")}
+      >
         Home
       </Button>
     </main>

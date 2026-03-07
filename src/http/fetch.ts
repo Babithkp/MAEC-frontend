@@ -47,6 +47,9 @@ export const makePaymentPaypal = async (file:unknown) => {
   return await axios.post(`${BASE_URL}/api/makePaymentPaypal`,file);
 };
 
+export const capturePaypalPayment = async (file:unknown) => {
+  return await axios.post(`${BASE_URL}/api/capturePaypalPayment`,file);
+};
 
 export const addTotalAmt = async (file:unknown) => {
   return await axios.post(`${BASE_URL}/api/addTotalAmt`,file);

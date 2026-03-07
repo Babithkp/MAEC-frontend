@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
-import Accordion from "@mui/material/Accordion";
+import React, { useEffect, useState, useRef, useCallback } from "react";import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { RiArrowUpSLine } from "react-icons/ri";
@@ -32,6 +31,7 @@ interface UserProfileType {
       certificate: string[];
       transcript: string[];
       paid_amount: number | null;
+      order_id: string;
     };
   }[];
 }
@@ -50,8 +50,8 @@ export default function AdminDashboard() {
     const handler = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
       setPage(0);
-      setIsLastPage(false); 
-    }, 1000); 
+      setIsLastPage(false);
+    }, 1000);
 
     return () => {
       clearTimeout(handler);
@@ -70,13 +70,13 @@ export default function AdminDashboard() {
           setIsLastPage(true);
         } else {
           setUsers((prevUsers) =>
-            newPage === 0 ? data : [...prevUsers, ...data]
+            newPage === 0 ? data : [...prevUsers, ...data],
           );
         }
       }
       setLoading(false);
     },
-    []
+    [],
   );
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function AdminDashboard() {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
-    setUsers([])
+    setUsers([]);
   };
 
   const handleObserver = useCallback(
@@ -95,7 +95,7 @@ export default function AdminDashboard() {
         setPage((prev) => prev + 1);
       }
     },
-    [loading, isLastPage]
+    [loading, isLastPage],
   );
 
   useEffect(() => {
@@ -122,19 +122,24 @@ export default function AdminDashboard() {
       <section className="my-5 flex justify-center flex-col items-center  w-full">
         <h2 className="text-lg font-semibold mb-3">User List</h2>
         <div className="flex mb-5 p-3 rounded-lg border w-[50%] max-md:w-[95%] gap-3">
-            <span><IoSearch size={24}/></span>
-            <input
+          <span>
+            <IoSearch size={24} />
+          </span>
+          <input
             type="text"
             value={searchTerm}
             onChange={handleSearchChange}
             placeholder="Search by name or email"
             className="outline-none active:bg-none w-full"
           />
-            </div>
+        </div>
         <div className="w-[80%] max-md:w-[95%] flex flex-col gap-10">
           {users.map((user, userIndex) => (
-            <div key={userIndex} className="shadow-xl p-10 flex flex-col gap-5 border">
-               <div className="gap-[2rem] flex flex-wrap ">
+            <div
+              key={userIndex}
+              className="shadow-xl p-10 flex flex-col gap-5 border"
+            >
+              <div className="gap-[2rem] flex flex-wrap ">
                 <p className="flex gap-1">
                   <span className="font-medium">Name:</span>
                   {user.profile?.first_name} {user.profile?.middle_name}
@@ -191,56 +196,56 @@ export default function AdminDashboard() {
                         aria-controls={`${panelId}-content`}
                         id={`${panelId}-header`}
                       >
-                         <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                        <Typography sx={{ width: "25%", flexShrink: 0 }}>
                           Service {evalIndex + 1}
                         </Typography>
-                        <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                        <Typography sx={{ width: "25%", flexShrink: 0 }}>
                           Language: {eva?.language || "English"}
                         </Typography>
-                        <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                        <Typography sx={{ width: "25%", flexShrink: 0 }}>
                           Amount Paid: ${eva.documents?.paid_amount ?? 0}
                         </Typography>
+                        {eva.documents?.order_id && (
+                          <Typography sx={{ width: "25%", flexShrink: 0 }}>
+                            Order Id: {eva.documents?.order_id}
+                          </Typography>
+                        )}
                       </AccordionSummary>
                       <AccordionDetails className="flex flex-col gap-5">
-                        <Typography className="md:w-[70rem]">
-                          <span className="font-bold mb-2">Course-by-Course Evaluation</span>
-                          {eva.documents?.courseByCourse.map((doc) => (
-                            <a
-                              key={doc}
-                              target="_blank"
-                              href={`https://studyinmaryland-stroage-buckets.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                              className="border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
-                            >
-                              {doc.substring(36)}
-                            </a>
-                          ))}
-                        </Typography>
-                        <Typography className="md:w-[70rem]">
-                          <span className="font-bold mb-2">Certificate Verification</span>
-                          {eva.documents?.certificate.map((doc) => (
-                            <a
-                              key={doc}
-                              target="_blank"
-                              href={`https://studyinmaryland-stroage-buckets.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                              className="border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
-                            >
-                              {doc.substring(36)}
-                            </a>
-                          ))}
-                        </Typography>
-                        <Typography className="md:w-[70rem]">
-                          <span className="font-bold mb-2">Transcript Verification</span>
-                          {eva.documents?.transcript.map((doc) => (
-                            <a
-                              key={doc}
-                              target="_blank"
-                              href={`https://studyinmaryland-stroage-buckets.s3.ap-southeast-2.amazonaws.com/maec/${doc}`}
-                              className="border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
-                            >
-                              {doc.substring(36)}
-                            </a>
-                          ))}
-                        </Typography>
+                        {eva.documents?.certificate.length > 0 && (
+                          <Typography className="md:w-[70rem]">
+                            <span className="font-bold mb-2">
+                              Certificate Verification
+                            </span>
+                            {eva.documents?.certificate.map((doc) => (
+                              <a
+                                key={doc}
+                                target="_blank"
+                                href={`${doc}`}
+                                className="border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
+                              >
+                                {doc.substring(104)}
+                              </a>
+                            ))}
+                          </Typography>
+                        )}
+                        {eva.documents?.transcript.length > 0 && (
+                          <Typography className="md:w-[70rem]">
+                            <span className="font-bold mb-2">
+                              Transcript Verification
+                            </span>
+                            {eva.documents?.transcript.map((doc) => (
+                              <a
+                                key={doc}
+                                target="_blank"
+                                href={`${doc}`}
+                                className="border p-2 bg-slate-50 hover:bg-slate-100 ml-2"
+                              >
+                                {doc.substring(104)}
+                              </a>
+                            ))}
+                          </Typography>
+                        )}
                       </AccordionDetails>
                     </Accordion>
                   );
@@ -249,7 +254,7 @@ export default function AdminDashboard() {
             </div>
           ))}
           <div id="load-more" className="w-full h-10 grid place-items-center">
-          {loading && <CircularProgress color="inherit" />}
+            {loading && <CircularProgress color="inherit" />}
           </div>
         </div>
       </section>
