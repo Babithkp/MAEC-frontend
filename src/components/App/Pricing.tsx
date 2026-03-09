@@ -23,7 +23,7 @@ export default function Pricing() {
               Official Verification
               </div>
               <div className="bg-white w-full h-full  border flex justify-center items-center text-xl font-bold text-primary">
-              €15
+              €10
               </div>
             </div>
           </article>
