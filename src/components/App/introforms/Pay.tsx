@@ -244,7 +244,7 @@ export default function Pay() {
             {isLoading ? (
               <CircularProgress color="inherit" />
             ) : (
-              "Pay with Stripe"
+              "Pay with Card"
             )}
           </Button>
         </div>
