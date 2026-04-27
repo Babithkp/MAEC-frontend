@@ -9,6 +9,7 @@ export default function PaymentSuccess() {
       try {
         const params = new URLSearchParams(window.location.search);
         const orderId = params.get("token");
+        
         if (orderId) {
           const response = await capturePaypalPayment({ id: orderId });
           if (response.status === 200) {
@@ -18,6 +19,14 @@ export default function PaymentSuccess() {
               if (req.status === 200) {
                 window.location.href = "/";
               }
+            }
+          }
+        } else{
+          if (localStorage.getItem("userId")) {
+            const userId = localStorage.getItem("userId");
+            const req = await compeltePayment({ id: userId, order_id: "00" });
+            if (req.status === 200) {
+              window.location.href = "/";
             }
           }
         }

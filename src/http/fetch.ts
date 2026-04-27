@@ -43,6 +43,10 @@ export const makePaymentStripe = async (file:unknown) => {
   return await axios.post(`${BASE_URL}/api/makePaymentStripe`,file);
 }
 
+export const verifyPaymentStripe = async (session_id:string) => {
+  return await axios.post(`${BASE_URL}/api/verifyPaymentStripe?session_id=${session_id}`);
+}
+
 export const makePaymentPaypal = async (file:unknown) => {
   return await axios.post(`${BASE_URL}/api/makePaymentPaypal`,file);
 };

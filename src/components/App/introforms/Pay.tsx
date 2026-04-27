@@ -93,9 +93,8 @@ export default function Pay() {
 
           const response = await makePaymentStripe({ data: paymentdata });
           if (response && updadtedresponse) {
+            
             window.location.href = response.data.url;
-            console.log(response);
-            console.log(updadtedresponse);
           }
         }
       } catch (e) {
