@@ -158,12 +158,7 @@ export default function EvaluationForm() {
     });
   };
 
-  const { register, handleSubmit, setValue } = useForm<FormValues>({
-    defaultValues: {
-      transcript: 10,
-      certificate: 10,
-    },
-  });
+  const { register, handleSubmit, setValue } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     if (!onlyEng) {
       setFetchError("Please select any service you need");
@@ -232,6 +227,8 @@ export default function EvaluationForm() {
         const response = await getUserEvalutionById({ userId: userId });
         if (response.data.data) {
           const data = response.data.data;
+          console.log(data);
+          
           setValue("certificate", data.certificate);
           setValue("transcript", data.transcript);
           setValue("language", data.language);
