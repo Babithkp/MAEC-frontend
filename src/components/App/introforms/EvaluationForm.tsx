@@ -259,7 +259,6 @@ export default function EvaluationForm() {
               type="checkbox"
               className="checkbox checkbox-info [--chkfg:white] "
               {...register("certificate")}
-              defaultChecked
             />
             <label className="w-full flex justify-between" htmlFor="courseby">
               <p>Certificate Verification</p> <p className="font-bold">€15</p>
@@ -271,7 +270,6 @@ export default function EvaluationForm() {
               type="checkbox"
               className="checkbox checkbox-info [--chkfg:white]"
               {...register("transcript")}
-              defaultChecked
             />
             <label
               className="w-full flex justify-between"
