@@ -5,6 +5,7 @@ import {
   addTotalAmt,
   getDocumentByUserId,
   makePaymentPaypal,
+  makePaymentStripe,
   // makePaymentStripe,
 } from "../../../http/fetch";
 import { Backdrop, CircularProgress } from "@mui/material";
@@ -75,39 +76,39 @@ export default function Pay() {
     setIsLoading(false);
   };
 
-  // const stripeButtonHandler = async () => {
-  //   if (isChecked) {
-  //     setIsLoading(true);
-  //     try {
-  //       if (localStorage.getItem("userId")) {
-  //         const userId = localStorage.getItem("userId");
-  //         const totalAmount = paymentdata.reduce(
-  //           (total, pay) => total + pay.amount * pay.quantity,
-  //           0,
-  //         );
-  //         const updadtedresponse = await addTotalAmt({
-  //           id: userId,
-  //           totalAmt: totalAmount,
-  //         });
+  const stripeButtonHandler = async () => {
+    if (isChecked) {
+      setIsLoading(true);
+      try {
+        if (localStorage.getItem("userId")) {
+          const userId = localStorage.getItem("userId");
+          const totalAmount = paymentdata.reduce(
+            (total, pay) => total + pay.amount * pay.quantity,
+            0,
+          );
+          const updadtedresponse = await addTotalAmt({
+            id: userId,
+            totalAmt: totalAmount,
+          });
 
-  //         const response = await makePaymentStripe({ data: paymentdata });
-  //         if (response && updadtedresponse) {
-  //           window.location.href = response.data.url;
-  //           console.log(response);
-  //           console.log(updadtedresponse);
-  //         }
-  //       }
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   } else {
-  //     setIsError("Check this box to proceed");
-  //     setTimeout(() => {
-  //       setIsError(null);
-  //     }, 3000);
-  //   }
-  //   setIsLoading(false);
-  // };
+          const response = await makePaymentStripe({ data: paymentdata });
+          if (response && updadtedresponse) {
+            window.location.href = response.data.url;
+            console.log(response);
+            console.log(updadtedresponse);
+          }
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      setIsError("Check this box to proceed");
+      setTimeout(() => {
+        setIsError(null);
+      }, 3000);
+    }
+    setIsLoading(false);
+  };
 
   const prevButtonHandler = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -132,7 +133,7 @@ export default function Pay() {
           setQuantity(qty);
 
           const academicRate = docData.certificate?.length * 15;
-          const transcriptRate = docData.transcript?.length * 15;
+          const transcriptRate = docData.transcript?.length * 7;
 
           setMaterialRate({
             transcript: transcriptRate + academicRate,
@@ -144,7 +145,7 @@ export default function Pay() {
           if (docData.transcript?.length > 0) {
             newPaymentData.push({
               name: "Document Translation",
-              amount: 15,
+              amount: 7,
               quantity: qty,
             });
           }
@@ -233,6 +234,18 @@ export default function Pay() {
               <CircularProgress color="inherit" />
             ) : (
               "Pay with Paypal"
+            )}
+          </Button>
+          <Button
+            className="bg-primary font-bold rounded-full"
+            onClick={stripeButtonHandler}
+            type="button"
+            disabled={isLoading ? true : false}
+          >
+            {isLoading ? (
+              <CircularProgress color="inherit" />
+            ) : (
+              "Pay with Stripe"
             )}
           </Button>
         </div>

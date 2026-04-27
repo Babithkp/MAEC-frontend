@@ -1,4 +1,5 @@
-import Accordion from "@mui/material/Accordion";import AccordionSummary from "@mui/material/AccordionSummary";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { RiArrowUpSLine } from "react-icons/ri";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -83,20 +84,24 @@ export default function UserDashboard() {
       if (localStorage.getItem("userId")) {
         const userId = localStorage.getItem("userId");
         setIsLoading(true);
-        const mailResponse = await getUserEmailById({ userId: userId });
-        const response = await getUserProfileById({ userId: userId });
-        const evaResponse = await getUserEvaluationDetailsById({
-          userId: userId,
-        });
-        setIsLoading(false);
-        if (mailResponse && response && evaResponse) {
-          setValue("email_address", mailResponse.data.data.email_address);
-          setValue("first_name", response.data.data.first_name);
-          setValue("last_name", response.data.data.last_name);
-          setValue("phone_number", response.data.data.phone_number);
-          setUserProfile(response.data.data);
-          setUserEvaluation(evaResponse.data.data);
-          setUser(mailResponse.data.data);
+        try {
+          const mailResponse = await getUserEmailById({ userId: userId });
+          const response = await getUserProfileById({ userId: userId });
+          const evaResponse = await getUserEvaluationDetailsById({
+            userId: userId,
+          });
+          setIsLoading(false);
+          if (mailResponse && response && evaResponse) {
+            setValue("email_address", mailResponse.data.data.email_address);
+            setValue("first_name", response.data.data.first_name);
+            setValue("last_name", response.data.data.last_name);
+            setValue("phone_number", response.data.data.phone_number);
+            setUserProfile(response.data.data);
+            setUserEvaluation(evaResponse.data.data);
+            setUser(mailResponse.data.data);
+          }
+        } catch (e) {
+          console.log(e);
         }
       }
     };

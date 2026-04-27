@@ -1,5 +1,4 @@
-import Backdrop from "@mui/material/Backdrop";
-import {
+import Backdrop from "@mui/material/Backdrop";import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -26,22 +25,15 @@ import {
 import { CircularProgress } from "@mui/material";
 
 interface Documents {
-  courseByCourse: string[];
   certificate: string[];
   transcript: string[];
   userId: string | null;
 }
 interface DocumentsIsExisting {
-  courseByCourse: boolean;
   certificate: boolean;
   transcript: boolean;
 }
 
-interface DocumentsErrorType {
-  courseByCourse: boolean;
-  certificate: boolean;
-  transcript: boolean;
-}
 const endpoint = import.meta.env.VITE_CLOUDEFLARE_ENDPOINT;
 
 export default function EducationForm() {
@@ -55,18 +47,15 @@ export default function EducationForm() {
   const [documentError, setdocumentError] = useState<null | string>(null);
   const setPage = useSetRecoilState(evalutonForm);
   const [dataStorage, setDataStorage] = useState<Documents>({
-    courseByCourse: [],
     certificate: [],
     transcript: [],
     userId: "",
   });
-  const [overloadmsg, setOverloadmsg] = useState<DocumentsErrorType>({
-    courseByCourse: false,
+  const [overloadmsg, setOverloadmsg] = useState<DocumentsIsExisting>({
     certificate: false,
     transcript: false,
   });
   const [isExist, setisExist] = useState<DocumentsIsExisting>({
-    courseByCourse: false,
     certificate: false,
     transcript: false,
   });
@@ -93,7 +82,7 @@ export default function EducationForm() {
 
         setDataStorage((prev) => ({
           ...prev,
-          certificate: [...prev.certificate, endpoint+newId],
+          certificate: [...prev.certificate, endpoint + newId],
         }));
       }
     }
@@ -121,7 +110,7 @@ export default function EducationForm() {
 
         setDataStorage((prev) => ({
           ...prev,
-          transcript: [...prev.transcript, endpoint+newId],
+          transcript: [...prev.transcript, endpoint + newId],
         }));
       }
     }
@@ -137,16 +126,13 @@ export default function EducationForm() {
     setDataStorage((prev) => ({ ...prev, transcript: filteredOut }));
   };
 
-  const nextButtonHandler = async () => {
+  const saveButtonHandler = async () => {
     if (
-      dataStorage.courseByCourse.length > 0 ||
       dataStorage.certificate.length > 0 ||
       dataStorage.transcript.length > 0
     ) {
       setButtonsLoading(true);
-      if (!isExist.courseByCourse) {
-        dataStorage.courseByCourse = [];
-      }
+
       if (!isExist.certificate) {
         dataStorage.certificate = [];
       }
@@ -159,16 +145,7 @@ export default function EducationForm() {
           dataStorage.userId = userId;
           const response = await addDocuments(dataStorage);
           if (response.data.message) {
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            });
-            setPage({
-              informaton: { timeline: true, page: false },
-              evaluations: { timeline: true, page: false },
-              education: { timeline: true, page: false },
-              pay: { timeline: true, page: true },
-            });
+            setButtonsLoading(false);
           }
         }
         setButtonsLoading(false);
@@ -186,6 +163,18 @@ export default function EducationForm() {
     }
 
     setButtonsLoading(false);
+  };
+  const nextButtonHandler = async () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    setPage({
+      informaton: { timeline: true, page: false },
+      evaluations: { timeline: true, page: false },
+      education: { timeline: true, page: false },
+      pay: { timeline: true, page: true },
+    });
   };
 
   const prevButtonHandler = () => {
@@ -216,7 +205,6 @@ export default function EducationForm() {
         const userId = localStorage.getItem("userId");
         setIsloading(true);
         const response = await getUserEvalutionById({ userId: userId });
-        console.log(response.data.data);
         if (response.data.data) {
           const data = response.data.data;
           if (data.certificate) {
@@ -289,8 +277,7 @@ export default function EducationForm() {
 
       <AlertDialog>
         <AlertDialogTrigger className="w-full mt-10 bg-primary font-bold rounded-full text-white p-2">
-          {dataStorage.courseByCourse.length > 0 ||
-          dataStorage.certificate.length > 0 ||
+          {dataStorage.certificate.length > 0 ||
           dataStorage.transcript.length > 0
             ? "Edit Documents"
             : "Upload Documents"}
@@ -353,7 +340,7 @@ export default function EducationForm() {
                   )}
                 </span>
               )}
-              {isExist.certificate && (
+              {isExist.transcript && isExist.certificate && (
                 <span className="my-5">
                   <label className="text-sm font-semibold">
                     Document Verification.
@@ -411,7 +398,7 @@ export default function EducationForm() {
             <AlertDialogCancel className="absolute top-0 right-0 border-none ">
               <RxCross2 size={20} />
             </AlertDialogCancel>
-            <AlertDialogAction className="bg-primary font-bold rounded-full ">
+            <AlertDialogAction className="bg-primary font-bold rounded-full " onClick={saveButtonHandler}>
               Save
             </AlertDialogAction>
           </AlertDialogFooter>
@@ -435,7 +422,11 @@ export default function EducationForm() {
           type="button"
           disabled={buttonsLoading ? true : false}
         >
-          {buttonsLoading ? <CircularProgress color="inherit" /> : "Next"}
+          {buttonsLoading ? (
+            <CircularProgress color="inherit" />
+          ) : (
+            "Next"
+          )}
         </Button>
       </div>
       <Backdrop

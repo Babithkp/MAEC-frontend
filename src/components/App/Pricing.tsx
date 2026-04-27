@@ -16,7 +16,7 @@ export default function Pricing() {
               Official Translations 
               </div>
               <div className="bg-white w-full h-full rounded-tl-lg border flex justify-center items-center text-xl font-bold text-primary">
-              €15
+              €7
               </div>
 
               <div className="border-b font-bold p-5 w-full h-full flex justify-center items-center">

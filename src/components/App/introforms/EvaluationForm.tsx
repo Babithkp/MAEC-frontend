@@ -178,12 +178,12 @@ export default function EvaluationForm() {
         data.userId = userId;
 
         if (data.certificate) {
-          data.certificate = 10;
+          data.certificate = 7
         } else {
           data.certificate = 0;
         }
         if (data.transcript) {
-          data.transcript = 10;
+          data.transcript = 7;
         } else {
           data.transcript = 0;
         }
@@ -232,7 +232,6 @@ export default function EvaluationForm() {
         const response = await getUserEvalutionById({ userId: userId });
         if (response.data.data) {
           const data = response.data.data;
-          setValue("courseByCourse", data.courseByCourse);
           setValue("certificate", data.certificate);
           setValue("transcript", data.transcript);
           setValue("language", data.language);

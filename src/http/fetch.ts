@@ -40,7 +40,7 @@ export const getAllUserDetails = async (limit = 20, offset = 0,search = "") => {
   return await axios.get(`${BASE_URL}/api/getAllUserDetails?limit=${limit}&offset=${offset}&search=${search}`);
 };
 export const makePaymentStripe = async (file:unknown) => {
-  return await axios.post(`${BASE_URL}/api/makePayment`,file);
+  return await axios.post(`${BASE_URL}/api/makePaymentStripe`,file);
 }
 
 export const makePaymentPaypal = async (file:unknown) => {
