@@ -178,7 +178,7 @@ export default function EvaluationForm() {
         data.userId = userId;
 
         if (data.certificate) {
-          data.certificate = 7
+          data.certificate = 15
         } else {
           data.certificate = 0;
         }
@@ -308,7 +308,7 @@ export default function EvaluationForm() {
               <p>
                 Translated documents will be delivered via email once complete.
               </p>
-              <p className="font-bold">€15 per document</p>
+              <p className="font-bold">€7 per document</p>
               <p>
                 Select the current language of your document.
                 <span className="text-red-500">*</span>
