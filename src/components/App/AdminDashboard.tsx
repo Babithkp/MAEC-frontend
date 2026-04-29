@@ -7,6 +7,7 @@ import { getAllUserDetails } from "../../http/fetch";
 import { IoSearch } from "react-icons/io5";
 
 interface UserProfileType {
+  id: string;
   email_address: string;
   password: string;
   profile: {
@@ -64,14 +65,21 @@ export default function AdminDashboard() {
       const response = await getAllUserDetails(20, newPage * 20, search);
       if (response) {
         const data = response.data.data;
-        console.log(data);
 
         if (data.length === 0) {
           setIsLastPage(true);
         } else {
-          setUsers((prevUsers) =>
-            newPage === 0 ? data : [...prevUsers, ...data],
-          );
+          setUsers((prevUsers) => {
+            if (newPage === 0) return data;
+          
+            const existingIds = new Set(prevUsers.map((u: UserProfileType) => u.id));
+          
+            const newUniqueUsers = data.filter(
+              (u: UserProfileType) => !existingIds.has(u.id)
+            );
+          
+            return [...prevUsers, ...newUniqueUsers];
+          });
         }
       }
       setLoading(false);
