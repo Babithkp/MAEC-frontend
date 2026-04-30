@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";import Accordion from "@mui/material/Accordion";
+import React, { useEffect, useState, useRef, useCallback } from "react";
+import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { RiArrowUpSLine } from "react-icons/ri";
@@ -10,6 +11,7 @@ interface UserProfileType {
   id: string;
   email_address: string;
   password: string;
+  updatedAt: string;
   profile: {
     first_name: string;
     middle_name: string;
@@ -71,13 +73,15 @@ export default function AdminDashboard() {
         } else {
           setUsers((prevUsers) => {
             if (newPage === 0) return data;
-          
-            const existingIds = new Set(prevUsers.map((u: UserProfileType) => u.id));
-          
-            const newUniqueUsers = data.filter(
-              (u: UserProfileType) => !existingIds.has(u.id)
+
+            const existingIds = new Set(
+              prevUsers.map((u: UserProfileType) => u.id),
             );
-          
+
+            const newUniqueUsers = data.filter(
+              (u: UserProfileType) => !existingIds.has(u.id),
+            );
+
             return [...prevUsers, ...newUniqueUsers];
           });
         }
@@ -189,6 +193,12 @@ export default function AdminDashboard() {
                 <p className="flex gap-1">
                   <span className="font-medium">Password:</span> {user.password}
                 </p>
+                {user.updatedAt && (
+                  <p className="flex gap-1">
+                    <span className="font-medium">Latest Update:</span>{" "}
+                    {new Date(user.updatedAt).toLocaleString()}
+                  </p>
+                )}
               </div>
               <div>
                 {user.evaluation?.map((eva, evalIndex) => {
