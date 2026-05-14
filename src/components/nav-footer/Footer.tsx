@@ -37,7 +37,7 @@ export default function Footer() {
         <div className="flex flex-col gap-3">
           <p className="font-bold">Contact Us</p>
           <p className="font-bold">
-            Support@internationaltranslationservice.de
+            Support@internationaltranslationsservice.com
           </p>
           <a href="/">
             <img src={rating} alt="rating" />
